@@ -5,6 +5,9 @@
 				@clear="clear">
 			</uni-search-bar>
 		</view>
+		<template>
+			<carousel :img-list="imgList" url-key="url" @selected="selectedBanner" />
+		</template>
 		<view style="padding: 0 10rpx;">
 			<!--       <view class="handle">
 		            <button class="btn" type="default" @click="add()">增加数据</button>
@@ -33,7 +36,11 @@
 	</view>
 </template>
 <script>
+	import carousel from '@/components/vear-carousel/vear-carousel'
 	export default {
+		components: {
+			carousel
+		},
 		data() {
 			return {
 				data: {
@@ -75,7 +82,17 @@
 					]
 				},
 				column: 2,
-				searchValue: ''
+				searchValue: '',
+				imgList: [{
+					url: 'https://via.placeholder.com/140x280.png/EEE8AA',
+					id: 1
+				}, {
+					url: 'https://via.placeholder.com/140x280.png/EEE8FF',
+					id: 2
+				}, {
+					url: 'https://via.placeholder.com/140x280.png/7FFFAA',
+					id: 3
+				} ]
 			}
 		},
 		methods: {
@@ -138,6 +155,9 @@
 					title: '点击取消，输入值为：' + res.value,
 					icon: 'none'
 				})
+			},
+			selectedBanner(item, index) {
+				console.log(item, index)
 			}
 		},
 		onPullDownRefresh() {
@@ -150,7 +170,7 @@
 			console.log('bottom');
 			this.add();
 		}
-		
+
 	}
 </script>
 <style>
