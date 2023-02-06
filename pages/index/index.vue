@@ -1,20 +1,13 @@
 <template>
 	<view>
-			<template>
-				<u-search :showAction="false"  margin="10px" actionText="搜索" :animation="true" shape="square"></u-search>
-			</template>
-		    <u-swiper
-                :list="list1"
-                previousMargin="30"
-                nextMargin="30"
-                circular
-                :autoplay="false"
-                radius="5"
-                bgColor="#ffffff"
-		    ></u-swiper>
+		<template>
+			<u-search :showAction="false" margin="10px" actionText="搜索" :animation="true" shape="square"></u-search>
+		</template>
+		<u-swiper :list="list1" previousMargin="30" nextMargin="30" circular :autoplay="false" radius="5"
+			bgColor="#ffffff"></u-swiper>
 		<u-divider text="分割线" :dot="true"></u-divider>
 		<view>
-			<u-grid :border="true" col="3" @click="click">
+			<u-grid :border="true" col="4" @click="click">
 				<u-grid-item v-for="(listItem,listIndex) in list" :key="listIndex">
 					<u-icon :customStyle="{paddingTop:20+'rpx'}" :name="listItem.name" :size="22"></u-icon>
 					<text class="grid-text">{{listItem.title}}</text>
@@ -24,6 +17,10 @@
 		</view>
 
 		<u-divider text="分割线" :dot="true"></u-divider>
+
+		<template>
+			<u-tabs :list="tabList" @click="change"></u-tabs>
+		</template>
 
 		<view style="padding: 0 10rpx;">
 			<!--       <view class="handle">
@@ -50,7 +47,7 @@
 				<!-- #endif -->
 			</custom-waterfalls-flow>
 		</view>
-		
+
 	</view>
 </template>
 <script>
@@ -61,6 +58,21 @@
 		},
 		data() {
 			return {
+				tabList: [{
+					name: '证件',
+				}, {
+					name: '写真',
+				}, {
+					name: '结婚'
+				}, {
+					name: '亲子'
+				}, {
+					name: '情侣'
+				}, {
+					name: '好友'
+				}, {
+					name: '宠物'
+				}],
 				list1: [
 					'https://cdn.uviewui.com/uview/swiper/swiper1.png',
 					'https://cdn.uviewui.com/uview/swiper/swiper2.png',
@@ -68,28 +80,20 @@
 				],
 				list: [{
 						name: 'photo',
-						title: '图片'
+						title: '我要拍照'
 					},
 					{
 						name: 'lock',
-						title: '锁头'
+						title: '我要入驻'
 					},
 					{
 						name: 'star',
-						title: '星星'
+						title: '新人专享'
 					},
 					{
 						name: 'hourglass',
-						title: '沙漏'
-					},
-					{
-						name: 'home',
-						title: '首页'
-					},
-					{
-						name: 'star',
-						title: '音量'
-					},
+						title: '收藏'
+					}
 				],
 				data: {
 					list: [{
@@ -209,6 +213,13 @@
 			},
 			click(name) {
 				this.$refs.uToast.success(`点击了第${name}个`)
+			},
+			change(index) {
+				console.log(index)
+				uni.showToast({
+					title: index.name,
+					icon: 'none'
+				})
 			}
 		},
 		onPullDownRefresh() {
