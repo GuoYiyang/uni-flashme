@@ -1,13 +1,30 @@
 <template>
 	<view>
+			<template>
+				<u-search :showAction="false"  margin="10px" actionText="搜索" :animation="true" shape="square"></u-search>
+			</template>
+		    <u-swiper
+                :list="list1"
+                previousMargin="30"
+                nextMargin="30"
+                circular
+                :autoplay="false"
+                radius="5"
+                bgColor="#ffffff"
+		    ></u-swiper>
+		<u-divider text="分割线" :dot="true"></u-divider>
 		<view>
-			<uni-search-bar @confirm="search" :focus="true" v-model="searchValue" @input="input" @cancel="cancel"
-				@clear="clear">
-			</uni-search-bar>
+			<u-grid :border="true" col="3" @click="click">
+				<u-grid-item v-for="(listItem,listIndex) in list" :key="listIndex">
+					<u-icon :customStyle="{paddingTop:20+'rpx'}" :name="listItem.name" :size="22"></u-icon>
+					<text class="grid-text">{{listItem.title}}</text>
+				</u-grid-item>
+			</u-grid>
+			<u-toast ref="uToast" />
 		</view>
-		<template>
-			<carousel :img-list="imgList" url-key="url" @selected="selectedBanner" />
-		</template>
+
+		<u-divider text="分割线" :dot="true"></u-divider>
+
 		<view style="padding: 0 10rpx;">
 			<!--       <view class="handle">
 		            <button class="btn" type="default" @click="add()">增加数据</button>
@@ -33,6 +50,7 @@
 				<!-- #endif -->
 			</custom-waterfalls-flow>
 		</view>
+		
 	</view>
 </template>
 <script>
@@ -43,6 +61,36 @@
 		},
 		data() {
 			return {
+				list1: [
+					'https://cdn.uviewui.com/uview/swiper/swiper1.png',
+					'https://cdn.uviewui.com/uview/swiper/swiper2.png',
+					'https://cdn.uviewui.com/uview/swiper/swiper3.png',
+				],
+				list: [{
+						name: 'photo',
+						title: '图片'
+					},
+					{
+						name: 'lock',
+						title: '锁头'
+					},
+					{
+						name: 'star',
+						title: '星星'
+					},
+					{
+						name: 'hourglass',
+						title: '沙漏'
+					},
+					{
+						name: 'home',
+						title: '首页'
+					},
+					{
+						name: 'star',
+						title: '音量'
+					},
+				],
 				data: {
 					list: [{
 							image: 'https://via.placeholder.com/200x500.png/ff0000',
@@ -82,7 +130,7 @@
 					]
 				},
 				column: 2,
-				searchValue: '',
+				keyword: '',
 				imgList: [{
 					url: 'https://via.placeholder.com/140x280.png/EEE8AA',
 					id: 1
@@ -92,23 +140,23 @@
 				}, {
 					url: 'https://via.placeholder.com/140x280.png/7FFFAA',
 					id: 3
-				} ]
+				}]
 			}
 		},
 		methods: {
 			add() {
 				const newArr = [{
-						image: 'https://via.placeholder.com/58x100.png/FF7F50',
+						image: 'https://via.placeholder.com/1000x600.png/FF7F50',
 						title: '我是标题100',
 						desc: '描述描述描述描述描述描述描述描述8'
 					},
 					{
-						image: 'https://via.placeholder.com/59x100.png/C0C0C0',
+						image: 'https://via.placeholder.com/600x1000.png/C0C0C0',
 						title: '我是标题101',
 						desc: '描述描述描述描述描述描述描述描述9'
 					},
 					{
-						image: 'https://via.placeholder.com/60x100.png/FAEBD7',
+						image: 'https://via.placeholder.com/1200x2000.png/FAEBD7',
 						title: '我是标题102',
 						desc: '描述描述描述描述描述描述描述描述10'
 					}
@@ -158,10 +206,14 @@
 			},
 			selectedBanner(item, index) {
 				console.log(item, index)
+			},
+			click(name) {
+				this.$refs.uToast.success(`点击了第${name}个`)
 			}
 		},
 		onPullDownRefresh() {
 			console.log('refresh');
+			this.$refs.waterfallsFlowRef.refresh();
 			setTimeout(function() {
 				uni.stopPullDownRefresh();
 			}, 1000);
@@ -211,6 +263,15 @@
 		.desc {
 			font-size: 24rpx;
 			color: #666;
+		}
+
+		.grid-text {
+			font-size: 14px;
+			color: #909399;
+			padding: 10rpx 0 20rpx 0rpx;
+			/* #ifndef APP-PLUS */
+			box-sizing: border-box;
+			/* #endif */
 		}
 	}
 </style>
