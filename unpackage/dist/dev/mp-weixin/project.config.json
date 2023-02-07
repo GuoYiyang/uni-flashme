@@ -34,7 +34,7 @@
     "useCompilerPlugins": false
   },
   "compileType": "miniprogram",
-  "libVersion": "2.30.0",
+  "libVersion": "",
   "appid": "wxc0821a0da706d8e0",
   "projectname": "mydemo",
   "condition": {},

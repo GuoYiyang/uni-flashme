@@ -1,1 +1,1 @@
-<view><button data-event-opts="{{[['tap',[['login',['$event']]]]]}}" bindtap="__e">login</button></view>
+<view><view>{{"当前code为:"+code}}</view><button data-event-opts="{{[['tap',[['login',['$event']]]]]}}" bindtap="__e">微信登录</button></view>
