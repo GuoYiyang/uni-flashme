@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "",
+  "navigationBarTitleText": "商品详情",
   "enablePullDownRefresh": false,
   "usingComponents": {
     "u--image": "/uni_modules/uview-ui/components/u--image/u--image"

@@ -4,63 +4,52 @@
 		<template>
 			<u-search :showAction="false" margin="10px" actionText="搜索" :animation="true" shape="round"></u-search>
 		</template>
-		
+
 		<u-divider text="分割线" :dot="true"></u-divider>
-		
+
 		<!-- 快捷入口 -->
 		<view>
-			<u-grid :border="true" col="4" @click="click">
-				<u-grid-item v-for="(listItem,listIndex) in list" :key="listIndex">
+			<u-grid :border="true" col="4" @click="clickFastEnter">
+				<u-grid-item v-for="(listItem,listIndex) in fastList" :key="listIndex">
 					<u-icon :customStyle="{paddingTop:20+'rpx'}" :name="listItem.name" :size="22"></u-icon>
 					<text class="grid-text">{{listItem.title}}</text>
 				</u-grid-item>
 			</u-grid>
 			<u-toast ref="uToast" />
 		</view>
-		
+
 		<u-divider text="分割线" :dot="true"></u-divider>
-		
+
 		<!-- 轮播图 -->
 		<view style="padding: 0 10rpx;">
-			<u-swiper
-					:list="list1"
-					indicator
-					indicatorMode="line"
-					circular
-			></u-swiper>
+			<u-swiper :list="swiperList" indicator indicatorMode="line" circular></u-swiper>
 		</view>
 
 
 		<!-- tab切换 -->
 		<template>
 			<u-sticky bgColor="#FFFFFF">
-				<u-tabs :list="tabList" @click="change"></u-tabs>
+				<u-tabs :list="tabList" @click="changeTab"></u-tabs>
 			</u-sticky>
 		</template>
-		
-		
+
+
 		<!-- 返回顶部 -->
-<!-- 		<template>
+		<!-- 		<template>
 			<u-back-top :scroll-top="scrollTop" icon="arrow-up" top="1000"></u-back-top>
 		</template> -->
-	
-		
+
+
 
 		<!--  瀑布流  -->
 		<view style="padding: 0 10rpx;">
-			<!--       <view class="handle">
-		            <button class="btn" type="default" @click="add()">增加数据</button>
-		            <button class="btn" type="default" @click="changeColumn(1)">+列数({{column}})</button>
-		            <button class="btn" type="default" @click="changeColumn(0)">-列数({{column}})</button>
-		            <button class="btn" type="default" @click="reset()">刷新数据</button>
-		        </view> -->
-			<custom-waterfalls-flow ref="waterfallsFlowRef" :value="data.list" :column="column" :columnSpace="1.5"
-				:seat="2" @wapperClick="wapperClick" @imageClick="imageClick" @loaded="loaded">
+			<custom-waterfalls-flow ref="waterfallsFlowRef" :value="product.list" :column="column" :columnSpace="1.5"
+				:seat="2" @imageClick="imageClick" @loaded="loaded">
 				<!-- #ifdef MP-WEIXIN -->
-				    <view class="item" v-for="(item,index) in data.list" :key="index" slot="slot{{index}}">
-		                <view class="title">{{item.title}}</view>
-		                <view class="desc">{{item.desc}}</view>
-		            </view>
+				<view class="item" v-for="(item,index) in data.list" :key="index" slot="slot{{index}}">
+					<view class="title">{{item.title}}</view>
+					<view class="desc">{{item.desc}}</view>
+				</view>
 				<!-- #endif -->
 				<!-- #ifndef MP-WEIXIN -->
 				<template v-slot:default="item">
@@ -80,6 +69,7 @@
 		data() {
 			return {
 				scrollTop: 0,
+				// tab bar
 				tabList: [{
 					name: '证件',
 				}, {
@@ -95,12 +85,14 @@
 				}, {
 					name: '宠物'
 				}],
-				list1: [
+				// 轮播图
+				swiperList: [
 					'https://cdn.uviewui.com/uview/swiper/swiper1.png',
 					'https://cdn.uviewui.com/uview/swiper/swiper2.png',
 					'https://cdn.uviewui.com/uview/swiper/swiper3.png',
 				],
-				list: [{
+				// 快捷入口
+				fastList: [{
 						name: 'photo',
 						title: '我要拍照'
 					},
@@ -117,7 +109,8 @@
 						title: '收藏'
 					}
 				],
-				data: {
+				// 产品瀑布流
+				product: {
 					list: [{
 							image: 'https://seopic.699pic.com/photo/50108/2763.jpg_wh1200.jpg',
 							title: '我是标题1',
@@ -151,17 +144,7 @@
 					]
 				},
 				column: 2,
-				keyword: '',
-				imgList: [{
-					url: 'https://via.placeholder.com/140x280.png/EEE8AA',
-					id: 1
-				}, {
-					url: 'https://via.placeholder.com/140x280.png/EEE8FF',
-					id: 2
-				}, {
-					url: 'https://via.placeholder.com/140x280.png/7FFFAA',
-					id: 3
-				}]
+				keyword: ''
 			}
 		},
 		methods: {
@@ -182,26 +165,20 @@
 						desc: '描述描述描述描述描述描述描述描述10'
 					},
 					{
-							image: 'https://seopic.699pic.com/photo/50108/2763.jpg_wh1200.jpg',
-							title: '我是标题1',
-							desc: '描述描述描述描述描述描述描述描述1'
-						},
-						{
-							image: 'https://seopic.699pic.com/photo/50102/0571.jpg_wh1200.jpg',
-							title: '我是标题2',
-							desc: '描述描述描述描述描述描述描述描述2'
-						},
+						image: 'https://seopic.699pic.com/photo/50108/2763.jpg_wh1200.jpg',
+						title: '我是标题1',
+						desc: '描述描述描述描述描述描述描述描述1'
+					},
+					{
+						image: 'https://seopic.699pic.com/photo/50102/0571.jpg_wh1200.jpg',
+						title: '我是标题2',
+						desc: '描述描述描述描述描述描述描述描述2'
+					},
 				]
 				this.data.list = this.data.list.concat(newArr);
 			},
-			changeColumn(h) {
-				this.column = !h ? this.column - 1 : this.column + 1;
-			},
 			loaded() {
 				console.log('加载完成')
-			},
-			wapperClick(item) {
-				console.log('单项点击事件', item)
 			},
 			imageClick(item) {
 				console.log('图片点击事件', item);
@@ -229,26 +206,18 @@
 			input(res) {
 				console.log('----input:', res)
 			},
-			clear(res) {
-				uni.showToast({
-					title: 'clear事件，清除值为：' + res.value,
-					icon: 'none'
-				})
-			},
-			cancel(res) {
-				uni.showToast({
-					title: '点击取消，输入值为：' + res.value,
-					icon: 'none'
-				})
-			},
 			selectedBanner(item, index) {
 				console.log(item, index)
 			},
-			click(name) {
-				this.$refs.uToast.success(`点击了第${name}个`)
+			clickFastEnter(index) {
+				console.log(index);
+				uni.showToast({
+					title: index,
+					icon: 'none'
+				})
 			},
-			change(index) {
-				console.log(index.name)
+			changeTab(index) {
+				console.log(index);
 				uni.showToast({
 					title: index.name,
 					icon: 'none'
@@ -256,7 +225,7 @@
 			}
 		},
 		onPageScroll(e) {
-				this.scrollTop = e.scrollTop;
+			this.scrollTop = e.scrollTop;
 		},
 		onPullDownRefresh() {
 			console.log('refresh');

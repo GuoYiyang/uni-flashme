@@ -154,7 +154,7 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  var l0 = _vm.__map(_vm.list, function (listItem, listIndex) {
+  var l0 = _vm.__map(_vm.fastList, function (listItem, listIndex) {
     var $orig = _vm.__get_orig(listItem)
     var a0 = {
       paddingTop: 20 + "rpx",
@@ -277,21 +277,11 @@ exports.default = void 0;
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 var _default = {
   data: function data() {
     return {
       scrollTop: 0,
+      // tab bar
       tabList: [{
         name: '证件'
       }, {
@@ -307,8 +297,10 @@ var _default = {
       }, {
         name: '宠物'
       }],
-      list1: ['https://cdn.uviewui.com/uview/swiper/swiper1.png', 'https://cdn.uviewui.com/uview/swiper/swiper2.png', 'https://cdn.uviewui.com/uview/swiper/swiper3.png'],
-      list: [{
+      // 轮播图
+      swiperList: ['https://cdn.uviewui.com/uview/swiper/swiper1.png', 'https://cdn.uviewui.com/uview/swiper/swiper2.png', 'https://cdn.uviewui.com/uview/swiper/swiper3.png'],
+      // 快捷入口
+      fastList: [{
         name: 'photo',
         title: '我要拍照'
       }, {
@@ -321,7 +313,8 @@ var _default = {
         name: 'star',
         title: '收藏'
       }],
-      data: {
+      // 产品瀑布流
+      product: {
         list: [{
           image: 'https://seopic.699pic.com/photo/50108/2763.jpg_wh1200.jpg',
           title: '我是标题1',
@@ -349,17 +342,7 @@ var _default = {
         }]
       },
       column: 2,
-      keyword: '',
-      imgList: [{
-        url: 'https://via.placeholder.com/140x280.png/EEE8AA',
-        id: 1
-      }, {
-        url: 'https://via.placeholder.com/140x280.png/EEE8FF',
-        id: 2
-      }, {
-        url: 'https://via.placeholder.com/140x280.png/7FFFAA',
-        id: 3
-      }]
+      keyword: ''
     };
   },
   methods: {
@@ -387,14 +370,8 @@ var _default = {
       }];
       this.data.list = this.data.list.concat(newArr);
     },
-    changeColumn: function changeColumn(h) {
-      this.column = !h ? this.column - 1 : this.column + 1;
-    },
     loaded: function loaded() {
       console.log('加载完成');
-    },
-    wapperClick: function wapperClick(item) {
-      console.log('单项点击事件', item);
     },
     imageClick: function imageClick(item) {
       console.log('图片点击事件', item);
@@ -422,26 +399,18 @@ var _default = {
     input: function input(res) {
       console.log('----input:', res);
     },
-    clear: function clear(res) {
-      uni.showToast({
-        title: 'clear事件，清除值为：' + res.value,
-        icon: 'none'
-      });
-    },
-    cancel: function cancel(res) {
-      uni.showToast({
-        title: '点击取消，输入值为：' + res.value,
-        icon: 'none'
-      });
-    },
     selectedBanner: function selectedBanner(item, index) {
       console.log(item, index);
     },
-    click: function click(name) {
-      this.$refs.uToast.success("\u70B9\u51FB\u4E86\u7B2C".concat(name, "\u4E2A"));
+    clickFastEnter: function clickFastEnter(index) {
+      console.log(index);
+      uni.showToast({
+        title: index,
+        icon: 'none'
+      });
     },
-    change: function change(index) {
-      console.log(index.name);
+    changeTab: function changeTab(index) {
+      console.log(index);
       uni.showToast({
         title: index.name,
         icon: 'none'
