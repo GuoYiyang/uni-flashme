@@ -1,1 +1,1 @@
-<view></view>
+<view><u--image vue-id="1c037ce0-1" src="{{imgUrl}}" bind:__l="__l"></u--image></view>

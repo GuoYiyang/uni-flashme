@@ -1,1 +1,1 @@
-<view><view>{{"当前code为:"+code}}</view><button data-event-opts="{{[['tap',[['login',['$event']]]]]}}" bindtap="__e">微信登录</button></view>
+<view><view>{{"当前code为:"+code}}</view><u-button vue-id="380011e0-1" type="primary" plain="{{true}}" text="微信登录" data-event-opts="{{[['^click',[['login']]],['^getuserinfo',[['userInfo']]]]}}" bind:click="__e" bind:getuserinfo="__e" bind:__l="__l"></u-button></view>

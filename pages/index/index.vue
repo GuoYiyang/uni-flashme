@@ -204,7 +204,13 @@
 				console.log('单项点击事件', item)
 			},
 			imageClick(item) {
-				console.log('图片点击事件', item)
+				console.log('图片点击事件', item);
+				uni.navigateTo({
+					url: '../product/product?img=' + item.image,
+					fail: function(failInfo) {
+						console.log(failInfo)
+					}
+				})
 			},
 			reset() {
 				this.data.list = [{

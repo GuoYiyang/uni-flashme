@@ -398,6 +398,12 @@ var _default = {
     },
     imageClick: function imageClick(item) {
       console.log('图片点击事件', item);
+      uni.navigateTo({
+        url: '../product/product?img=' + item.image,
+        fail: function fail(failInfo) {
+          console.log(failInfo);
+        }
+      });
     },
     reset: function reset() {
       this.data.list = [{

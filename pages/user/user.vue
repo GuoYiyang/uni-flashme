@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view>当前code为:{{code}}</view>
-		<button @click="login">微信登录</button>
+		<u-button type="primary" :plain="true" text="微信登录" @click="login" @getuserinfo="userInfo"></u-button>
 	</view>
 </template>
 <script>
@@ -37,6 +37,10 @@
 					// 	  console.log(failInfo);
 					//   }
 					// });
+			},
+			userInfo(info) {
+				console.log(info);
+				that.code = loginRes.code;
 			}
 		}
 	}
