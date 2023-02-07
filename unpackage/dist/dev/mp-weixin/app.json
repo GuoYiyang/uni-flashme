@@ -2,7 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/explore/explore",
-    "pages/user/user"
+    "pages/user/user",
+    "pages/product/product"
   ],
   "subPackages": [],
   "window": {

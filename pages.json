@@ -38,6 +38,7 @@
             }
             
         }
+
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
@@ -56,11 +57,12 @@
 		"list": [{
 			"pagePath": "pages/index/index",
 			"text": "首页"
-		}, {
+		}, 
+		{
 			"pagePath": "pages/explore/explore",
 			"text": "探索"
-		}
-		, {
+		}, 
+		{
 			"pagePath": "pages/user/user",
 			"text": "我的"
 		}]

@@ -1,11 +1,13 @@
 <template>
 	<view>
+		<!-- 搜索 -->
 		<template>
-			<u-search :showAction="false" margin="10px" actionText="搜索" :animation="true" shape="square"></u-search>
+			<u-search :showAction="false" margin="10px" actionText="搜索" :animation="true" shape="round"></u-search>
 		</template>
-		<u-swiper :list="list1" previousMargin="30" nextMargin="30" circular :autoplay="false" radius="5"
-			bgColor="#ffffff"></u-swiper>
+		
 		<u-divider text="分割线" :dot="true"></u-divider>
+		
+		<!-- 快捷入口 -->
 		<view>
 			<u-grid :border="true" col="4" @click="click">
 				<u-grid-item v-for="(listItem,listIndex) in list" :key="listIndex">
@@ -15,13 +17,36 @@
 			</u-grid>
 			<u-toast ref="uToast" />
 		</view>
-
+		
 		<u-divider text="分割线" :dot="true"></u-divider>
+		
+		<!-- 轮播图 -->
+		<view style="padding: 0 10rpx;">
+			<u-swiper
+					:list="list1"
+					indicator
+					indicatorMode="line"
+					circular
+			></u-swiper>
+		</view>
 
+
+		<!-- tab切换 -->
 		<template>
-			<u-tabs :list="tabList" @click="change"></u-tabs>
+			<u-sticky bgColor="#FFFFFF">
+				<u-tabs :list="tabList" @click="change"></u-tabs>
+			</u-sticky>
 		</template>
+		
+		
+		<!-- 返回顶部 -->
+<!-- 		<template>
+			<u-back-top :scroll-top="scrollTop" icon="arrow-up" top="1000"></u-back-top>
+		</template> -->
+	
+		
 
+		<!--  瀑布流  -->
 		<view style="padding: 0 10rpx;">
 			<!--       <view class="handle">
 		            <button class="btn" type="default" @click="add()">增加数据</button>
@@ -32,10 +57,10 @@
 			<custom-waterfalls-flow ref="waterfallsFlowRef" :value="data.list" :column="column" :columnSpace="1.5"
 				:seat="2" @wapperClick="wapperClick" @imageClick="imageClick" @loaded="loaded">
 				<!-- #ifdef MP-WEIXIN -->
-				<!--            <view class="item" v-for="(item,index) in data.list" :key="index" slot="slot{{index}}">
+				    <view class="item" v-for="(item,index) in data.list" :key="index" slot="slot{{index}}">
 		                <view class="title">{{item.title}}</view>
 		                <view class="desc">{{item.desc}}</view>
-		            </view> -->
+		            </view>
 				<!-- #endif -->
 				<!-- #ifndef MP-WEIXIN -->
 				<template v-slot:default="item">
@@ -51,13 +76,10 @@
 	</view>
 </template>
 <script>
-	import carousel from '@/components/vear-carousel/vear-carousel'
 	export default {
-		components: {
-			carousel
-		},
 		data() {
 			return {
+				scrollTop: 0,
 				tabList: [{
 					name: '证件',
 				}, {
@@ -87,49 +109,44 @@
 						title: '我要入驻'
 					},
 					{
-						name: 'star',
+						name: 'hourglass',
 						title: '新人专享'
 					},
 					{
-						name: 'hourglass',
+						name: 'star',
 						title: '收藏'
 					}
 				],
 				data: {
 					list: [{
-							image: 'https://via.placeholder.com/200x500.png/ff0000',
+							image: 'https://seopic.699pic.com/photo/50108/2763.jpg_wh1200.jpg',
 							title: '我是标题1',
 							desc: '描述描述描述描述描述描述描述描述1'
 						},
 						{
-							image: 'https://via.placeholder.com/200x200.png/2878ff',
+							image: 'https://seopic.699pic.com/photo/50102/0571.jpg_wh1200.jpg',
 							title: '我是标题2',
 							desc: '描述描述描述描述描述描述描述描述2'
 						},
 						{
-							image: 'https://via.placeholder.com/200x100.png/FFB6C1',
+							image: 'https://seopic.699pic.com/photo/50119/0737.jpg_wh1200.jpg',
 							title: '我是标题3',
 							desc: '描述描述描述描述描述描述描述描述3'
 						},
 						{
-							image: 'https://via.placeholder.com/200x300.png/9400D3',
+							image: 'https://seopic.699pic.com/photo/50034/7165.jpg_wh1200.jpg',
 							title: '我是标题4',
 							desc: '描述描述描述描述描述描述描述描述4'
 						},
 						{
-							image: 'https://via.placeholder.com/100x240.png/B0E0E6',
+							image: 'https://seopic.699pic.com/photo/50199/7831.jpg_wh1200.jpg',
 							title: '我是标题5',
 							desc: '描述描述描述描述描述描述描述描述5'
 						},
 						{
-							image: 'https://via.placeholder.com/140x280.png/7FFFAA',
+							image: 'https://seopic.699pic.com/photo/50154/9987.jpg_wh1200.jpg',
 							title: '我是标题6',
 							desc: '描述描述描述描述描述描述描述描述6'
-						},
-						{
-							image: 'https://via.placeholder.com/40x60.png/EEE8AA',
-							title: '我是标题7',
-							desc: '描述描述描述描述描述描述描述描述7'
 						}
 					]
 				},
@@ -150,20 +167,30 @@
 		methods: {
 			add() {
 				const newArr = [{
-						image: 'https://via.placeholder.com/1000x600.png/FF7F50',
+						image: 'https://seopic.699pic.com/photo/50154/9963.jpg_wh1200.jpg',
 						title: '我是标题100',
 						desc: '描述描述描述描述描述描述描述描述8'
 					},
 					{
-						image: 'https://via.placeholder.com/600x1000.png/C0C0C0',
+						image: 'https://seopic.699pic.com/photo/50136/1351.jpg_wh1200.jpg',
 						title: '我是标题101',
 						desc: '描述描述描述描述描述描述描述描述9'
 					},
 					{
-						image: 'https://via.placeholder.com/1200x2000.png/FAEBD7',
+						image: 'https://seopic.699pic.com/photo/50115/7295.jpg_wh1200.jpg',
 						title: '我是标题102',
 						desc: '描述描述描述描述描述描述描述描述10'
-					}
+					},
+					{
+							image: 'https://seopic.699pic.com/photo/50108/2763.jpg_wh1200.jpg',
+							title: '我是标题1',
+							desc: '描述描述描述描述描述描述描述描述1'
+						},
+						{
+							image: 'https://seopic.699pic.com/photo/50102/0571.jpg_wh1200.jpg',
+							title: '我是标题2',
+							desc: '描述描述描述描述描述描述描述描述2'
+						},
 				]
 				this.data.list = this.data.list.concat(newArr);
 			},
@@ -215,12 +242,15 @@
 				this.$refs.uToast.success(`点击了第${name}个`)
 			},
 			change(index) {
-				console.log(index)
+				console.log(index.name)
 				uni.showToast({
 					title: index.name,
 					icon: 'none'
 				})
 			}
+		},
+		onPageScroll(e) {
+				this.scrollTop = e.scrollTop;
 		},
 		onPullDownRefresh() {
 			console.log('refresh');
