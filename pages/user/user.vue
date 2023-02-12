@@ -1,5 +1,8 @@
 <template>
 	<view>
+		<view>
+			<u-avatar :src="avatar" shape="square"></u-avatar>
+		</view>
 		<view>当前code为:{{code}}</view>
 		<u-button type="primary" :plain="true" text="微信登录" @click="login" @getuserinfo="userInfo"></u-button>
 	</view>
@@ -10,7 +13,8 @@
 		},
 		data() {
 			return {
-				code: 0
+				code: 0,
+				avatar: 'https://himg.bdimg.com/sys/portrait/item/pp.1.16ffce1b.upEz2MMrdhUQQyrG853gNg?_t=1676210548816'
 			}
 		},
 		methods: {

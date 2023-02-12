@@ -1,7 +1,35 @@
 <template>
 	<view>
-		<u--image :src=imgUrl>
-		</u--image>
+		<!-- 轮播图 -->
+		<view style="padding: 0 10rpx;">
+			<u-swiper :list="imgUrlList" indicator indicatorMode="line" circular height="500"></u-swiper>
+		</view>
+		
+		<view>{{title}}</view>
+
+		<u-subsection :list="subsectionList" :current="subsectionCurrent" @change="subsectionChange"></u-subsection>
+		
+		<view>服务说明:{{title}}</view>
+		<view>拍摄人数:{{title}}</view>
+		<view>拍摄张数:{{title}}</view>
+		<view>拍摄时长:{{title}}</view>
+		
+		
+		<view>拍摄须知</view>
+		<view>样片展示</view>
+
+		
+		<u-tabbar
+			:value="value6"
+			@change="name => value6 = name"
+			:fixed="true"
+			:placeholder="true"
+			:safeAreaInsetBottom="true"
+		>
+			<u-tabbar-item text="联系摄影师" icon="photo" ></u-tabbar-item>
+			<u-tabbar-item text="线上预约" icon="play-right" ></u-tabbar-item>
+		</u-tabbar>
+		
 	</view>
 </template>
 
@@ -9,16 +37,20 @@
 	export default {
 		data() {
 			return {
-				imgUrl: '',
+				imgUrlList: [],
+				title: '标题',
+				subsectionList: ['产品方案', '拍摄须知', '客片展示'],
+				subsectionCurrent: 0
 			}
 		},
 		methods: {
-
+			subsectionChange(index) {
+				this.subsectionCurrent = index;
+			}
 		},
 		onLoad: function(product) { //option为object类型，会序列化上个页面传递的参数
-			console.log(product.img); //打印出上个页面传递的参数。
-			// console.log(product.name); //打印出上个页面传递的参数。
-			this.imgUrl = product.img;
+
+			this.imgUrlList = this.imgUrlList.concat(product.img);
 		},
 	}
 </script>

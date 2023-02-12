@@ -14,7 +14,7 @@
 			"path" : "pages/explore/explore",
 			"style" :                                                                                    
 			{
-				"navigationBarTitleText": "探索",
+				"navigationBarTitleText": "发现",
 				"enablePullDownRefresh": false
 			}
 			
@@ -60,7 +60,7 @@
 		}, 
 		{
 			"pagePath": "pages/explore/explore",
-			"text": "探索"
+			"text": "发现"
 		}, 
 		{
 			"pagePath": "pages/user/user",

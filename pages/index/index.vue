@@ -1,9 +1,14 @@
 <template>
 	<view>
 		<!-- 搜索 -->
-		<template>
-			<u-search :showAction="false" margin="10px" actionText="搜索" :animation="true" shape="round"></u-search>
-		</template>
+		<view>
+			<u-search :showAction="false" 
+				margin="10px" 
+				:animation="true" 
+				shape="square"
+				placeholder="摄影师">
+			</u-search>
+		</view>
 
 		<u-divider text="分割线" :dot="true"></u-divider>
 
@@ -17,6 +22,14 @@
 			</u-grid>
 			<u-toast ref="uToast" />
 		</view>
+		
+<!-- 		<view>
+			<u-scroll-list :indicator="true" indicatorColor="#fff0f0" indicatorActiveColor="#f56c6c">
+				<view v-for="(item, index) in scrollList" :key="index">
+					<image :src="item.thumb""></image>
+				</view>
+			</u-scroll-list>
+		</view> -->
 
 		<u-divider text="分割线" :dot="true"></u-divider>
 
@@ -109,6 +122,17 @@
 						title: '收藏'
 					}
 				],
+				scrollList: [{
+					thumb: "https://cdn.uviewui.com/uview/goods/1.jpg"
+				}, {
+					thumb: "https://cdn.uviewui.com/uview/goods/2.jpg"
+				}, {
+					thumb: "https://cdn.uviewui.com/uview/goods/3.jpg"
+				}, {
+					thumb: "https://cdn.uviewui.com/uview/goods/4.jpg"
+				}, {
+					thumb: "https://cdn.uviewui.com/uview/goods/5.jpg"
+				}],
 				// 产品瀑布流
 				product: {
 					list: [{
@@ -175,7 +199,7 @@
 						desc: '描述描述描述描述描述描述描述描述2'
 					},
 				]
-				this.data.list = this.data.list.concat(newArr);
+				this.product.list = this.product.list.concat(newArr);
 			},
 			loaded() {
 				console.log('加载完成')
