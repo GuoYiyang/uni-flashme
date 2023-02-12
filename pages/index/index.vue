@@ -62,6 +62,7 @@
 				<view class="item" v-for="(item,index) in data.list" :key="index" slot="slot{{index}}">
 					<view class="title">{{item.title}}</view>
 					<view class="desc">{{item.desc}}</view>
+					<view class="title">￥499</view>
 				</view>
 				<!-- #endif -->
 				<!-- #ifndef MP-WEIXIN -->
@@ -69,6 +70,7 @@
 					<view class="item">
 						<view class="title">{{item.title}}</view>
 						<view class="desc">{{item.desc}}</view>
+						<view class="title">￥499</view>
 					</view>
 				</template>
 				<!-- #endif -->
