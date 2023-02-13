@@ -2,11 +2,7 @@
 	<view>
 		<!-- 搜索 -->
 		<view>
-			<u-search :showAction="false" 
-				margin="10px" 
-				:animation="true" 
-				shape="square"
-				placeholder="摄影师">
+			<u-search :showAction="false" margin="10px" :animation="true" shape="square" placeholder="摄影师">
 			</u-search>
 		</view>
 
@@ -22,8 +18,8 @@
 			</u-grid>
 			<u-toast ref="uToast" />
 		</view>
-		
-<!-- 		<view>
+
+		<!-- 		<view>
 			<u-scroll-list :indicator="true" indicatorColor="#fff0f0" indicatorActiveColor="#f56c6c">
 				<view v-for="(item, index) in scrollList" :key="index">
 					<image :src="item.thumb""></image>
@@ -56,10 +52,10 @@
 
 		<!--  瀑布流  -->
 		<view style="padding: 0 10rpx;">
-			<custom-waterfalls-flow ref="waterfallsFlowRef" :value="product.list" :column="column" :columnSpace="1.5"
+			<custom-waterfalls-flow ref="waterfallsFlowRef" :value="product.list" :column="2" :columnSpace="1.5"
 				:seat="2" @imageClick="imageClick" @loaded="loaded">
 				<!-- #ifdef MP-WEIXIN -->
-				<view class="item" v-for="(item,index) in data.list" :key="index" slot="slot{{index}}">
+				<view class="item" v-for="(item,index) in product.list" :key="index" slot="slot{{index}}">
 					<view class="title">{{item.title}}</view>
 					<view class="desc">{{item.desc}}</view>
 					<view class="title">￥499</view>
@@ -169,7 +165,6 @@
 						}
 					]
 				},
-				column: 2,
 				keyword: ''
 			}
 		},

@@ -3,12 +3,13 @@
     "pages/index/index",
     "pages/explore/explore",
     "pages/user/user",
-    "pages/product/product"
+    "pages/product/product",
+    "pages/collect/collect"
   ],
   "subPackages": [],
   "window": {
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "微摄影",
+    "navigationBarTitleText": "PhotoCall",
     "navigationBarBackgroundColor": "#F8F8F8",
     "backgroundColor": "#F8F8F8"
   },
@@ -24,7 +25,11 @@
       },
       {
         "pagePath": "pages/explore/explore",
-        "text": "探索"
+        "text": "发现"
+      },
+      {
+        "pagePath": "pages/collect/collect",
+        "text": "收藏"
       },
       {
         "pagePath": "pages/user/user",

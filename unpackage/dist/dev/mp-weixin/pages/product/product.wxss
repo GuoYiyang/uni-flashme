@@ -1,0 +1,18 @@
+@charset "UTF-8";
+/* 水平间距 */
+/* 水平间距 */
+/* uni.scss */
+.title.data-v-2fbdbe34 {
+  padding: 10px;
+  font-size: 25px;
+  font-weight: bold;
+}
+.desc.data-v-2fbdbe34 {
+  background-color: lightgrey;
+  padding: 10px;
+}
+.desc .font.data-v-2fbdbe34 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
