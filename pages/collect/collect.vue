@@ -6,7 +6,7 @@
 		</template>
 		<view v-if="collectProductShow">
 			<view style="padding: 0 10rpx;">
-				<custom-waterfalls-flow ref="waterfallsFlowRef" :value="product.list" :column="column"
+				<custom-waterfalls-flow ref="waterfallsFlowRef" :value="product.list" :column="2"
 					:columnSpace="1.5" :seat="2" @imageClick="imageClick" @loaded="loaded">
 					<!-- #ifdef MP-WEIXIN -->
 					<view class="item" v-for="(item,index) in product.list" :key="index" slot="slot{{index}}">
@@ -40,6 +40,9 @@
 	export default {
 		components: {
 			card
+		},
+		loaded() {
+			console.log('加载完成')
 		},
 		data() {
 			return {

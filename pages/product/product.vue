@@ -27,6 +27,7 @@
 			:placeholder="true"
 			:safeAreaInsetBottom="true"
 		>
+			<u-tabbar-item text="收藏" icon="heart" ></u-tabbar-item>
 			<u-tabbar-item text="联系摄影师" icon="photo" ></u-tabbar-item>
 			<u-tabbar-item text="线上预约" icon="play-right" ></u-tabbar-item>
 		</u-tabbar>

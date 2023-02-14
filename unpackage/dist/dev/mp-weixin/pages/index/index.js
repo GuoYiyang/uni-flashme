@@ -102,35 +102,32 @@ __webpack_require__.r(__webpack_exports__);
 var components
 try {
   components = {
-    uSearch: function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-search/u-search */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-search/u-search")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-search/u-search.vue */ 198))
+    uPicker: function () {
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-picker/u-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-picker/u-picker")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-picker/u-picker.vue */ 200))
     },
-    uDivider: function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-divider/u-divider */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-divider/u-divider")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-divider/u-divider.vue */ 206))
+    uButton: function () {
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-button/u-button.vue */ 208))
+    },
+    uSearch: function () {
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-search/u-search */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-search/u-search")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-search/u-search.vue */ 218))
     },
     uGrid: function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-grid/u-grid */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-grid/u-grid")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-grid/u-grid.vue */ 214))
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-grid/u-grid */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-grid/u-grid")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-grid/u-grid.vue */ 226))
     },
     uGridItem: function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-grid-item/u-grid-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-grid-item/u-grid-item")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-grid-item/u-grid-item.vue */ 222))
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-grid-item/u-grid-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-grid-item/u-grid-item")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-grid-item/u-grid-item.vue */ 234))
     },
     uIcon: function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-icon/u-icon */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-icon/u-icon")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-icon/u-icon.vue */ 230))
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-icon/u-icon */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-icon/u-icon")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-icon/u-icon.vue */ 242))
     },
     uToast: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uview-ui/components/u-toast/u-toast */ "uni_modules/uview-ui/components/u-toast/u-toast").then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-toast/u-toast.vue */ 239))
+      return __webpack_require__.e(/*! import() | uni_modules/uview-ui/components/u-toast/u-toast */ "uni_modules/uview-ui/components/u-toast/u-toast").then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-toast/u-toast.vue */ 251))
     },
-    uSwiper: function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-swiper/u-swiper */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-swiper/u-swiper")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-swiper/u-swiper.vue */ 246))
-    },
-    uSticky: function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-sticky/u-sticky */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-sticky/u-sticky")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-sticky/u-sticky.vue */ 254))
-    },
-    uTabs: function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-tabs/u-tabs */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-tabs/u-tabs")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-tabs/u-tabs.vue */ 262))
+    uDivider: function () {
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-divider/u-divider */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-divider/u-divider")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-divider/u-divider.vue */ 258))
     },
     customWaterfallsFlow: function () {
-      return Promise.all(/*! import() | uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow")]).then(__webpack_require__.bind(null, /*! @/uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow.vue */ 270))
+      return Promise.all(/*! import() | uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow")]).then(__webpack_require__.bind(null, /*! @/uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow.vue */ 266))
     },
   }
 } catch (e) {
@@ -164,6 +161,14 @@ var render = function () {
       a0: a0,
     }
   })
+  if (!_vm._isMounted) {
+    _vm.e0 = function ($event) {
+      _vm.pickerShow = false
+    }
+    _vm.e1 = function ($event) {
+      _vm.pickerShow = true
+    }
+  }
   _vm.$mp.data = Object.assign(
     {},
     {
@@ -288,41 +293,72 @@ exports.default = void 0;
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default = {
   data: function data() {
     return {
-      scrollTop: 0,
+      city: '深圳',
+      pickerShow: false,
+      pickerColumns: [['深圳', '北京', '上海', '广州']],
+      // scrollTop: 0,
       // tab bar
-      tabList: [{
-        name: '证件'
-      }, {
-        name: '写真'
-      }, {
-        name: '结婚'
-      }, {
-        name: '亲子'
-      }, {
-        name: '情侣'
-      }, {
-        name: '好友'
-      }, {
-        name: '宠物'
-      }],
+      // tabList: [{
+      // 	name: '证件',
+      // }, {
+      // 	name: '写真',
+      // }, {
+      // 	name: '结婚'
+      // }, {
+      // 	name: '亲子'
+      // }, {
+      // 	name: '情侣'
+      // }, {
+      // 	name: '好友'
+      // }, {
+      // 	name: '宠物'
+      // }],
       // 轮播图
-      swiperList: ['https://cdn.uviewui.com/uview/swiper/swiper1.png', 'https://cdn.uviewui.com/uview/swiper/swiper2.png', 'https://cdn.uviewui.com/uview/swiper/swiper3.png'],
+      // swiperList: [
+      // 	'https://cdn.uviewui.com/uview/swiper/swiper1.png',
+      // 	'https://cdn.uviewui.com/uview/swiper/swiper2.png',
+      // 	'https://cdn.uviewui.com/uview/swiper/swiper3.png',
+      // ],
       // 快捷入口
       fastList: [{
         name: 'photo',
-        title: '我要拍照'
+        title: '写真'
       }, {
         name: 'lock',
-        title: '我要入驻'
+        title: '证件照'
       }, {
         name: 'hourglass',
-        title: '新人专享'
+        title: '婚纱'
       }, {
         name: 'star',
-        title: '收藏'
+        title: '情侣'
+      }, {
+        name: 'photo',
+        title: '亲子'
+      }, {
+        name: 'lock',
+        title: '宠物'
+      }, {
+        name: 'star',
+        title: '旅拍'
+      }, {
+        name: 'hourglass',
+        title: '其他'
       }],
       scrollList: [{
         thumb: "https://cdn.uviewui.com/uview/goods/1.jpg"
@@ -367,6 +403,10 @@ var _default = {
     };
   },
   methods: {
+    confirmPicker: function confirmPicker(object) {
+      this.city = object.value[0];
+      this.pickerShow = false;
+    },
     add: function add() {
       var newArr = [{
         image: 'https://seopic.699pic.com/photo/50154/9963.jpg_wh1200.jpg',
@@ -438,9 +478,9 @@ var _default = {
       });
     }
   },
-  onPageScroll: function onPageScroll(e) {
-    this.scrollTop = e.scrollTop;
-  },
+  // onPageScroll(e) {
+  // 	this.scrollTop = e.scrollTop;
+  // },
   onPullDownRefresh: function onPullDownRefresh() {
     console.log('refresh');
     this.$refs.waterfallsFlowRef.refresh();
@@ -449,7 +489,6 @@ var _default = {
     }, 1000);
   },
   onReachBottom: function onReachBottom() {
-    console.log('bottom');
     this.add();
   }
 };

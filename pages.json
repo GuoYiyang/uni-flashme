@@ -68,10 +68,6 @@
 			"text": "首页"
 		}, 
 		{
-			"pagePath": "pages/explore/explore",
-			"text": "发现"
-		}, 
-		{
 			"pagePath": "pages/collect/collect",
 			"text": "收藏"
 		}, 

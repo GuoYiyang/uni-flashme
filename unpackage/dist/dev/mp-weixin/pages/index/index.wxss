@@ -7,6 +7,12 @@ page {
 /* 水平间距 */
 /* 水平间距 */
 /* uni.scss */
+.flex-row.data-v-57280228 {
+  padding: 10px;
+  flex-flow: row;
+  justify-content: flex-start;
+  display: flex;
+}
 .handle.data-v-57280228 {
   display: flex;
   flex-direction: row;

@@ -1,13 +1,19 @@
 <template>
 	<view>
-		<!-- 搜索 -->
-		<view>
-			<u-search :showAction="false" margin="10px" :animation="true" shape="square" placeholder="摄影师">
-			</u-search>
+		<view style="padding: 40rpx; font-weight: bold;">
+			<view style="font-size: 35rpx;">HI 爱拍照的你</view>
+			<view>在photoCall，探索自我</view>
 		</view>
 
-		<u-divider text="分割线" :dot="true"></u-divider>
+		<u-picker :show="pickerShow" :columns="pickerColumns" @confirm="confirmPicker" @cancel="pickerShow=false"></u-picker>
 
+		<!-- 搜索 -->
+		<view class="flex-row">
+			<u-button  icon="map" :text="city" @click="pickerShow = true" customStyle="width:150rpx; height:70rpx"></u-button>
+			<u-search :showAction="false"  :animation="true" shape="square" placeholder="摄影师"></u-search>
+		</view>
+	
+		
 		<!-- 快捷入口 -->
 		<view>
 			<u-grid :border="true" col="4" @click="clickFastEnter">
@@ -30,17 +36,17 @@
 		<u-divider text="分割线" :dot="true"></u-divider>
 
 		<!-- 轮播图 -->
-		<view style="padding: 0 10rpx;">
+		<!-- 		<view style="padding: 0 10rpx;">
 			<u-swiper :list="swiperList" indicator indicatorMode="line" circular></u-swiper>
-		</view>
+		</view> -->
 
 
 		<!-- tab切换 -->
-		<template>
+		<!-- 		<template>
 			<u-sticky bgColor="#FFFFFF">
 				<u-tabs :list="tabList" @click="changeTab"></u-tabs>
 			</u-sticky>
-		</template>
+		</template> -->
 
 
 		<!-- 返回顶部 -->
@@ -58,7 +64,10 @@
 				<view class="item" v-for="(item,index) in product.list" :key="index" slot="slot{{index}}">
 					<view class="title">{{item.title}}</view>
 					<view class="desc">{{item.desc}}</view>
-					<view class="title">￥499</view>
+					<view class="flex-row">
+						<view class="title">￥499</view>
+						<u-icon name="heart" color="#ff0000" size="28"></u-icon>
+					</view>
 				</view>
 				<!-- #endif -->
 				<!-- #ifndef MP-WEIXIN -->
@@ -66,7 +75,10 @@
 					<view class="item">
 						<view class="title">{{item.title}}</view>
 						<view class="desc">{{item.desc}}</view>
-						<view class="title">￥499</view>
+						<view class="flex-row">
+							<view class="title">￥499</view>
+							<u-icon name="heart" color="#ff0000" size="28"></u-icon>
+						</view>
 					</view>
 				</template>
 				<!-- #endif -->
@@ -79,45 +91,65 @@
 	export default {
 		data() {
 			return {
-				scrollTop: 0,
+				city:'深圳',
+				pickerShow:false,
+				pickerColumns:[['深圳','北京','上海','广州']],
+				// scrollTop: 0,
 				// tab bar
-				tabList: [{
-					name: '证件',
-				}, {
-					name: '写真',
-				}, {
-					name: '结婚'
-				}, {
-					name: '亲子'
-				}, {
-					name: '情侣'
-				}, {
-					name: '好友'
-				}, {
-					name: '宠物'
-				}],
+				// tabList: [{
+				// 	name: '证件',
+				// }, {
+				// 	name: '写真',
+				// }, {
+				// 	name: '结婚'
+				// }, {
+				// 	name: '亲子'
+				// }, {
+				// 	name: '情侣'
+				// }, {
+				// 	name: '好友'
+				// }, {
+				// 	name: '宠物'
+				// }],
 				// 轮播图
-				swiperList: [
-					'https://cdn.uviewui.com/uview/swiper/swiper1.png',
-					'https://cdn.uviewui.com/uview/swiper/swiper2.png',
-					'https://cdn.uviewui.com/uview/swiper/swiper3.png',
-				],
+				// swiperList: [
+				// 	'https://cdn.uviewui.com/uview/swiper/swiper1.png',
+				// 	'https://cdn.uviewui.com/uview/swiper/swiper2.png',
+				// 	'https://cdn.uviewui.com/uview/swiper/swiper3.png',
+				// ],
 				// 快捷入口
-				fastList: [{
+				fastList: [
+					{
 						name: 'photo',
-						title: '我要拍照'
+						title: '写真'
 					},
 					{
 						name: 'lock',
-						title: '我要入驻'
+						title: '证件照'
 					},
 					{
 						name: 'hourglass',
-						title: '新人专享'
+						title: '婚纱'
 					},
 					{
 						name: 'star',
-						title: '收藏'
+						title: '情侣'
+					},
+					{
+						name: 'photo',
+						title: '亲子'
+					},
+					{
+						name: 'lock',
+						title: '宠物'
+					},
+					{
+						name: 'star',
+						title: '旅拍'
+					},
+					{
+						name: 'hourglass',
+						title: '其他'
 					}
 				],
 				scrollList: [{
@@ -169,6 +201,10 @@
 			}
 		},
 		methods: {
+			confirmPicker(object) {
+				this.city = object.value[0];
+				this.pickerShow = false;
+			},
 			add() {
 				const newArr = [{
 						image: 'https://seopic.699pic.com/photo/50154/9963.jpg_wh1200.jpg',
@@ -245,9 +281,9 @@
 				})
 			}
 		},
-		onPageScroll(e) {
-			this.scrollTop = e.scrollTop;
-		},
+		// onPageScroll(e) {
+		// 	this.scrollTop = e.scrollTop;
+		// },
 		onPullDownRefresh() {
 			console.log('refresh');
 			this.$refs.waterfallsFlowRef.refresh();
@@ -256,7 +292,6 @@
 			}, 1000);
 		},
 		onReachBottom() {
-			console.log('bottom');
 			this.add();
 		}
 
@@ -268,6 +303,13 @@
 	}
 </style>
 <style lang="scss" scoped>
+	.flex-row {
+		padding: 10px;
+		flex-flow: row;
+		justify-content: flex-start;
+		display: flex;
+	}
+
 	.handle {
 		display: flex;
 		flex-direction: row;
