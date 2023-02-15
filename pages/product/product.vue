@@ -5,8 +5,19 @@
 			<u-swiper :list="imgUrlList" indicator indicatorMode="line" circular height="500"></u-swiper>
 		</view>
 
-		<view class="title">{{title}}</view>
-		<u-line></u-line>
+		<view style="padding: 10rpx;">
+			<uni-row>
+				<uni-col :span="18">
+					<view class="title">{{title}}</view>
+				</uni-col>
+				<uni-col :span="6">
+					<view class="title">¥499</view>
+				</uni-col>
+			</uni-row>
+		</view>
+
+
+		<!-- <u-line></u-line> -->
 
 		<!-- <u-subsection :list="subsectionList" :current="subsectionCurrent" @change="subsectionChange"></u-subsection> -->
 
