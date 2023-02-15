@@ -4,6 +4,7 @@
   "usingComponents": {
     "u-subsection": "/uni_modules/uview-ui/components/u-subsection/u-subsection",
     "custom-waterfalls-flow": "/uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow",
+    "fui-card": "/components/fui-card/fui-card",
     "card": "/components/list-card/list-card"
   }
 }

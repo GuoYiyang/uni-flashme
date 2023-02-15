@@ -1,54 +1,46 @@
 {
-		"easycom": {
-			"^u-(.*)": "@/uni_modules/uview-ui/components/u-$1/u-$1.vue"
-		},
-	"pages": [
-		{
+	"easycom": {
+		"^u-(.*)": "@/uni_modules/uview-ui/components/u-$1/u-$1.vue"
+	},
+	"pages": [{
 			"path": "pages/index/index",
 			"style": {
 				"navigationBarTitleText": "首页",
 				"enablePullDownRefresh": true
 			}
-		}
-		,{
-			"path" : "pages/explore/explore",
-			"style" :                                                                                    
-			{
+		}, {
+			"path": "pages/explore/explore",
+			"style": {
 				"navigationBarTitleText": "探索",
 				"enablePullDownRefresh": false
 			}
-			
-		}
-		,{
-			"path" : "pages/collect/collect",
-			"style" :                                                                                    
-			{
+
+		}, {
+			"path": "pages/collect/collect",
+			"style": {
 				"navigationBarTitleText": "收藏",
 				"enablePullDownRefresh": false
 			}
-			
-		}
-		,{
-            "path" : "pages/user/user",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "我的",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        
-        ,{
-            "path" : "pages/product/product",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "商品详情",
-                "enablePullDownRefresh": false
-            }
-            
-        }
 
-    ],
+		}, {
+			"path": "pages/user/user",
+			"style": {
+				"navigationBarTitleText": "我的",
+				"enablePullDownRefresh": false
+			}
+
+		}
+
+		, {
+			"path": "pages/product/product",
+			"style": {
+				"navigationBarTitleText": "商品详情",
+				"enablePullDownRefresh": false
+			}
+
+		}
+
+	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "微摄影",
@@ -59,21 +51,30 @@
 		}
 	},
 	"tabBar": {
+		"fontSize": "20rpx",
+		"height": "100rpx",
 		"color": "#7A7E83",
 		"selectedColor": "#3cc51f",
-		"borderStyle": "black",
+		"borderStyle": "white",
 		"backgroundColor": "#ffffff",
 		"list": [{
-			"pagePath": "pages/index/index",
-			"text": "首页"
-		}, 
-		{
-			"pagePath": "pages/collect/collect",
-			"text": "收藏"
-		}, 
-		{
-			"pagePath": "pages/user/user",
-			"text": "我的"
-		}]
+				"iconPath": "static/home.png",
+				"selectedIconPath": "static/home.png",
+				"pagePath": "pages/index/index",
+				"text": "首页"
+			},
+			{
+				"iconPath": "static/heart.png",
+				"selectedIconPath": "static/heart.png",
+				"pagePath": "pages/collect/collect",
+				"text": "收藏"
+			},
+			{
+				"iconPath": "static/user.png",
+				"selectedIconPath": "static/user.png",
+				"pagePath": "pages/user/user",
+				"text": "我的"
+			}
+		]
 	}
 }

@@ -1,11 +1,11 @@
 <template>
 	<view>
-		<template>
-			<u-subsection :list="subsectionList" :current="subsectionCurrent" @change="subsectionChange" mode="button">
+		<view>
+			<u-subsection fontSize="25rpx" :list="subsectionList" :current="subsectionCurrent" @change="subsectionChange" mode="button">
 			</u-subsection>
-		</template>
+		</view>
 		<view v-if="collectProductShow">
-			<view style="padding: 0 10rpx;">
+			<view style="padding:10rpx;">
 				<custom-waterfalls-flow ref="waterfallsFlowRef" :value="product.list" :column="2"
 					:columnSpace="1.5" :seat="2" @imageClick="imageClick" @loaded="loaded">
 					<!-- #ifdef MP-WEIXIN -->
@@ -27,10 +27,10 @@
 				</custom-waterfalls-flow>
 			</view>
 		</view>
-		<view v-if="collectPhotographerShow">
-			<div v-for="item in cardList">
-				<card :cardinfo="item"></card>
-			</div>
+		<view v-if="collectPhotographerShow" style="padding-top: 30rpx;">
+			<fui-card @click="clickCard" src="https://himg.bdimg.com/sys/portrait/item/pp.1.16ffce1b.upEz2MMrdhUQQyrG853gNg?_t=1676210548816" title="Slimshady" tag="优质摄影师">
+				<view class="fui-card__content">这是一个基础卡片的示例，此处为自定义内容区域，自行控制内容样式。</view>
+			</fui-card>
 		</view>
 	</view>
 </template>
@@ -97,6 +97,9 @@
 			}
 		},
 		methods: {
+			clickCard(item){
+				console.log(item)
+			},
 			loaded() {
 				console.log('加载完成')
 			},

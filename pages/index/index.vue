@@ -5,7 +5,7 @@
 			<view>在PhotoCall，探索自我</view>
 		</view>
 
-		<u-picker :show="pickerShow" :columns="pickerColumns" @confirm="confirmPicker" @cancel="pickerShow=false"></u-picker>
+		<u-picker title="请选择城市" :show="pickerShow" :columns="pickerColumns" @confirm="confirmPicker" @cancel="pickerShow=false"></u-picker>
 
 		<!-- 搜索 -->
 		<view class="flex-row">

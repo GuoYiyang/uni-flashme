@@ -1,10 +1,10 @@
 <template>
 	<view>
-		<view>
+		<view class="center">
 			<u-avatar :src="avatar" shape="square"></u-avatar>
+			<view style="font-size: 30rpx; font-weight: bold; padding-top: 10rpx;">{{username}}</view>
 		</view>
-		<view>当前code为:{{code}}</view>
-		<u-button type="primary" :plain="true" text="微信登录" @click="login" @getuserinfo="userInfo"></u-button>
+		<u-button v-if="!loginStatus" type="success" :plain="true" text="微信登录" @getuserinfo="userInfo"></u-button>
 	</view>
 </template>
 <script>
@@ -13,6 +13,8 @@
 		},
 		data() {
 			return {
+				loginStatus:false,
+				username:'Slimshady',
 				code: 0,
 				avatar: 'https://himg.bdimg.com/sys/portrait/item/pp.1.16ffce1b.upEz2MMrdhUQQyrG853gNg?_t=1676210548816'
 			}
@@ -43,6 +45,7 @@
 					// });
 			},
 			userInfo(info) {
+				console.log("info");
 				console.log(info);
 				that.code = loginRes.code;
 			}
@@ -50,6 +53,14 @@
 	}
 </script>
 <style lang="scss">
+	.center {
+		height: 100%;
+		flex: auto;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
 	.search-result {
 		padding-top: 10px;
 		padding-bottom: 20px;

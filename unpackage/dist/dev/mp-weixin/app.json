@@ -14,20 +14,28 @@
     "backgroundColor": "#F8F8F8"
   },
   "tabBar": {
+    "fontSize": "20rpx",
+    "height": "100rpx",
     "color": "#7A7E83",
     "selectedColor": "#3cc51f",
-    "borderStyle": "black",
+    "borderStyle": "white",
     "backgroundColor": "#ffffff",
     "list": [
       {
+        "iconPath": "static/home.png",
+        "selectedIconPath": "static/home.png",
         "pagePath": "pages/index/index",
         "text": "首页"
       },
       {
+        "iconPath": "static/heart.png",
+        "selectedIconPath": "static/heart.png",
         "pagePath": "pages/collect/collect",
         "text": "收藏"
       },
       {
+        "iconPath": "static/user.png",
+        "selectedIconPath": "static/user.png",
         "pagePath": "pages/user/user",
         "text": "我的"
       }

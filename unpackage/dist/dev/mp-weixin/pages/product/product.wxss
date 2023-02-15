@@ -8,11 +8,18 @@
   font-weight: bold;
 }
 .desc.data-v-2fbdbe34 {
-  background-color: lightgrey;
   padding: 10px;
 }
 .desc .font.data-v-2fbdbe34 {
-  font-size: 20px;
-  font-weight: bold;
+  font-size: 18px;
+  font-weight: bolder;
+}
+.goods-carts.data-v-2fbdbe34 {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 

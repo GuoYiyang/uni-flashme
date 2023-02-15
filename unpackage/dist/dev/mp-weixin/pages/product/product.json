@@ -3,8 +3,9 @@
   "enablePullDownRefresh": false,
   "usingComponents": {
     "u-swiper": "/uni_modules/uview-ui/components/u-swiper/u-swiper",
-    "u-subsection": "/uni_modules/uview-ui/components/u-subsection/u-subsection",
-    "u-tabbar": "/uni_modules/uview-ui/components/u-tabbar/u-tabbar",
-    "u-tabbar-item": "/uni_modules/uview-ui/components/u-tabbar-item/u-tabbar-item"
+    "u-line": "/uni_modules/uview-ui/components/u-line/u-line",
+    "uni-section": "/uni_modules/uni-section/components/uni-section/uni-section",
+    "uni-group": "/uni_modules/uni-group/components/uni-group/uni-group",
+    "uni-goods-nav": "/uni_modules/uni-goods-nav/components/uni-goods-nav/uni-goods-nav"
   }
 }
