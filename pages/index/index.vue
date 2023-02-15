@@ -2,7 +2,7 @@
 	<view>
 		<view style="padding: 40rpx; font-weight: bold;">
 			<view style="font-size: 35rpx;">HI 爱拍照的你</view>
-			<view>在photoCall，探索自我</view>
+			<view>在PhotoCall，探索自我</view>
 		</view>
 
 		<u-picker :show="pickerShow" :columns="pickerColumns" @confirm="confirmPicker" @cancel="pickerShow=false"></u-picker>
@@ -10,19 +10,18 @@
 		<!-- 搜索 -->
 		<view class="flex-row">
 			<u-button  icon="map" :text="city" @click="pickerShow = true" customStyle="width:150rpx; height:70rpx"></u-button>
-			<u-search :showAction="false"  :animation="true" shape="square" placeholder="摄影师"></u-search>
+			<u-search :showAction="false"  :animation="true" shape="square" placeholder="摄影师或者主题" bgColor="#FFFFFF"></u-search>
 		</view>
 	
 		
 		<!-- 快捷入口 -->
-		<view>
-			<u-grid :border="true" col="4" @click="clickFastEnter">
-				<u-grid-item v-for="(listItem,listIndex) in fastList" :key="listIndex">
-					<u-icon :customStyle="{paddingTop:20+'rpx'}" :name="listItem.name" :size="22"></u-icon>
+		<view style="padding-top: 20rpx; padding-bottom: 20px;">
+			<u-grid :border="false" col="4" @click="clickFastEnter">
+				<u-grid-item v-for="(listItem,listIndex) in fastList" :key="listIndex" >
+					<u-icon :customStyle="{paddingTop:'20rpx'}" :name="listItem.name" :size="22" bold></u-icon>
 					<text class="grid-text">{{listItem.title}}</text>
 				</u-grid-item>
 			</u-grid>
-			<u-toast ref="uToast" />
 		</view>
 
 		<!-- 		<view>
@@ -33,7 +32,7 @@
 			</u-scroll-list>
 		</view> -->
 
-		<u-divider text="分割线" :dot="true"></u-divider>
+		<!-- <u-divider text="分割线" :dot="true"></u-divider> -->
 
 		<!-- 轮播图 -->
 		<!-- 		<view style="padding: 0 10rpx;">
@@ -57,7 +56,7 @@
 
 
 		<!--  瀑布流  -->
-		<view style="padding: 0 10rpx;">
+		<view style="padding: 10rpx;">
 			<custom-waterfalls-flow ref="waterfallsFlowRef" :value="product.list" :column="2" :columnSpace="1.5"
 				:seat="2" @imageClick="imageClick" @loaded="loaded">
 				<!-- #ifdef MP-WEIXIN -->
@@ -66,7 +65,7 @@
 					<view class="desc">{{item.desc}}</view>
 					<view class="flex-row">
 						<view class="title">￥499</view>
-						<u-icon name="heart" color="#ff0000" size="28"></u-icon>
+						<!-- <u-icon name="heart" color="#ff0000" size="28"></u-icon> -->
 					</view>
 				</view>
 				<!-- #endif -->
@@ -77,7 +76,7 @@
 						<view class="desc">{{item.desc}}</view>
 						<view class="flex-row">
 							<view class="title">￥499</view>
-							<u-icon name="heart" color="#ff0000" size="28"></u-icon>
+							<!-- <u-icon name="heart" color="#ff0000" size="28"></u-icon> -->
 						</view>
 					</view>
 				</template>
@@ -120,23 +119,23 @@
 				// 快捷入口
 				fastList: [
 					{
-						name: 'photo',
+						name: 'camera',
 						title: '写真'
 					},
 					{
-						name: 'lock',
+						name: 'account',
 						title: '证件照'
 					},
 					{
-						name: 'hourglass',
+						name: 'gift',
 						title: '婚纱'
 					},
 					{
-						name: 'star',
+						name: 'woman',
 						title: '情侣'
 					},
 					{
-						name: 'photo',
+						name: 'home',
 						title: '亲子'
 					},
 					{
@@ -144,11 +143,11 @@
 						title: '宠物'
 					},
 					{
-						name: 'star',
+						name: 'photo',
 						title: '旅拍'
 					},
 					{
-						name: 'hourglass',
+						name: 'more-dot-fill',
 						title: '其他'
 					}
 				],
@@ -238,7 +237,6 @@
 				console.log('加载完成')
 			},
 			imageClick(item) {
-				console.log('图片点击事件', item);
 				uni.navigateTo({
 					url: '../product/product?img=' + item.image,
 					fail: function(failInfo) {
@@ -269,8 +267,7 @@
 			clickFastEnter(index) {
 				console.log(index);
 				uni.showToast({
-					title: index,
-					icon: 'none'
+					title: index + ""
 				})
 			},
 			changeTab(index) {

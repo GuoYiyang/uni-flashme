@@ -2,14 +2,14 @@
   "pages": [
     "pages/index/index",
     "pages/explore/explore",
+    "pages/collect/collect",
     "pages/user/user",
-    "pages/product/product",
-    "pages/collect/collect"
+    "pages/product/product"
   ],
   "subPackages": [],
   "window": {
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "PhotoCall",
+    "navigationBarTitleText": "微摄影",
     "navigationBarBackgroundColor": "#F8F8F8",
     "backgroundColor": "#F8F8F8"
   },

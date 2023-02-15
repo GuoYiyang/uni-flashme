@@ -97,6 +97,9 @@
 			}
 		},
 		methods: {
+			loaded() {
+				console.log('加载完成')
+			},
 			subsectionChange(index) {
 				this.subsectionCurrent = index;
 				if (index == 0) {

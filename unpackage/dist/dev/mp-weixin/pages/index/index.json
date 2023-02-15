@@ -8,8 +8,6 @@
     "u-grid": "/uni_modules/uview-ui/components/u-grid/u-grid",
     "u-grid-item": "/uni_modules/uview-ui/components/u-grid-item/u-grid-item",
     "u-icon": "/uni_modules/uview-ui/components/u-icon/u-icon",
-    "u-toast": "/uni_modules/uview-ui/components/u-toast/u-toast",
-    "u-divider": "/uni_modules/uview-ui/components/u-divider/u-divider",
     "custom-waterfalls-flow": "/uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow"
   }
 }
