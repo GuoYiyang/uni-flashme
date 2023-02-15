@@ -1,5 +1,5 @@
 {
   "navigationBarTitleText": "探索",
-  "enablePullDownRefresh": false,
+  "enablePullDownRefresh": true,
   "usingComponents": {}
 }

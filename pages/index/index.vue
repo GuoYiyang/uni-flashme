@@ -63,8 +63,8 @@
 				<view class="item" v-for="(item,index) in product.list" :key="index" slot="slot{{index}}">
 					<view class="title">{{item.title}}</view>
 					<view class="desc">{{item.desc}}</view>
+					<view class="title">￥499</view>
 					<view class="flex-row">
-						<view class="title">￥499</view>
 						<!-- <u-icon name="heart" color="#ff0000" size="28"></u-icon> -->
 					</view>
 				</view>
@@ -74,8 +74,8 @@
 					<view class="item">
 						<view class="title">{{item.title}}</view>
 						<view class="desc">{{item.desc}}</view>
+						<view class="title">￥499</view>
 						<view class="flex-row">
-							<view class="title">￥499</view>
 							<!-- <u-icon name="heart" color="#ff0000" size="28"></u-icon> -->
 						</view>
 					</view>

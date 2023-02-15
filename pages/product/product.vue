@@ -25,25 +25,23 @@
 
 		<view class="desc" style="padding-bottom: 200rpx;">
 
-			<uni-section title="基本信息" type="line">
+			<uni-section title="基本信息" type="line" titleFontSize="30rpx">
 				<uni-group>
 					<view>拍摄人数:1</view>
 					<view>拍摄张数:15</view>
 					<view>拍摄时长:1h</view>
 				</uni-group>
 			</uni-section>
-			<uni-section title="拍摄须知" type="line">
+			<uni-section title="拍摄须知" type="line" titleFontSize="30rpx">
 				<uni-group>
 					<view>拍摄需要提前化妆。。。</view>
 				</uni-group>
 			</uni-section>
 		</view>
 
-		<view class="uni-container">
-			<view class="goods-carts">
-				<uni-goods-nav :fill="true" :options="options" :buttonGroup="buttonGroup" @click="optionsClick"
-					@buttonClick="buttonClick" />
-			</view>
+		<view class="goods-carts">
+			<uni-goods-nav :fill="true" :options="options" :buttonGroup="buttonGroup" @click="optionsClick"
+				@buttonClick="buttonClick" />
 		</view>
 
 
@@ -137,6 +135,6 @@
 		left: var(--window-left);
 		right: var(--window-right);
 		/* #endif */
-		bottom: 0;
+		bottom: 0rpx;
 	}
 </style>
