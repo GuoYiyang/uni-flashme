@@ -4,15 +4,17 @@
 			<u-avatar :src="avatar" shape="square"></u-avatar>
 			<view style="font-size: 30rpx; font-weight: bold; padding-top: 10rpx;">{{username}}</view>
 		</view>
-		<u-button v-if="!loginStatus" type="success" :plain="true" text="微信登录" @getuserinfo="userInfo"></u-button>
+		<u-button v-if="!loginStatus" type="success" :plain="true" text="微信登录" @click="userInfo"></u-button>
 	</view>
 </template>
 <script>
+	import { getUserInfo } from '@/api/user.js'
 	export default {
 		components: {
 		},
 		data() {
 			return {
+				data:{},
 				loginStatus:false,
 				username:'Slimshady',
 				code: 0,
@@ -21,16 +23,16 @@
 		},
 		methods: {
 			login() {
-				let that = this;
-				console.log("login");
-				uni.login({
-				  provider: 'weixin',
-				  onlyAuthorize: true,
-				  success: function (loginRes) {
-					  console.log(loginRes);
-					  that.code = loginRes.code;
-				  }
-				});
+				// let that = this;
+				// console.log("login");
+				// uni.login({
+				//   provider: 'weixin',
+				//   onlyAuthorize: true,
+				//   success: function (loginRes) {
+				// 	  console.log(loginRes);
+				// 	  that.code = loginRes.code;
+				//   }
+				// });
 				// 获取用户信息
 					// uni.getUserProfile({
 					//   desc:'测试',
@@ -45,9 +47,11 @@
 					// });
 			},
 			userInfo(info) {
-				console.log("info");
-				console.log(info);
-				that.code = loginRes.code;
+				getUserInfo();
+				// console.log(this.data);
+				// console.log("info");
+				// console.log(info);
+				// that.code = loginRes.code;
 			}
 		}
 	}
