@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "商品详情",
+  "navigationBarTitleText": "详情",
   "enablePullDownRefresh": false,
   "usingComponents": {
     "u-swiper": "/uni_modules/uview-ui/components/u-swiper/u-swiper",

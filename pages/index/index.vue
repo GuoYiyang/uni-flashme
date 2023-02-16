@@ -10,7 +10,7 @@
 		<!-- 搜索 -->
 		<view class="flex-row">
 			<u-button  icon="map" :text="city" @click="pickerShow = true" customStyle="width:150rpx; height:70rpx"></u-button>
-			<u-search :showAction="false"  :animation="true" shape="square" placeholder="摄影师或者主题" bgColor="#FFFFFF"></u-search>
+			<u-search :showAction="false"  :animation="true" shape="square" placeholder="摄影师或者主题" bgColor="#FFFFFF" @search="search"></u-search>
 		</view>
 	
 		
@@ -253,10 +253,9 @@
 				this.$refs.waterfallsFlowRef.refresh();
 			},
 			search(res) {
-				uni.showToast({
-					title: '搜索：' + res.value,
-					icon: 'none'
-				})
+				uni.navigateTo({
+					url:'/pages/filterProduct/filterProduct?query=' + res,
+				});
 			},
 			input(res) {
 				console.log('----input:', res)
@@ -265,10 +264,9 @@
 				console.log(item, index)
 			},
 			clickFastEnter(index) {
-				console.log(index);
-				uni.showToast({
-					title: index + ""
-				})
+				uni.navigateTo({
+					url:'/pages/filterProduct/filterProduct?index=' + index,
+				});
 			},
 			changeTab(index) {
 				console.log(index);

@@ -33,11 +33,20 @@
 		, {
 			"path": "pages/product/product",
 			"style": {
-				"navigationBarTitleText": "商品详情",
+				"navigationBarTitleText": "详情",
 				"enablePullDownRefresh": false
 			}
 		}
-	],
+	    ,{
+            "path" : "pages/filterProduct/filterProduct",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "浏览",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "微摄影",

@@ -4,7 +4,8 @@
     "pages/explore/explore",
     "pages/collect/collect",
     "pages/user/user",
-    "pages/product/product"
+    "pages/product/product",
+    "pages/filterProduct/filterProduct"
   ],
   "subPackages": [],
   "window": {
