@@ -100,8 +100,8 @@ __webpack_require__.r(__webpack_exports__);
 var components
 try {
   components = {
-    uAvatar: function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-avatar/u-avatar */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-avatar/u-avatar")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-avatar/u-avatar.vue */ 288))
+    uButton: function () {
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-button/u-button.vue */ 216))
     },
   }
 } catch (e) {
@@ -158,13 +158,15 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
+/* WEBPACK VAR INJECTION */(function(uni) {
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
 var _user = __webpack_require__(/*! @/api/user.js */ 190);
+//
+//
 //
 //
 //
@@ -200,7 +202,7 @@ var _default = {
       this.avatar = e.detail.avatarUrl;
     },
     login: function login(e) {
-      console.log(e);
+      // console.log(e);
       // let that = this;
       // console.log("login");
       // uni.login({
@@ -211,29 +213,23 @@ var _default = {
       // 	  that.code = loginRes.code;
       //   }
       // });
-      // 获取用户信息
-      // uni.getUserProfile({
-      //   desc:'测试',
-      //   lang: 'zh_CN',
-      //   success: function (infoRes) {
-      //     console.log(infoRes.userInfo);
-      // 	// this.username = infoRes.userInfo.nickName;
-      //   },
-      //   fail: function(failInfo) {
-      // 	  console.log(failInfo);
-      //   }
-      // });
     },
-    userInfo: function userInfo(info) {
-      (0, _user.getUserInfo)();
-      // console.log(this.data);
-      // console.log("info");
-      // console.log(info);
-      // that.code = loginRes.code;
+    getUserInfo: function getUserInfo(info) {
+      var that = this;
+      uni.login({
+        provider: 'weixin',
+        onlyAuthorize: true,
+        success: function success(res) {
+          console.log(res);
+          that.data = (0, _user.getUserInfo)(res);
+          console.log(that.data);
+        }
+      });
     }
   }
 };
 exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
 
