@@ -234,7 +234,7 @@
 				this.product.list = this.product.list.concat(newArr);
 			},
 			loaded() {
-				console.log('加载完成')
+				// console.log('加载完成')
 			},
 			imageClick(item) {
 				uni.navigateTo({

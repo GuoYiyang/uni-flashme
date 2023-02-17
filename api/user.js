@@ -4,40 +4,24 @@ import {
 
 // 登录
 export function login(code) {
-
 	return uni.request({
 		url: baseUrl + '/login/login',
-		method: "POST",
+		method: "GET",
 		data: {
 			code: code
 		}
 	});
 }
 
-// 获取用户信息
-export function getUserInfo(data) {
-
-	return uni.request({
-		url: baseUrl + '/login/user-info',
-		method: "GET",
-		data: {
-			code: data.code
-		}
-	});
-	
-}
-
 // 更新用户信息
-export function updateUserInfo(data) {
-
+export function updateUserInfo(userInfo) {
 	return uni.request({
 		url: baseUrl + '/login/user-info',
 		method: "POST",
 		data: {
-			id: data.userId,
-			avatar: data.avatar,
-			nickname: data.nickname
+			id: userInfo.userId,
+			avatar: userInfo.avatar,
+			nickname: userInfo.nickname
 		}
 	});
-	
 }

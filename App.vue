@@ -4,27 +4,25 @@
 	} from '@/api/user.js';
 	export default {
 		globalData: {
-			userId: '',
-			userName: '',
-			avatar: ''
+			USER_ID: '',
+			USER_NAME: '',
+			AVATAR: ''
 		},
 		methods: {
 			loginUser() {
 				let _this = this;
-				console.log('login'),
-					uni.login({
-						provider: 'weixin',
-						onlyAuthorize: true,
-						success: (res) => {
-							login(res.code).then((res) => {
-								let [err, data] = res;
-								console.log(res)
-								_this.globalData.userId = data.data.data.id;
-								_this.globalData.userName = data.data.data.nickname;
-								_this.globalData.avatar = data.data.data.avatar;
-							})
-						}
-					});
+				uni.login({
+					provider: 'weixin',
+					onlyAuthorize: true,
+					success: (res) => {
+						login(res.code).then((res) => {
+							let [err, success] = res;
+							_this.globalData.USER_ID = success.data.id;
+							_this.globalData.USER_NAME = success.data.nickname;
+							_this.globalData.AVATAR = success.data.avatar;
+						})
+					}
+				});
 			}
 		},
 		onLaunch: function() {
