@@ -128,6 +128,7 @@ var _default = {
             var _res = (0, _slicedToArray2.default)(res, 2),
               err = _res[0],
               data = _res[1];
+            console.log(res);
             _this.globalData.userId = data.data.data.id;
             _this.globalData.userName = data.data.data.nickname;
             _this.globalData.avatar = data.data.data.avatar;

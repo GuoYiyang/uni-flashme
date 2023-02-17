@@ -191,7 +191,7 @@ var _default = {
   data: function data() {
     return {
       userId: '',
-      username: '',
+      userName: '',
       avatar: ''
     };
   },
@@ -227,7 +227,7 @@ var _default = {
   },
   onShow: function onShow() {
     this.userId = getApp().globalData.userId;
-    this.username = getApp().globalData.nickname;
+    this.userName = getApp().globalData.userName;
     this.avatar = getApp().globalData.avatar;
   }
 };

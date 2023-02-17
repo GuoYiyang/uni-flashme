@@ -5,9 +5,9 @@
 				<u-avatar :src="avatar" shape="square">
 				</u-avatar>
 			</button>
-			<view style="font-size: 30rpx; font-weight: bold; padding-top: 10rpx;">{{username}}</view>
+			<view style="font-size: 30rpx; font-weight: bold; padding-top: 10rpx;">{{userName}}</view>
+			点击修改昵称
 			<u-input type="nickname" @blur="changeUsername"></u-input>
-			<!-- {{code}} -->
 		</view>
 		<!-- {{loginStatus}} -->
 		<!-- <u-button v-if="!loginStatus" type="success" :plain="true" text="微信登录" @click="login"></u-button> -->
@@ -25,7 +25,7 @@
 		data() {
 			return {
 				userId:'',
-				username: '',
+				userName: '',
 				avatar: ''
 			}
 		},
@@ -65,7 +65,7 @@
 		},
 		onShow() {
 			this.userId = getApp().globalData.userId;
-			this.username = getApp().globalData.nickname;
+			this.userName = getApp().globalData.userName;
 			this.avatar = getApp().globalData.avatar;
 		}
 	}

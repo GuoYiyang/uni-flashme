@@ -18,6 +18,7 @@
 						success: (res) => {
 							login(res.code).then((res) => {
 								let [err, data] = res;
+								console.log(res)
 								_this.globalData.userId = data.data.data.id;
 								_this.globalData.userName = data.data.data.nickname;
 								_this.globalData.avatar = data.data.data.avatar;
