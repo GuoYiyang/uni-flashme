@@ -3,19 +3,13 @@ import {
 } from '@/config/setting.config.js'
 
 // 登录
-export function login(data) {
+export function login(code) {
 
-	uni.request({
-		url: baseUrl + '/login',
+	return uni.request({
+		url: baseUrl + '/login/login',
 		method: "POST",
 		data: {
-			code: data.code
-		},
-		success: (res) => {
-			return res;
-		},
-		fail: (res) => {
-			return res;
+			code: code
 		}
 	});
 }
@@ -23,18 +17,27 @@ export function login(data) {
 // 获取用户信息
 export function getUserInfo(data) {
 
-	uni.request({
+	return uni.request({
 		url: baseUrl + '/login/user-info',
 		method: "GET",
 		data: {
 			code: data.code
-		},
-		success: (res) => {
-			console.log(res);
-			return res.data;
-		},
-		fail: (res) => {
-			return res.data;
 		}
 	});
+	
+}
+
+// 更新用户信息
+export function updateUserInfo(data) {
+
+	return uni.request({
+		url: baseUrl + '/login/user-info',
+		method: "POST",
+		data: {
+			id: data.userId,
+			avatar: data.avatar,
+			nickname: data.nickname
+		}
+	});
+	
 }

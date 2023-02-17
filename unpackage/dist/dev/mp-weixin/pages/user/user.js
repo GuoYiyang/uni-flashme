@@ -100,8 +100,11 @@ __webpack_require__.r(__webpack_exports__);
 var components
 try {
   components = {
-    uButton: function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-button/u-button.vue */ 216))
+    uAvatar: function () {
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-avatar/u-avatar */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-avatar/u-avatar")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-avatar/u-avatar.vue */ 440))
+    },
+    uInput: function () {
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-input/u-input.vue */ 473))
     },
   }
 } catch (e) {
@@ -158,14 +161,15 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {
 
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ 5));
 var _user = __webpack_require__(/*! @/api/user.js */ 190);
-//
 //
 //
 //
@@ -186,50 +190,48 @@ var _default = {
   components: {},
   data: function data() {
     return {
-      data: {},
-      loginStatus: false,
-      username: 'Slimshady',
-      code: 0,
+      userId: '',
+      username: '',
       avatar: ''
     };
   },
   methods: {
-    getphone: function getphone(e) {
-      console.log(e);
+    changeUsername: function changeUsername(username) {
+      this.username = username;
+      (0, _user.updateUserInfo)({
+        userId: this.userId,
+        nickname: this.username,
+        avatar: this.avatar
+      }).then(function (res) {
+        var _res = (0, _slicedToArray2.default)(res, 2),
+          err = _res[0],
+          data = _res[1];
+        console.log(res);
+        if (data.data.code == 0) {} else {}
+      });
     },
-    selectAvatar: function selectAvatar(e) {
-      console.log(e.detail.avatarUrl);
+    changeAvatar: function changeAvatar(e) {
       this.avatar = e.detail.avatarUrl;
-    },
-    login: function login(e) {
-      // console.log(e);
-      // let that = this;
-      // console.log("login");
-      // uni.login({
-      //   provider: 'weixin',
-      //   onlyAuthorize: true,
-      //   success: function (loginRes) {
-      // 	  console.log(loginRes);
-      // 	  that.code = loginRes.code;
-      //   }
-      // });
-    },
-    getUserInfo: function getUserInfo(info) {
-      var that = this;
-      uni.login({
-        provider: 'weixin',
-        onlyAuthorize: true,
-        success: function success(res) {
-          console.log(res);
-          that.data = (0, _user.getUserInfo)(res);
-          console.log(that.data);
-        }
+      (0, _user.updateUserInfo)({
+        userId: this.userId,
+        nickname: this.username,
+        avatar: this.avatar
+      }).then(function (res) {
+        var _res2 = (0, _slicedToArray2.default)(res, 2),
+          err = _res2[0],
+          data = _res2[1];
+        console.log(res);
+        if (data.data.code == 0) {} else {}
       });
     }
+  },
+  onShow: function onShow() {
+    this.userId = getApp().globalData.userId;
+    this.username = getApp().globalData.nickname;
+    this.avatar = getApp().globalData.avatar;
   }
 };
 exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
 

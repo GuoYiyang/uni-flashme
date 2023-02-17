@@ -46,6 +46,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/editUserInfo/editUserInfo",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "编辑信息",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

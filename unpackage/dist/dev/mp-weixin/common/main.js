@@ -24,6 +24,11 @@ wx.__webpack_require_UNI_MP_PLUGIN__ = __webpack_require__;
 _vue.default.prototype.$store = _store.default;
 _vue.default.use(_uviewUi.default);
 _vue.default.config.productionTip = false;
+
+// 让app的onLaunch先执行，主要是用来进行登录
+_vue.default.prototype.$onLaunched = new Promise(function (resolve) {
+  _vue.default.prototype.$isResolve = resolve;
+});
 _App.default.mpType = 'app';
 var app = new _vue.default(_objectSpread({}, _App.default));
 createApp(app).$mount();
@@ -95,14 +100,72 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {
 
-
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _default = {};
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 55));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 57));
+var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ 5));
+var _user = __webpack_require__(/*! @/api/user.js */ 190);
+var _default = {
+  globalData: {
+    userId: '',
+    userName: '',
+    avatar: ''
+  },
+  methods: {
+    loginUser: function loginUser() {
+      var _this = this;
+      console.log('login'), uni.login({
+        provider: 'weixin',
+        onlyAuthorize: true,
+        success: function success(res) {
+          (0, _user.login)(res.code).then(function (res) {
+            var _res = (0, _slicedToArray2.default)(res, 2),
+              err = _res[0],
+              data = _res[1];
+            _this.globalData.userId = data.data.data.id;
+            _this.globalData.userName = data.data.data.nickname;
+            _this.globalData.avatar = data.data.data.avatar;
+          });
+        }
+      });
+    }
+  },
+  onLaunch: function onLaunch() {
+    console.log('App Launch');
+    this.loginUser();
+  },
+  onShow: function onShow() {
+    console.log('App Show');
+  },
+  onHide: function onHide() {
+    console.log('App Hide');
+  },
+  onLoad: function onLoad() {
+    var _this2 = this;
+    return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
+      return _regenerator.default.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return _this2.$onLaunched;
+            case 2:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
+  }
+};
 exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
 
