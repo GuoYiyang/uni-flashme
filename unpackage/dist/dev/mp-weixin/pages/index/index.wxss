@@ -35,7 +35,7 @@ page {
 }
 .item .title.data-v-57280228 {
   line-height: 48rpx;
-  font-size: 28rpx;
+  font-size: 30rpx;
   color: #222;
 }
 .item .desc.data-v-57280228 {

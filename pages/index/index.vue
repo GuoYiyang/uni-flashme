@@ -62,22 +62,14 @@
 				<!-- #ifdef MP-WEIXIN -->
 				<view class="item" v-for="(item,index) in product.list" :key="index" slot="slot{{index}}">
 					<view class="title">{{item.title}}</view>
-					<view class="desc">{{item.desc}}</view>
-					<view class="title">￥499</view>
-					<view class="flex-row">
-						<!-- <u-icon name="heart" color="#ff0000" size="28"></u-icon> -->
-					</view>
+					<view class="title">￥{{item.price}}</view>
 				</view>
 				<!-- #endif -->
 				<!-- #ifndef MP-WEIXIN -->
 				<template v-slot:default="item">
 					<view class="item">
 						<view class="title">{{item.title}}</view>
-						<view class="desc">{{item.desc}}</view>
-						<view class="title">￥499</view>
-						<view class="flex-row">
-							<!-- <u-icon name="heart" color="#ff0000" size="28"></u-icon> -->
-						</view>
+						<view class="title">{{item.price}}</view>
 					</view>
 				</template>
 				<!-- #endif -->
@@ -87,6 +79,7 @@
 	</view>
 </template>
 <script>
+	import {productDetail, productRandom} from '@/api/product.js'
 	export default {
 		data() {
 			return {
@@ -164,37 +157,7 @@
 				}],
 				// 产品瀑布流
 				product: {
-					list: [{
-							image: 'https://seopic.699pic.com/photo/50108/2763.jpg_wh1200.jpg',
-							title: '我是标题1',
-							desc: '描述描述描述描述描述描述描述描述1'
-						},
-						{
-							image: 'https://seopic.699pic.com/photo/50102/0571.jpg_wh1200.jpg',
-							title: '我是标题2',
-							desc: '描述描述描述描述描述描述描述描述2'
-						},
-						{
-							image: 'https://seopic.699pic.com/photo/50119/0737.jpg_wh1200.jpg',
-							title: '我是标题3',
-							desc: '描述描述描述描述描述描述描述描述3'
-						},
-						{
-							image: 'https://seopic.699pic.com/photo/50034/7165.jpg_wh1200.jpg',
-							title: '我是标题4',
-							desc: '描述描述描述描述描述描述描述描述4'
-						},
-						{
-							image: 'https://seopic.699pic.com/photo/50199/7831.jpg_wh1200.jpg',
-							title: '我是标题5',
-							desc: '描述描述描述描述描述描述描述描述5'
-						},
-						{
-							image: 'https://seopic.699pic.com/photo/50154/9987.jpg_wh1200.jpg',
-							title: '我是标题6',
-							desc: '描述描述描述描述描述描述描述描述6'
-						}
-					]
+					list: []
 				},
 				keyword: ''
 			}
@@ -204,37 +167,23 @@
 				this.city = object.value[0];
 				this.pickerShow = false;
 			},
-			add() {
-				const newArr = [{
-						image: 'https://seopic.699pic.com/photo/50154/9963.jpg_wh1200.jpg',
-						title: '我是标题100',
-						desc: '描述描述描述描述描述描述描述描述8'
-					},
-					{
-						image: 'https://seopic.699pic.com/photo/50136/1351.jpg_wh1200.jpg',
-						title: '我是标题101',
-						desc: '描述描述描述描述描述描述描述描述9'
-					},
-					{
-						image: 'https://seopic.699pic.com/photo/50115/7295.jpg_wh1200.jpg',
-						title: '我是标题102',
-						desc: '描述描述描述描述描述描述描述描述10'
-					},
-					{
-						image: 'https://seopic.699pic.com/photo/50108/2763.jpg_wh1200.jpg',
-						title: '我是标题1',
-						desc: '描述描述描述描述描述描述描述描述1'
-					},
-					{
-						image: 'https://seopic.699pic.com/photo/50102/0571.jpg_wh1200.jpg',
-						title: '我是标题2',
-						desc: '描述描述描述描述描述描述描述描述2'
-					},
-				]
-				this.product.list = this.product.list.concat(newArr);
-			},
+			// add() {
+			// 	const newArr = [{
+			// 			image: 'https://seopic.699pic.com/photo/50154/9963.jpg_wh1200.jpg',
+			// 			title: '我是标题100',
+			// 			desc: '描述描述描述描述描述描述描述描述8'
+			// 		}
+			// 	]
+			// 	this.product.list = this.product.list.concat(newArr);
+			// },
 			loaded() {
 				// console.log('加载完成')
+				// const newArr = [{
+				// 		image: 'https://seopic.699pic.com/photo/50154/9963.jpg_wh1200.jpg',
+				// 		title: '我是标题100',
+				// 		desc: '描述描述描述描述描述描述描述描述8'
+				// 	}
+				// ]
 			},
 			imageClick(item) {
 				uni.navigateTo({
@@ -276,18 +225,40 @@
 				})
 			}
 		},
+		onLoad() {
+			productRandom({
+				city: this.city
+			}).then((res)=>{
+				let [error, success] = res;
+				this.product.list = success.data;
+				console.log('productRandom', this.product.list);
+			})
+		},
+		onShow() {
+			// console.log('index show');
+		},
 		// onPageScroll(e) {
 		// 	this.scrollTop = e.scrollTop;
 		// },
 		onPullDownRefresh() {
-			console.log('refresh');
-			this.$refs.waterfallsFlowRef.refresh();
+			productRandom({
+				city: this.city
+			}).then((res)=>{
+				let [error, success] = res;
+				this.product.list = success.data;
+				console.log('productRandom', this.product.list);
+			})
 			setTimeout(function() {
 				uni.stopPullDownRefresh();
-			}, 1000);
+			}, 500);
 		},
 		onReachBottom() {
-			this.add();
+			productRandom({
+				city: this.city
+			}).then((res)=>{
+				let [error, success] = res;
+				this.product.list = this.product.list.concat(success.data);
+			})
 		}
 
 	}
@@ -330,7 +301,7 @@
 
 		.title {
 			line-height: 48rpx;
-			font-size: 28rpx;
+			font-size: 30rpx;
 			color: #222;
 		}
 
