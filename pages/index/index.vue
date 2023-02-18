@@ -5,19 +5,22 @@
 			<view>在PhotoCall，探索自我</view>
 		</view>
 
-		<u-picker title="请选择城市" :show="pickerShow" :columns="pickerColumns" @confirm="confirmPicker" @cancel="pickerShow=false"></u-picker>
+		<u-picker title="请选择城市" :show="pickerShow" :columns="pickerColumns" @confirm="confirmPicker"
+			@cancel="pickerShow=false"></u-picker>
 
 		<!-- 搜索 -->
 		<view class="flex-row">
-			<u-button  icon="map" :text="city" @click="pickerShow = true" customStyle="width:150rpx; height:70rpx"></u-button>
-			<u-search :showAction="false"  :animation="true" shape="square" placeholder="摄影师或者主题" bgColor="#FFFFFF" @search="search"></u-search>
+			<u-button icon="map" :text="city" @click="pickerShow = true" customStyle="width:150rpx; height:70rpx">
+			</u-button>
+			<u-search :showAction="false" :animation="true" shape="square" placeholder="摄影师或者主题" bgColor="#FFFFFF"
+				@search="search"></u-search>
 		</view>
-	
-		
+
+
 		<!-- 快捷入口 -->
 		<view style="padding-top: 20rpx; padding-bottom: 20px;">
 			<u-grid :border="false" col="4" @click="clickFastEnter">
-				<u-grid-item v-for="(listItem,listIndex) in fastList" :key="listIndex" >
+				<u-grid-item v-for="(listItem,listIndex) in fastList" :key="listIndex">
 					<u-icon :customStyle="{paddingTop:'20rpx'}" :name="listItem.name" :size="22" bold></u-icon>
 					<text class="grid-text">{{listItem.title}}</text>
 				</u-grid-item>
@@ -57,8 +60,8 @@
 
 		<!--  瀑布流  -->
 		<view style="padding: 10rpx;">
-			<custom-waterfalls-flow ref="waterfallsFlowRef" :value="product.list" :column="2" :columnSpace="1.5"
-				:seat="2" @imageClick="imageClick" @loaded="loaded">
+			<custom-waterfalls-flow :value="product.list" :column="2" :columnSpace="1.5" :ref="waterfallsFlowRef"
+				@imageClick="imageClick" @loaded="loaded" @wapperClick="wapperClick">
 				<!-- #ifdef MP-WEIXIN -->
 				<view class="item" v-for="(item,index) in product.list" :key="index" slot="slot{{index}}">
 					<view class="title">{{item.title}}</view>
@@ -79,13 +82,18 @@
 	</view>
 </template>
 <script>
-	import {productDetail, productRandom} from '@/api/product.js'
+	import {
+		productDetail,
+		productRandom
+	} from '@/api/product.js'
 	export default {
 		data() {
 			return {
-				city:'深圳',
-				pickerShow:false,
-				pickerColumns:[['深圳','北京','上海','广州']],
+				city: '深圳',
+				pickerShow: false,
+				pickerColumns: [
+					['深圳', '北京', '上海', '广州']
+				],
 				// scrollTop: 0,
 				// tab bar
 				// tabList: [{
@@ -110,8 +118,7 @@
 				// 	'https://cdn.uviewui.com/uview/swiper/swiper3.png',
 				// ],
 				// 快捷入口
-				fastList: [
-					{
+				fastList: [{
 						name: 'camera',
 						title: '写真'
 					},
@@ -144,22 +151,21 @@
 						title: '其他'
 					}
 				],
-				scrollList: [{
-					thumb: "https://cdn.uviewui.com/uview/goods/1.jpg"
-				}, {
-					thumb: "https://cdn.uviewui.com/uview/goods/2.jpg"
-				}, {
-					thumb: "https://cdn.uviewui.com/uview/goods/3.jpg"
-				}, {
-					thumb: "https://cdn.uviewui.com/uview/goods/4.jpg"
-				}, {
-					thumb: "https://cdn.uviewui.com/uview/goods/5.jpg"
-				}],
+				// scrollList: [{
+				// 	thumb: "https://cdn.uviewui.com/uview/goods/1.jpg"
+				// }, {
+				// 	thumb: "https://cdn.uviewui.com/uview/goods/2.jpg"
+				// }, {
+				// 	thumb: "https://cdn.uviewui.com/uview/goods/3.jpg"
+				// }, {
+				// 	thumb: "https://cdn.uviewui.com/uview/goods/4.jpg"
+				// }, {
+				// 	thumb: "https://cdn.uviewui.com/uview/goods/5.jpg"
+				// }],
 				// 产品瀑布流
 				product: {
 					list: []
-				},
-				keyword: ''
+				}
 			}
 		},
 		methods: {
@@ -167,54 +173,28 @@
 				this.city = object.value[0];
 				this.pickerShow = false;
 			},
-			// add() {
-			// 	const newArr = [{
-			// 			image: 'https://seopic.699pic.com/photo/50154/9963.jpg_wh1200.jpg',
-			// 			title: '我是标题100',
-			// 			desc: '描述描述描述描述描述描述描述描述8'
-			// 		}
-			// 	]
-			// 	this.product.list = this.product.list.concat(newArr);
-			// },
-			loaded() {
-				// console.log('加载完成')
-				// const newArr = [{
-				// 		image: 'https://seopic.699pic.com/photo/50154/9963.jpg_wh1200.jpg',
-				// 		title: '我是标题100',
-				// 		desc: '描述描述描述描述描述描述描述描述8'
-				// 	}
-				// ]
+			loaded() {},
+			wapperClick(item) {
+				uni.navigateTo({
+					url: '../product/product?id=' + item.id
+				})
 			},
 			imageClick(item) {
 				uni.navigateTo({
-					url: '../product/product?img=' + item.image,
-					fail: function(failInfo) {
-						console.log(failInfo)
-					}
+					url: '../product/product?id=' + item.id
 				})
-			},
-			reset() {
-				this.data.list = [{
-					image: 'https://via.placeholder.com/200x500.png/ff0000',
-					title: '我是标题1',
-					desc: '描述描述描述描述描述描述描述描述1'
-				}]
-				this.$refs.waterfallsFlowRef.refresh();
 			},
 			search(res) {
 				uni.navigateTo({
-					url:'/pages/filterProduct/filterProduct?query=' + res,
+					url: '/pages/filterProduct/filterProduct?query=' + res,
 				});
-			},
-			input(res) {
-				console.log('----input:', res)
 			},
 			selectedBanner(item, index) {
 				console.log(item, index)
 			},
 			clickFastEnter(index) {
 				uni.navigateTo({
-					url:'/pages/filterProduct/filterProduct?index=' + index,
+					url: '/pages/filterProduct/filterProduct?index=' + index,
 				});
 			},
 			changeTab(index) {
@@ -228,34 +208,33 @@
 		onLoad() {
 			productRandom({
 				city: this.city
-			}).then((res)=>{
+			}).then((res) => {
 				let [error, success] = res;
 				this.product.list = success.data;
-				console.log('productRandom', this.product.list);
 			})
 		},
-		onShow() {
-			// console.log('index show');
-		},
-		// onPageScroll(e) {
-		// 	this.scrollTop = e.scrollTop;
-		// },
 		onPullDownRefresh() {
-			productRandom({
-				city: this.city
-			}).then((res)=>{
-				let [error, success] = res;
-				this.product.list = success.data;
-				console.log('productRandom', this.product.list);
-			})
-			setTimeout(function() {
-				uni.stopPullDownRefresh();
-			}, 500);
+			uni.redirectTo({
+				url: '/pages/index/index'
+			});
+			// setTimeout(() => {
+			// 	uni.stopPullDownRefresh();
+			// }, 500);
+			// productRandom({
+			// 	city: this.city
+			// }).then((res)=>{
+			// 	let [error, success] = res;
+			// 	this.product.list = success.data;
+			// 	this.$refs.waterfallsFlowRef.refresh();
+			// })
+			// setTimeout(function() {
+			// 	uni.stopPullDownRefresh();
+			// }, 500);
 		},
 		onReachBottom() {
 			productRandom({
 				city: this.city
-			}).then((res)=>{
+			}).then((res) => {
 				let [error, success] = res;
 				this.product.list = this.product.list.concat(success.data);
 			})

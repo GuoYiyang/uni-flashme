@@ -100,8 +100,8 @@ __webpack_require__.r(__webpack_exports__);
 var components
 try {
   components = {
-    uSubsection: function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-subsection/u-subsection */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-subsection/u-subsection")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-subsection/u-subsection.vue */ 272))
+    uTabs: function () {
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-tabs/u-tabs */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-tabs/u-tabs")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-tabs/u-tabs.vue */ 346))
     },
     customWaterfallsFlow: function () {
       return Promise.all(/*! import() | uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow")]).then(__webpack_require__.bind(null, /*! @/uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow.vue */ 265))
@@ -205,43 +205,33 @@ var _default = {
         "leave": 8,
         "tag": "每日随笔"
       }],
-      subsectionList: ['收藏的产品', '关注的摄影师'],
-      // 或者如下，也可以配置keyName参数修改对象键名
-      // list: [{name: '未付款'}, {name: '待评价'}, {name: '已付款'}],
-      subsectionCurrent: 0,
+      subsectionList: [{
+        name: '收藏的产品'
+      }, {
+        name: '关注的摄影师'
+      }],
+      tabsCurrent: 0,
       collectProductShow: true,
       collectPhotographerShow: false,
       product: {
         list: [{
-          image: 'https://seopic.699pic.com/photo/50108/2763.jpg_wh1200.jpg',
+          image: 'https://seopic.699pic.com/photo/50154/9963.jpg_wh1200.jpg',
           title: '我是标题1',
-          desc: '描述描述描述描述描述描述描述描述1'
-        }, {
-          image: 'https://seopic.699pic.com/photo/50102/0571.jpg_wh1200.jpg',
-          title: '我是标题2',
-          desc: '描述描述描述描述描述描述描述描述2'
-        }, {
-          image: 'https://seopic.699pic.com/photo/50119/0737.jpg_wh1200.jpg',
-          title: '我是标题3',
-          desc: '描述描述描述描述描述描述描述描述3'
+          price: '499.99'
         }]
       }
     };
   },
   methods: {
-    clickCard: function clickCard(item) {
-      console.log(item);
-    },
-    loaded: function loaded() {
-      console.log('加载完成');
-    },
-    subsectionChange: function subsectionChange(index) {
-      this.subsectionCurrent = index;
-      if (index == 0) {
+    clickCard: function clickCard(item) {},
+    loaded: function loaded() {},
+    tabsChange: function tabsChange(index) {
+      this.tabsCurrent = index.index;
+      if (index.index == 0) {
         this.collectProductShow = true;
         this.collectPhotographerShow = false;
       }
-      if (index == 1) {
+      if (index.index == 1) {
         this.collectProductShow = false;
         this.collectPhotographerShow = true;
       }
@@ -257,7 +247,7 @@ var _default = {
     }
   },
   onShow: function onShow() {
-    this.subsectionCurrent = 0;
+    this.tabsCurrent = 0;
     this.collectProductShow = true;
     this.collectPhotographerShow = false;
   }

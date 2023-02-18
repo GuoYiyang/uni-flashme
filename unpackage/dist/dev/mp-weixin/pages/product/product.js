@@ -109,14 +109,17 @@ try {
     uniCol: function () {
       return __webpack_require__.e(/*! import() | uni_modules/uni-row/components/uni-col/uni-col */ "uni_modules/uni-row/components/uni-col/uni-col").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-row/components/uni-col/uni-col.vue */ 325))
     },
+    fuiCard: function () {
+      return __webpack_require__.e(/*! import() | components/fui-card/fui-card */ "components/fui-card/fui-card").then(__webpack_require__.bind(null, /*! @/components/fui-card/fui-card.vue */ 280))
+    },
+    uTabs: function () {
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-tabs/u-tabs */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-tabs/u-tabs")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-tabs/u-tabs.vue */ 346))
+    },
     uniSection: function () {
       return __webpack_require__.e(/*! import() | uni_modules/uni-section/components/uni-section/uni-section */ "uni_modules/uni-section/components/uni-section/uni-section").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-section/components/uni-section/uni-section.vue */ 332))
     },
     uniGroup: function () {
       return __webpack_require__.e(/*! import() | uni_modules/uni-group/components/uni-group/uni-group */ "uni_modules/uni-group/components/uni-group/uni-group").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-group/components/uni-group/uni-group.vue */ 339))
-    },
-    uniGoodsNav: function () {
-      return Promise.all(/*! import() | uni_modules/uni-goods-nav/components/uni-goods-nav/uni-goods-nav */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-goods-nav/components/uni-goods-nav/uni-goods-nav")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-goods-nav/components/uni-goods-nav/uni-goods-nav.vue */ 346))
     },
   }
 } catch (e) {
@@ -175,11 +178,13 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 
 
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-//
+var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ 5));
+var _product = __webpack_require__(/*! @/api/product.js */ 505);
 //
 //
 //
@@ -247,18 +252,15 @@ var _default = {
         icon: 'heart',
         text: '收藏'
       }],
-      buttonGroup: [{
-        text: '联系摄影师',
-        backgroundColor: '#ff0000',
-        color: '#fff'
-      }, {
-        text: '线上预约',
-        backgroundColor: '#ffa200',
-        color: '#fff'
-      }],
       imgUrlList: [],
-      title: '轻婚纱写真',
-      subsectionList: ['产品方案', '拍摄须知', '客片展示'],
+      title: '',
+      price: '',
+      tags: '',
+      subsectionList: [{
+        name: '拍摄须知'
+      }, {
+        name: '客片展示'
+      }],
       subsectionCurrent: 0
     };
   },
@@ -276,10 +278,21 @@ var _default = {
       this.subsectionCurrent = index;
     }
   },
-  onLoad: function onLoad(product) {
-    //option为object类型，会序列化上个页面传递的参数
+  onLoad: function onLoad(param) {
+    var _this = this;
+    //param为object类型，会序列化上个页面传递的参数
 
-    this.imgUrlList = this.imgUrlList.concat(product.img);
+    (0, _product.productDetail)({
+      id: param.id
+    }).then(function (res) {
+      var _res = (0, _slicedToArray2.default)(res, 2),
+        error = _res[0],
+        success = _res[1];
+      _this.imgUrlList = _this.imgUrlList.concat(success.data.image);
+      _this.title = success.data.title;
+      _this.price = success.data.price;
+      _this.tags = success.data.tags;
+    });
   }
 };
 exports.default = _default;

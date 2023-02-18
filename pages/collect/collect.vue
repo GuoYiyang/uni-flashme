@@ -1,26 +1,32 @@
 <template>
 	<view>
-		<view>
-			<u-subsection fontSize="25rpx" :list="subsectionList" :current="subsectionCurrent" @change="subsectionChange" mode="button">
-			</u-subsection>
+		<view class="center">
+			<u-tabs :list="subsectionList" lineWidth="60" lineHeight="3" lineColor="#000000" :activeStyle="{
+			        color: '#303133',
+			        fontWeight: 'bold',
+			        transform: 'scale(1.05)'
+			    }" :inactiveStyle="{
+			        color: '#606266',
+			        transform: 'scale(1)'
+			    }" itemStyle="padding-left: 15px; padding-right: 15px; height: 34px;" :current="tabsCurrent" scrollable=false
+				@change="tabsChange">
+			</u-tabs>
 		</view>
 		<view v-if="collectProductShow">
 			<view style="padding:10rpx;">
-				<custom-waterfalls-flow ref="waterfallsFlowRef" :value="product.list" :column="2"
-					:columnSpace="1.5" :seat="2" @imageClick="imageClick" @loaded="loaded">
+				<custom-waterfalls-flow ref="waterfallsFlowRef" :value="product.list" :column="2" :columnSpace="1.5"
+					:seat="2" @imageClick="imageClick" @loaded="loaded">
 					<!-- #ifdef MP-WEIXIN -->
 					<view class="item" v-for="(item,index) in product.list" :key="index" slot="slot{{index}}">
 						<view class="title">{{item.title}}</view>
-						<view class="desc">{{item.desc}}</view>
-						<view class="title">￥499</view>
+						<view class="title">￥{{item.price}}</view>
 					</view>
 					<!-- #endif -->
 					<!-- #ifndef MP-WEIXIN -->
 					<template v-slot:default="item">
 						<view class="item">
 							<view class="title">{{item.title}}</view>
-							<view class="desc">{{item.desc}}</view>
-							<view class="title">￥499</view>
+							<view class="title">{{item.price}}</view>
 						</view>
 					</template>
 					<!-- #endif -->
@@ -28,7 +34,9 @@
 			</view>
 		</view>
 		<view v-if="collectPhotographerShow" style="padding-top: 30rpx;">
-			<fui-card @click="clickCard" src="https://himg.bdimg.com/sys/portrait/item/pp.1.16ffce1b.upEz2MMrdhUQQyrG853gNg?_t=1676210548816" title="Slimshady" tag="优质摄影师">
+			<fui-card @click="clickCard"
+				src="https://himg.bdimg.com/sys/portrait/item/pp.1.16ffce1b.upEz2MMrdhUQQyrG853gNg?_t=1676210548816"
+				title="Slimshady" tag="优质摄影师">
 				<view class="fui-card__content">这是一个基础卡片的示例，此处为自定义内容区域，自行控制内容样式。</view>
 			</fui-card>
 		</view>
@@ -70,46 +78,38 @@
 					}
 				],
 
-				subsectionList: ['收藏的产品', '关注的摄影师'],
-				// 或者如下，也可以配置keyName参数修改对象键名
-				// list: [{name: '未付款'}, {name: '待评价'}, {name: '已付款'}],
-				subsectionCurrent: 0,
+				subsectionList: [{
+						name: '收藏的产品'
+					},
+					{
+						name: '关注的摄影师'
+					}
+				],
+				tabsCurrent: 0,
 				collectProductShow: true,
 				collectPhotographerShow: false,
 				product: {
 					list: [{
-							image: 'https://seopic.699pic.com/photo/50108/2763.jpg_wh1200.jpg',
+							image: 'https://seopic.699pic.com/photo/50154/9963.jpg_wh1200.jpg',
 							title: '我是标题1',
-							desc: '描述描述描述描述描述描述描述描述1'
-						},
-						{
-							image: 'https://seopic.699pic.com/photo/50102/0571.jpg_wh1200.jpg',
-							title: '我是标题2',
-							desc: '描述描述描述描述描述描述描述描述2'
-						},
-						{
-							image: 'https://seopic.699pic.com/photo/50119/0737.jpg_wh1200.jpg',
-							title: '我是标题3',
-							desc: '描述描述描述描述描述描述描述描述3'
+							price: '499.99'
 						}
 					]
 				},
 			}
 		},
 		methods: {
-			clickCard(item){
-				console.log(item)
+			clickCard(item) {
+
 			},
-			loaded() {
-				console.log('加载完成')
-			},
-			subsectionChange(index) {
-				this.subsectionCurrent = index;
-				if (index == 0) {
+			loaded() {},
+			tabsChange(index) {
+				this.tabsCurrent = index.index;
+				if (index.index == 0) {
 					this.collectProductShow = true;
 					this.collectPhotographerShow = false;
 				}
-				if (index == 1) {
+				if (index.index == 1) {
 					this.collectProductShow = false;
 					this.collectPhotographerShow = true;
 				}
@@ -126,7 +126,7 @@
 
 		},
 		onShow() {
-			this.subsectionCurrent = 0;
+			this.tabsCurrent = 0;
 			this.collectProductShow = true;
 			this.collectPhotographerShow = false;
 		}
@@ -134,6 +134,15 @@
 </script>
 
 <style lang="scss" scoped>
+	.center {
+		height: 100%;
+		flex: auto;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+
 	.item {
 		padding: 10rpx 10rpx 20rpx;
 

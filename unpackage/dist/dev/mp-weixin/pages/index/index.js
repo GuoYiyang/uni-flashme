@@ -275,6 +275,9 @@ var _product = __webpack_require__(/*! @/api/product.js */ 505);
 //
 //
 //
+//
+//
+//
 var _default = {
   data: function data() {
     return {
@@ -330,22 +333,21 @@ var _default = {
         name: 'more-dot-fill',
         title: '其他'
       }],
-      scrollList: [{
-        thumb: "https://cdn.uviewui.com/uview/goods/1.jpg"
-      }, {
-        thumb: "https://cdn.uviewui.com/uview/goods/2.jpg"
-      }, {
-        thumb: "https://cdn.uviewui.com/uview/goods/3.jpg"
-      }, {
-        thumb: "https://cdn.uviewui.com/uview/goods/4.jpg"
-      }, {
-        thumb: "https://cdn.uviewui.com/uview/goods/5.jpg"
-      }],
+      // scrollList: [{
+      // 	thumb: "https://cdn.uviewui.com/uview/goods/1.jpg"
+      // }, {
+      // 	thumb: "https://cdn.uviewui.com/uview/goods/2.jpg"
+      // }, {
+      // 	thumb: "https://cdn.uviewui.com/uview/goods/3.jpg"
+      // }, {
+      // 	thumb: "https://cdn.uviewui.com/uview/goods/4.jpg"
+      // }, {
+      // 	thumb: "https://cdn.uviewui.com/uview/goods/5.jpg"
+      // }],
       // 产品瀑布流
       product: {
         list: []
-      },
-      keyword: ''
+      }
     };
   },
   methods: {
@@ -353,47 +355,21 @@ var _default = {
       this.city = object.value[0];
       this.pickerShow = false;
     },
-    // add() {
-    // 	const newArr = [{
-    // 			image: 'https://seopic.699pic.com/photo/50154/9963.jpg_wh1200.jpg',
-    // 			title: '我是标题100',
-    // 			desc: '描述描述描述描述描述描述描述描述8'
-    // 		}
-    // 	]
-    // 	this.product.list = this.product.list.concat(newArr);
-    // },
-    loaded: function loaded() {
-      // console.log('加载完成')
-      // const newArr = [{
-      // 		image: 'https://seopic.699pic.com/photo/50154/9963.jpg_wh1200.jpg',
-      // 		title: '我是标题100',
-      // 		desc: '描述描述描述描述描述描述描述描述8'
-      // 	}
-      // ]
+    loaded: function loaded() {},
+    wapperClick: function wapperClick(item) {
+      uni.navigateTo({
+        url: '../product/product?id=' + item.id
+      });
     },
     imageClick: function imageClick(item) {
       uni.navigateTo({
-        url: '../product/product?img=' + item.image,
-        fail: function fail(failInfo) {
-          console.log(failInfo);
-        }
+        url: '../product/product?id=' + item.id
       });
-    },
-    reset: function reset() {
-      this.data.list = [{
-        image: 'https://via.placeholder.com/200x500.png/ff0000',
-        title: '我是标题1',
-        desc: '描述描述描述描述描述描述描述描述1'
-      }];
-      this.$refs.waterfallsFlowRef.refresh();
     },
     search: function search(res) {
       uni.navigateTo({
         url: '/pages/filterProduct/filterProduct?query=' + res
       });
-    },
-    input: function input(res) {
-      console.log('----input:', res);
     },
     selectedBanner: function selectedBanner(item, index) {
       console.log(item, index);
@@ -420,16 +396,27 @@ var _default = {
         error = _res[0],
         success = _res[1];
       _this.product.list = success.data;
-      console.log('productRandom', _this.product.list);
     });
   },
-  onShow: function onShow() {
-    // console.log('index show');
-  },
-  // onPageScroll(e) {
-  // 	this.scrollTop = e.scrollTop;
-  // },
   onPullDownRefresh: function onPullDownRefresh() {
+    uni.redirectTo({
+      url: '/pages/index/index'
+    });
+    // setTimeout(() => {
+    // 	uni.stopPullDownRefresh();
+    // }, 500);
+    // productRandom({
+    // 	city: this.city
+    // }).then((res)=>{
+    // 	let [error, success] = res;
+    // 	this.product.list = success.data;
+    // 	this.$refs.waterfallsFlowRef.refresh();
+    // })
+    // setTimeout(function() {
+    // 	uni.stopPullDownRefresh();
+    // }, 500);
+  },
+  onReachBottom: function onReachBottom() {
     var _this2 = this;
     (0, _product.productRandom)({
       city: this.city
@@ -437,22 +424,7 @@ var _default = {
       var _res2 = (0, _slicedToArray2.default)(res, 2),
         error = _res2[0],
         success = _res2[1];
-      _this2.product.list = success.data;
-      console.log('productRandom', _this2.product.list);
-    });
-    setTimeout(function () {
-      uni.stopPullDownRefresh();
-    }, 500);
-  },
-  onReachBottom: function onReachBottom() {
-    var _this3 = this;
-    (0, _product.productRandom)({
-      city: this.city
-    }).then(function (res) {
-      var _res3 = (0, _slicedToArray2.default)(res, 2),
-        error = _res3[0],
-        success = _res3[1];
-      _this3.product.list = _this3.product.list.concat(success.data);
+      _this2.product.list = _this2.product.list.concat(success.data);
     });
   }
 };

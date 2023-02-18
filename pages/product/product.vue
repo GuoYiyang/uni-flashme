@@ -7,21 +7,38 @@
 
 		<view style="padding: 10rpx;">
 			<uni-row>
-				<uni-col :span="18">
+				<uni-col :span="16">
 					<view class="title">{{title}}</view>
 				</uni-col>
-				<uni-col :span="6">
-					<view class="title">¥499</view>
+				<uni-col :span="8">
+					<view class="title">￥{{price}}</view>
+				</uni-col>
+			</uni-row>
+			<uni-row>
+				<uni-col :span="16">
+					<view class="desc">{{tags}}</view>
 				</uni-col>
 			</uni-row>
 		</view>
-
-
-		<!-- <u-line></u-line> -->
-
-		<!-- <u-subsection :list="subsectionList" :current="subsectionCurrent" @change="subsectionChange"></u-subsection> -->
-
-
+		
+		<view class="center">
+			<fui-card @click="clickCard"
+				src="https://himg.bdimg.com/sys/portrait/item/pp.1.16ffce1b.upEz2MMrdhUQQyrG853gNg?_t=1676210548816"
+				title="Slimshady" tag="优质摄影师">
+				<view class="fui-card__content" style="padding: 20rpx;">这是一个基础卡片的示例，此处为自定义内容区域，自行控制内容样式。</view>
+			</fui-card>
+			
+			<u-tabs :list="subsectionList" lineWidth="60" lineHeight="3" lineColor="#000000" :activeStyle="{
+			        color: '#303133',
+			        fontWeight: 'bold',
+			        transform: 'scale(1.05)'
+			    }" :inactiveStyle="{
+			        color: '#606266',
+			        transform: 'scale(1)'
+			    }" itemStyle="padding-left: 15px; padding-right: 15px; height: 34px;">
+			</u-tabs>
+			
+		</view>
 
 		<view class="desc" style="padding-bottom: 200rpx;">
 
@@ -38,28 +55,13 @@
 				</uni-group>
 			</uni-section>
 		</view>
-
-		<view class="goods-carts">
-			<uni-goods-nav :fill="true" :options="options" :buttonGroup="buttonGroup" @click="optionsClick"
-				@buttonClick="buttonClick" />
-		</view>
-
-
-
-
-
-
-		<!-- 
-		<u-tabbar @change="changeTabbar" :fixed="true" :placeholder="true" :safeAreaInsetBottom="true">
-			<u-tabbar-item text="收藏" icon="heart"></u-tabbar-item>
-			<u-tabbar-item text="联系摄影师" icon="photo"></u-tabbar-item>
-			<u-tabbar-item text="线上预约" icon="play-right"></u-tabbar-item>
-		</u-tabbar> -->
-
 	</view>
 </template>
 
 <script>
+	import {
+		productDetail
+	} from '@/api/product.js'
 	export default {
 		data() {
 			return {
@@ -67,20 +69,17 @@
 					icon: 'heart',
 					text: '收藏'
 				}],
-				buttonGroup: [{
-						text: '联系摄影师',
-						backgroundColor: '#ff0000',
-						color: '#fff'
+				imgUrlList: [],
+				title: '',
+				price: '',
+				tags: '',
+				subsectionList: [{
+						name: '拍摄须知'
 					},
 					{
-						text: '线上预约',
-						backgroundColor: '#ffa200',
-						color: '#fff'
-					}
+						name: '客片展示'
+					},
 				],
-				imgUrlList: [],
-				title: '轻婚纱写真',
-				subsectionList: ['产品方案', '拍摄须知', '客片展示'],
 				subsectionCurrent: 0
 			}
 		},
@@ -100,14 +99,30 @@
 				this.subsectionCurrent = index;
 			}
 		},
-		onLoad: function(product) { //option为object类型，会序列化上个页面传递的参数
+		onLoad: function(param) { //param为object类型，会序列化上个页面传递的参数
 
-			this.imgUrlList = this.imgUrlList.concat(product.img);
+			productDetail({
+				id: param.id
+			}).then((res) => {
+				let [error, success] = res;
+				this.imgUrlList = this.imgUrlList.concat(success.data.image);
+				this.title = success.data.title;
+				this.price = success.data.price;
+				this.tags = success.data.tags;
+			});
 		},
 	}
 </script>
 
 <style lang="scss" scoped>
+	.center {
+		height: 100%;
+		flex: auto;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
 	.title {
 		padding: 10px;
 		font-size: 25px;
