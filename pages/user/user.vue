@@ -45,7 +45,6 @@
 			this.userId = getApp().globalData.USER_ID;
 			this.username = getApp().globalData.USER_NAME;
 			this.avatar = getApp().globalData.AVATAR;
-			console.log(this.username)
 		}
 	}
 </script>

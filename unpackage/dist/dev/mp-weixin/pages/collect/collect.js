@@ -205,7 +205,7 @@ var _default = {
         "leave": 8,
         "tag": "每日随笔"
       }],
-      subsectionList: [{
+      tabsList: [{
         name: '收藏的产品'
       }, {
         name: '关注的摄影师'
@@ -236,13 +236,14 @@ var _default = {
         this.collectPhotographerShow = true;
       }
     },
-    imageClick: function imageClick(item) {
-      console.log('图片点击事件', item);
+    wapperClick: function wapperClick(item) {
       uni.navigateTo({
-        url: '../product/product?img=' + item.image,
-        fail: function fail(failInfo) {
-          console.log(failInfo);
-        }
+        url: '../product/product?id=' + item.id
+      });
+    },
+    imageClick: function imageClick(item) {
+      uni.navigateTo({
+        url: '../product/product?id=' + item.id
       });
     }
   },
@@ -250,6 +251,11 @@ var _default = {
     this.tabsCurrent = 0;
     this.collectProductShow = true;
     this.collectPhotographerShow = false;
+  },
+  onPullDownRefresh: function onPullDownRefresh() {
+    uni.redirectTo({
+      url: '/pages/collect/collect'
+    });
   }
 };
 exports.default = _default;

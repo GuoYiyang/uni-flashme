@@ -185,6 +185,9 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ 5));
 var _product = __webpack_require__(/*! @/api/product.js */ 505);
+var _user = __webpack_require__(/*! @/api/user.js */ 33);
+//
+//
 //
 //
 //
@@ -248,6 +251,10 @@ var _product = __webpack_require__(/*! @/api/product.js */ 505);
 var _default = {
   data: function data() {
     return {
+      cameramanId: '',
+      cameramanAvatar: '',
+      cameramanName: '',
+      cameramanDesc: '',
       options: [{
         icon: 'heart',
         text: '收藏'
@@ -256,32 +263,32 @@ var _default = {
       title: '',
       price: '',
       tags: '',
-      subsectionList: [{
+      tabsList: [{
         name: '拍摄须知'
       }, {
         name: '客片展示'
       }],
-      subsectionCurrent: 0
+      tabsCurrent: 0,
+      productDetailShow: true,
+      productCustomerShow: false
     };
   },
   methods: {
-    buttonClick: function buttonClick(index, content) {
-      console.log(index.content.text);
-      // console.log(content);
-    },
-    optionsClick: function optionsClick(index, content) {
-      console.log(index.content.text);
-      // console.log(content);
-    },
-    changeTabbar: function changeTabbar(object) {},
-    subsectionChange: function subsectionChange(index) {
-      this.subsectionCurrent = index;
+    tabsChange: function tabsChange(index) {
+      this.tabsCurrent = index.index;
+      if (index.index == 0) {
+        this.productDetailShow = true;
+        this.productCustomerShow = false;
+      }
+      if (index.index == 1) {
+        this.productDetailShow = false;
+        this.productCustomerShow = true;
+      }
     }
   },
   onLoad: function onLoad(param) {
     var _this = this;
     //param为object类型，会序列化上个页面传递的参数
-
     (0, _product.productDetail)({
       id: param.id
     }).then(function (res) {
@@ -292,7 +299,23 @@ var _default = {
       _this.title = success.data.title;
       _this.price = success.data.price;
       _this.tags = success.data.tags;
+      _this.cameramanId = success.data.userId;
+      (0, _user.getUserInfo)({
+        userId: success.data.userId
+      }).then(function (res) {
+        var _res2 = (0, _slicedToArray2.default)(res, 2),
+          error = _res2[0],
+          success = _res2[1];
+        _this.cameramanAvatar = success.data.avatar;
+        _this.cameramanName = success.data.nickname;
+        _this.cameramanDesc = success.data.desc;
+      });
     });
+  },
+  onShow: function onShow() {
+    this.tabsCurrent = 0;
+    this.productDetailShow = true;
+    this.productCustomerShow = false;
   }
 };
 exports.default = _default;

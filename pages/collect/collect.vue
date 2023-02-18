@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view class="center">
-			<u-tabs :list="subsectionList" lineWidth="60" lineHeight="3" lineColor="#000000" :activeStyle="{
+			<u-tabs :list="tabsList" lineWidth="60" lineHeight="3" lineColor="#000000" :activeStyle="{
 			        color: '#303133',
 			        fontWeight: 'bold',
 			        transform: 'scale(1.05)'
@@ -78,7 +78,7 @@
 					}
 				],
 
-				subsectionList: [{
+				tabsList: [{
 						name: '收藏的产品'
 					},
 					{
@@ -114,22 +114,27 @@
 					this.collectPhotographerShow = true;
 				}
 			},
-			imageClick(item) {
-				console.log('图片点击事件', item);
+			wapperClick(item) {
 				uni.navigateTo({
-					url: '../product/product?img=' + item.image,
-					fail: function(failInfo) {
-						console.log(failInfo)
-					}
+					url: '../product/product?id=' + item.id
 				})
 			},
-
+			imageClick(item) {
+				uni.navigateTo({
+					url: '../product/product?id=' + item.id
+				})
+			},
 		},
 		onShow() {
 			this.tabsCurrent = 0;
 			this.collectProductShow = true;
 			this.collectPhotographerShow = false;
-		}
+		},
+		onPullDownRefresh() {
+			uni.redirectTo({
+				url: '/pages/collect/collect'
+			});
+		},
 	}
 </script>
 

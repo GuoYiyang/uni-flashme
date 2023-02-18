@@ -25,3 +25,14 @@ export function updateUserInfo(userInfo) {
 		}
 	});
 }
+
+// 获取用户信息
+export function getUserInfo(param) {
+	return uni.request({
+		url: baseUrl + '/user/user-info',
+		method: "GET",
+		data: {
+			userId: param.userId,
+		}
+	});
+}

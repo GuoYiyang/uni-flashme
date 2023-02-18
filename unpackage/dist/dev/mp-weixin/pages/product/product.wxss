@@ -3,6 +3,7 @@
 /* 水平间距 */
 /* uni.scss */
 .center.data-v-2fbdbe34 {
+  padding: 10rpx;
   height: 100%;
   flex: auto;
   display: flex;

@@ -9819,6 +9819,7 @@ module.exports = _asyncToGenerator, module.exports.__esModule = true, module.exp
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.getUserInfo = getUserInfo;
 exports.login = login;
 exports.updateUserInfo = updateUserInfo;
 var _settingConfig = __webpack_require__(/*! @/config/setting.config.js */ 34);
@@ -9845,6 +9846,17 @@ function updateUserInfo(userInfo) {
     }
   });
 }
+
+// 获取用户信息
+function getUserInfo(param) {
+  return uni.request({
+    url: _settingConfig.baseUrl + '/user/user-info',
+    method: "GET",
+    data: {
+      userId: param.userId
+    }
+  });
+}
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
@@ -9862,7 +9874,7 @@ var setting = {
   // baseURL: process.env.NODE_ENV === 'development' ?
   // 	'vab-mock-server' :
   // 	'vab-mock-server',
-  baseUrl: 'http://127.0.0.1:8888'
+  baseUrl: 'http://192.168.1.6:8888'
 };
 module.exports = setting;
 

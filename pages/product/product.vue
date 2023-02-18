@@ -20,27 +20,25 @@
 				</uni-col>
 			</uni-row>
 		</view>
-		
+
+		<fui-card @click="clickCard" :src="cameramanAvatar" :title="cameramanName" tag="优质摄影师">
+			<view class="fui-card__content" style="padding: 20rpx;">{{cameramanDesc}}</view>
+		</fui-card>
+
 		<view class="center">
-			<fui-card @click="clickCard"
-				src="https://himg.bdimg.com/sys/portrait/item/pp.1.16ffce1b.upEz2MMrdhUQQyrG853gNg?_t=1676210548816"
-				title="Slimshady" tag="优质摄影师">
-				<view class="fui-card__content" style="padding: 20rpx;">这是一个基础卡片的示例，此处为自定义内容区域，自行控制内容样式。</view>
-			</fui-card>
-			
-			<u-tabs :list="subsectionList" lineWidth="60" lineHeight="3" lineColor="#000000" :activeStyle="{
+			<u-tabs :list="tabsList" lineWidth="60" lineHeight="3" lineColor="#000000" :activeStyle="{
 			        color: '#303133',
 			        fontWeight: 'bold',
 			        transform: 'scale(1.05)'
 			    }" :inactiveStyle="{
 			        color: '#606266',
 			        transform: 'scale(1)'
-			    }" itemStyle="padding-left: 15px; padding-right: 15px; height: 34px;">
+			    }" itemStyle="padding-left: 15px; padding-right: 15px; height: 34px;" @change="tabsChange">
 			</u-tabs>
-			
+
 		</view>
 
-		<view class="desc" style="padding-bottom: 200rpx;">
+		<view v-if="productDetailShow" class="desc" style="padding-bottom: 100rpx;">
 
 			<uni-section title="基本信息" type="line" titleFontSize="30rpx">
 				<uni-group>
@@ -55,6 +53,10 @@
 				</uni-group>
 			</uni-section>
 		</view>
+		
+		<view v-if="productCustomerShow" class="desc" style="padding-bottom: 100rpx;">
+			客片展示
+		</view>
 	</view>
 </template>
 
@@ -62,9 +64,16 @@
 	import {
 		productDetail
 	} from '@/api/product.js'
+	import {
+		getUserInfo
+	} from '@/api/user.js'
 	export default {
 		data() {
 			return {
+				cameramanId: '',
+				cameramanAvatar: '',
+				cameramanName: '',
+				cameramanDesc: '',
 				options: [{
 					icon: 'heart',
 					text: '收藏'
@@ -73,34 +82,32 @@
 				title: '',
 				price: '',
 				tags: '',
-				subsectionList: [{
+				tabsList: [{
 						name: '拍摄须知'
 					},
 					{
 						name: '客片展示'
 					},
 				],
-				subsectionCurrent: 0
+				tabsCurrent: 0,
+				productDetailShow:true,
+				productCustomerShow:false,
 			}
 		},
 		methods: {
-			buttonClick(index, content) {
-				console.log(index.content.text);
-				// console.log(content);
+			tabsChange(index) {
+				this.tabsCurrent = index.index;
+				if (index.index == 0) {
+					this.productDetailShow = true;
+					this.productCustomerShow = false;
+				}
+				if (index.index == 1) {
+					this.productDetailShow = false;
+					this.productCustomerShow = true;
+				}
 			},
-			optionsClick(index, content) {
-				console.log(index.content.text);
-				// console.log(content);
-			},
-			changeTabbar(object) {
-
-			},
-			subsectionChange(index) {
-				this.subsectionCurrent = index;
-			}
 		},
 		onLoad: function(param) { //param为object类型，会序列化上个页面传递的参数
-
 			productDetail({
 				id: param.id
 			}).then((res) => {
@@ -109,13 +116,29 @@
 				this.title = success.data.title;
 				this.price = success.data.price;
 				this.tags = success.data.tags;
+				this.cameramanId = success.data.userId;
+
+				getUserInfo({
+					userId: success.data.userId
+				}).then((res) => {
+					let [error, success] = res;
+					this.cameramanAvatar = success.data.avatar;
+					this.cameramanName = success.data.nickname;
+					this.cameramanDesc = success.data.desc;
+				})
 			});
 		},
+		onShow() {
+			this.tabsCurrent = 0;
+			this.productDetailShow = true;
+			this.productCustomerShow = false;
+		}
 	}
 </script>
 
 <style lang="scss" scoped>
 	.center {
+		padding: 10rpx;
 		height: 100%;
 		flex: auto;
 		display: flex;
@@ -123,6 +146,7 @@
 		justify-content: center;
 		align-items: center;
 	}
+
 	.title {
 		padding: 10px;
 		font-size: 25px;
