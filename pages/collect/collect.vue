@@ -37,7 +37,7 @@
 			<fui-card @click="clickCard"
 				src="https://himg.bdimg.com/sys/portrait/item/pp.1.16ffce1b.upEz2MMrdhUQQyrG853gNg?_t=1676210548816"
 				title="Slimshady" tag="优质摄影师">
-				<view class="fui-card__content">这是一个基础卡片的示例，此处为自定义内容区域，自行控制内容样式。</view>
+				<view class="fui-card__content" style="padding: 20rpx;">这是一个基础卡片的示例，此处为自定义内容区域，自行控制内容样式。</view>
 			</fui-card>
 		</view>
 	</view>
