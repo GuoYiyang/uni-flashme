@@ -12,9 +12,12 @@
 		<view style="padding: 20rpx;">
 			
 			<uni-list>
+				<uni-list-item title="发布产品" showArrow link="navigateTo" to="../publish/publish"/>
 				<uni-list-item title="发布的产品" showArrow link="navigateTo" to=""/>
 				<uni-list-item title="发布的客片" showArrow link="navigateTo" to=""/>
 				<uni-list-item title="成为摄影师" showArrow link="navigateTo" to=""/>
+				<uni-list-item title="PhotoCall预定保障" showArrow link="navigateTo" to=""/>
+				<uni-list-item title="问题反馈" showArrow link="navigateTo" to=""/>
 			</uni-list>
 		</view>
 
