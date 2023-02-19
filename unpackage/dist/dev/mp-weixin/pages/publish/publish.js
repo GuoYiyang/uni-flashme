@@ -121,8 +121,8 @@ try {
     uniDataCheckbox: function () {
       return Promise.all(/*! import() | uni_modules/uni-data-checkbox/components/uni-data-checkbox/uni-data-checkbox */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-data-checkbox/components/uni-data-checkbox/uni-data-checkbox")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-data-checkbox/components/uni-data-checkbox/uni-data-checkbox.vue */ 652))
     },
-    uniDatetimePicker: function () {
-      return Promise.all(/*! import() | uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker.vue */ 659))
+    uButton: function () {
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-button/u-button.vue */ 223))
     },
   }
 } catch (e) {
@@ -181,10 +181,16 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 
 
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ 5));
+var _product = __webpack_require__(/*! @/api/product.js */ 168);
+//
+//
+//
 //
 //
 //
@@ -230,40 +236,100 @@ exports.default = void 0;
 var _default = {
   data: function data() {
     return {
-      // 单选数据源
+      imageList: [],
+      imageStyles: {
+        "height": 100,
+        // 边框高度
+        "width": 100,
+        // 边框宽度
+        "border": {
+          // 如果为 Boolean 值，可以控制边框显示与否
+          "color": "#eee",
+          // 边框颜色
+          "width": "1px",
+          // 边框宽度
+          "style": "solid",
+          // 边框样式
+          "radius": "10%" // 边框圆角，支持百分比
+        }
+      },
+
+      baseFormData: {
+        title: '',
+        price: '',
+        introduction: '',
+        sex: 2,
+        tag: []
+      },
       sexs: [{
         text: '男',
         value: 0
       }, {
         text: '女',
         value: 1
-      }, {
-        text: '保密',
-        value: 2
       }],
-      // 多选数据源
-      hobbys: [{
-        text: '跑步',
+      tags: [{
+        text: '写真',
         value: 0
       }, {
-        text: '游泳',
+        text: '证件照',
         value: 1
       }, {
-        text: '绘画',
+        text: '婚纱',
         value: 2
       }, {
-        text: '足球',
+        text: '情侣',
         value: 3
       }, {
-        text: '篮球',
+        text: '亲子',
         value: 4
       }, {
-        text: '其他',
+        text: '宠物',
         value: 5
+      }, {
+        text: '旅拍',
+        value: 6
+      }, {
+        text: '其他',
+        value: 7
       }]
     };
   },
-  methods: {}
+  methods: {
+    seleteImage: function seleteImage(e) {
+      var _this = this;
+      console.log(e);
+      e.tempFilePaths.map(function (item) {
+        _this.imageList.push({
+          name: 'url',
+          uri: item
+        });
+      });
+    },
+    deleteImage: function deleteImage(e) {
+      var _this2 = this;
+      this.imageList.map(function (item, i) {
+        if (item.uri == e.tempFilePath) {
+          _this2.imageList.splice(i, 1);
+        }
+      });
+    },
+    publish: function publish() {
+      if (this.imageList.length > 0) {
+        this.imageList.forEach(function (item) {
+          console.log(item);
+          (0, _product.uploadImages)({
+            filePath: item.uri
+          }).then(function (res) {
+            var _res = (0, _slicedToArray2.default)(res, 2),
+              error = _res[0],
+              success = _res[1];
+            console.log(success);
+          });
+        });
+      }
+    }
+  }
 };
 exports.default = _default;
 

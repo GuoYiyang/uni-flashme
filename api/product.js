@@ -63,3 +63,13 @@ export function getProductCollectStatus(req) {
 		}
 	});
 }
+
+
+// 上传图片
+export function uploadImages(req) {
+	return uni.uploadFile({
+		url: baseUrl + '/product/image/upload',
+		filePath: req.filePath,//这里是图片的本地文件路径列表（选择图片成功的时候可以拿到,在上边的success回调中res.tempFilePaths即可拿到）
+		name: 'file'
+	})
+}
