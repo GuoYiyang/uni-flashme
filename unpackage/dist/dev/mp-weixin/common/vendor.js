@@ -9913,7 +9913,7 @@ var setting = {
   // baseURL: process.env.NODE_ENV === 'development' ?
   // 	'vab-mock-server' :
   // 	'vab-mock-server',
-  baseUrl: 'http://127.0.0.1:8888'
+  baseUrl: 'http://192.168.1.6:8888'
 };
 module.exports = setting;
 
