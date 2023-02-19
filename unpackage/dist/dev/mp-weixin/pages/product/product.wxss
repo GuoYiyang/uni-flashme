@@ -23,12 +23,20 @@
   font-size: 18px;
   font-weight: bolder;
 }
-.goods-carts.data-v-2fbdbe34 {
+.info.data-v-2fbdbe34 {
+  padding: 10px;
+  padding-bottom: 200rpx;
+}
+.info .font.data-v-2fbdbe34 {
+  font-size: 18px;
+  font-weight: bolder;
+}
+.collect-tabbar.data-v-2fbdbe34 {
   display: flex;
   flex-direction: column;
   position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0rpx;
+  left: 50rpx;
+  right: 50rpx;
+  bottom: 30rpx;
 }
 

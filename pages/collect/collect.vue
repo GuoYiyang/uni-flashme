@@ -8,7 +8,7 @@
 			    }" :inactiveStyle="{
 			        color: '#606266',
 			        transform: 'scale(1)'
-			    }" itemStyle="padding-left: 15px; padding-right: 15px; height: 34px;" :current="tabsCurrent" scrollable=false
+			    }" itemStyle="padding-left: 15px; padding-right: 15px; height: 34px;" :current="tabsCurrent" scrollable=false duration="100"
 				@change="tabsChange">
 			</u-tabs>
 		</view>
@@ -45,6 +45,7 @@
 
 <script>
 	import card from '@/components/list-card/list-card.vue'
+	import {getProductCollect} from '@/api/product.js'
 	export default {
 		components: {
 			card
@@ -89,12 +90,7 @@
 				collectProductShow: true,
 				collectPhotographerShow: false,
 				product: {
-					list: [{
-							image: 'https://seopic.699pic.com/photo/50154/9963.jpg_wh1200.jpg',
-							title: '我是标题1',
-							price: '499.99'
-						}
-					]
+					list: []
 				},
 			}
 		},
@@ -125,10 +121,24 @@
 				})
 			},
 		},
+		onLoad() {
+			// getProductCollect({
+			// 	userId: getApp().globalData.USER_ID
+			// }).then((res)=>{
+			// 	let [error, success] = res;
+			// 	this.product.list = success.data;
+			// })
+		},
 		onShow() {
 			this.tabsCurrent = 0;
 			this.collectProductShow = true;
 			this.collectPhotographerShow = false;
+			getProductCollect({
+				userId: getApp().globalData.USER_ID
+			}).then((res)=>{
+				let [error, success] = res;
+				this.product.list = success.data;
+			})
 		},
 		onPullDownRefresh() {
 			uni.redirectTo({

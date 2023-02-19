@@ -166,10 +166,13 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {
 
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ 5));
+var _product = __webpack_require__(/*! @/api/product.js */ 168);
 var card = function card() {
   __webpack_require__.e(/*! require.ensure | components/list-card/list-card */ "components/list-card/list-card").then((function () {
     return resolve(__webpack_require__(/*! @/components/list-card/list-card.vue */ 288));
@@ -214,11 +217,7 @@ var _default = {
       collectProductShow: true,
       collectPhotographerShow: false,
       product: {
-        list: [{
-          image: 'https://seopic.699pic.com/photo/50154/9963.jpg_wh1200.jpg',
-          title: '我是标题1',
-          price: '499.99'
-        }]
+        list: []
       }
     };
   },
@@ -247,10 +246,27 @@ var _default = {
       });
     }
   },
+  onLoad: function onLoad() {
+    // getProductCollect({
+    // 	userId: getApp().globalData.USER_ID
+    // }).then((res)=>{
+    // 	let [error, success] = res;
+    // 	this.product.list = success.data;
+    // })
+  },
   onShow: function onShow() {
+    var _this = this;
     this.tabsCurrent = 0;
     this.collectProductShow = true;
     this.collectPhotographerShow = false;
+    (0, _product.getProductCollect)({
+      userId: getApp().globalData.USER_ID
+    }).then(function (res) {
+      var _res = (0, _slicedToArray2.default)(res, 2),
+        error = _res[0],
+        success = _res[1];
+      _this.product.list = success.data;
+    });
   },
   onPullDownRefresh: function onPullDownRefresh() {
     uni.redirectTo({

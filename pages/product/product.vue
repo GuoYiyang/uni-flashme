@@ -29,16 +29,16 @@
 			<u-tabs :list="tabsList" lineWidth="60" lineHeight="3" lineColor="#000000" :activeStyle="{
 			        color: '#303133',
 			        fontWeight: 'bold',
-			        transform: 'scale(1.05)'
+			        transform: 'scale(1.1)'
 			    }" :inactiveStyle="{
 			        color: '#606266',
 			        transform: 'scale(1)'
-			    }" itemStyle="padding-left: 15px; padding-right: 15px; height: 34px;" @change="tabsChange">
+			    }" itemStyle="padding-left: 15px; padding-right: 15px; height: 34px;" @change="tabsChange" duration="100">
 			</u-tabs>
 
 		</view>
 
-		<view v-if="productDetailShow" class="desc" style="padding-bottom: 100rpx;">
+		<view v-if="productDetailShow" class="info">
 
 			<uni-section title="基本信息" type="line" titleFontSize="30rpx">
 				<uni-group>
@@ -53,16 +53,40 @@
 				</uni-group>
 			</uni-section>
 		</view>
-		
-		<view v-if="productCustomerShow" class="desc" style="padding-bottom: 100rpx;">
-			客片展示
+
+		<view v-if="productCustomerShow" class="info">
+			<uni-section title="客片展示" type="line" titleFontSize="30rpx">
+				<uni-group>
+					<view>拍摄人数:1</view>
+					<view>拍摄张数:15</view>
+					<view>拍摄时长:1h</view>
+				</uni-group>
+			</uni-section>
+			<uni-section title="拍摄须知" type="line" titleFontSize="30rpx">
+				<uni-group>
+					<view>拍摄需要提前化妆。。。</view>
+				</uni-group>
+			</uni-section>
 		</view>
+
+
+
+
+		<view class="collect-tabbar">
+			<uni-goods-nav :options="tabbarOptions" :fill="false" :button-group="tabbarGroup" @click="optionClick"
+				@buttonClick="buttonClick" />
+		</view>
+
+
+
 	</view>
 </template>
 
 <script>
 	import {
-		productDetail
+		productDetail,
+		productCollect,
+		getProductCollectStatus
 	} from '@/api/product.js'
 	import {
 		getUserInfo
@@ -70,10 +94,12 @@
 	export default {
 		data() {
 			return {
+				productId: '',
 				cameramanId: '',
 				cameramanAvatar: '',
 				cameramanName: '',
 				cameramanDesc: '',
+				cameramanPhone:'',
 				options: [{
 					icon: 'heart',
 					text: '收藏'
@@ -90,8 +116,18 @@
 					},
 				],
 				tabsCurrent: 0,
-				productDetailShow:true,
-				productCustomerShow:false,
+				productDetailShow: true,
+				productCustomerShow: false,
+				isCollect:false,
+				tabbarOptions: [{
+					icon: 'heart',
+					text: '收藏'
+				}],
+				tabbarGroup: [{
+					text: '联系摄影师',
+					backgroundColor: '#000000',
+					color: '#fff'
+				}],
 			}
 		},
 		methods: {
@@ -106,8 +142,41 @@
 					this.productCustomerShow = true;
 				}
 			},
+			optionClick(item) {
+				this.isCollect = !this.isCollect;
+				if (this.isCollect) {
+					this.tabbarOptions[0].icon = 'heart-filled'
+					productCollect({
+						userId: getApp().globalData.USER_ID,
+						productId: this.productId,
+						isDelete: 0
+					})
+				} else{
+					this.tabbarOptions[0].icon = 'heart'
+					productCollect({
+						userId: getApp().globalData.USER_ID,
+						productId: this.productId,
+						isDelete: 1
+					})
+				}
+				
+			},
+			buttonClick(item) {
+				uni.makePhoneCall({
+					phoneNumber: "18188606406", //电话号码
+					success: function(e) {
+						console.log(e);
+					},
+					fail: function(e) {
+						console.log(e);
+
+					}
+				})
+				console.log(item)
+			}
 		},
 		onLoad: function(param) { //param为object类型，会序列化上个页面传递的参数
+			this.productId = param.id;
 			productDetail({
 				id: param.id
 			}).then((res) => {
@@ -117,7 +186,6 @@
 				this.price = success.data.price;
 				this.tags = success.data.tags;
 				this.cameramanId = success.data.userId;
-
 				getUserInfo({
 					userId: success.data.userId
 				}).then((res) => {
@@ -125,8 +193,23 @@
 					this.cameramanAvatar = success.data.avatar;
 					this.cameramanName = success.data.nickname;
 					this.cameramanDesc = success.data.desc;
+					this.cameramanPhone = success.data.phone;
 				})
 			});
+			getProductCollectStatus({
+				userId: getApp().globalData.USER_ID,
+				productId: this.productId,
+			}).then((res)=>{
+				let [error, success] = res;
+				console.log("getProductCollectStatus", success)
+				this.isCollect = success.data;
+				if (this.isCollect) {
+					this.tabbarOptions[0].icon = 'heart-filled'
+				} else{
+					this.tabbarOptions[0].icon = 'heart'
+				}
+			})
+
 		},
 		onShow() {
 			this.tabsCurrent = 0;
@@ -162,18 +245,28 @@
 		}
 	}
 
-	.goods-carts {
+	.info {
+		padding: 10px;
+		padding-bottom: 200rpx;
+
+		.font {
+			font-size: 18px;
+			font-weight: bolder;
+		}
+	}
+
+	.collect-tabbar {
 		/* #ifndef APP-NVUE */
 		display: flex;
 		/* #endif */
 		flex-direction: column;
 		position: fixed;
-		left: 0;
-		right: 0;
+		left: 50rpx;
+		right: 50rpx;
 		/* #ifdef H5 */
 		left: var(--window-left);
 		right: var(--window-right);
 		/* #endif */
-		bottom: 0rpx;
+		bottom: 30rpx;
 	}
 </style>

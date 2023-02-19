@@ -121,6 +121,9 @@ try {
     uniGroup: function () {
       return __webpack_require__.e(/*! import() | uni_modules/uni-group/components/uni-group/uni-group */ "uni_modules/uni-group/components/uni-group/uni-group").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-group/components/uni-group/uni-group.vue */ 340))
     },
+    uniGoodsNav: function () {
+      return Promise.all(/*! import() | uni_modules/uni-goods-nav/components/uni-goods-nav/uni-goods-nav */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-goods-nav/components/uni-goods-nav/uni-goods-nav")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-goods-nav/components/uni-goods-nav/uni-goods-nav.vue */ 517))
+    },
   }
 } catch (e) {
   if (
@@ -176,7 +179,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
+/* WEBPACK VAR INJECTION */(function(uni) {
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
 Object.defineProperty(exports, "__esModule", {
@@ -248,13 +251,37 @@ var _user = __webpack_require__(/*! @/api/user.js */ 33);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default = {
   data: function data() {
     return {
+      productId: '',
       cameramanId: '',
       cameramanAvatar: '',
       cameramanName: '',
       cameramanDesc: '',
+      cameramanPhone: '',
       options: [{
         icon: 'heart',
         text: '收藏'
@@ -270,7 +297,17 @@ var _default = {
       }],
       tabsCurrent: 0,
       productDetailShow: true,
-      productCustomerShow: false
+      productCustomerShow: false,
+      isCollect: false,
+      tabbarOptions: [{
+        icon: 'heart',
+        text: '收藏'
+      }],
+      tabbarGroup: [{
+        text: '联系摄影师',
+        backgroundColor: '#000000',
+        color: '#fff'
+      }]
     };
   },
   methods: {
@@ -284,11 +321,43 @@ var _default = {
         this.productDetailShow = false;
         this.productCustomerShow = true;
       }
+    },
+    optionClick: function optionClick(item) {
+      this.isCollect = !this.isCollect;
+      if (this.isCollect) {
+        this.tabbarOptions[0].icon = 'heart-filled';
+        (0, _product.productCollect)({
+          userId: getApp().globalData.USER_ID,
+          productId: this.productId,
+          isDelete: 0
+        });
+      } else {
+        this.tabbarOptions[0].icon = 'heart';
+        (0, _product.productCollect)({
+          userId: getApp().globalData.USER_ID,
+          productId: this.productId,
+          isDelete: 1
+        });
+      }
+    },
+    buttonClick: function buttonClick(item) {
+      uni.makePhoneCall({
+        phoneNumber: "18188606406",
+        //电话号码
+        success: function success(e) {
+          console.log(e);
+        },
+        fail: function fail(e) {
+          console.log(e);
+        }
+      });
+      console.log(item);
     }
   },
   onLoad: function onLoad(param) {
     var _this = this;
     //param为object类型，会序列化上个页面传递的参数
+    this.productId = param.id;
     (0, _product.productDetail)({
       id: param.id
     }).then(function (res) {
@@ -309,7 +378,23 @@ var _default = {
         _this.cameramanAvatar = success.data.avatar;
         _this.cameramanName = success.data.nickname;
         _this.cameramanDesc = success.data.desc;
+        _this.cameramanPhone = success.data.phone;
       });
+    });
+    (0, _product.getProductCollectStatus)({
+      userId: getApp().globalData.USER_ID,
+      productId: this.productId
+    }).then(function (res) {
+      var _res3 = (0, _slicedToArray2.default)(res, 2),
+        error = _res3[0],
+        success = _res3[1];
+      console.log("getProductCollectStatus", success);
+      _this.isCollect = success.data;
+      if (_this.isCollect) {
+        _this.tabbarOptions[0].icon = 'heart-filled';
+      } else {
+        _this.tabbarOptions[0].icon = 'heart';
+      }
     });
   },
   onShow: function onShow() {
@@ -319,6 +404,7 @@ var _default = {
   }
 };
 exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
 

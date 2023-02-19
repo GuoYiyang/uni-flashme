@@ -26,3 +26,40 @@ export function productRandom(req) {
 		}
 	});
 }
+
+// 收藏产品
+export function productCollect(req) {
+	return uni.request({
+		url: baseUrl + '/product/collect',
+		method: "POST",
+		data: {
+			userId: req.userId,
+			productId: req.productId,
+			isDelete: req.isDelete
+		}
+	});
+}
+
+
+// 获取用户收藏的产品
+export function getProductCollect(req) {
+	return uni.request({
+		url: baseUrl + '/product/collect',
+		method: "GET",
+		data: {
+			userId: req.userId
+		}
+	});
+}
+
+// 获取产品收藏状态
+export function getProductCollectStatus(req) {
+	return uni.request({
+		url: baseUrl + '/product/collect/status',
+		method: "GET",
+		data: {
+			userId: req.userId,
+			productId: req.productId
+		}
+	});
+}
