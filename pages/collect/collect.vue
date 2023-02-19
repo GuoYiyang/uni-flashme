@@ -8,8 +8,8 @@
 			    }" :inactiveStyle="{
 			        color: '#606266',
 			        transform: 'scale(1)'
-			    }" itemStyle="padding-left: 15px; padding-right: 15px; height: 34px;" :current="tabsCurrent" scrollable=false duration="100"
-				@change="tabsChange">
+			    }" itemStyle="padding-left: 15px; padding-right: 15px; height: 34px;" :current="tabsCurrent" scrollable=false
+				duration="100" @change="tabsChange">
 			</u-tabs>
 		</view>
 		<view v-if="collectProductShow">
@@ -33,19 +33,25 @@
 				</custom-waterfalls-flow>
 			</view>
 		</view>
-		<view v-if="collectPhotographerShow" style="padding-top: 30rpx;">
-			<fui-card @click="clickCard"
-				src="https://himg.bdimg.com/sys/portrait/item/pp.1.16ffce1b.upEz2MMrdhUQQyrG853gNg?_t=1676210548816"
-				title="Slimshady" tag="优质摄影师">
-				<view class="fui-card__content" style="padding: 20rpx;">这是一个基础卡片的示例，此处为自定义内容区域，自行控制内容样式。</view>
-			</fui-card>
+		<view v-if="collectPhotographerShow" style="padding-top: 10rpx;">
+			<div v-for="item in pher.list" :key="item.id">
+				<fui-card @click="clickPherCard" :src="item.avatar" :title="item.nickname" tag="优质摄影师">
+					<view class="fui-card__content" style="padding: 20rpx;">{{item.desc}}</view>
+				</fui-card>
+			</div>
+
 		</view>
 	</view>
 </template>
 
 <script>
 	import card from '@/components/list-card/list-card.vue'
-	import {getProductCollect} from '@/api/product.js'
+	import {
+		getProductCollect
+	} from '@/api/product.js'
+	import {
+		getPherCollect
+	} from '@/api/user.js'
 	export default {
 		components: {
 			card
@@ -55,30 +61,6 @@
 		},
 		data() {
 			return {
-				cardList: [{
-						"authImg": 'https://himg.bdimg.com/sys/portrait/item/pp.1.16ffce1b.upEz2MMrdhUQQyrG853gNg?_t=1676210548816',
-						"authName": "郭伊阳",
-						"createTime": "2020-02-01",
-						"content": " 内容",
-						"goodNum": "100",
-						"likeNum": "200",
-						"commentNum": "500",
-						"leave": 8,
-						"tag": "每日随笔"
-					},
-					{
-						"authImg": 'https://himg.bdimg.com/sys/portrait/item/pp.1.16ffce1b.upEz2MMrdhUQQyrG853gNg?_t=1676210548816',
-						"authName": "郭伊阳",
-						"createTime": "2020-02-01",
-						"content": " 内容",
-						"goodNum": "100",
-						"likeNum": "200",
-						"commentNum": "500",
-						"leave": 8,
-						"tag": "每日随笔"
-					}
-				],
-
 				tabsList: [{
 						name: '收藏的产品'
 					},
@@ -92,11 +74,14 @@
 				product: {
 					list: []
 				},
+				pher: {
+					list: []
+				}
 			}
 		},
 		methods: {
-			clickCard(item) {
-
+			clickPherCard(item) {
+				console.log(item)
 			},
 			loaded() {},
 			tabsChange(index) {
@@ -121,24 +106,23 @@
 				})
 			},
 		},
-		onLoad() {
-			// getProductCollect({
-			// 	userId: getApp().globalData.USER_ID
-			// }).then((res)=>{
-			// 	let [error, success] = res;
-			// 	this.product.list = success.data;
-			// })
-		},
+		onLoad() {},
 		onShow() {
 			this.tabsCurrent = 0;
 			this.collectProductShow = true;
 			this.collectPhotographerShow = false;
 			getProductCollect({
 				userId: getApp().globalData.USER_ID
-			}).then((res)=>{
+			}).then((res) => {
 				let [error, success] = res;
 				this.product.list = success.data;
-			})
+			});
+			getPherCollect({
+				userId: getApp().globalData.USER_ID
+			}).then((res) => {
+				let [error, success] = res;
+				this.pher.list = success.data;
+			});
 		},
 		onPullDownRefresh() {
 			uni.redirectTo({

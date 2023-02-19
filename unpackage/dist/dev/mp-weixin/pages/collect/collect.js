@@ -101,13 +101,13 @@ var components
 try {
   components = {
     uTabs: function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-tabs/u-tabs */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-tabs/u-tabs")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-tabs/u-tabs.vue */ 273))
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-tabs/u-tabs */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-tabs/u-tabs")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-tabs/u-tabs.vue */ 309))
     },
     customWaterfallsFlow: function () {
       return Promise.all(/*! import() | uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow")]).then(__webpack_require__.bind(null, /*! @/uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow.vue */ 266))
     },
     fuiCard: function () {
-      return __webpack_require__.e(/*! import() | components/fui-card/fui-card */ "components/fui-card/fui-card").then(__webpack_require__.bind(null, /*! @/components/fui-card/fui-card.vue */ 281))
+      return __webpack_require__.e(/*! import() | components/fui-card/fui-card */ "components/fui-card/fui-card").then(__webpack_require__.bind(null, /*! @/components/fui-card/fui-card.vue */ 302))
     },
   }
 } catch (e) {
@@ -173,9 +173,10 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ 5));
 var _product = __webpack_require__(/*! @/api/product.js */ 168);
+var _user = __webpack_require__(/*! @/api/user.js */ 33);
 var card = function card() {
   __webpack_require__.e(/*! require.ensure | components/list-card/list-card */ "components/list-card/list-card").then((function () {
-    return resolve(__webpack_require__(/*! @/components/list-card/list-card.vue */ 288));
+    return resolve(__webpack_require__(/*! @/components/list-card/list-card.vue */ 273));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var _default = {
@@ -187,27 +188,6 @@ var _default = {
   },
   data: function data() {
     return {
-      cardList: [{
-        "authImg": 'https://himg.bdimg.com/sys/portrait/item/pp.1.16ffce1b.upEz2MMrdhUQQyrG853gNg?_t=1676210548816',
-        "authName": "郭伊阳",
-        "createTime": "2020-02-01",
-        "content": " 内容",
-        "goodNum": "100",
-        "likeNum": "200",
-        "commentNum": "500",
-        "leave": 8,
-        "tag": "每日随笔"
-      }, {
-        "authImg": 'https://himg.bdimg.com/sys/portrait/item/pp.1.16ffce1b.upEz2MMrdhUQQyrG853gNg?_t=1676210548816',
-        "authName": "郭伊阳",
-        "createTime": "2020-02-01",
-        "content": " 内容",
-        "goodNum": "100",
-        "likeNum": "200",
-        "commentNum": "500",
-        "leave": 8,
-        "tag": "每日随笔"
-      }],
       tabsList: [{
         name: '收藏的产品'
       }, {
@@ -218,11 +198,16 @@ var _default = {
       collectPhotographerShow: false,
       product: {
         list: []
+      },
+      pher: {
+        list: []
       }
     };
   },
   methods: {
-    clickCard: function clickCard(item) {},
+    clickPherCard: function clickPherCard(item) {
+      console.log(item);
+    },
     loaded: function loaded() {},
     tabsChange: function tabsChange(index) {
       this.tabsCurrent = index.index;
@@ -246,14 +231,7 @@ var _default = {
       });
     }
   },
-  onLoad: function onLoad() {
-    // getProductCollect({
-    // 	userId: getApp().globalData.USER_ID
-    // }).then((res)=>{
-    // 	let [error, success] = res;
-    // 	this.product.list = success.data;
-    // })
-  },
+  onLoad: function onLoad() {},
   onShow: function onShow() {
     var _this = this;
     this.tabsCurrent = 0;
@@ -266,6 +244,14 @@ var _default = {
         error = _res[0],
         success = _res[1];
       _this.product.list = success.data;
+    });
+    (0, _user.getPherCollect)({
+      userId: getApp().globalData.USER_ID
+    }).then(function (res) {
+      var _res2 = (0, _slicedToArray2.default)(res, 2),
+        error = _res2[0],
+        success = _res2[1];
+      _this.pher.list = success.data;
     });
   },
   onPullDownRefresh: function onPullDownRefresh() {
