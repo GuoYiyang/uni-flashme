@@ -181,7 +181,7 @@
 				id: param.id
 			}).then((res) => {
 				let [error, success] = res;
-				this.imgUrlList = this.imgUrlList.concat(success.data.image);
+				this.imgUrlList = success.data.imgUrlList;
 				this.title = success.data.title;
 				this.price = success.data.price;
 				this.tags = success.data.tags;

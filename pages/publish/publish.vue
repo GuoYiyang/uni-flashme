@@ -39,7 +39,7 @@
 					</uni-forms>
 				</view>
 			</uni-section>
-			<u-button @click="publish">点击上传</u-button>
+			<u-button @click="submit">点击上传</u-button>
 		</view>
 	</view>
 </template>
@@ -129,10 +129,10 @@
 					}
 				})
 			},
-			async upload() {
+			upload() {
 				let _this = this;
 				if (this.img != "") {
-					await uploadImages({
+					uploadImages({
 						filePath: this.img
 					}).then((res) => {
 						let [error, success] = res;
@@ -140,7 +140,7 @@
 					})
 				}
 				if (this.imageList.length > 0) {
-					await this.imageList.forEach(item => {
+					this.imageList.forEach(item => {
 						uploadImages({
 							filePath: item.uri
 						}).then((res) => {
@@ -151,23 +151,30 @@
 				}
 			},
 			publish() {
-				let _this = this;
-				this.upload().then(() => {
-					console.log("imgUrl", _this.imgUrl);
-					console.log("imageUrlList", _this.imageUrlList);
-					publishProduct({
-						userId: getApp().globalData.USER_ID,
-						title: _this.baseFormData.title,
-						content: _this.baseFormData.introduction,
-						tags: _this.baseFormData.tag.toString(),
-						price: _this.baseFormData.price,
-						imgUrl: _this.imgUrl,
-						imgUrlList: _this.imageUrlList,
-					}).then((res) => {
-						let [error, success] = res;
-						console.log(success);
-					})
-				});
+				publishProduct({
+					userId: getApp().globalData.USER_ID,
+					title: this.baseFormData.title,
+					content: this.baseFormData.introduction,
+					tags: this.baseFormData.tag.toString(),
+					price: this.baseFormData.price,
+					imgUrl: this.imgUrl,
+					imgUrlList: this.imageUrlList,
+				}).then((res) => {
+					let [error, success] = res;
+					console.log(success);
+					if (success.data) {
+						uni.showToast({
+							title: '发布成功'
+						})
+					}
+				})
+			},
+			async submit() {
+				this.upload();
+				setTimeout(() => {
+					this.publish();
+					uni.navigateBack();
+				}, 1000)
 			}
 		}
 	}
