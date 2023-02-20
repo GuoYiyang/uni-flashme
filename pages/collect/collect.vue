@@ -8,8 +8,8 @@
 			    }" :inactiveStyle="{
 			        color: '#606266',
 			        transform: 'scale(1)'
-			    }" itemStyle="padding-left: 15px; padding-right: 15px; height: 34px;" :current="tabsCurrent" scrollable=false
-				duration="100" @change="tabsChange">
+			    }" itemStyle="padding-left: 15px; padding-right: 15px; height: 34px;" :current="tabsCurrent" :scrollable='false'
+				:duration="100" @change="tabsChange">
 			</u-tabs>
 		</view>
 		<view v-if="collectProductShow">
@@ -62,10 +62,10 @@
 		data() {
 			return {
 				tabsList: [{
-						name: '收藏的产品'
+						name: '我的收藏'
 					},
 					{
-						name: '关注的摄影师'
+						name: '我的关注'
 					}
 				],
 				tabsCurrent: 0,

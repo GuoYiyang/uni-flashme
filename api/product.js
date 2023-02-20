@@ -73,3 +73,21 @@ export function uploadImages(req) {
 		name: 'file'
 	})
 }
+
+
+// 发布产品
+export function publishProduct(req) {
+	return uni.request({
+		url: baseUrl + '/product/publish',
+		method: "POST",
+		data: {
+			userId: req.userId,
+			title: req.title,
+			content: req.content,
+			tags: req.tags,
+			price: req.price,
+			imgUrl: req.imgUrl,
+			imgUrlList: req.imgUrlList
+		}
+	});
+}

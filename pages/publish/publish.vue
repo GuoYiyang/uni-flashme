@@ -4,37 +4,38 @@
 			<uni-card :is-shadow="false" is-full>
 				<text class="uni-h6">三步即可轻松发布产品</text>
 			</uni-card>
-			<uni-section title="第一步:选择图片" type="line">
+			<uni-section title="第一步:选择封面" type="line">
 				<view class="example-body">
-					<uni-file-picker limit="9" title="最多选择9张图片" mode="grid" file-mediatype="image" ref="images"
+					<uni-file-picker limit="1" title="最多选择1张图片" mode="grid" file-mediatype="image" ref="images"
 						:auto-upload="false" :sizeType='["compressed"]' :sourceType='["album"]'
-						:imageStyles="imageStyles" autoUpload=false @select="seleteImage" @delete="deleteImage">
+						:imageStyles="imageStyles" :autoUpload='false' @select="selectMainImg" @delete="deleteMainImg">
 					</uni-file-picker>
 				</view>
 			</uni-section>
-			<uni-section title="第二步:填充信息" type="line">
+			<uni-section title="第二步:选择图片" type="line">
+				<view class="example-body">
+					<uni-file-picker limit="9" title="最多选择9张图片" mode="grid" file-mediatype="image" ref="images"
+						:auto-upload="false" :sizeType='["compressed"]' :sourceType='["album"]'
+						:imageStyles="imageStyles" :autoUpload='false' @select="seleteImage" @delete="deleteImage">
+					</uni-file-picker>
+				</view>
+			</uni-section>
+			<uni-section title="第三步:填充信息" type="line">
 				<view class="example-body">
 					<!-- 基础用法，不包含校验规则 -->
 					<uni-forms ref="baseForm" :modelValue="baseFormData" label-position="top">
 						<uni-forms-item label="标题" required>
-							<uni-easyinput v-model="baseFormData.title" placeholder="产品的标题" />
+							<uni-easyinput v-model="baseFormData.title" />
 						</uni-forms-item>
 						<uni-forms-item label="价格" required>
-							<uni-easyinput v-model="baseFormData.price" placeholder="价格" type="digit" />
+							<uni-easyinput v-model="baseFormData.price" type="digit" />
 						</uni-forms-item>
-						<!-- 						<uni-forms-item label="性别" required>
-							<uni-data-checkbox v-model="baseFormData.sex" :localdata="sexs" />
-						</uni-forms-item> -->
 						<uni-forms-item label="主题" required>
 							<uni-data-checkbox v-model="baseFormData.tag" multiple :localdata="tags" />
 						</uni-forms-item>
 						<uni-forms-item label="描述" required>
-							<uni-easyinput type="textarea" v-model="baseFormData.introduction" placeholder="商品描述" />
+							<uni-easyinput type="textarea" v-model="baseFormData.introduction" />
 						</uni-forms-item>
-						<!-- 						<uni-forms-item label="日期时间">
-							<uni-datetime-picker type="datetime" return-type="timestamp"
-								v-model="baseFormData.datetimesingle" />
-						</uni-forms-item> -->
 					</uni-forms>
 				</view>
 			</uni-section>
@@ -45,12 +46,17 @@
 
 <script>
 	import {
-		uploadImages
+		uploadImages,
+		publishProduct
 	} from '@/api/product.js'
+	import upload from '../../uni_modules/uview-ui/libs/config/props/upload';
 	export default {
 		data() {
 			return {
+				img: '',
+				imgUrl: '',
 				imageList: [],
+				imageUrlList: [],
 				imageStyles: {
 					"height": 100, // 边框高度
 					"width": 100, // 边框宽度
@@ -65,7 +71,6 @@
 					title: '',
 					price: '',
 					introduction: '',
-					sex: 2,
 					tag: []
 				},
 				sexs: [{
@@ -103,8 +108,13 @@
 			}
 		},
 		methods: {
+			selectMainImg(e) {
+				this.img = e.tempFilePaths[0];
+			},
+			deleteMainImg(e) {
+				this.img = "";
+			},
 			seleteImage(e) {
-				console.log(e);
 				e.tempFilePaths.map(item => {
 					this.imageList.push({
 						name: 'url',
@@ -119,18 +129,45 @@
 					}
 				})
 			},
-			publish() {
+			async upload() {
+				let _this = this;
+				if (this.img != "") {
+					await uploadImages({
+						filePath: this.img
+					}).then((res) => {
+						let [error, success] = res;
+						_this.imgUrl = success.data;
+					})
+				}
 				if (this.imageList.length > 0) {
-					this.imageList.forEach(item => {
-						console.log(item)
+					await this.imageList.forEach(item => {
 						uploadImages({
 							filePath: item.uri
-						}).then((res)=>{
+						}).then((res) => {
 							let [error, success] = res;
-							console.log(success)
+							_this.imageUrlList.push(success.data.toString())
 						})
 					})
 				}
+			},
+			publish() {
+				let _this = this;
+				this.upload().then(() => {
+					console.log("imgUrl", _this.imgUrl);
+					console.log("imageUrlList", _this.imageUrlList);
+					publishProduct({
+						userId: getApp().globalData.USER_ID,
+						title: _this.baseFormData.title,
+						content: _this.baseFormData.introduction,
+						tags: _this.baseFormData.tag.toString(),
+						price: _this.baseFormData.price,
+						imgUrl: _this.imgUrl,
+						imgUrlList: _this.imageUrlList,
+					}).then((res) => {
+						let [error, success] = res;
+						console.log(success);
+					})
+				});
 			}
 		}
 	}
