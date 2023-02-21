@@ -100,11 +100,14 @@ __webpack_require__.r(__webpack_exports__);
 var components
 try {
   components = {
+    fuiCard: function () {
+      return __webpack_require__.e(/*! import() | components/fui-card/fui-card */ "components/fui-card/fui-card").then(__webpack_require__.bind(null, /*! @/components/fui-card/fui-card.vue */ 291))
+    },
     uniList: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-list/components/uni-list/uni-list */ "uni_modules/uni-list/components/uni-list/uni-list").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-list/components/uni-list/uni-list.vue */ 303))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-list/components/uni-list/uni-list */ "uni_modules/uni-list/components/uni-list/uni-list").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-list/components/uni-list/uni-list.vue */ 305))
     },
     uniListItem: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-list/components/uni-list-item/uni-list-item */ "uni_modules/uni-list/components/uni-list-item/uni-list-item").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-list/components/uni-list-item/uni-list-item.vue */ 310))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-list/components/uni-list-item/uni-list-item */ "uni_modules/uni-list/components/uni-list-item/uni-list-item").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-list/components/uni-list-item/uni-list-item.vue */ 312))
     },
   }
 } catch (e) {
@@ -161,29 +164,15 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {
 
-
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ 5));
 var _user = __webpack_require__(/*! @/api/user.js */ 33);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -214,22 +203,14 @@ var _default = {
     return {
       userId: '',
       username: '',
-      avatar: ''
+      avatar: '',
+      desc: ''
     };
   },
   methods: {
-    changeUsername: function changeUsername(username) {
-      this.username = username;
-      (0, _user.updateUserInfo)({
-        userId: this.userId,
-        nickname: this.username
-      });
-    },
-    changeAvatar: function changeAvatar(info) {
-      this.avatar = info.detail.avatarUrl;
-      (0, _user.updateUserInfo)({
-        userId: this.userId,
-        avatar: this.avatar
+    clickPherCard: function clickPherCard() {
+      uni.navigateTo({
+        url: '/pages/editUserInfo/editUserInfo'
       });
     }
   },
@@ -237,9 +218,25 @@ var _default = {
     this.userId = getApp().globalData.USER_ID;
     this.username = getApp().globalData.USER_NAME;
     this.avatar = getApp().globalData.AVATAR;
+    var _this = this;
+    (0, _user.getUserInfo)({
+      userId: getApp().globalData.USER_ID
+    }).then(function (res) {
+      var _res = (0, _slicedToArray2.default)(res, 2),
+        error = _res[0],
+        success = _res[1];
+      console.log(success);
+      _this.name = success.data.nickname;
+      _this.city = success.data.city;
+      _this.gender = success.data.gender;
+      _this.avatar = success.data.avatar;
+      _this.desc = success.data.desc;
+      _this.phone = success.data.phone;
+    });
   }
 };
 exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
 

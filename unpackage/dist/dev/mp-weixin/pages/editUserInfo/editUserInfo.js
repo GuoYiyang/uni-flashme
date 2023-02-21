@@ -98,23 +98,26 @@ __webpack_require__.r(__webpack_exports__);
 var components
 try {
   components = {
-    "u-Form": function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u--form/u--form */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u--form/u--form")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u--form/u--form.vue */ 364))
+    uniSection: function () {
+      return __webpack_require__.e(/*! import() | uni_modules/uni-section/components/uni-section/uni-section */ "uni_modules/uni-section/components/uni-section/uni-section").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-section/components/uni-section/uni-section.vue */ 341))
     },
-    uFormItem: function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-form-item/u-form-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-form-item/u-form-item")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-form-item/u-form-item.vue */ 370))
+    uniForms: function () {
+      return Promise.all(/*! import() | uni_modules/uni-forms/components/uni-forms/uni-forms */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-forms/components/uni-forms/uni-forms")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-forms/components/uni-forms/uni-forms.vue */ 427))
+    },
+    uniFormsItem: function () {
+      return Promise.all(/*! import() | uni_modules/uni-forms/components/uni-forms-item/uni-forms-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-forms/components/uni-forms-item/uni-forms-item")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-forms/components/uni-forms-item/uni-forms-item.vue */ 436))
+    },
+    uButton: function () {
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-button/u-button.vue */ 233))
     },
     uAvatar: function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-avatar/u-avatar */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-avatar/u-avatar")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-avatar/u-avatar.vue */ 378))
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-avatar/u-avatar */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-avatar/u-avatar")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-avatar/u-avatar.vue */ 380))
     },
-    "u-Input": function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u--input/u--input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u--input/u--input")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u--input/u--input.vue */ 386))
+    uniEasyinput: function () {
+      return __webpack_require__.e(/*! import() | uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput */ "uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput.vue */ 443))
     },
-    uIcon: function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-icon/u-icon */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-icon/u-icon")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-icon/u-icon.vue */ 265))
-    },
-    uActionSheet: function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-action-sheet/u-action-sheet */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-action-sheet/u-action-sheet")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-action-sheet/u-action-sheet.vue */ 392))
+    uniDataCheckbox: function () {
+      return Promise.all(/*! import() | uni_modules/uni-data-checkbox/components/uni-data-checkbox/uni-data-checkbox */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-data-checkbox/components/uni-data-checkbox/uni-data-checkbox")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-data-checkbox/components/uni-data-checkbox/uni-data-checkbox.vue */ 450))
     },
   }
 } catch (e) {
@@ -138,15 +141,6 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  if (!_vm._isMounted) {
-    _vm.e0 = function ($event) {
-      _vm.showSex = true
-      _vm.hideKeyboard()
-    }
-    _vm.e1 = function ($event) {
-      _vm.showSex = false
-    }
-  }
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -182,10 +176,54 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 
 
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ 5));
+var _user = __webpack_require__(/*! @/api/user.js */ 33);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -215,12 +253,15 @@ exports.default = void 0;
 var _default = {
   data: function data() {
     return {
+      userId: '',
       showSex: false,
-      model1: {
-        userInfo: {
-          name: '',
-          sex: ''
-        }
+      userInfo: {
+        name: '',
+        avatar: '',
+        desc: '',
+        phone: '',
+        sex: '',
+        city: ''
       },
       actions: [{
         name: '男'
@@ -243,20 +284,42 @@ var _default = {
           message: '请选择男或女',
           trigger: ['blur', 'change']
         }
-      },
-      radio: '',
-      switchVal: false
+      }
     };
   },
   methods: {
     sexSelect: function sexSelect(e) {
-      this.model1.userInfo.sex = e.name;
-      this.$refs.form1.validateField('userInfo.sex');
+      this.userInfo.sex = e.name;
+    },
+    changeAvatar: function changeAvatar(info) {
+      this.userInfo.avatar = info.detail.avatarUrl;
+      (0, _user.updateUserInfo)({
+        userId: this.userId,
+        avatar: this.userInfo.avatar
+      });
     }
+  },
+  onLoad: function onLoad() {
+    this.userId = getApp().globalData.USER_ID;
+    var _this = this;
+    (0, _user.getUserInfo)({
+      userId: this.userId
+    }).then(function (res) {
+      var _res = (0, _slicedToArray2.default)(res, 2),
+        error = _res[0],
+        success = _res[1];
+      console.log(success);
+      _this.userInfo.name = success.data.nickname;
+      _this.userInfo.city = success.data.city;
+      _this.userInfo.gender = success.data.gender;
+      _this.userInfo.avatar = success.data.avatar;
+      _this.userInfo.desc = success.data.desc;
+      _this.userInfo.phone = success.data.phone;
+    });
   },
   onReady: function onReady() {
     //如果需要兼容微信小程序，并且校验规则中含有方法等，只能通过setRules方法设置规则。
-    this.$refs.form1.setRules(this.rules);
+    this.$refs.form.setRules(this.rules);
   }
 };
 exports.default = _default;

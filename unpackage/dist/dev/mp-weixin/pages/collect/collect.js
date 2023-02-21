@@ -101,10 +101,13 @@ var components
 try {
   components = {
     uTabs: function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-tabs/u-tabs */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-tabs/u-tabs")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-tabs/u-tabs.vue */ 281))
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-tabs/u-tabs */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-tabs/u-tabs")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-tabs/u-tabs.vue */ 283))
     },
     customWaterfallsFlow: function () {
-      return Promise.all(/*! import() | uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow")]).then(__webpack_require__.bind(null, /*! @/uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow.vue */ 274))
+      return Promise.all(/*! import() | uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow")]).then(__webpack_require__.bind(null, /*! @/uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow.vue */ 276))
+    },
+    fuiCard: function () {
+      return __webpack_require__.e(/*! import() | components/fui-card/fui-card */ "components/fui-card/fui-card").then(__webpack_require__.bind(null, /*! @/components/fui-card/fui-card.vue */ 291))
     },
   }
 } catch (e) {
@@ -171,15 +174,53 @@ exports.default = void 0;
 var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ 5));
 var _product = __webpack_require__(/*! @/api/product.js */ 168);
 var _user = __webpack_require__(/*! @/api/user.js */ 33);
-var card = function card() {
-  __webpack_require__.e(/*! require.ensure | components/list-card/list-card */ "components/list-card/list-card").then((function () {
-    return resolve(__webpack_require__(/*! @/components/list-card/list-card.vue */ 296));
-  }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
-};
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default = {
-  components: {
-    card: card
-  },
   loaded: function loaded() {
     console.log('加载完成');
   },
@@ -230,10 +271,12 @@ var _default = {
   },
   onLoad: function onLoad() {},
   onShow: function onShow() {
+    var _this2 = this;
+    console.log("collect show");
     var _this = this;
-    this.tabsCurrent = 0;
-    this.collectProductShow = true;
-    this.collectPhotographerShow = false;
+    _this.tabsCurrent = 0;
+    _this.collectProductShow = true;
+    _this.collectPhotographerShow = false;
     (0, _product.getProductCollect)({
       userId: getApp().globalData.USER_ID
     }).then(function (res) {
@@ -241,6 +284,7 @@ var _default = {
         error = _res[0],
         success = _res[1];
       _this.product.list = success.data;
+      _this2.$refs.waterfallsFlowRef.refresh();
     });
     (0, _user.getPherCollect)({
       userId: getApp().globalData.USER_ID

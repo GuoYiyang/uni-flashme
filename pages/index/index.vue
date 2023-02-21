@@ -60,8 +60,8 @@
 
 		<!--  瀑布流  -->
 		<view style="padding: 10rpx;">
-			<custom-waterfalls-flow :value="product.list" :column="2" :columnSpace="1.5"
-				@imageClick="imageClick" @loaded="loaded" @wapperClick="wapperClick">
+			<custom-waterfalls-flow :value="product.list" :column="2" :columnSpace="1.5" @imageClick="imageClick"
+				@loaded="loaded" @wapperClick="wapperClick" ref="waterfallsFlowRef">
 				<!-- #ifdef MP-WEIXIN -->
 				<view class="item" v-for="(item,index) in product.list" :key="index" slot="slot{{index}}">
 					<view class="title">{{item.title}}</view>

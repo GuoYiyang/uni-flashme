@@ -20,27 +20,12 @@
 				<uni-list-item title="问题反馈" showArrow link="navigateTo" to=""/>
 			</uni-list>
 		</view>
-
-
-<!-- 		<uni-section title="开启点击反馈" type="line">
-
-		</uni-section> -->
-
-<!-- 		<view class="center">
-
-			<button open-type="chooseAvatar" @chooseavatar="changeAvatar">
-				<u-avatar :src="avatar" shape="square">
-				</u-avatar>
-			</button>
-			<view style="font-size: 30rpx; font-weight: bold; padding-top: 10rpx;">{{username}}</view>
-			点击修改昵称
-			<u-input type="nickname" @blur="changeUsername"></u-input>
-		</view> -->
 	</view>
 </template>
 <script>
 	import {
-		updateUserInfo
+		updateUserInfo,
+		getUserInfo
 	} from '@/api/user.js';
 	export default {
 		components: {},
@@ -48,29 +33,34 @@
 			return {
 				userId: '',
 				username: '',
-				avatar: ''
+				avatar: '',
+				desc:'',
 			}
 		},
 		methods: {
-			changeUsername(username) {
-				this.username = username;
-				updateUserInfo({
-					userId: this.userId,
-					nickname: this.username
+			clickPherCard() {
+				uni.navigateTo({
+					url: '/pages/editUserInfo/editUserInfo'
 				})
 			},
-			changeAvatar(info) {
-				this.avatar = info.detail.avatarUrl;
-				updateUserInfo({
-					userId: this.userId,
-					avatar: this.avatar
-				})
-			}
 		},
 		onShow() {
 			this.userId = getApp().globalData.USER_ID;
 			this.username = getApp().globalData.USER_NAME;
 			this.avatar = getApp().globalData.AVATAR;
+			let _this = this;
+			getUserInfo({
+				userId: getApp().globalData.USER_ID
+			}).then((res) => {
+				let [error, success] = res;
+				console.log(success);
+				_this.name = success.data.nickname;
+				_this.city = success.data.city;
+				_this.gender = success.data.gender;
+				_this.avatar = success.data.avatar;
+				_this.desc = success.data.desc;
+				_this.phone = success.data.phone;
+			})
 		}
 	}
 </script>

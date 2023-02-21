@@ -15,7 +15,7 @@
 		<view v-if="collectProductShow">
 			<view style="padding:10rpx;">
 				<custom-waterfalls-flow ref="waterfallsFlowRef" :value="product.list" :column="2" :columnSpace="1.5"
-					:seat="2" @imageClick="imageClick" @loaded="loaded">
+					:seat="2" @imageClick="imageClick" @loaded="loaded" @wapperClick="wapperClick">
 					<!-- #ifdef MP-WEIXIN -->
 					<view class="item" v-for="(item,index) in product.list" :key="index" slot="slot{{index}}">
 						<view class="title">{{item.title}}</view>
@@ -45,7 +45,6 @@
 </template>
 
 <script>
-	import card from '@/components/list-card/list-card.vue'
 	import {
 		getProductCollect
 	} from '@/api/product.js'
@@ -53,9 +52,6 @@
 		getPherCollect
 	} from '@/api/user.js'
 	export default {
-		components: {
-			card
-		},
 		loaded() {
 			console.log('加载完成')
 		},
@@ -104,24 +100,29 @@
 				uni.navigateTo({
 					url: '../product/product?id=' + item.id
 				})
-			},
+			}
 		},
-		onLoad() {},
+		onLoad() {
+			
+		},
 		onShow() {
-			this.tabsCurrent = 0;
-			this.collectProductShow = true;
-			this.collectPhotographerShow = false;
+			console.log("collect show")
+			let _this = this;
+			_this.tabsCurrent = 0;
+			_this.collectProductShow = true;
+			_this.collectPhotographerShow = false;
 			getProductCollect({
 				userId: getApp().globalData.USER_ID
 			}).then((res) => {
 				let [error, success] = res;
-				this.product.list = success.data;
+				_this.product.list = success.data;
+				this.$refs.waterfallsFlowRef.refresh();
 			});
 			getPherCollect({
 				userId: getApp().globalData.USER_ID
 			}).then((res) => {
 				let [error, success] = res;
-				this.pher.list = success.data;
+				_this.pher.list = success.data;
 			});
 		},
 		onPullDownRefresh() {
