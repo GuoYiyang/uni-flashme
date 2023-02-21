@@ -1524,7 +1524,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"NODE_ENV":"development","VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"mydemo","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"mydemo","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -8878,7 +8878,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"NODE_ENV":"development","VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"mydemo","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"mydemo","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -8899,14 +8899,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"NODE_ENV":"development","VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"mydemo","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"mydemo","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"NODE_ENV":"development","VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"mydemo","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"mydemo","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -9002,7 +9002,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"NODE_ENV":"development","VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"mydemo","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"mydemo","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -9420,9 +9420,9 @@ internalMixin(Vue);
 
 /***/ }),
 /* 26 */
-/*!*********************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/pages.json ***!
-  \*********************************************************/
+/*!*******************************************!*\
+  !*** F:/uniappProjects/uniapp/pages.json ***!
+  \*******************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -9807,9 +9807,9 @@ module.exports = _asyncToGenerator, module.exports.__esModule = true, module.exp
 
 /***/ }),
 /* 33 */
-/*!**********************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/api/user.js ***!
-  \**********************************************************/
+/*!********************************************!*\
+  !*** F:/uniappProjects/uniapp/api/user.js ***!
+  \********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9843,9 +9843,13 @@ function updateUserInfo(userInfo) {
     url: _settingConfig.baseUrl + '/user/user-info',
     method: "POST",
     data: {
-      id: userInfo.userId,
+      id: userInfo.id,
       avatar: userInfo.avatar,
-      nickname: userInfo.nickname
+      nickname: userInfo.name,
+      phone: userInfo.phone,
+      desc: userInfo.desc,
+      gender: userInfo.sex,
+      city: userInfo.city
     }
   });
 }
@@ -9900,9 +9904,9 @@ function getPherCollectStatus(req) {
 
 /***/ }),
 /* 34 */
-/*!***********************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/config/setting.config.js ***!
-  \***********************************************************************/
+/*!*********************************************************!*\
+  !*** F:/uniappProjects/uniapp/config/setting.config.js ***!
+  \*********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -9913,8 +9917,8 @@ var setting = {
   // baseURL: process.env.NODE_ENV === 'development' ?
   // 	'vab-mock-server' :
   // 	'vab-mock-server',
-  // baseUrl: 'http://192.168.1.6:8888'
-  baseUrl: 'http://localhost:8888'
+  baseUrl: 'http://192.168.1.6:8888'
+  // baseUrl: 'http://localhost:8888'
   // baseUrl: 'http://118.195.215.159:8888'
 };
 
@@ -10052,9 +10056,9 @@ function normalizeComponent (
 
 /***/ }),
 /* 38 */
-/*!****************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/index.js ***!
-  \****************************************************************************/
+/*!**************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/index.js ***!
+  \**************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10141,9 +10145,9 @@ exports.default = _default;
 
 /***/ }),
 /* 39 */
-/*!***************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/mixin/mixin.js ***!
-  \***************************************************************************************/
+/*!*************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/mixin/mixin.js ***!
+  \*************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10309,9 +10313,9 @@ exports.default = _default;
 
 /***/ }),
 /* 40 */
-/*!*****************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/mixin/mpMixin.js ***!
-  \*****************************************************************************************/
+/*!***************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/mixin/mpMixin.js ***!
+  \***************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10332,9 +10336,9 @@ exports.default = _default;
 
 /***/ }),
 /* 41 */
-/*!**********************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/luch-request/index.js ***!
-  \**********************************************************************************************/
+/*!********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/luch-request/index.js ***!
+  \********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10352,9 +10356,9 @@ exports.default = _default;
 
 /***/ }),
 /* 42 */
-/*!*****************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/luch-request/core/Request.js ***!
-  \*****************************************************************************************************/
+/*!***************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/luch-request/core/Request.js ***!
+  \***************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10558,9 +10562,9 @@ exports.default = Request;
 
 /***/ }),
 /* 43 */
-/*!*************************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/luch-request/core/dispatchRequest.js ***!
-  \*************************************************************************************************************/
+/*!***********************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/luch-request/core/dispatchRequest.js ***!
+  \***********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10580,9 +10584,9 @@ exports.default = _default;
 
 /***/ }),
 /* 44 */
-/*!*******************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/luch-request/adapters/index.js ***!
-  \*******************************************************************************************************/
+/*!*****************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/luch-request/adapters/index.js ***!
+  \*****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10661,9 +10665,9 @@ exports.default = _default;
 
 /***/ }),
 /* 45 */
-/*!*********************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/luch-request/helpers/buildURL.js ***!
-  \*********************************************************************************************************/
+/*!*******************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/luch-request/helpers/buildURL.js ***!
+  \*******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10731,9 +10735,9 @@ function buildURL(url, params) {
 
 /***/ }),
 /* 46 */
-/*!**********************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/luch-request/utils.js ***!
-  \**********************************************************************************************/
+/*!********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/luch-request/utils.js ***!
+  \********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10884,9 +10888,9 @@ function isUndefined(val) {
 
 /***/ }),
 /* 47 */
-/*!***********************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/luch-request/core/buildFullPath.js ***!
-  \***********************************************************************************************************/
+/*!*********************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/luch-request/core/buildFullPath.js ***!
+  \*********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10918,9 +10922,9 @@ function buildFullPath(baseURL, requestedURL) {
 
 /***/ }),
 /* 48 */
-/*!**************************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/luch-request/helpers/isAbsoluteURL.js ***!
-  \**************************************************************************************************************/
+/*!************************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/luch-request/helpers/isAbsoluteURL.js ***!
+  \************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10946,9 +10950,9 @@ function isAbsoluteURL(url) {
 
 /***/ }),
 /* 49 */
-/*!************************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/luch-request/helpers/combineURLs.js ***!
-  \************************************************************************************************************/
+/*!**********************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/luch-request/helpers/combineURLs.js ***!
+  \**********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10972,9 +10976,9 @@ function combineURLs(baseURL, relativeURL) {
 
 /***/ }),
 /* 50 */
-/*!****************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/luch-request/core/settle.js ***!
-  \****************************************************************************************************/
+/*!**************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/luch-request/core/settle.js ***!
+  \**************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11004,9 +11008,9 @@ function settle(resolve, reject, response) {
 
 /***/ }),
 /* 51 */
-/*!****************************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/luch-request/core/InterceptorManager.js ***!
-  \****************************************************************************************************************/
+/*!**************************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/luch-request/core/InterceptorManager.js ***!
+  \**************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11068,9 +11072,9 @@ exports.default = _default;
 
 /***/ }),
 /* 52 */
-/*!*********************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/luch-request/core/mergeConfig.js ***!
-  \*********************************************************************************************************/
+/*!*******************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/luch-request/core/mergeConfig.js ***!
+  \*******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11144,9 +11148,9 @@ exports.default = _default;
 
 /***/ }),
 /* 53 */
-/*!******************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/luch-request/core/defaults.js ***!
-  \******************************************************************************************************/
+/*!****************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/luch-request/core/defaults.js ***!
+  \****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11176,9 +11180,9 @@ exports.default = _default;
 
 /***/ }),
 /* 54 */
-/*!****************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/luch-request/utils/clone.js ***!
-  \****************************************************************************************************/
+/*!**************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/luch-request/utils/clone.js ***!
+  \**************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11424,7 +11428,7 @@ var clone = function () {
 }();
 var _default = clone;
 exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../../../../../Applications/HBuilderX.app/Contents/HBuilderX/plugins/uniapp-cli/node_modules/buffer/index.js */ 55).Buffer))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../../../HBuilderX/plugins/uniapp-cli/node_modules/buffer/index.js */ 55).Buffer))
 
 /***/ }),
 /* 55 */
@@ -13500,9 +13504,9 @@ module.exports = Array.isArray || function (arr) {
 
 /***/ }),
 /* 59 */
-/*!**************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/util/route.js ***!
-  \**************************************************************************************/
+/*!************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/util/route.js ***!
+  \************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13688,9 +13692,9 @@ exports.default = _default;
 
 /***/ }),
 /* 60 */
-/*!**************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/function/colorGradient.js ***!
-  \**************************************************************************************************/
+/*!************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/function/colorGradient.js ***!
+  \************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13843,9 +13847,9 @@ exports.default = _default;
 
 /***/ }),
 /* 61 */
-/*!*****************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/function/test.js ***!
-  \*****************************************************************************************/
+/*!***************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/function/test.js ***!
+  \***************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -14148,9 +14152,9 @@ exports.default = _default;
 
 /***/ }),
 /* 62 */
-/*!*********************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/function/debounce.js ***!
-  \*********************************************************************************************/
+/*!*******************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/function/debounce.js ***!
+  \*******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -14195,9 +14199,9 @@ exports.default = _default;
 
 /***/ }),
 /* 63 */
-/*!*********************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/function/throttle.js ***!
-  \*********************************************************************************************/
+/*!*******************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/function/throttle.js ***!
+  \*******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -14244,9 +14248,9 @@ exports.default = _default;
 
 /***/ }),
 /* 64 */
-/*!******************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/function/index.js ***!
-  \******************************************************************************************/
+/*!****************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/function/index.js ***!
+  \****************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15005,9 +15009,9 @@ exports.default = _default;
 
 /***/ }),
 /* 65 */
-/*!******************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/function/digit.js ***!
-  \******************************************************************************************/
+/*!****************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/function/digit.js ***!
+  \****************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15224,9 +15228,9 @@ module.exports = _toArray, module.exports.__esModule = true, module.exports["def
 
 /***/ }),
 /* 67 */
-/*!*****************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/config.js ***!
-  \*****************************************************************************************/
+/*!***************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/config.js ***!
+  \***************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15268,9 +15272,9 @@ exports.default = _default;
 
 /***/ }),
 /* 68 */
-/*!****************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props.js ***!
-  \****************************************************************************************/
+/*!**************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props.js ***!
+  \**************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15380,9 +15384,9 @@ exports.default = _default;
 
 /***/ }),
 /* 69 */
-/*!****************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/actionSheet.js ***!
-  \****************************************************************************************************/
+/*!**************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/actionSheet.js ***!
+  \**************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15424,9 +15428,9 @@ exports.default = _default;
 
 /***/ }),
 /* 70 */
-/*!**********************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/album.js ***!
-  \**********************************************************************************************/
+/*!********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/album.js ***!
+  \********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15468,9 +15472,9 @@ exports.default = _default;
 
 /***/ }),
 /* 71 */
-/*!**********************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/alert.js ***!
-  \**********************************************************************************************/
+/*!********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/alert.js ***!
+  \********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15507,9 +15511,9 @@ exports.default = _default;
 
 /***/ }),
 /* 72 */
-/*!***********************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/avatar.js ***!
-  \***********************************************************************************************/
+/*!*********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/avatar.js ***!
+  \*********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15552,9 +15556,9 @@ exports.default = _default;
 
 /***/ }),
 /* 73 */
-/*!****************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/avatarGroup.js ***!
-  \****************************************************************************************************/
+/*!**************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/avatarGroup.js ***!
+  \**************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15594,9 +15598,9 @@ exports.default = _default;
 
 /***/ }),
 /* 74 */
-/*!************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/backtop.js ***!
-  \************************************************************************************************/
+/*!**********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/backtop.js ***!
+  \**********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15640,9 +15644,9 @@ exports.default = _default;
 
 /***/ }),
 /* 75 */
-/*!**********************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/badge.js ***!
-  \**********************************************************************************************/
+/*!********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/badge.js ***!
+  \********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15686,9 +15690,9 @@ exports.default = _default;
 
 /***/ }),
 /* 76 */
-/*!***********************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/button.js ***!
-  \***********************************************************************************************/
+/*!*********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/button.js ***!
+  \*********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15745,9 +15749,9 @@ exports.default = _default;
 
 /***/ }),
 /* 77 */
-/*!*************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/calendar.js ***!
-  \*************************************************************************************************/
+/*!***********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/calendar.js ***!
+  \***********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15808,9 +15812,9 @@ exports.default = _default;
 
 /***/ }),
 /* 78 */
-/*!****************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/carKeyboard.js ***!
-  \****************************************************************************************************/
+/*!**************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/carKeyboard.js ***!
+  \**************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15840,9 +15844,9 @@ exports.default = _default;
 
 /***/ }),
 /* 79 */
-/*!*********************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/cell.js ***!
-  \*********************************************************************************************/
+/*!*******************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/cell.js ***!
+  \*******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15892,9 +15896,9 @@ exports.default = _default;
 
 /***/ }),
 /* 80 */
-/*!**************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/cellGroup.js ***!
-  \**************************************************************************************************/
+/*!************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/cellGroup.js ***!
+  \************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15926,9 +15930,9 @@ exports.default = _default;
 
 /***/ }),
 /* 81 */
-/*!*************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/checkbox.js ***!
-  \*************************************************************************************************/
+/*!***********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/checkbox.js ***!
+  \***********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15970,9 +15974,9 @@ exports.default = _default;
 
 /***/ }),
 /* 82 */
-/*!******************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/checkboxGroup.js ***!
-  \******************************************************************************************************/
+/*!****************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/checkboxGroup.js ***!
+  \****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16018,9 +16022,9 @@ exports.default = _default;
 
 /***/ }),
 /* 83 */
-/*!*******************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/circleProgress.js ***!
-  \*******************************************************************************************************/
+/*!*****************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/circleProgress.js ***!
+  \*****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16050,9 +16054,9 @@ exports.default = _default;
 
 /***/ }),
 /* 84 */
-/*!*********************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/code.js ***!
-  \*********************************************************************************************/
+/*!*******************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/code.js ***!
+  \*******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16087,9 +16091,9 @@ exports.default = _default;
 
 /***/ }),
 /* 85 */
-/*!**************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/codeInput.js ***!
-  \**************************************************************************************************/
+/*!************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/codeInput.js ***!
+  \************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16133,9 +16137,9 @@ exports.default = _default;
 
 /***/ }),
 /* 86 */
-/*!********************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/col.js ***!
-  \********************************************************************************************/
+/*!******************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/col.js ***!
+  \******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16169,9 +16173,9 @@ exports.default = _default;
 
 /***/ }),
 /* 87 */
-/*!*************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/collapse.js ***!
-  \*************************************************************************************************/
+/*!***********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/collapse.js ***!
+  \***********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16203,9 +16207,9 @@ exports.default = _default;
 
 /***/ }),
 /* 88 */
-/*!*****************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/collapseItem.js ***!
-  \*****************************************************************************************************/
+/*!***************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/collapseItem.js ***!
+  \***************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16245,9 +16249,9 @@ exports.default = _default;
 
 /***/ }),
 /* 89 */
-/*!*****************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/columnNotice.js ***!
-  \*****************************************************************************************************/
+/*!***************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/columnNotice.js ***!
+  \***************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16286,9 +16290,9 @@ exports.default = _default;
 
 /***/ }),
 /* 90 */
-/*!**************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/countDown.js ***!
-  \**************************************************************************************************/
+/*!************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/countDown.js ***!
+  \************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16321,9 +16325,9 @@ exports.default = _default;
 
 /***/ }),
 /* 91 */
-/*!************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/countTo.js ***!
-  \************************************************************************************************/
+/*!**********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/countTo.js ***!
+  \**********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16363,9 +16367,9 @@ exports.default = _default;
 
 /***/ }),
 /* 92 */
-/*!*******************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/datetimePicker.js ***!
-  \*******************************************************************************************************/
+/*!*****************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/datetimePicker.js ***!
+  \*****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16418,9 +16422,9 @@ exports.default = _default;
 
 /***/ }),
 /* 93 */
-/*!************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/divider.js ***!
-  \************************************************************************************************/
+/*!**********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/divider.js ***!
+  \**********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16457,9 +16461,9 @@ exports.default = _default;
 
 /***/ }),
 /* 94 */
-/*!**********************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/empty.js ***!
-  \**********************************************************************************************/
+/*!********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/empty.js ***!
+  \********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16499,9 +16503,9 @@ exports.default = _default;
 
 /***/ }),
 /* 95 */
-/*!*********************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/form.js ***!
-  \*********************************************************************************************/
+/*!*******************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/form.js ***!
+  \*******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16544,9 +16548,9 @@ exports.default = _default;
 
 /***/ }),
 /* 96 */
-/*!*************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/formItem.js ***!
-  \*************************************************************************************************/
+/*!***********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/formItem.js ***!
+  \***********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16584,9 +16588,9 @@ exports.default = _default;
 
 /***/ }),
 /* 97 */
-/*!********************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/gap.js ***!
-  \********************************************************************************************/
+/*!******************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/gap.js ***!
+  \******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16620,9 +16624,9 @@ exports.default = _default;
 
 /***/ }),
 /* 98 */
-/*!*********************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/grid.js ***!
-  \*********************************************************************************************/
+/*!*******************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/grid.js ***!
+  \*******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16654,9 +16658,9 @@ exports.default = _default;
 
 /***/ }),
 /* 99 */
-/*!*************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/gridItem.js ***!
-  \*************************************************************************************************/
+/*!***********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/gridItem.js ***!
+  \***********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16687,9 +16691,9 @@ exports.default = _default;
 
 /***/ }),
 /* 100 */
-/*!*********************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/icon.js ***!
-  \*********************************************************************************************/
+/*!*******************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/icon.js ***!
+  \*******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16739,9 +16743,9 @@ exports.default = _default;
 
 /***/ }),
 /* 101 */
-/*!**********************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/image.js ***!
-  \**********************************************************************************************/
+/*!********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/image.js ***!
+  \********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16786,9 +16790,9 @@ exports.default = _default;
 
 /***/ }),
 /* 102 */
-/*!****************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/indexAnchor.js ***!
-  \****************************************************************************************************/
+/*!**************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/indexAnchor.js ***!
+  \**************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16822,9 +16826,9 @@ exports.default = _default;
 
 /***/ }),
 /* 103 */
-/*!**************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/indexList.js ***!
-  \**************************************************************************************************/
+/*!************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/indexList.js ***!
+  \************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16860,9 +16864,9 @@ exports.default = _default;
 
 /***/ }),
 /* 104 */
-/*!**********************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/input.js ***!
-  \**********************************************************************************************/
+/*!********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/input.js ***!
+  \********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16925,9 +16929,9 @@ exports.default = _default;
 
 /***/ }),
 /* 105 */
-/*!*************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/keyboard.js ***!
-  \*************************************************************************************************/
+/*!***********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/keyboard.js ***!
+  \***********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16972,9 +16976,9 @@ exports.default = _default;
 
 /***/ }),
 /* 106 */
-/*!*********************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/line.js ***!
-  \*********************************************************************************************/
+/*!*******************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/line.js ***!
+  \*******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17009,9 +17013,9 @@ exports.default = _default;
 
 /***/ }),
 /* 107 */
-/*!*****************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/lineProgress.js ***!
-  \*****************************************************************************************************/
+/*!***************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/lineProgress.js ***!
+  \***************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17045,9 +17049,9 @@ exports.default = _default;
 
 /***/ }),
 /* 108 */
-/*!*********************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/link.js ***!
-  \*********************************************************************************************/
+/*!*******************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/link.js ***!
+  \*******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17087,9 +17091,9 @@ exports.default = _default;
 
 /***/ }),
 /* 109 */
-/*!*********************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/list.js ***!
-  \*********************************************************************************************/
+/*!*******************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/list.js ***!
+  \*******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17132,9 +17136,9 @@ exports.default = _default;
 
 /***/ }),
 /* 110 */
-/*!*************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/listItem.js ***!
-  \*************************************************************************************************/
+/*!***********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/listItem.js ***!
+  \***********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17164,9 +17168,9 @@ exports.default = _default;
 
 /***/ }),
 /* 111 */
-/*!****************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/loadingIcon.js ***!
-  \****************************************************************************************************/
+/*!**************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/loadingIcon.js ***!
+  \**************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17210,9 +17214,9 @@ exports.default = _default;
 
 /***/ }),
 /* 112 */
-/*!****************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/loadingPage.js ***!
-  \****************************************************************************************************/
+/*!**************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/loadingPage.js ***!
+  \**************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17250,9 +17254,9 @@ exports.default = _default;
 
 /***/ }),
 /* 113 */
-/*!*************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/loadmore.js ***!
-  \*************************************************************************************************/
+/*!***********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/loadmore.js ***!
+  \***********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17299,9 +17303,9 @@ exports.default = _default;
 
 /***/ }),
 /* 114 */
-/*!**********************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/modal.js ***!
-  \**********************************************************************************************/
+/*!********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/modal.js ***!
+  \********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17346,9 +17350,9 @@ exports.default = _default;
 
 /***/ }),
 /* 115 */
-/*!***********************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/navbar.js ***!
-  \***********************************************************************************************/
+/*!*********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/navbar.js ***!
+  \*********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17395,9 +17399,9 @@ exports.default = _default;
 
 /***/ }),
 /* 116 */
-/*!****************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/color.js ***!
-  \****************************************************************************************/
+/*!**************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/color.js ***!
+  \**************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17428,9 +17432,9 @@ exports.default = _default;
 
 /***/ }),
 /* 117 */
-/*!**************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/noNetwork.js ***!
-  \**************************************************************************************************/
+/*!************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/noNetwork.js ***!
+  \************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17462,9 +17466,9 @@ exports.default = _default;
 
 /***/ }),
 /* 118 */
-/*!**************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/noticeBar.js ***!
-  \**************************************************************************************************/
+/*!************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/noticeBar.js ***!
+  \************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17508,9 +17512,9 @@ exports.default = _default;
 
 /***/ }),
 /* 119 */
-/*!***********************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/notify.js ***!
-  \***********************************************************************************************/
+/*!*********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/notify.js ***!
+  \*********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17547,9 +17551,9 @@ exports.default = _default;
 
 /***/ }),
 /* 120 */
-/*!**************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/numberBox.js ***!
-  \**************************************************************************************************/
+/*!************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/numberBox.js ***!
+  \************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17599,9 +17603,9 @@ exports.default = _default;
 
 /***/ }),
 /* 121 */
-/*!*******************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/numberKeyboard.js ***!
-  \*******************************************************************************************************/
+/*!*****************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/numberKeyboard.js ***!
+  \*****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17633,9 +17637,9 @@ exports.default = _default;
 
 /***/ }),
 /* 122 */
-/*!************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/overlay.js ***!
-  \************************************************************************************************/
+/*!**********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/overlay.js ***!
+  \**********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17668,9 +17672,9 @@ exports.default = _default;
 
 /***/ }),
 /* 123 */
-/*!**********************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/parse.js ***!
-  \**********************************************************************************************/
+/*!********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/parse.js ***!
+  \********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17707,9 +17711,9 @@ exports.default = _default;
 
 /***/ }),
 /* 124 */
-/*!***********************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/picker.js ***!
-  \***********************************************************************************************/
+/*!*********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/picker.js ***!
+  \*********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17757,9 +17761,9 @@ exports.default = _default;
 
 /***/ }),
 /* 125 */
-/*!**********************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/popup.js ***!
-  \**********************************************************************************************/
+/*!********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/popup.js ***!
+  \********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17803,9 +17807,9 @@ exports.default = _default;
 
 /***/ }),
 /* 126 */
-/*!**********************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/radio.js ***!
-  \**********************************************************************************************/
+/*!********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/radio.js ***!
+  \********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17847,9 +17851,9 @@ exports.default = _default;
 
 /***/ }),
 /* 127 */
-/*!***************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/radioGroup.js ***!
-  \***************************************************************************************************/
+/*!*************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/radioGroup.js ***!
+  \*************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17894,9 +17898,9 @@ exports.default = _default;
 
 /***/ }),
 /* 128 */
-/*!*********************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/rate.js ***!
-  \*********************************************************************************************/
+/*!*******************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/rate.js ***!
+  \*******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17937,9 +17941,9 @@ exports.default = _default;
 
 /***/ }),
 /* 129 */
-/*!*************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/readMore.js ***!
-  \*************************************************************************************************/
+/*!***********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/readMore.js ***!
+  \***********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17976,9 +17980,9 @@ exports.default = _default;
 
 /***/ }),
 /* 130 */
-/*!********************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/row.js ***!
-  \********************************************************************************************/
+/*!******************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/row.js ***!
+  \******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18010,9 +18014,9 @@ exports.default = _default;
 
 /***/ }),
 /* 131 */
-/*!**************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/rowNotice.js ***!
-  \**************************************************************************************************/
+/*!************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/rowNotice.js ***!
+  \************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18048,9 +18052,9 @@ exports.default = _default;
 
 /***/ }),
 /* 132 */
-/*!***************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/scrollList.js ***!
-  \***************************************************************************************************/
+/*!*************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/scrollList.js ***!
+  \*************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18085,9 +18089,9 @@ exports.default = _default;
 
 /***/ }),
 /* 133 */
-/*!***********************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/search.js ***!
-  \***********************************************************************************************/
+/*!*********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/search.js ***!
+  \*********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18143,9 +18147,9 @@ exports.default = _default;
 
 /***/ }),
 /* 134 */
-/*!************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/section.js ***!
-  \************************************************************************************************/
+/*!**********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/section.js ***!
+  \**********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18184,9 +18188,9 @@ exports.default = _default;
 
 /***/ }),
 /* 135 */
-/*!*************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/skeleton.js ***!
-  \*************************************************************************************************/
+/*!***********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/skeleton.js ***!
+  \***********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18226,9 +18230,9 @@ exports.default = _default;
 
 /***/ }),
 /* 136 */
-/*!***********************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/slider.js ***!
-  \***********************************************************************************************/
+/*!*********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/slider.js ***!
+  \*********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18268,9 +18272,9 @@ exports.default = _default;
 
 /***/ }),
 /* 137 */
-/*!**************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/statusBar.js ***!
-  \**************************************************************************************************/
+/*!************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/statusBar.js ***!
+  \************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18300,9 +18304,9 @@ exports.default = _default;
 
 /***/ }),
 /* 138 */
-/*!**********************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/steps.js ***!
-  \**********************************************************************************************/
+/*!********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/steps.js ***!
+  \********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18338,9 +18342,9 @@ exports.default = _default;
 
 /***/ }),
 /* 139 */
-/*!**************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/stepsItem.js ***!
-  \**************************************************************************************************/
+/*!************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/stepsItem.js ***!
+  \************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18373,9 +18377,9 @@ exports.default = _default;
 
 /***/ }),
 /* 140 */
-/*!***********************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/sticky.js ***!
-  \***********************************************************************************************/
+/*!*********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/sticky.js ***!
+  \*********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18410,9 +18414,9 @@ exports.default = _default;
 
 /***/ }),
 /* 141 */
-/*!***************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/subsection.js ***!
-  \***************************************************************************************************/
+/*!*************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/subsection.js ***!
+  \*************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18450,9 +18454,9 @@ exports.default = _default;
 
 /***/ }),
 /* 142 */
-/*!****************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/swipeAction.js ***!
-  \****************************************************************************************************/
+/*!**************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/swipeAction.js ***!
+  \**************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18482,9 +18486,9 @@ exports.default = _default;
 
 /***/ }),
 /* 143 */
-/*!********************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/swipeActionItem.js ***!
-  \********************************************************************************************************/
+/*!******************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/swipeActionItem.js ***!
+  \******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18520,9 +18524,9 @@ exports.default = _default;
 
 /***/ }),
 /* 144 */
-/*!***********************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/swiper.js ***!
-  \***********************************************************************************************/
+/*!*********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/swiper.js ***!
+  \*********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18577,9 +18581,9 @@ exports.default = _default;
 
 /***/ }),
 /* 145 */
-/*!*********************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/swipterIndicator.js ***!
-  \*********************************************************************************************************/
+/*!*******************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/swipterIndicator.js ***!
+  \*******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18613,9 +18617,9 @@ exports.default = _default;
 
 /***/ }),
 /* 146 */
-/*!***********************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/switch.js ***!
-  \***********************************************************************************************/
+/*!*********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/switch.js ***!
+  \*********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18654,9 +18658,9 @@ exports.default = _default;
 
 /***/ }),
 /* 147 */
-/*!***********************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/tabbar.js ***!
-  \***********************************************************************************************/
+/*!*********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/tabbar.js ***!
+  \*********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18693,9 +18697,9 @@ exports.default = _default;
 
 /***/ }),
 /* 148 */
-/*!***************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/tabbarItem.js ***!
-  \***************************************************************************************************/
+/*!*************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/tabbarItem.js ***!
+  \*************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18730,9 +18734,9 @@ exports.default = _default;
 
 /***/ }),
 /* 149 */
-/*!*********************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/tabs.js ***!
-  \*********************************************************************************************/
+/*!*******************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/tabs.js ***!
+  \*******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18787,9 +18791,9 @@ exports.default = _default;
 
 /***/ }),
 /* 150 */
-/*!********************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/tag.js ***!
-  \********************************************************************************************/
+/*!******************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/tag.js ***!
+  \******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18833,9 +18837,9 @@ exports.default = _default;
 
 /***/ }),
 /* 151 */
-/*!*********************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/text.js ***!
-  \*********************************************************************************************/
+/*!*******************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/text.js ***!
+  \*******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18889,9 +18893,9 @@ exports.default = _default;
 
 /***/ }),
 /* 152 */
-/*!*************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/textarea.js ***!
-  \*************************************************************************************************/
+/*!***********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/textarea.js ***!
+  \***********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18942,9 +18946,9 @@ exports.default = _default;
 
 /***/ }),
 /* 153 */
-/*!**********************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/toast.js ***!
-  \**********************************************************************************************/
+/*!********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/toast.js ***!
+  \********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18988,9 +18992,9 @@ exports.default = _default;
 
 /***/ }),
 /* 154 */
-/*!************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/toolbar.js ***!
-  \************************************************************************************************/
+/*!**********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/toolbar.js ***!
+  \**********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -19025,9 +19029,9 @@ exports.default = _default;
 
 /***/ }),
 /* 155 */
-/*!************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/tooltip.js ***!
-  \************************************************************************************************/
+/*!**********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/tooltip.js ***!
+  \**********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -19069,9 +19073,9 @@ exports.default = _default;
 
 /***/ }),
 /* 156 */
-/*!***************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/transition.js ***!
-  \***************************************************************************************************/
+/*!*************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/transition.js ***!
+  \*************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -19104,9 +19108,9 @@ exports.default = _default;
 
 /***/ }),
 /* 157 */
-/*!***********************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/props/upload.js ***!
-  \***********************************************************************************************/
+/*!*********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/upload.js ***!
+  \*********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -19163,9 +19167,9 @@ exports.default = _default;
 
 /***/ }),
 /* 158 */
-/*!*****************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/config/zIndex.js ***!
-  \*****************************************************************************************/
+/*!***************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/zIndex.js ***!
+  \***************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -19199,9 +19203,9 @@ exports.default = _default;
 
 /***/ }),
 /* 159 */
-/*!*********************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/function/platform.js ***!
-  \*********************************************************************************************/
+/*!*******************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/function/platform.js ***!
+  \*******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -19229,9 +19233,9 @@ exports.default = _default;
 
 /***/ }),
 /* 160 */
-/*!*************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/store/index.js ***!
-  \*************************************************************/
+/*!***********************************************!*\
+  !*** F:/uniappProjects/uniapp/store/index.js ***!
+  \***********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -20529,9 +20533,9 @@ module.exports = index_cjs;
 /* 166 */,
 /* 167 */,
 /* 168 */
-/*!*************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/api/product.js ***!
-  \*************************************************************/
+/*!***********************************************!*\
+  !*** F:/uniappProjects/uniapp/api/product.js ***!
+  \***********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -20697,12 +20701,10 @@ function publishProduct(req) {
 /* 225 */,
 /* 226 */,
 /* 227 */,
-/* 228 */,
-/* 229 */,
-/* 230 */
-/*!************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/components/u-picker/props.js ***!
-  \************************************************************************************************/
+/* 228 */
+/*!**********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-picker/props.js ***!
+  \**********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -20796,17 +20798,17 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
+/* 229 */,
+/* 230 */,
 /* 231 */,
 /* 232 */,
 /* 233 */,
 /* 234 */,
 /* 235 */,
-/* 236 */,
-/* 237 */,
-/* 238 */
-/*!****************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/mixin/button.js ***!
-  \****************************************************************************************/
+/* 236 */
+/*!**************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/mixin/button.js ***!
+  \**************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -20833,10 +20835,10 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 239 */
-/*!******************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/libs/mixin/openType.js ***!
-  \******************************************************************************************/
+/* 237 */
+/*!****************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/mixin/openType.js ***!
+  \****************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -20875,10 +20877,10 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 240 */
-/*!************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/components/u-button/props.js ***!
-  \************************************************************************************************/
+/* 238 */
+/*!**********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-button/props.js ***!
+  \**********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -21054,17 +21056,17 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
+/* 239 */,
+/* 240 */,
 /* 241 */,
 /* 242 */,
 /* 243 */,
 /* 244 */,
 /* 245 */,
-/* 246 */,
-/* 247 */,
-/* 248 */
-/*!************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/components/u-search/props.js ***!
-  \************************************************************************************************/
+/* 246 */
+/*!**********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-search/props.js ***!
+  \**********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -21197,17 +21199,17 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
+/* 247 */,
+/* 248 */,
 /* 249 */,
 /* 250 */,
 /* 251 */,
 /* 252 */,
 /* 253 */,
-/* 254 */,
-/* 255 */,
-/* 256 */
-/*!**********************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/components/u-grid/props.js ***!
-  \**********************************************************************************************/
+/* 254 */
+/*!********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-grid/props.js ***!
+  \********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -21241,17 +21243,17 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
+/* 255 */,
+/* 256 */,
 /* 257 */,
 /* 258 */,
 /* 259 */,
 /* 260 */,
 /* 261 */,
-/* 262 */,
-/* 263 */,
-/* 264 */
-/*!***************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/components/u-grid-item/props.js ***!
-  \***************************************************************************************************/
+/* 262 */
+/*!*************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-grid-item/props.js ***!
+  \*************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -21280,17 +21282,17 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
+/* 263 */,
+/* 264 */,
 /* 265 */,
 /* 266 */,
 /* 267 */,
 /* 268 */,
 /* 269 */,
-/* 270 */,
-/* 271 */,
-/* 272 */
-/*!**********************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/components/u-icon/icons.js ***!
-  \**********************************************************************************************/
+/* 270 */
+/*!********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-icon/icons.js ***!
+  \********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -21518,10 +21520,10 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 273 */
-/*!**********************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/components/u-icon/props.js ***!
-  \**********************************************************************************************/
+/* 271 */
+/*!********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-icon/props.js ***!
+  \********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -21625,6 +21627,8 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
+/* 272 */,
+/* 273 */,
 /* 274 */,
 /* 275 */,
 /* 276 */,
@@ -21637,12 +21641,10 @@ exports.default = _default;
 /* 283 */,
 /* 284 */,
 /* 285 */,
-/* 286 */,
-/* 287 */,
-/* 288 */
-/*!**********************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/components/u-tabs/props.js ***!
-  \**********************************************************************************************/
+/* 286 */
+/*!********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-tabs/props.js ***!
+  \********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -21721,6 +21723,8 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
+/* 287 */,
+/* 288 */,
 /* 289 */,
 /* 290 */,
 /* 291 */,
@@ -21747,19 +21751,10 @@ exports.default = _default;
 /* 312 */,
 /* 313 */,
 /* 314 */,
-/* 315 */,
-/* 316 */,
-/* 317 */,
-/* 318 */,
-/* 319 */,
-/* 320 */,
-/* 321 */,
-/* 322 */,
-/* 323 */,
-/* 324 */
-/*!************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/components/u-swiper/props.js ***!
-  \************************************************************************************************/
+/* 315 */
+/*!**********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-swiper/props.js ***!
+  \**********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -21899,6 +21894,15 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
+/* 316 */,
+/* 317 */,
+/* 318 */,
+/* 319 */,
+/* 320 */,
+/* 321 */,
+/* 322 */,
+/* 323 */,
+/* 324 */,
 /* 325 */,
 /* 326 */,
 /* 327 */,
@@ -21925,19 +21929,10 @@ exports.default = _default;
 /* 348 */,
 /* 349 */,
 /* 350 */,
-/* 351 */,
-/* 352 */,
-/* 353 */,
-/* 354 */,
-/* 355 */,
-/* 356 */,
-/* 357 */,
-/* 358 */,
-/* 359 */,
-/* 360 */
-/*!***************************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uni-goods-nav/components/uni-goods-nav/i18n/index.js ***!
-  \***************************************************************************************************************/
+/* 351 */
+/*!*************************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uni-goods-nav/components/uni-goods-nav/i18n/index.js ***!
+  \*************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -21949,9 +21944,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 361));
-var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 362));
-var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 363));
+var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 352));
+var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 353));
+var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 354));
 var _default = {
   en: _en.default,
   'zh-Hans': _zhHans.default,
@@ -21960,40 +21955,1148 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 361 */
-/*!**************************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uni-goods-nav/components/uni-goods-nav/i18n/en.json ***!
-  \**************************************************************************************************************/
+/* 352 */
+/*!************************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uni-goods-nav/components/uni-goods-nav/i18n/en.json ***!
+  \************************************************************************************************/
 /*! exports provided: uni-goods-nav.options.shop, uni-goods-nav.options.cart, uni-goods-nav.buttonGroup.addToCart, uni-goods-nav.buttonGroup.buyNow, default */
 /***/ (function(module) {
 
 module.exports = JSON.parse("{\"uni-goods-nav.options.shop\":\"shop\",\"uni-goods-nav.options.cart\":\"cart\",\"uni-goods-nav.buttonGroup.addToCart\":\"add to cart\",\"uni-goods-nav.buttonGroup.buyNow\":\"buy now\"}");
 
 /***/ }),
-/* 362 */
-/*!*******************************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uni-goods-nav/components/uni-goods-nav/i18n/zh-Hans.json ***!
-  \*******************************************************************************************************************/
+/* 353 */
+/*!*****************************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uni-goods-nav/components/uni-goods-nav/i18n/zh-Hans.json ***!
+  \*****************************************************************************************************/
 /*! exports provided: uni-goods-nav.options.shop, uni-goods-nav.options.cart, uni-goods-nav.buttonGroup.addToCart, uni-goods-nav.buttonGroup.buyNow, default */
 /***/ (function(module) {
 
 module.exports = JSON.parse("{\"uni-goods-nav.options.shop\":\"店铺\",\"uni-goods-nav.options.cart\":\"购物车\",\"uni-goods-nav.buttonGroup.addToCart\":\"加入购物车\",\"uni-goods-nav.buttonGroup.buyNow\":\"立即购买\"}");
 
 /***/ }),
-/* 363 */
-/*!*******************************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uni-goods-nav/components/uni-goods-nav/i18n/zh-Hant.json ***!
-  \*******************************************************************************************************************/
+/* 354 */
+/*!*****************************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uni-goods-nav/components/uni-goods-nav/i18n/zh-Hant.json ***!
+  \*****************************************************************************************************/
 /*! exports provided: uni-goods-nav.options.shop, uni-goods-nav.options.cart, uni-goods-nav.buttonGroup.addToCart, uni-goods-nav.buttonGroup.buyNow, default */
 /***/ (function(module) {
 
 module.exports = JSON.parse("{\"uni-goods-nav.options.shop\":\"店鋪\",\"uni-goods-nav.options.cart\":\"購物車\",\"uni-goods-nav.buttonGroup.addToCart\":\"加入購物車\",\"uni-goods-nav.buttonGroup.buyNow\":\"立即購買\"}");
 
 /***/ }),
-/* 364 */,
-/* 365 */,
-/* 366 */,
-/* 367 */,
+/* 355 */,
+/* 356 */,
+/* 357 */,
+/* 358 */,
+/* 359 */,
+/* 360 */,
+/* 361 */,
+/* 362 */
+/*!***************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uni-forms/components/uni-forms/validate.js ***!
+  \***************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 30));
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ 363));
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ 364));
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ 366));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 32));
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ 23));
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ 24));
+var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ 13));
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2.default)(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2.default)(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2.default)(this, result); }; }
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+var pattern = {
+  email: /^\S+?@\S+?\.\S+?$/,
+  idcard: /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/,
+  url: new RegExp("^(?!mailto:)(?:(?:http|https|ftp)://|//)(?:\\S+(?::\\S*)?@)?(?:(?:(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}(?:\\.(?:[0-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|(?:(?:[a-z\\u00a1-\\uffff0-9]+-*)*[a-z\\u00a1-\\uffff0-9]+)(?:\\.(?:[a-z\\u00a1-\\uffff0-9]+-*)*[a-z\\u00a1-\\uffff0-9]+)*(?:\\.(?:[a-z\\u00a1-\\uffff]{2,})))|localhost)(?::\\d{2,5})?(?:(/|\\?|#)[^\\s]*)?$", 'i')
+};
+var FORMAT_MAPPING = {
+  "int": 'integer',
+  "bool": 'boolean',
+  "double": 'number',
+  "long": 'number',
+  "password": 'string'
+  // "fileurls": 'array'
+};
+
+function formatMessage(args) {
+  var resources = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+  var defaultMessage = ['label'];
+  defaultMessage.forEach(function (item) {
+    if (args[item] === undefined) {
+      args[item] = '';
+    }
+  });
+  var str = resources;
+  for (var key in args) {
+    var reg = new RegExp('{' + key + '}');
+    str = str.replace(reg, args[key]);
+  }
+  return str;
+}
+function isEmptyValue(value, type) {
+  if (value === undefined || value === null) {
+    return true;
+  }
+  if (typeof value === 'string' && !value) {
+    return true;
+  }
+  if (Array.isArray(value) && !value.length) {
+    return true;
+  }
+  if (type === 'object' && !Object.keys(value).length) {
+    return true;
+  }
+  return false;
+}
+var types = {
+  integer: function integer(value) {
+    return types.number(value) && parseInt(value, 10) === value;
+  },
+  string: function string(value) {
+    return typeof value === 'string';
+  },
+  number: function number(value) {
+    if (isNaN(value)) {
+      return false;
+    }
+    return typeof value === 'number';
+  },
+  "boolean": function boolean(value) {
+    return typeof value === 'boolean';
+  },
+  "float": function float(value) {
+    return types.number(value) && !types.integer(value);
+  },
+  array: function array(value) {
+    return Array.isArray(value);
+  },
+  object: function object(value) {
+    return (0, _typeof2.default)(value) === 'object' && !types.array(value);
+  },
+  date: function date(value) {
+    return value instanceof Date;
+  },
+  timestamp: function timestamp(value) {
+    if (!this.integer(value) || Math.abs(value).toString().length > 16) {
+      return false;
+    }
+    return true;
+  },
+  file: function file(value) {
+    return typeof value.url === 'string';
+  },
+  email: function email(value) {
+    return typeof value === 'string' && !!value.match(pattern.email) && value.length < 255;
+  },
+  url: function url(value) {
+    return typeof value === 'string' && !!value.match(pattern.url);
+  },
+  pattern: function pattern(reg, value) {
+    try {
+      return new RegExp(reg).test(value);
+    } catch (e) {
+      return false;
+    }
+  },
+  method: function method(value) {
+    return typeof value === 'function';
+  },
+  idcard: function idcard(value) {
+    return typeof value === 'string' && !!value.match(pattern.idcard);
+  },
+  'url-https': function urlHttps(value) {
+    return this.url(value) && value.startsWith('https://');
+  },
+  'url-scheme': function urlScheme(value) {
+    return value.startsWith('://');
+  },
+  'url-web': function urlWeb(value) {
+    return false;
+  }
+};
+var RuleValidator = /*#__PURE__*/function () {
+  function RuleValidator(message) {
+    (0, _classCallCheck2.default)(this, RuleValidator);
+    this._message = message;
+  }
+  (0, _createClass2.default)(RuleValidator, [{
+    key: "validateRule",
+    value: function () {
+      var _validateRule = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee(fieldKey, fieldValue, value, data, allData) {
+        var result, rules, hasRequired, message, i, rule, vt, now, resultExpr;
+        return _regenerator.default.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                result = null;
+                rules = fieldValue.rules;
+                hasRequired = rules.findIndex(function (item) {
+                  return item.required;
+                });
+                if (!(hasRequired < 0)) {
+                  _context.next = 8;
+                  break;
+                }
+                if (!(value === null || value === undefined)) {
+                  _context.next = 6;
+                  break;
+                }
+                return _context.abrupt("return", result);
+              case 6:
+                if (!(typeof value === 'string' && !value.length)) {
+                  _context.next = 8;
+                  break;
+                }
+                return _context.abrupt("return", result);
+              case 8:
+                message = this._message;
+                if (!(rules === undefined)) {
+                  _context.next = 11;
+                  break;
+                }
+                return _context.abrupt("return", message['default']);
+              case 11:
+                i = 0;
+              case 12:
+                if (!(i < rules.length)) {
+                  _context.next = 35;
+                  break;
+                }
+                rule = rules[i];
+                vt = this._getValidateType(rule);
+                Object.assign(rule, {
+                  label: fieldValue.label || "[\"".concat(fieldKey, "\"]")
+                });
+                if (!RuleValidatorHelper[vt]) {
+                  _context.next = 20;
+                  break;
+                }
+                result = RuleValidatorHelper[vt](rule, value, message);
+                if (!(result != null)) {
+                  _context.next = 20;
+                  break;
+                }
+                return _context.abrupt("break", 35);
+              case 20:
+                if (!rule.validateExpr) {
+                  _context.next = 26;
+                  break;
+                }
+                now = Date.now();
+                resultExpr = rule.validateExpr(value, allData, now);
+                if (!(resultExpr === false)) {
+                  _context.next = 26;
+                  break;
+                }
+                result = this._getMessage(rule, rule.errorMessage || this._message['default']);
+                return _context.abrupt("break", 35);
+              case 26:
+                if (!rule.validateFunction) {
+                  _context.next = 32;
+                  break;
+                }
+                _context.next = 29;
+                return this.validateFunction(rule, value, data, allData, vt);
+              case 29:
+                result = _context.sent;
+                if (!(result !== null)) {
+                  _context.next = 32;
+                  break;
+                }
+                return _context.abrupt("break", 35);
+              case 32:
+                i++;
+                _context.next = 12;
+                break;
+              case 35:
+                if (result !== null) {
+                  result = message.TAG + result;
+                }
+                return _context.abrupt("return", result);
+              case 37:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+      function validateRule(_x, _x2, _x3, _x4, _x5) {
+        return _validateRule.apply(this, arguments);
+      }
+      return validateRule;
+    }()
+  }, {
+    key: "validateFunction",
+    value: function () {
+      var _validateFunction = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2(rule, value, data, allData, vt) {
+        var result, callbackMessage, res;
+        return _regenerator.default.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                result = null;
+                _context2.prev = 1;
+                callbackMessage = null;
+                _context2.next = 5;
+                return rule.validateFunction(rule, value, allData || data, function (message) {
+                  callbackMessage = message;
+                });
+              case 5:
+                res = _context2.sent;
+                if (callbackMessage || typeof res === 'string' && res || res === false) {
+                  result = this._getMessage(rule, callbackMessage || res, vt);
+                }
+                _context2.next = 12;
+                break;
+              case 9:
+                _context2.prev = 9;
+                _context2.t0 = _context2["catch"](1);
+                result = this._getMessage(rule, _context2.t0.message, vt);
+              case 12:
+                return _context2.abrupt("return", result);
+              case 13:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this, [[1, 9]]);
+      }));
+      function validateFunction(_x6, _x7, _x8, _x9, _x10) {
+        return _validateFunction.apply(this, arguments);
+      }
+      return validateFunction;
+    }()
+  }, {
+    key: "_getMessage",
+    value: function _getMessage(rule, message, vt) {
+      return formatMessage(rule, message || rule.errorMessage || this._message[vt] || message['default']);
+    }
+  }, {
+    key: "_getValidateType",
+    value: function _getValidateType(rule) {
+      var result = '';
+      if (rule.required) {
+        result = 'required';
+      } else if (rule.format) {
+        result = 'format';
+      } else if (rule.arrayType) {
+        result = 'arrayTypeFormat';
+      } else if (rule.range) {
+        result = 'range';
+      } else if (rule.maximum !== undefined || rule.minimum !== undefined) {
+        result = 'rangeNumber';
+      } else if (rule.maxLength !== undefined || rule.minLength !== undefined) {
+        result = 'rangeLength';
+      } else if (rule.pattern) {
+        result = 'pattern';
+      } else if (rule.validateFunction) {
+        result = 'validateFunction';
+      }
+      return result;
+    }
+  }]);
+  return RuleValidator;
+}();
+var RuleValidatorHelper = {
+  required: function required(rule, value, message) {
+    if (rule.required && isEmptyValue(value, rule.format || (0, _typeof2.default)(value))) {
+      return formatMessage(rule, rule.errorMessage || message.required);
+    }
+    return null;
+  },
+  range: function range(rule, value, message) {
+    var range = rule.range,
+      errorMessage = rule.errorMessage;
+    var list = new Array(range.length);
+    for (var i = 0; i < range.length; i++) {
+      var item = range[i];
+      if (types.object(item) && item.value !== undefined) {
+        list[i] = item.value;
+      } else {
+        list[i] = item;
+      }
+    }
+    var result = false;
+    if (Array.isArray(value)) {
+      result = new Set(value.concat(list)).size === list.length;
+    } else {
+      if (list.indexOf(value) > -1) {
+        result = true;
+      }
+    }
+    if (!result) {
+      return formatMessage(rule, errorMessage || message['enum']);
+    }
+    return null;
+  },
+  rangeNumber: function rangeNumber(rule, value, message) {
+    if (!types.number(value)) {
+      return formatMessage(rule, rule.errorMessage || message.pattern.mismatch);
+    }
+    var minimum = rule.minimum,
+      maximum = rule.maximum,
+      exclusiveMinimum = rule.exclusiveMinimum,
+      exclusiveMaximum = rule.exclusiveMaximum;
+    var min = exclusiveMinimum ? value <= minimum : value < minimum;
+    var max = exclusiveMaximum ? value >= maximum : value > maximum;
+    if (minimum !== undefined && min) {
+      return formatMessage(rule, rule.errorMessage || message['number'][exclusiveMinimum ? 'exclusiveMinimum' : 'minimum']);
+    } else if (maximum !== undefined && max) {
+      return formatMessage(rule, rule.errorMessage || message['number'][exclusiveMaximum ? 'exclusiveMaximum' : 'maximum']);
+    } else if (minimum !== undefined && maximum !== undefined && (min || max)) {
+      return formatMessage(rule, rule.errorMessage || message['number'].range);
+    }
+    return null;
+  },
+  rangeLength: function rangeLength(rule, value, message) {
+    if (!types.string(value) && !types.array(value)) {
+      return formatMessage(rule, rule.errorMessage || message.pattern.mismatch);
+    }
+    var min = rule.minLength;
+    var max = rule.maxLength;
+    var val = value.length;
+    if (min !== undefined && val < min) {
+      return formatMessage(rule, rule.errorMessage || message['length'].minLength);
+    } else if (max !== undefined && val > max) {
+      return formatMessage(rule, rule.errorMessage || message['length'].maxLength);
+    } else if (min !== undefined && max !== undefined && (val < min || val > max)) {
+      return formatMessage(rule, rule.errorMessage || message['length'].range);
+    }
+    return null;
+  },
+  pattern: function pattern(rule, value, message) {
+    if (!types['pattern'](rule.pattern, value)) {
+      return formatMessage(rule, rule.errorMessage || message.pattern.mismatch);
+    }
+    return null;
+  },
+  format: function format(rule, value, message) {
+    var customTypes = Object.keys(types);
+    var format = FORMAT_MAPPING[rule.format] ? FORMAT_MAPPING[rule.format] : rule.format || rule.arrayType;
+    if (customTypes.indexOf(format) > -1) {
+      if (!types[format](value)) {
+        return formatMessage(rule, rule.errorMessage || message.typeError);
+      }
+    }
+    return null;
+  },
+  arrayTypeFormat: function arrayTypeFormat(rule, value, message) {
+    if (!Array.isArray(value)) {
+      return formatMessage(rule, rule.errorMessage || message.typeError);
+    }
+    for (var i = 0; i < value.length; i++) {
+      var element = value[i];
+      var formatResult = this.format(rule, element, message);
+      if (formatResult !== null) {
+        return formatResult;
+      }
+    }
+    return null;
+  }
+};
+var SchemaValidator = /*#__PURE__*/function (_RuleValidator) {
+  (0, _inherits2.default)(SchemaValidator, _RuleValidator);
+  var _super = _createSuper(SchemaValidator);
+  function SchemaValidator(schema, options) {
+    var _this;
+    (0, _classCallCheck2.default)(this, SchemaValidator);
+    _this = _super.call(this, SchemaValidator.message);
+    _this._schema = schema;
+    _this._options = options || null;
+    return _this;
+  }
+  (0, _createClass2.default)(SchemaValidator, [{
+    key: "updateSchema",
+    value: function updateSchema(schema) {
+      this._schema = schema;
+    }
+  }, {
+    key: "validate",
+    value: function () {
+      var _validate = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee3(data, allData) {
+        var result;
+        return _regenerator.default.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                result = this._checkFieldInSchema(data);
+                if (result) {
+                  _context3.next = 5;
+                  break;
+                }
+                _context3.next = 4;
+                return this.invokeValidate(data, false, allData);
+              case 4:
+                result = _context3.sent;
+              case 5:
+                return _context3.abrupt("return", result.length ? result[0] : null);
+              case 6:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this);
+      }));
+      function validate(_x11, _x12) {
+        return _validate.apply(this, arguments);
+      }
+      return validate;
+    }()
+  }, {
+    key: "validateAll",
+    value: function () {
+      var _validateAll = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee4(data, allData) {
+        var result;
+        return _regenerator.default.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                result = this._checkFieldInSchema(data);
+                if (result) {
+                  _context4.next = 5;
+                  break;
+                }
+                _context4.next = 4;
+                return this.invokeValidate(data, true, allData);
+              case 4:
+                result = _context4.sent;
+              case 5:
+                return _context4.abrupt("return", result);
+              case 6:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4, this);
+      }));
+      function validateAll(_x13, _x14) {
+        return _validateAll.apply(this, arguments);
+      }
+      return validateAll;
+    }()
+  }, {
+    key: "validateUpdate",
+    value: function () {
+      var _validateUpdate = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee5(data, allData) {
+        var result;
+        return _regenerator.default.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                result = this._checkFieldInSchema(data);
+                if (result) {
+                  _context5.next = 5;
+                  break;
+                }
+                _context5.next = 4;
+                return this.invokeValidateUpdate(data, false, allData);
+              case 4:
+                result = _context5.sent;
+              case 5:
+                return _context5.abrupt("return", result.length ? result[0] : null);
+              case 6:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5, this);
+      }));
+      function validateUpdate(_x15, _x16) {
+        return _validateUpdate.apply(this, arguments);
+      }
+      return validateUpdate;
+    }()
+  }, {
+    key: "invokeValidate",
+    value: function () {
+      var _invokeValidate = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee6(data, all, allData) {
+        var result, schema, key, value, errorMessage;
+        return _regenerator.default.wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                result = [];
+                schema = this._schema;
+                _context6.t0 = _regenerator.default.keys(schema);
+              case 3:
+                if ((_context6.t1 = _context6.t0()).done) {
+                  _context6.next = 15;
+                  break;
+                }
+                key = _context6.t1.value;
+                value = schema[key];
+                _context6.next = 8;
+                return this.validateRule(key, value, data[key], data, allData);
+              case 8:
+                errorMessage = _context6.sent;
+                if (!(errorMessage != null)) {
+                  _context6.next = 13;
+                  break;
+                }
+                result.push({
+                  key: key,
+                  errorMessage: errorMessage
+                });
+                if (all) {
+                  _context6.next = 13;
+                  break;
+                }
+                return _context6.abrupt("break", 15);
+              case 13:
+                _context6.next = 3;
+                break;
+              case 15:
+                return _context6.abrupt("return", result);
+              case 16:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, _callee6, this);
+      }));
+      function invokeValidate(_x17, _x18, _x19) {
+        return _invokeValidate.apply(this, arguments);
+      }
+      return invokeValidate;
+    }()
+  }, {
+    key: "invokeValidateUpdate",
+    value: function () {
+      var _invokeValidateUpdate = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee7(data, all, allData) {
+        var result, key, errorMessage;
+        return _regenerator.default.wrap(function _callee7$(_context7) {
+          while (1) {
+            switch (_context7.prev = _context7.next) {
+              case 0:
+                result = [];
+                _context7.t0 = _regenerator.default.keys(data);
+              case 2:
+                if ((_context7.t1 = _context7.t0()).done) {
+                  _context7.next = 13;
+                  break;
+                }
+                key = _context7.t1.value;
+                _context7.next = 6;
+                return this.validateRule(key, this._schema[key], data[key], data, allData);
+              case 6:
+                errorMessage = _context7.sent;
+                if (!(errorMessage != null)) {
+                  _context7.next = 11;
+                  break;
+                }
+                result.push({
+                  key: key,
+                  errorMessage: errorMessage
+                });
+                if (all) {
+                  _context7.next = 11;
+                  break;
+                }
+                return _context7.abrupt("break", 13);
+              case 11:
+                _context7.next = 2;
+                break;
+              case 13:
+                return _context7.abrupt("return", result);
+              case 14:
+              case "end":
+                return _context7.stop();
+            }
+          }
+        }, _callee7, this);
+      }));
+      function invokeValidateUpdate(_x20, _x21, _x22) {
+        return _invokeValidateUpdate.apply(this, arguments);
+      }
+      return invokeValidateUpdate;
+    }()
+  }, {
+    key: "_checkFieldInSchema",
+    value: function _checkFieldInSchema(data) {
+      var keys = Object.keys(data);
+      var keys2 = Object.keys(this._schema);
+      if (new Set(keys.concat(keys2)).size === keys2.length) {
+        return '';
+      }
+      var noExistFields = keys.filter(function (key) {
+        return keys2.indexOf(key) < 0;
+      });
+      var errorMessage = formatMessage({
+        field: JSON.stringify(noExistFields)
+      }, SchemaValidator.message.TAG + SchemaValidator.message['defaultInvalid']);
+      return [{
+        key: 'invalid',
+        errorMessage: errorMessage
+      }];
+    }
+  }]);
+  return SchemaValidator;
+}(RuleValidator);
+function Message() {
+  return {
+    TAG: "",
+    default: '验证错误',
+    defaultInvalid: '提交的字段{field}在数据库中并不存在',
+    validateFunction: '验证无效',
+    required: '{label}必填',
+    'enum': '{label}超出范围',
+    timestamp: '{label}格式无效',
+    whitespace: '{label}不能为空',
+    typeError: '{label}类型无效',
+    date: {
+      format: '{label}日期{value}格式无效',
+      parse: '{label}日期无法解析,{value}无效',
+      invalid: '{label}日期{value}无效'
+    },
+    length: {
+      minLength: '{label}长度不能少于{minLength}',
+      maxLength: '{label}长度不能超过{maxLength}',
+      range: '{label}必须介于{minLength}和{maxLength}之间'
+    },
+    number: {
+      minimum: '{label}不能小于{minimum}',
+      maximum: '{label}不能大于{maximum}',
+      exclusiveMinimum: '{label}不能小于等于{minimum}',
+      exclusiveMaximum: '{label}不能大于等于{maximum}',
+      range: '{label}必须介于{minimum}and{maximum}之间'
+    },
+    pattern: {
+      mismatch: '{label}格式不匹配'
+    }
+  };
+}
+SchemaValidator.message = new Message();
+var _default = SchemaValidator;
+exports.default = _default;
+
+/***/ }),
+/* 363 */
+/*!*********************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/inherits.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var setPrototypeOf = __webpack_require__(/*! ./setPrototypeOf.js */ 16);
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function");
+  }
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      writable: true,
+      configurable: true
+    }
+  });
+  Object.defineProperty(subClass, "prototype", {
+    writable: false
+  });
+  if (superClass) setPrototypeOf(subClass, superClass);
+}
+module.exports = _inherits, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+/* 364 */
+/*!**************************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _typeof = __webpack_require__(/*! ./typeof.js */ 13)["default"];
+var assertThisInitialized = __webpack_require__(/*! ./assertThisInitialized.js */ 365);
+function _possibleConstructorReturn(self, call) {
+  if (call && (_typeof(call) === "object" || typeof call === "function")) {
+    return call;
+  } else if (call !== void 0) {
+    throw new TypeError("Derived constructors may only return object or undefined");
+  }
+  return assertThisInitialized(self);
+}
+module.exports = _possibleConstructorReturn, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+/* 365 */
+/*!**********************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/assertThisInitialized.js ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _assertThisInitialized(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+  return self;
+}
+module.exports = _assertThisInitialized, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+/* 366 */
+/*!***************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/getPrototypeOf.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _getPrototypeOf(o) {
+  module.exports = _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) {
+    return o.__proto__ || Object.getPrototypeOf(o);
+  }, module.exports.__esModule = true, module.exports["default"] = module.exports;
+  return _getPrototypeOf(o);
+}
+module.exports = _getPrototypeOf, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+/* 367 */
+/*!************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uni-forms/components/uni-forms/utils.js ***!
+  \************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.typeFilter = exports.type = exports.setDataValue = exports.realName = exports.rawData = exports.objSet = exports.objGet = exports.name2arr = exports.isRequiredField = exports.isRealName = exports.isNumber = exports.isEqual = exports.isBoolean = exports.getValue = exports.getDataValueType = exports.getDataValue = exports.deepCopy = void 0;
+var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ 13));
+/**
+ * 简单处理对象拷贝
+ * @param {Obejct} 被拷贝对象
+ * @@return {Object} 拷贝对象
+ */
+var deepCopy = function deepCopy(val) {
+  return JSON.parse(JSON.stringify(val));
+};
+/**
+ * 过滤数字类型
+ * @param {String} format 数字类型
+ * @@return {Boolean} 返回是否为数字类型
+ */
+exports.deepCopy = deepCopy;
+var typeFilter = function typeFilter(format) {
+  return format === 'int' || format === 'double' || format === 'number' || format === 'timestamp';
+};
+
+/**
+ * 把 value 转换成指定的类型，用于处理初始值，原因是初始值需要入库不能为 undefined
+ * @param {String} key 字段名
+ * @param {any} value 字段值
+ * @param {Object} rules 表单校验规则
+ */
+exports.typeFilter = typeFilter;
+var getValue = function getValue(key, value, rules) {
+  var isRuleNumType = rules.find(function (val) {
+    return val.format && typeFilter(val.format);
+  });
+  var isRuleBoolType = rules.find(function (val) {
+    return val.format && val.format === 'boolean' || val.format === 'bool';
+  });
+  // 输入类型为 number
+  if (!!isRuleNumType) {
+    if (!value && value !== 0) {
+      value = null;
+    } else {
+      value = isNumber(Number(value)) ? Number(value) : value;
+    }
+  }
+
+  // 输入类型为 boolean
+  if (!!isRuleBoolType) {
+    value = isBoolean(value) ? value : false;
+  }
+  return value;
+};
+
+/**
+ * 获取表单数据
+ * @param {String|Array} name 真实名称，需要使用 realName 获取
+ * @param {Object} data 原始数据
+ * @param {any} value  需要设置的值
+ */
+exports.getValue = getValue;
+var setDataValue = function setDataValue(field, formdata, value) {
+  formdata[field] = value;
+  return value || '';
+};
+
+/**
+ * 获取表单数据
+ * @param {String|Array} field 真实名称，需要使用 realName 获取
+ * @param {Object} data 原始数据
+ */
+exports.setDataValue = setDataValue;
+var getDataValue = function getDataValue(field, data) {
+  return objGet(data, field);
+};
+
+/**
+ * 获取表单类型
+ * @param {String|Array} field 真实名称，需要使用 realName 获取
+ */
+exports.getDataValue = getDataValue;
+var getDataValueType = function getDataValueType(field, data) {
+  var value = getDataValue(field, data);
+  return {
+    type: type(value),
+    value: value
+  };
+};
+
+/**
+ * 获取表单可用的真实name
+ * @param {String|Array} name 表单name
+ * @@return {String} 表单可用的真实name
+ */
+exports.getDataValueType = getDataValueType;
+var realName = function realName(name) {
+  var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  var base_name = _basePath(name);
+  if ((0, _typeof2.default)(base_name) === 'object' && Array.isArray(base_name) && base_name.length > 1) {
+    var realname = base_name.reduce(function (a, b) {
+      return a += "#".concat(b);
+    }, '_formdata_');
+    return realname;
+  }
+  return base_name[0] || name;
+};
+
+/**
+ * 判断是否表单可用的真实name
+ * @param {String|Array} name 表单name
+ * @@return {String} 表单可用的真实name
+ */
+exports.realName = realName;
+var isRealName = function isRealName(name) {
+  var reg = /^_formdata_#*/;
+  return reg.test(name);
+};
+
+/**
+ * 获取表单数据的原始格式
+ * @@return {Object|Array} object 需要解析的数据
+ */
+exports.isRealName = isRealName;
+var rawData = function rawData() {
+  var object = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var name = arguments.length > 1 ? arguments[1] : undefined;
+  var newData = JSON.parse(JSON.stringify(object));
+  var formData = {};
+  for (var i in newData) {
+    var path = name2arr(i);
+    objSet(formData, path, newData[i]);
+  }
+  return formData;
+};
+
+/**
+ * 真实name还原为 array
+ * @param {*} name 
+ */
+exports.rawData = rawData;
+var name2arr = function name2arr(name) {
+  var field = name.replace('_formdata_#', '');
+  field = field.split('#').map(function (v) {
+    return isNumber(v) ? Number(v) : v;
+  });
+  return field;
+};
+
+/**
+ * 对象中设置值
+ * @param {Object|Array} object 源数据
+ * @param {String| Array} path 'a.b.c' 或 ['a',0,'b','c']
+ * @param {String} value 需要设置的值
+ */
+exports.name2arr = name2arr;
+var objSet = function objSet(object, path, value) {
+  if ((0, _typeof2.default)(object) !== 'object') return object;
+  _basePath(path).reduce(function (o, k, i, _) {
+    if (i === _.length - 1) {
+      // 若遍历结束直接赋值
+      o[k] = value;
+      return null;
+    } else if (k in o) {
+      // 若存在对应路径，则返回找到的对象，进行下一次遍历
+      return o[k];
+    } else {
+      // 若不存在对应路径，则创建对应对象，若下一路径是数字，新对象赋值为空数组，否则赋值为空对象
+      o[k] = /^[0-9]{1,}$/.test(_[i + 1]) ? [] : {};
+      return o[k];
+    }
+  }, object);
+  // 返回object
+  return object;
+};
+
+// 处理 path， path有三种形式：'a[0].b.c'、'a.0.b.c' 和 ['a','0','b','c']，需要统一处理成数组，便于后续使用
+exports.objSet = objSet;
+function _basePath(path) {
+  // 若是数组，则直接返回
+  if (Array.isArray(path)) return path;
+  // 若有 '[',']'，则替换成将 '[' 替换成 '.',去掉 ']'
+  return path.replace(/\[/g, '.').replace(/\]/g, '').split('.');
+}
+
+/**
+ * 从对象中获取值
+ * @param {Object|Array} object 源数据
+ * @param {String| Array} path 'a.b.c' 或 ['a',0,'b','c']
+ * @param {String} defaultVal 如果无法从调用链中获取值的默认值
+ */
+var objGet = function objGet(object, path) {
+  var defaultVal = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'undefined';
+  // 先将path处理成统一格式
+  var newPath = _basePath(path);
+  // 递归处理，返回最后结果
+  var val = newPath.reduce(function (o, k) {
+    return (o || {})[k];
+  }, object);
+  return !val || val !== undefined ? val : defaultVal;
+};
+
+/**
+ * 是否为 number 类型 
+ * @param {any} num 需要判断的值
+ * @return {Boolean} 是否为 number
+ */
+exports.objGet = objGet;
+var isNumber = function isNumber(num) {
+  return !isNaN(Number(num));
+};
+
+/**
+ * 是否为 boolean 类型 
+ * @param {any} bool 需要判断的值
+ * @return {Boolean} 是否为 boolean
+ */
+exports.isNumber = isNumber;
+var isBoolean = function isBoolean(bool) {
+  return typeof bool === 'boolean';
+};
+/**
+ * 是否有必填字段
+ * @param {Object} rules 规则
+ * @return {Boolean} 是否有必填字段
+ */
+exports.isBoolean = isBoolean;
+var isRequiredField = function isRequiredField(rules) {
+  var isNoField = false;
+  for (var i = 0; i < rules.length; i++) {
+    var ruleData = rules[i];
+    if (ruleData.required) {
+      isNoField = true;
+      break;
+    }
+  }
+  return isNoField;
+};
+
+/**
+ * 获取数据类型
+ * @param {Any} obj 需要获取数据类型的值
+ */
+exports.isRequiredField = isRequiredField;
+var type = function type(obj) {
+  var class2type = {};
+
+  // 生成class2type映射
+  "Boolean Number String Function Array Date RegExp Object Error".split(" ").map(function (item, index) {
+    class2type["[object " + item + "]"] = item.toLowerCase();
+  });
+  if (obj == null) {
+    return obj + "";
+  }
+  return (0, _typeof2.default)(obj) === "object" || typeof obj === "function" ? class2type[Object.prototype.toString.call(obj)] || "object" : (0, _typeof2.default)(obj);
+};
+
+/**
+ * 判断两个值是否相等
+ * @param {any} a 值  
+ * @param {any} b 值  
+ * @return {Boolean} 是否相等
+ */
+exports.type = type;
+var isEqual = function isEqual(a, b) {
+  //如果a和b本来就全等
+  if (a === b) {
+    //判断是否为0和-0
+    return a !== 0 || 1 / a === 1 / b;
+  }
+  //判断是否为null和undefined
+  if (a == null || b == null) {
+    return a === b;
+  }
+  //接下来判断a和b的数据类型
+  var classNameA = toString.call(a),
+    classNameB = toString.call(b);
+  //如果数据类型不相等，则返回false
+  if (classNameA !== classNameB) {
+    return false;
+  }
+  //如果数据类型相等，再根据不同数据类型分别判断
+  switch (classNameA) {
+    case '[object RegExp]':
+    case '[object String]':
+      //进行字符串转换比较
+      return '' + a === '' + b;
+    case '[object Number]':
+      //进行数字转换比较,判断是否为NaN
+      if (+a !== +a) {
+        return +b !== +b;
+      }
+      //判断是否为0或-0
+      return +a === 0 ? 1 / +a === 1 / b : +a === +b;
+    case '[object Date]':
+    case '[object Boolean]':
+      return +a === +b;
+  }
+  //如果是对象类型
+  if (classNameA == '[object Object]') {
+    //获取a和b的属性长度
+    var propsA = Object.getOwnPropertyNames(a),
+      propsB = Object.getOwnPropertyNames(b);
+    if (propsA.length != propsB.length) {
+      return false;
+    }
+    for (var i = 0; i < propsA.length; i++) {
+      var propName = propsA[i];
+      //如果对应属性对应值不相等，则返回false
+      if (a[propName] !== b[propName]) {
+        return false;
+      }
+    }
+    return true;
+  }
+  //如果是数组类型
+  if (classNameA == '[object Array]') {
+    if (a.toString() == b.toString()) {
+      return true;
+    }
+    return false;
+  }
+};
+exports.isEqual = isEqual;
+
+/***/ }),
 /* 368 */,
 /* 369 */,
 /* 370 */,
@@ -22008,13 +23111,10 @@ module.exports = JSON.parse("{\"uni-goods-nav.options.shop\":\"店鋪\",\"uni-go
 /* 379 */,
 /* 380 */,
 /* 381 */,
-/* 382 */,
-/* 383 */,
-/* 384 */,
-/* 385 */
-/*!************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/components/u-avatar/props.js ***!
-  \************************************************************************************************/
+/* 382 */
+/*!**********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-avatar/props.js ***!
+  \**********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -22107,6 +23207,9 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
+/* 383 */,
+/* 384 */,
+/* 385 */,
 /* 386 */,
 /* 387 */,
 /* 388 */,
@@ -22118,24 +23221,7 @@ exports.default = _default;
 /* 394 */,
 /* 395 */,
 /* 396 */,
-/* 397 */,
-/* 398 */,
-/* 399 */,
-/* 400 */,
-/* 401 */,
-/* 402 */,
-/* 403 */,
-/* 404 */,
-/* 405 */,
-/* 406 */,
-/* 407 */,
-/* 408 */,
-/* 409 */,
-/* 410 */,
-/* 411 */,
-/* 412 */,
-/* 413 */,
-/* 414 */
+/* 397 */
 /*!************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/uni-cloud/dist/index.js ***!
   \************************************************************************************/
@@ -22158,12 +23244,12 @@ var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/r
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 11));
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ 23));
 var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ 24));
-var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ 415));
-var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ 416));
-var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ 418));
-var _wrapNativeSuper2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/wrapNativeSuper */ 419));
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ 363));
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ 364));
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ 366));
+var _wrapNativeSuper2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/wrapNativeSuper */ 398));
 var _uniI18n = __webpack_require__(/*! @dcloudio/uni-i18n */ 22);
-var _pages = _interopRequireDefault(__webpack_require__(/*! @/pages.json */ 421));
+var _pages = _interopRequireDefault(__webpack_require__(/*! @/pages.json */ 400));
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e33) { throw _e33; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e34) { didErr = true; err = _e34; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
@@ -22580,7 +23666,7 @@ var k = m(undefined),
 var T = "";
 try {
   {
-    var _e2 = __webpack_require__(/*! uni-stat-config */ 422).default || __webpack_require__(/*! uni-stat-config */ 422);
+    var _e2 = __webpack_require__(/*! uni-stat-config */ 401).default || __webpack_require__(/*! uni-stat-config */ 401);
     T = _e2.appid;
   }
 } catch (e) {}
@@ -29042,95 +30128,16 @@ exports.default = Ps;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../webpack/buildin/global.js */ 3), __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/wx.js */ 1)["default"]))
 
 /***/ }),
-/* 415 */
-/*!*********************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/inherits.js ***!
-  \*********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var setPrototypeOf = __webpack_require__(/*! ./setPrototypeOf.js */ 16);
-function _inherits(subClass, superClass) {
-  if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function");
-  }
-  subClass.prototype = Object.create(superClass && superClass.prototype, {
-    constructor: {
-      value: subClass,
-      writable: true,
-      configurable: true
-    }
-  });
-  Object.defineProperty(subClass, "prototype", {
-    writable: false
-  });
-  if (superClass) setPrototypeOf(subClass, superClass);
-}
-module.exports = _inherits, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-/* 416 */
-/*!**************************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js ***!
-  \**************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var _typeof = __webpack_require__(/*! ./typeof.js */ 13)["default"];
-var assertThisInitialized = __webpack_require__(/*! ./assertThisInitialized.js */ 417);
-function _possibleConstructorReturn(self, call) {
-  if (call && (_typeof(call) === "object" || typeof call === "function")) {
-    return call;
-  } else if (call !== void 0) {
-    throw new TypeError("Derived constructors may only return object or undefined");
-  }
-  return assertThisInitialized(self);
-}
-module.exports = _possibleConstructorReturn, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-/* 417 */
-/*!**********************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/assertThisInitialized.js ***!
-  \**********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _assertThisInitialized(self) {
-  if (self === void 0) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }
-  return self;
-}
-module.exports = _assertThisInitialized, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-/* 418 */
-/*!***************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/getPrototypeOf.js ***!
-  \***************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _getPrototypeOf(o) {
-  module.exports = _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) {
-    return o.__proto__ || Object.getPrototypeOf(o);
-  }, module.exports.__esModule = true, module.exports["default"] = module.exports;
-  return _getPrototypeOf(o);
-}
-module.exports = _getPrototypeOf, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-/* 419 */
+/* 398 */
 /*!****************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/wrapNativeSuper.js ***!
   \****************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getPrototypeOf = __webpack_require__(/*! ./getPrototypeOf.js */ 418);
+var getPrototypeOf = __webpack_require__(/*! ./getPrototypeOf.js */ 366);
 var setPrototypeOf = __webpack_require__(/*! ./setPrototypeOf.js */ 16);
-var isNativeFunction = __webpack_require__(/*! ./isNativeFunction.js */ 420);
+var isNativeFunction = __webpack_require__(/*! ./isNativeFunction.js */ 399);
 var construct = __webpack_require__(/*! ./construct.js */ 15);
 function _wrapNativeSuper(Class) {
   var _cache = typeof Map === "function" ? new Map() : undefined;
@@ -29161,7 +30168,7 @@ function _wrapNativeSuper(Class) {
 module.exports = _wrapNativeSuper, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 420 */
+/* 399 */
 /*!*****************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/isNativeFunction.js ***!
   \*****************************************************************/
@@ -29174,10 +30181,10 @@ function _isNativeFunction(fn) {
 module.exports = _isNativeFunction, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 421 */
-/*!**************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/pages.json?{"type":"origin-pages-json"} ***!
-  \**************************************************************************************/
+/* 400 */
+/*!************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/pages.json?{"type":"origin-pages-json"} ***!
+  \************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -29278,10 +30285,10 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 422 */
-/*!*************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/pages.json?{"type":"stat"} ***!
-  \*************************************************************************/
+/* 401 */
+/*!***********************************************************!*\
+  !*** F:/uniappProjects/uniapp/pages.json?{"type":"stat"} ***!
+  \***********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -29298,10 +30305,24 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 423 */
-/*!*******************************************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uni-file-picker/components/uni-file-picker/choose-and-upload-file.js ***!
-  \*******************************************************************************************************************************/
+/* 402 */,
+/* 403 */,
+/* 404 */,
+/* 405 */,
+/* 406 */,
+/* 407 */,
+/* 408 */,
+/* 409 */,
+/* 410 */,
+/* 411 */,
+/* 412 */,
+/* 413 */,
+/* 414 */,
+/* 415 */,
+/* 416 */
+/*!*****************************************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uni-file-picker/components/uni-file-picker/choose-and-upload-file.js ***!
+  \*****************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -29512,13 +30533,13 @@ function chooseAndUploadFile() {
   }
   return uploadFiles(chooseAll(opts), opts);
 }
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/wx.js */ 1)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/uni-cloud/dist/index.js */ 414)["default"]))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/wx.js */ 1)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/uni-cloud/dist/index.js */ 397)["default"]))
 
 /***/ }),
-/* 424 */
-/*!**************************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uni-file-picker/components/uni-file-picker/utils.js ***!
-  \**************************************************************************************************************/
+/* 417 */
+/*!************************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uni-file-picker/components/uni-file-picker/utils.js ***!
+  \************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -29678,1071 +30699,17 @@ exports.get_file_data = get_file_data;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 425 */,
-/* 426 */,
-/* 427 */,
-/* 428 */,
-/* 429 */,
-/* 430 */,
-/* 431 */,
-/* 432 */
-/*!*****************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uni-forms/components/uni-forms/validate.js ***!
-  \*****************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 30));
-var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ 415));
-var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ 416));
-var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ 418));
-var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 32));
-var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ 23));
-var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ 24));
-var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ 13));
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2.default)(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2.default)(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2.default)(this, result); }; }
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-var pattern = {
-  email: /^\S+?@\S+?\.\S+?$/,
-  idcard: /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/,
-  url: new RegExp("^(?!mailto:)(?:(?:http|https|ftp)://|//)(?:\\S+(?::\\S*)?@)?(?:(?:(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}(?:\\.(?:[0-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|(?:(?:[a-z\\u00a1-\\uffff0-9]+-*)*[a-z\\u00a1-\\uffff0-9]+)(?:\\.(?:[a-z\\u00a1-\\uffff0-9]+-*)*[a-z\\u00a1-\\uffff0-9]+)*(?:\\.(?:[a-z\\u00a1-\\uffff]{2,})))|localhost)(?::\\d{2,5})?(?:(/|\\?|#)[^\\s]*)?$", 'i')
-};
-var FORMAT_MAPPING = {
-  "int": 'integer',
-  "bool": 'boolean',
-  "double": 'number',
-  "long": 'number',
-  "password": 'string'
-  // "fileurls": 'array'
-};
-
-function formatMessage(args) {
-  var resources = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
-  var defaultMessage = ['label'];
-  defaultMessage.forEach(function (item) {
-    if (args[item] === undefined) {
-      args[item] = '';
-    }
-  });
-  var str = resources;
-  for (var key in args) {
-    var reg = new RegExp('{' + key + '}');
-    str = str.replace(reg, args[key]);
-  }
-  return str;
-}
-function isEmptyValue(value, type) {
-  if (value === undefined || value === null) {
-    return true;
-  }
-  if (typeof value === 'string' && !value) {
-    return true;
-  }
-  if (Array.isArray(value) && !value.length) {
-    return true;
-  }
-  if (type === 'object' && !Object.keys(value).length) {
-    return true;
-  }
-  return false;
-}
-var types = {
-  integer: function integer(value) {
-    return types.number(value) && parseInt(value, 10) === value;
-  },
-  string: function string(value) {
-    return typeof value === 'string';
-  },
-  number: function number(value) {
-    if (isNaN(value)) {
-      return false;
-    }
-    return typeof value === 'number';
-  },
-  "boolean": function boolean(value) {
-    return typeof value === 'boolean';
-  },
-  "float": function float(value) {
-    return types.number(value) && !types.integer(value);
-  },
-  array: function array(value) {
-    return Array.isArray(value);
-  },
-  object: function object(value) {
-    return (0, _typeof2.default)(value) === 'object' && !types.array(value);
-  },
-  date: function date(value) {
-    return value instanceof Date;
-  },
-  timestamp: function timestamp(value) {
-    if (!this.integer(value) || Math.abs(value).toString().length > 16) {
-      return false;
-    }
-    return true;
-  },
-  file: function file(value) {
-    return typeof value.url === 'string';
-  },
-  email: function email(value) {
-    return typeof value === 'string' && !!value.match(pattern.email) && value.length < 255;
-  },
-  url: function url(value) {
-    return typeof value === 'string' && !!value.match(pattern.url);
-  },
-  pattern: function pattern(reg, value) {
-    try {
-      return new RegExp(reg).test(value);
-    } catch (e) {
-      return false;
-    }
-  },
-  method: function method(value) {
-    return typeof value === 'function';
-  },
-  idcard: function idcard(value) {
-    return typeof value === 'string' && !!value.match(pattern.idcard);
-  },
-  'url-https': function urlHttps(value) {
-    return this.url(value) && value.startsWith('https://');
-  },
-  'url-scheme': function urlScheme(value) {
-    return value.startsWith('://');
-  },
-  'url-web': function urlWeb(value) {
-    return false;
-  }
-};
-var RuleValidator = /*#__PURE__*/function () {
-  function RuleValidator(message) {
-    (0, _classCallCheck2.default)(this, RuleValidator);
-    this._message = message;
-  }
-  (0, _createClass2.default)(RuleValidator, [{
-    key: "validateRule",
-    value: function () {
-      var _validateRule = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee(fieldKey, fieldValue, value, data, allData) {
-        var result, rules, hasRequired, message, i, rule, vt, now, resultExpr;
-        return _regenerator.default.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                result = null;
-                rules = fieldValue.rules;
-                hasRequired = rules.findIndex(function (item) {
-                  return item.required;
-                });
-                if (!(hasRequired < 0)) {
-                  _context.next = 8;
-                  break;
-                }
-                if (!(value === null || value === undefined)) {
-                  _context.next = 6;
-                  break;
-                }
-                return _context.abrupt("return", result);
-              case 6:
-                if (!(typeof value === 'string' && !value.length)) {
-                  _context.next = 8;
-                  break;
-                }
-                return _context.abrupt("return", result);
-              case 8:
-                message = this._message;
-                if (!(rules === undefined)) {
-                  _context.next = 11;
-                  break;
-                }
-                return _context.abrupt("return", message['default']);
-              case 11:
-                i = 0;
-              case 12:
-                if (!(i < rules.length)) {
-                  _context.next = 35;
-                  break;
-                }
-                rule = rules[i];
-                vt = this._getValidateType(rule);
-                Object.assign(rule, {
-                  label: fieldValue.label || "[\"".concat(fieldKey, "\"]")
-                });
-                if (!RuleValidatorHelper[vt]) {
-                  _context.next = 20;
-                  break;
-                }
-                result = RuleValidatorHelper[vt](rule, value, message);
-                if (!(result != null)) {
-                  _context.next = 20;
-                  break;
-                }
-                return _context.abrupt("break", 35);
-              case 20:
-                if (!rule.validateExpr) {
-                  _context.next = 26;
-                  break;
-                }
-                now = Date.now();
-                resultExpr = rule.validateExpr(value, allData, now);
-                if (!(resultExpr === false)) {
-                  _context.next = 26;
-                  break;
-                }
-                result = this._getMessage(rule, rule.errorMessage || this._message['default']);
-                return _context.abrupt("break", 35);
-              case 26:
-                if (!rule.validateFunction) {
-                  _context.next = 32;
-                  break;
-                }
-                _context.next = 29;
-                return this.validateFunction(rule, value, data, allData, vt);
-              case 29:
-                result = _context.sent;
-                if (!(result !== null)) {
-                  _context.next = 32;
-                  break;
-                }
-                return _context.abrupt("break", 35);
-              case 32:
-                i++;
-                _context.next = 12;
-                break;
-              case 35:
-                if (result !== null) {
-                  result = message.TAG + result;
-                }
-                return _context.abrupt("return", result);
-              case 37:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee, this);
-      }));
-      function validateRule(_x, _x2, _x3, _x4, _x5) {
-        return _validateRule.apply(this, arguments);
-      }
-      return validateRule;
-    }()
-  }, {
-    key: "validateFunction",
-    value: function () {
-      var _validateFunction = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2(rule, value, data, allData, vt) {
-        var result, callbackMessage, res;
-        return _regenerator.default.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                result = null;
-                _context2.prev = 1;
-                callbackMessage = null;
-                _context2.next = 5;
-                return rule.validateFunction(rule, value, allData || data, function (message) {
-                  callbackMessage = message;
-                });
-              case 5:
-                res = _context2.sent;
-                if (callbackMessage || typeof res === 'string' && res || res === false) {
-                  result = this._getMessage(rule, callbackMessage || res, vt);
-                }
-                _context2.next = 12;
-                break;
-              case 9:
-                _context2.prev = 9;
-                _context2.t0 = _context2["catch"](1);
-                result = this._getMessage(rule, _context2.t0.message, vt);
-              case 12:
-                return _context2.abrupt("return", result);
-              case 13:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2, this, [[1, 9]]);
-      }));
-      function validateFunction(_x6, _x7, _x8, _x9, _x10) {
-        return _validateFunction.apply(this, arguments);
-      }
-      return validateFunction;
-    }()
-  }, {
-    key: "_getMessage",
-    value: function _getMessage(rule, message, vt) {
-      return formatMessage(rule, message || rule.errorMessage || this._message[vt] || message['default']);
-    }
-  }, {
-    key: "_getValidateType",
-    value: function _getValidateType(rule) {
-      var result = '';
-      if (rule.required) {
-        result = 'required';
-      } else if (rule.format) {
-        result = 'format';
-      } else if (rule.arrayType) {
-        result = 'arrayTypeFormat';
-      } else if (rule.range) {
-        result = 'range';
-      } else if (rule.maximum !== undefined || rule.minimum !== undefined) {
-        result = 'rangeNumber';
-      } else if (rule.maxLength !== undefined || rule.minLength !== undefined) {
-        result = 'rangeLength';
-      } else if (rule.pattern) {
-        result = 'pattern';
-      } else if (rule.validateFunction) {
-        result = 'validateFunction';
-      }
-      return result;
-    }
-  }]);
-  return RuleValidator;
-}();
-var RuleValidatorHelper = {
-  required: function required(rule, value, message) {
-    if (rule.required && isEmptyValue(value, rule.format || (0, _typeof2.default)(value))) {
-      return formatMessage(rule, rule.errorMessage || message.required);
-    }
-    return null;
-  },
-  range: function range(rule, value, message) {
-    var range = rule.range,
-      errorMessage = rule.errorMessage;
-    var list = new Array(range.length);
-    for (var i = 0; i < range.length; i++) {
-      var item = range[i];
-      if (types.object(item) && item.value !== undefined) {
-        list[i] = item.value;
-      } else {
-        list[i] = item;
-      }
-    }
-    var result = false;
-    if (Array.isArray(value)) {
-      result = new Set(value.concat(list)).size === list.length;
-    } else {
-      if (list.indexOf(value) > -1) {
-        result = true;
-      }
-    }
-    if (!result) {
-      return formatMessage(rule, errorMessage || message['enum']);
-    }
-    return null;
-  },
-  rangeNumber: function rangeNumber(rule, value, message) {
-    if (!types.number(value)) {
-      return formatMessage(rule, rule.errorMessage || message.pattern.mismatch);
-    }
-    var minimum = rule.minimum,
-      maximum = rule.maximum,
-      exclusiveMinimum = rule.exclusiveMinimum,
-      exclusiveMaximum = rule.exclusiveMaximum;
-    var min = exclusiveMinimum ? value <= minimum : value < minimum;
-    var max = exclusiveMaximum ? value >= maximum : value > maximum;
-    if (minimum !== undefined && min) {
-      return formatMessage(rule, rule.errorMessage || message['number'][exclusiveMinimum ? 'exclusiveMinimum' : 'minimum']);
-    } else if (maximum !== undefined && max) {
-      return formatMessage(rule, rule.errorMessage || message['number'][exclusiveMaximum ? 'exclusiveMaximum' : 'maximum']);
-    } else if (minimum !== undefined && maximum !== undefined && (min || max)) {
-      return formatMessage(rule, rule.errorMessage || message['number'].range);
-    }
-    return null;
-  },
-  rangeLength: function rangeLength(rule, value, message) {
-    if (!types.string(value) && !types.array(value)) {
-      return formatMessage(rule, rule.errorMessage || message.pattern.mismatch);
-    }
-    var min = rule.minLength;
-    var max = rule.maxLength;
-    var val = value.length;
-    if (min !== undefined && val < min) {
-      return formatMessage(rule, rule.errorMessage || message['length'].minLength);
-    } else if (max !== undefined && val > max) {
-      return formatMessage(rule, rule.errorMessage || message['length'].maxLength);
-    } else if (min !== undefined && max !== undefined && (val < min || val > max)) {
-      return formatMessage(rule, rule.errorMessage || message['length'].range);
-    }
-    return null;
-  },
-  pattern: function pattern(rule, value, message) {
-    if (!types['pattern'](rule.pattern, value)) {
-      return formatMessage(rule, rule.errorMessage || message.pattern.mismatch);
-    }
-    return null;
-  },
-  format: function format(rule, value, message) {
-    var customTypes = Object.keys(types);
-    var format = FORMAT_MAPPING[rule.format] ? FORMAT_MAPPING[rule.format] : rule.format || rule.arrayType;
-    if (customTypes.indexOf(format) > -1) {
-      if (!types[format](value)) {
-        return formatMessage(rule, rule.errorMessage || message.typeError);
-      }
-    }
-    return null;
-  },
-  arrayTypeFormat: function arrayTypeFormat(rule, value, message) {
-    if (!Array.isArray(value)) {
-      return formatMessage(rule, rule.errorMessage || message.typeError);
-    }
-    for (var i = 0; i < value.length; i++) {
-      var element = value[i];
-      var formatResult = this.format(rule, element, message);
-      if (formatResult !== null) {
-        return formatResult;
-      }
-    }
-    return null;
-  }
-};
-var SchemaValidator = /*#__PURE__*/function (_RuleValidator) {
-  (0, _inherits2.default)(SchemaValidator, _RuleValidator);
-  var _super = _createSuper(SchemaValidator);
-  function SchemaValidator(schema, options) {
-    var _this;
-    (0, _classCallCheck2.default)(this, SchemaValidator);
-    _this = _super.call(this, SchemaValidator.message);
-    _this._schema = schema;
-    _this._options = options || null;
-    return _this;
-  }
-  (0, _createClass2.default)(SchemaValidator, [{
-    key: "updateSchema",
-    value: function updateSchema(schema) {
-      this._schema = schema;
-    }
-  }, {
-    key: "validate",
-    value: function () {
-      var _validate = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee3(data, allData) {
-        var result;
-        return _regenerator.default.wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                result = this._checkFieldInSchema(data);
-                if (result) {
-                  _context3.next = 5;
-                  break;
-                }
-                _context3.next = 4;
-                return this.invokeValidate(data, false, allData);
-              case 4:
-                result = _context3.sent;
-              case 5:
-                return _context3.abrupt("return", result.length ? result[0] : null);
-              case 6:
-              case "end":
-                return _context3.stop();
-            }
-          }
-        }, _callee3, this);
-      }));
-      function validate(_x11, _x12) {
-        return _validate.apply(this, arguments);
-      }
-      return validate;
-    }()
-  }, {
-    key: "validateAll",
-    value: function () {
-      var _validateAll = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee4(data, allData) {
-        var result;
-        return _regenerator.default.wrap(function _callee4$(_context4) {
-          while (1) {
-            switch (_context4.prev = _context4.next) {
-              case 0:
-                result = this._checkFieldInSchema(data);
-                if (result) {
-                  _context4.next = 5;
-                  break;
-                }
-                _context4.next = 4;
-                return this.invokeValidate(data, true, allData);
-              case 4:
-                result = _context4.sent;
-              case 5:
-                return _context4.abrupt("return", result);
-              case 6:
-              case "end":
-                return _context4.stop();
-            }
-          }
-        }, _callee4, this);
-      }));
-      function validateAll(_x13, _x14) {
-        return _validateAll.apply(this, arguments);
-      }
-      return validateAll;
-    }()
-  }, {
-    key: "validateUpdate",
-    value: function () {
-      var _validateUpdate = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee5(data, allData) {
-        var result;
-        return _regenerator.default.wrap(function _callee5$(_context5) {
-          while (1) {
-            switch (_context5.prev = _context5.next) {
-              case 0:
-                result = this._checkFieldInSchema(data);
-                if (result) {
-                  _context5.next = 5;
-                  break;
-                }
-                _context5.next = 4;
-                return this.invokeValidateUpdate(data, false, allData);
-              case 4:
-                result = _context5.sent;
-              case 5:
-                return _context5.abrupt("return", result.length ? result[0] : null);
-              case 6:
-              case "end":
-                return _context5.stop();
-            }
-          }
-        }, _callee5, this);
-      }));
-      function validateUpdate(_x15, _x16) {
-        return _validateUpdate.apply(this, arguments);
-      }
-      return validateUpdate;
-    }()
-  }, {
-    key: "invokeValidate",
-    value: function () {
-      var _invokeValidate = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee6(data, all, allData) {
-        var result, schema, key, value, errorMessage;
-        return _regenerator.default.wrap(function _callee6$(_context6) {
-          while (1) {
-            switch (_context6.prev = _context6.next) {
-              case 0:
-                result = [];
-                schema = this._schema;
-                _context6.t0 = _regenerator.default.keys(schema);
-              case 3:
-                if ((_context6.t1 = _context6.t0()).done) {
-                  _context6.next = 15;
-                  break;
-                }
-                key = _context6.t1.value;
-                value = schema[key];
-                _context6.next = 8;
-                return this.validateRule(key, value, data[key], data, allData);
-              case 8:
-                errorMessage = _context6.sent;
-                if (!(errorMessage != null)) {
-                  _context6.next = 13;
-                  break;
-                }
-                result.push({
-                  key: key,
-                  errorMessage: errorMessage
-                });
-                if (all) {
-                  _context6.next = 13;
-                  break;
-                }
-                return _context6.abrupt("break", 15);
-              case 13:
-                _context6.next = 3;
-                break;
-              case 15:
-                return _context6.abrupt("return", result);
-              case 16:
-              case "end":
-                return _context6.stop();
-            }
-          }
-        }, _callee6, this);
-      }));
-      function invokeValidate(_x17, _x18, _x19) {
-        return _invokeValidate.apply(this, arguments);
-      }
-      return invokeValidate;
-    }()
-  }, {
-    key: "invokeValidateUpdate",
-    value: function () {
-      var _invokeValidateUpdate = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee7(data, all, allData) {
-        var result, key, errorMessage;
-        return _regenerator.default.wrap(function _callee7$(_context7) {
-          while (1) {
-            switch (_context7.prev = _context7.next) {
-              case 0:
-                result = [];
-                _context7.t0 = _regenerator.default.keys(data);
-              case 2:
-                if ((_context7.t1 = _context7.t0()).done) {
-                  _context7.next = 13;
-                  break;
-                }
-                key = _context7.t1.value;
-                _context7.next = 6;
-                return this.validateRule(key, this._schema[key], data[key], data, allData);
-              case 6:
-                errorMessage = _context7.sent;
-                if (!(errorMessage != null)) {
-                  _context7.next = 11;
-                  break;
-                }
-                result.push({
-                  key: key,
-                  errorMessage: errorMessage
-                });
-                if (all) {
-                  _context7.next = 11;
-                  break;
-                }
-                return _context7.abrupt("break", 13);
-              case 11:
-                _context7.next = 2;
-                break;
-              case 13:
-                return _context7.abrupt("return", result);
-              case 14:
-              case "end":
-                return _context7.stop();
-            }
-          }
-        }, _callee7, this);
-      }));
-      function invokeValidateUpdate(_x20, _x21, _x22) {
-        return _invokeValidateUpdate.apply(this, arguments);
-      }
-      return invokeValidateUpdate;
-    }()
-  }, {
-    key: "_checkFieldInSchema",
-    value: function _checkFieldInSchema(data) {
-      var keys = Object.keys(data);
-      var keys2 = Object.keys(this._schema);
-      if (new Set(keys.concat(keys2)).size === keys2.length) {
-        return '';
-      }
-      var noExistFields = keys.filter(function (key) {
-        return keys2.indexOf(key) < 0;
-      });
-      var errorMessage = formatMessage({
-        field: JSON.stringify(noExistFields)
-      }, SchemaValidator.message.TAG + SchemaValidator.message['defaultInvalid']);
-      return [{
-        key: 'invalid',
-        errorMessage: errorMessage
-      }];
-    }
-  }]);
-  return SchemaValidator;
-}(RuleValidator);
-function Message() {
-  return {
-    TAG: "",
-    default: '验证错误',
-    defaultInvalid: '提交的字段{field}在数据库中并不存在',
-    validateFunction: '验证无效',
-    required: '{label}必填',
-    'enum': '{label}超出范围',
-    timestamp: '{label}格式无效',
-    whitespace: '{label}不能为空',
-    typeError: '{label}类型无效',
-    date: {
-      format: '{label}日期{value}格式无效',
-      parse: '{label}日期无法解析,{value}无效',
-      invalid: '{label}日期{value}无效'
-    },
-    length: {
-      minLength: '{label}长度不能少于{minLength}',
-      maxLength: '{label}长度不能超过{maxLength}',
-      range: '{label}必须介于{minLength}和{maxLength}之间'
-    },
-    number: {
-      minimum: '{label}不能小于{minimum}',
-      maximum: '{label}不能大于{maximum}',
-      exclusiveMinimum: '{label}不能小于等于{minimum}',
-      exclusiveMaximum: '{label}不能大于等于{maximum}',
-      range: '{label}必须介于{minimum}and{maximum}之间'
-    },
-    pattern: {
-      mismatch: '{label}格式不匹配'
-    }
-  };
-}
-SchemaValidator.message = new Message();
-var _default = SchemaValidator;
-exports.default = _default;
-
-/***/ }),
-/* 433 */
-/*!**************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uni-forms/components/uni-forms/utils.js ***!
-  \**************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.typeFilter = exports.type = exports.setDataValue = exports.realName = exports.rawData = exports.objSet = exports.objGet = exports.name2arr = exports.isRequiredField = exports.isRealName = exports.isNumber = exports.isEqual = exports.isBoolean = exports.getValue = exports.getDataValueType = exports.getDataValue = exports.deepCopy = void 0;
-var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ 13));
-/**
- * 简单处理对象拷贝
- * @param {Obejct} 被拷贝对象
- * @@return {Object} 拷贝对象
- */
-var deepCopy = function deepCopy(val) {
-  return JSON.parse(JSON.stringify(val));
-};
-/**
- * 过滤数字类型
- * @param {String} format 数字类型
- * @@return {Boolean} 返回是否为数字类型
- */
-exports.deepCopy = deepCopy;
-var typeFilter = function typeFilter(format) {
-  return format === 'int' || format === 'double' || format === 'number' || format === 'timestamp';
-};
-
-/**
- * 把 value 转换成指定的类型，用于处理初始值，原因是初始值需要入库不能为 undefined
- * @param {String} key 字段名
- * @param {any} value 字段值
- * @param {Object} rules 表单校验规则
- */
-exports.typeFilter = typeFilter;
-var getValue = function getValue(key, value, rules) {
-  var isRuleNumType = rules.find(function (val) {
-    return val.format && typeFilter(val.format);
-  });
-  var isRuleBoolType = rules.find(function (val) {
-    return val.format && val.format === 'boolean' || val.format === 'bool';
-  });
-  // 输入类型为 number
-  if (!!isRuleNumType) {
-    if (!value && value !== 0) {
-      value = null;
-    } else {
-      value = isNumber(Number(value)) ? Number(value) : value;
-    }
-  }
-
-  // 输入类型为 boolean
-  if (!!isRuleBoolType) {
-    value = isBoolean(value) ? value : false;
-  }
-  return value;
-};
-
-/**
- * 获取表单数据
- * @param {String|Array} name 真实名称，需要使用 realName 获取
- * @param {Object} data 原始数据
- * @param {any} value  需要设置的值
- */
-exports.getValue = getValue;
-var setDataValue = function setDataValue(field, formdata, value) {
-  formdata[field] = value;
-  return value || '';
-};
-
-/**
- * 获取表单数据
- * @param {String|Array} field 真实名称，需要使用 realName 获取
- * @param {Object} data 原始数据
- */
-exports.setDataValue = setDataValue;
-var getDataValue = function getDataValue(field, data) {
-  return objGet(data, field);
-};
-
-/**
- * 获取表单类型
- * @param {String|Array} field 真实名称，需要使用 realName 获取
- */
-exports.getDataValue = getDataValue;
-var getDataValueType = function getDataValueType(field, data) {
-  var value = getDataValue(field, data);
-  return {
-    type: type(value),
-    value: value
-  };
-};
-
-/**
- * 获取表单可用的真实name
- * @param {String|Array} name 表单name
- * @@return {String} 表单可用的真实name
- */
-exports.getDataValueType = getDataValueType;
-var realName = function realName(name) {
-  var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-  var base_name = _basePath(name);
-  if ((0, _typeof2.default)(base_name) === 'object' && Array.isArray(base_name) && base_name.length > 1) {
-    var realname = base_name.reduce(function (a, b) {
-      return a += "#".concat(b);
-    }, '_formdata_');
-    return realname;
-  }
-  return base_name[0] || name;
-};
-
-/**
- * 判断是否表单可用的真实name
- * @param {String|Array} name 表单name
- * @@return {String} 表单可用的真实name
- */
-exports.realName = realName;
-var isRealName = function isRealName(name) {
-  var reg = /^_formdata_#*/;
-  return reg.test(name);
-};
-
-/**
- * 获取表单数据的原始格式
- * @@return {Object|Array} object 需要解析的数据
- */
-exports.isRealName = isRealName;
-var rawData = function rawData() {
-  var object = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var name = arguments.length > 1 ? arguments[1] : undefined;
-  var newData = JSON.parse(JSON.stringify(object));
-  var formData = {};
-  for (var i in newData) {
-    var path = name2arr(i);
-    objSet(formData, path, newData[i]);
-  }
-  return formData;
-};
-
-/**
- * 真实name还原为 array
- * @param {*} name 
- */
-exports.rawData = rawData;
-var name2arr = function name2arr(name) {
-  var field = name.replace('_formdata_#', '');
-  field = field.split('#').map(function (v) {
-    return isNumber(v) ? Number(v) : v;
-  });
-  return field;
-};
-
-/**
- * 对象中设置值
- * @param {Object|Array} object 源数据
- * @param {String| Array} path 'a.b.c' 或 ['a',0,'b','c']
- * @param {String} value 需要设置的值
- */
-exports.name2arr = name2arr;
-var objSet = function objSet(object, path, value) {
-  if ((0, _typeof2.default)(object) !== 'object') return object;
-  _basePath(path).reduce(function (o, k, i, _) {
-    if (i === _.length - 1) {
-      // 若遍历结束直接赋值
-      o[k] = value;
-      return null;
-    } else if (k in o) {
-      // 若存在对应路径，则返回找到的对象，进行下一次遍历
-      return o[k];
-    } else {
-      // 若不存在对应路径，则创建对应对象，若下一路径是数字，新对象赋值为空数组，否则赋值为空对象
-      o[k] = /^[0-9]{1,}$/.test(_[i + 1]) ? [] : {};
-      return o[k];
-    }
-  }, object);
-  // 返回object
-  return object;
-};
-
-// 处理 path， path有三种形式：'a[0].b.c'、'a.0.b.c' 和 ['a','0','b','c']，需要统一处理成数组，便于后续使用
-exports.objSet = objSet;
-function _basePath(path) {
-  // 若是数组，则直接返回
-  if (Array.isArray(path)) return path;
-  // 若有 '[',']'，则替换成将 '[' 替换成 '.',去掉 ']'
-  return path.replace(/\[/g, '.').replace(/\]/g, '').split('.');
-}
-
-/**
- * 从对象中获取值
- * @param {Object|Array} object 源数据
- * @param {String| Array} path 'a.b.c' 或 ['a',0,'b','c']
- * @param {String} defaultVal 如果无法从调用链中获取值的默认值
- */
-var objGet = function objGet(object, path) {
-  var defaultVal = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'undefined';
-  // 先将path处理成统一格式
-  var newPath = _basePath(path);
-  // 递归处理，返回最后结果
-  var val = newPath.reduce(function (o, k) {
-    return (o || {})[k];
-  }, object);
-  return !val || val !== undefined ? val : defaultVal;
-};
-
-/**
- * 是否为 number 类型 
- * @param {any} num 需要判断的值
- * @return {Boolean} 是否为 number
- */
-exports.objGet = objGet;
-var isNumber = function isNumber(num) {
-  return !isNaN(Number(num));
-};
-
-/**
- * 是否为 boolean 类型 
- * @param {any} bool 需要判断的值
- * @return {Boolean} 是否为 boolean
- */
-exports.isNumber = isNumber;
-var isBoolean = function isBoolean(bool) {
-  return typeof bool === 'boolean';
-};
-/**
- * 是否有必填字段
- * @param {Object} rules 规则
- * @return {Boolean} 是否有必填字段
- */
-exports.isBoolean = isBoolean;
-var isRequiredField = function isRequiredField(rules) {
-  var isNoField = false;
-  for (var i = 0; i < rules.length; i++) {
-    var ruleData = rules[i];
-    if (ruleData.required) {
-      isNoField = true;
-      break;
-    }
-  }
-  return isNoField;
-};
-
-/**
- * 获取数据类型
- * @param {Any} obj 需要获取数据类型的值
- */
-exports.isRequiredField = isRequiredField;
-var type = function type(obj) {
-  var class2type = {};
-
-  // 生成class2type映射
-  "Boolean Number String Function Array Date RegExp Object Error".split(" ").map(function (item, index) {
-    class2type["[object " + item + "]"] = item.toLowerCase();
-  });
-  if (obj == null) {
-    return obj + "";
-  }
-  return (0, _typeof2.default)(obj) === "object" || typeof obj === "function" ? class2type[Object.prototype.toString.call(obj)] || "object" : (0, _typeof2.default)(obj);
-};
-
-/**
- * 判断两个值是否相等
- * @param {any} a 值  
- * @param {any} b 值  
- * @return {Boolean} 是否相等
- */
-exports.type = type;
-var isEqual = function isEqual(a, b) {
-  //如果a和b本来就全等
-  if (a === b) {
-    //判断是否为0和-0
-    return a !== 0 || 1 / a === 1 / b;
-  }
-  //判断是否为null和undefined
-  if (a == null || b == null) {
-    return a === b;
-  }
-  //接下来判断a和b的数据类型
-  var classNameA = toString.call(a),
-    classNameB = toString.call(b);
-  //如果数据类型不相等，则返回false
-  if (classNameA !== classNameB) {
-    return false;
-  }
-  //如果数据类型相等，再根据不同数据类型分别判断
-  switch (classNameA) {
-    case '[object RegExp]':
-    case '[object String]':
-      //进行字符串转换比较
-      return '' + a === '' + b;
-    case '[object Number]':
-      //进行数字转换比较,判断是否为NaN
-      if (+a !== +a) {
-        return +b !== +b;
-      }
-      //判断是否为0或-0
-      return +a === 0 ? 1 / +a === 1 / b : +a === +b;
-    case '[object Date]':
-    case '[object Boolean]':
-      return +a === +b;
-  }
-  //如果是对象类型
-  if (classNameA == '[object Object]') {
-    //获取a和b的属性长度
-    var propsA = Object.getOwnPropertyNames(a),
-      propsB = Object.getOwnPropertyNames(b);
-    if (propsA.length != propsB.length) {
-      return false;
-    }
-    for (var i = 0; i < propsA.length; i++) {
-      var propName = propsA[i];
-      //如果对应属性对应值不相等，则返回false
-      if (a[propName] !== b[propName]) {
-        return false;
-      }
-    }
-    return true;
-  }
-  //如果是数组类型
-  if (classNameA == '[object Array]') {
-    if (a.toString() == b.toString()) {
-      return true;
-    }
-    return false;
-  }
-};
-exports.isEqual = isEqual;
-
-/***/ }),
-/* 434 */,
-/* 435 */,
-/* 436 */,
-/* 437 */,
-/* 438 */,
-/* 439 */,
-/* 440 */,
-/* 441 */,
-/* 442 */,
-/* 443 */,
-/* 444 */,
-/* 445 */,
-/* 446 */,
-/* 447 */,
-/* 448 */,
-/* 449 */,
-/* 450 */,
-/* 451 */,
-/* 452 */,
-/* 453 */,
-/* 454 */,
-/* 455 */,
-/* 456 */,
-/* 457 */,
-/* 458 */,
-/* 459 */,
-/* 460 */,
-/* 461 */,
-/* 462 */
-/*!***********************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/components/u-popup/props.js ***!
-  \***********************************************************************************************/
+/* 418 */,
+/* 419 */,
+/* 420 */,
+/* 421 */,
+/* 422 */,
+/* 423 */,
+/* 424 */,
+/* 425 */
+/*!*********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-popup/props.js ***!
+  \*********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -30836,17 +30803,17 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 463 */,
-/* 464 */,
-/* 465 */,
-/* 466 */,
-/* 467 */,
-/* 468 */,
-/* 469 */,
-/* 470 */
-/*!*************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/components/u-toolbar/props.js ***!
-  \*************************************************************************************************/
+/* 426 */,
+/* 427 */,
+/* 428 */,
+/* 429 */,
+/* 430 */,
+/* 431 */,
+/* 432 */,
+/* 433 */
+/*!***********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-toolbar/props.js ***!
+  \***********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -30895,17 +30862,17 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 471 */,
-/* 472 */,
-/* 473 */,
-/* 474 */,
-/* 475 */,
-/* 476 */,
-/* 477 */,
-/* 478 */
-/*!******************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/components/u-loading-icon/props.js ***!
-  \******************************************************************************************************/
+/* 434 */,
+/* 435 */,
+/* 436 */,
+/* 437 */,
+/* 438 */,
+/* 439 */,
+/* 440 */,
+/* 441 */
+/*!****************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-loading-icon/props.js ***!
+  \****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -30979,17 +30946,17 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 479 */,
-/* 480 */,
-/* 481 */,
-/* 482 */,
-/* 483 */,
-/* 484 */,
-/* 485 */,
-/* 486 */
-/*!***********************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/components/u-badge/props.js ***!
-  \***********************************************************************************************/
+/* 442 */,
+/* 443 */,
+/* 444 */,
+/* 445 */,
+/* 446 */,
+/* 447 */,
+/* 448 */,
+/* 449 */
+/*!*********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-badge/props.js ***!
+  \*********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -31076,17 +31043,17 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 487 */,
-/* 488 */,
-/* 489 */,
-/* 490 */,
-/* 491 */,
-/* 492 */,
-/* 493 */,
-/* 494 */
-/*!**************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uni-icons/components/uni-icons/icons.js ***!
-  \**************************************************************************************************/
+/* 450 */,
+/* 451 */,
+/* 452 */,
+/* 453 */,
+/* 454 */,
+/* 455 */,
+/* 456 */,
+/* 457 */
+/*!************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uni-icons/components/uni-icons/icons.js ***!
+  \************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -32104,24 +32071,24 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 495 */,
-/* 496 */,
-/* 497 */,
-/* 498 */,
-/* 499 */,
-/* 500 */,
-/* 501 */,
-/* 502 */,
-/* 503 */,
-/* 504 */,
-/* 505 */,
-/* 506 */,
-/* 507 */,
-/* 508 */,
-/* 509 */
-/*!**********************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/components/u-swiper-indicator/props.js ***!
-  \**********************************************************************************************************/
+/* 458 */,
+/* 459 */,
+/* 460 */,
+/* 461 */,
+/* 462 */,
+/* 463 */,
+/* 464 */,
+/* 465 */,
+/* 466 */,
+/* 467 */,
+/* 468 */,
+/* 469 */,
+/* 470 */,
+/* 471 */,
+/* 472 */
+/*!********************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-swiper-indicator/props.js ***!
+  \********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -32165,33 +32132,17 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 510 */,
-/* 511 */,
-/* 512 */,
-/* 513 */,
-/* 514 */,
-/* 515 */,
-/* 516 */,
-/* 517 */,
-/* 518 */,
-/* 519 */,
-/* 520 */,
-/* 521 */,
-/* 522 */,
-/* 523 */,
-/* 524 */,
-/* 525 */,
-/* 526 */,
-/* 527 */,
-/* 528 */,
-/* 529 */,
-/* 530 */,
-/* 531 */,
-/* 532 */,
-/* 533 */
-/*!**********************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/components/u-text/props.js ***!
-  \**********************************************************************************************/
+/* 473 */,
+/* 474 */,
+/* 475 */,
+/* 476 */,
+/* 477 */,
+/* 478 */,
+/* 479 */,
+/* 480 */
+/*!********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-text/props.js ***!
+  \********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -32316,44 +32267,15 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 534 */,
-/* 535 */,
-/* 536 */,
-/* 537 */,
-/* 538 */,
-/* 539 */,
-/* 540 */,
-/* 541 */,
-/* 542 */,
-/* 543 */,
-/* 544 */,
-/* 545 */,
-/* 546 */,
-/* 547 */,
-/* 548 */,
-/* 549 */,
-/* 550 */,
-/* 551 */,
-/* 552 */,
-/* 553 */,
-/* 554 */,
-/* 555 */,
-/* 556 */,
-/* 557 */,
-/* 558 */,
-/* 559 */,
-/* 560 */,
-/* 561 */,
-/* 562 */,
-/* 563 */,
-/* 564 */,
-/* 565 */,
-/* 566 */,
-/* 567 */,
-/* 568 */
-/*!***************************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uni-load-more/components/uni-load-more/i18n/index.js ***!
-  \***************************************************************************************************************/
+/* 481 */,
+/* 482 */,
+/* 483 */,
+/* 484 */,
+/* 485 */,
+/* 486 */
+/*!*************************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uni-load-more/components/uni-load-more/i18n/index.js ***!
+  \*************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -32365,9 +32287,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 569));
-var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 570));
-var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 571));
+var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 487));
+var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 488));
+var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 489));
 var _default = {
   en: _en.default,
   'zh-Hans': _zhHans.default,
@@ -32376,47 +32298,61 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 569 */
-/*!**************************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uni-load-more/components/uni-load-more/i18n/en.json ***!
-  \**************************************************************************************************************/
+/* 487 */
+/*!************************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uni-load-more/components/uni-load-more/i18n/en.json ***!
+  \************************************************************************************************/
 /*! exports provided: uni-load-more.contentdown, uni-load-more.contentrefresh, uni-load-more.contentnomore, default */
 /***/ (function(module) {
 
 module.exports = JSON.parse("{\"uni-load-more.contentdown\":\"Pull up to show more\",\"uni-load-more.contentrefresh\":\"loading...\",\"uni-load-more.contentnomore\":\"No more data\"}");
 
 /***/ }),
-/* 570 */
-/*!*******************************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uni-load-more/components/uni-load-more/i18n/zh-Hans.json ***!
-  \*******************************************************************************************************************/
+/* 488 */
+/*!*****************************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uni-load-more/components/uni-load-more/i18n/zh-Hans.json ***!
+  \*****************************************************************************************************/
 /*! exports provided: uni-load-more.contentdown, uni-load-more.contentrefresh, uni-load-more.contentnomore, default */
 /***/ (function(module) {
 
 module.exports = JSON.parse("{\"uni-load-more.contentdown\":\"上拉显示更多\",\"uni-load-more.contentrefresh\":\"正在加载...\",\"uni-load-more.contentnomore\":\"没有更多数据了\"}");
 
 /***/ }),
-/* 571 */
-/*!*******************************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uni-load-more/components/uni-load-more/i18n/zh-Hant.json ***!
-  \*******************************************************************************************************************/
+/* 489 */
+/*!*****************************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uni-load-more/components/uni-load-more/i18n/zh-Hant.json ***!
+  \*****************************************************************************************************/
 /*! exports provided: uni-load-more.contentdown, uni-load-more.contentrefresh, uni-load-more.contentnomore, default */
 /***/ (function(module) {
 
 module.exports = JSON.parse("{\"uni-load-more.contentdown\":\"上拉顯示更多\",\"uni-load-more.contentrefresh\":\"正在加載...\",\"uni-load-more.contentnomore\":\"沒有更多數據了\"}");
 
 /***/ }),
-/* 572 */,
-/* 573 */,
-/* 574 */,
-/* 575 */,
-/* 576 */,
-/* 577 */,
-/* 578 */,
-/* 579 */
-/*!*************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/components/u-overlay/props.js ***!
-  \*************************************************************************************************/
+/* 490 */,
+/* 491 */,
+/* 492 */,
+/* 493 */,
+/* 494 */,
+/* 495 */,
+/* 496 */,
+/* 497 */,
+/* 498 */,
+/* 499 */,
+/* 500 */,
+/* 501 */,
+/* 502 */,
+/* 503 */,
+/* 504 */,
+/* 505 */,
+/* 506 */,
+/* 507 */,
+/* 508 */,
+/* 509 */,
+/* 510 */,
+/* 511 */
+/*!***********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-overlay/props.js ***!
+  \***********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -32455,17 +32391,17 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 580 */,
-/* 581 */,
-/* 582 */,
-/* 583 */,
-/* 584 */,
-/* 585 */,
-/* 586 */,
-/* 587 */
-/*!****************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/components/u-transition/props.js ***!
-  \****************************************************************************************************/
+/* 512 */,
+/* 513 */,
+/* 514 */,
+/* 515 */,
+/* 516 */,
+/* 517 */,
+/* 518 */,
+/* 519 */
+/*!**************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-transition/props.js ***!
+  \**************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -32504,10 +32440,10 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 588 */
-/*!*********************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/components/u-transition/transition.js ***!
-  \*********************************************************************************************************/
+/* 520 */
+/*!*******************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-transition/transition.js ***!
+  \*******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -32521,7 +32457,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 30));
 var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 32));
-var _nvueAniMap = _interopRequireDefault(__webpack_require__(/*! ./nvue.ani-map.js */ 589));
+var _nvueAniMap = _interopRequireDefault(__webpack_require__(/*! ./nvue.ani-map.js */ 521));
 // 定义一个一定时间后自动成功的promise，让调用nextTick方法处，进入下一个then方法
 var nextTick = function nextTick() {
   return new Promise(function (resolve) {
@@ -32613,10 +32549,10 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 589 */
-/*!***********************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/components/u-transition/nvue.ani-map.js ***!
-  \***********************************************************************************************************/
+/* 521 */
+/*!*********************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-transition/nvue.ani-map.js ***!
+  \*********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -32806,17 +32742,17 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 590 */,
-/* 591 */,
-/* 592 */,
-/* 593 */,
-/* 594 */,
-/* 595 */,
-/* 596 */,
-/* 597 */
-/*!****************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/components/u-status-bar/props.js ***!
-  \****************************************************************************************************/
+/* 522 */,
+/* 523 */,
+/* 524 */,
+/* 525 */,
+/* 526 */,
+/* 527 */,
+/* 528 */,
+/* 529 */
+/*!**************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-status-bar/props.js ***!
+  \**************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -32839,17 +32775,17 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 598 */,
-/* 599 */,
-/* 600 */,
-/* 601 */,
-/* 602 */,
-/* 603 */,
-/* 604 */,
-/* 605 */
-/*!*****************************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/components/u-safe-bottom/props.js ***!
-  \*****************************************************************************************************/
+/* 530 */,
+/* 531 */,
+/* 532 */,
+/* 533 */,
+/* 534 */,
+/* 535 */,
+/* 536 */,
+/* 537 */
+/*!***************************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-safe-bottom/props.js ***!
+  \***************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -32866,17 +32802,17 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 606 */,
-/* 607 */,
-/* 608 */,
-/* 609 */,
-/* 610 */,
-/* 611 */,
-/* 612 */,
-/* 613 */
-/*!**********************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/components/u-text/value.js ***!
-  \**********************************************************************************************/
+/* 538 */,
+/* 539 */,
+/* 540 */,
+/* 541 */,
+/* 542 */,
+/* 543 */,
+/* 544 */,
+/* 545 */
+/*!********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-text/value.js ***!
+  \********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -32981,17 +32917,17 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 614 */,
-/* 615 */,
-/* 616 */,
-/* 617 */,
-/* 618 */,
-/* 619 */,
-/* 620 */,
-/* 621 */
-/*!**********************************************************************************************!*\
-  !*** /Users/guoyiyang/uniappProjects/mydemo/uni_modules/uview-ui/components/u-link/props.js ***!
-  \**********************************************************************************************/
+/* 546 */,
+/* 547 */,
+/* 548 */,
+/* 549 */,
+/* 550 */,
+/* 551 */,
+/* 552 */,
+/* 553 */
+/*!********************************************************************************!*\
+  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-link/props.js ***!
+  \********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

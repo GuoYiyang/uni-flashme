@@ -10,8 +10,7 @@
 
 		<!-- 搜索 -->
 		<view class="flex-row">
-			<u-button icon="map" :text="city" @click="pickerShow = true" customStyle="width:150rpx; height:70rpx">
-			</u-button>
+			<uni-data-select v-model="city" :localdata="cityList" :clear="false" @change="cityChange"></uni-data-select>
 			<u-search :showAction="false" :animation="true" shape="square" placeholder="摄影师或者主题" bgColor="#FFFFFF"
 				@search="search"></u-search>
 		</view>
@@ -61,7 +60,7 @@
 		<!--  瀑布流  -->
 		<view style="padding: 10rpx;">
 			<custom-waterfalls-flow :value="product.list" :column="2" :columnSpace="1.5" @imageClick="imageClick"
-				@loaded="loaded" @wapperClick="wapperClick" ref="waterfallsFlowRef">
+				 @wapperClick="wapperClick" ref="waterfallsFlowRef">
 				<!-- #ifdef MP-WEIXIN -->
 				<view class="item" v-for="(item,index) in product.list" :key="index" slot="slot{{index}}">
 					<view class="title">{{item.title}}</view>
@@ -89,10 +88,23 @@
 	export default {
 		data() {
 			return {
-				city: '深圳',
-				pickerShow: false,
-				pickerColumns: [
-					['深圳', '北京', '上海', '广州']
+				city:'0',
+				cityList: [{
+						value: "0",
+						text: "深圳"
+					},
+					{
+						value: "1",
+						text: "北京"
+					},
+					{
+						value: "2",
+						text: "上海"
+					},
+					{
+						value: "3",
+						text: "广州"
+					},
 				],
 				// scrollTop: 0,
 				// tab bar
@@ -169,11 +181,16 @@
 			}
 		},
 		methods: {
-			confirmPicker(object) {
-				this.city = object.value[0];
-				this.pickerShow = false;
+			cityChange(item){
+				this.city = item.toString();
+				productRandom({
+					city: item.toString()
+				}).then((res) => {
+					let [error, success] = res;
+					this.product.list = success.data;
+					this.$refs.waterfallsFlowRef.refresh();
+				})
 			},
-			loaded() {},
 			wapperClick(item) {
 				uni.navigateTo({
 					url: '../product/product?id=' + item.id

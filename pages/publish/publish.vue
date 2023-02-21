@@ -162,15 +162,21 @@
 				}).then((res) => {
 					let [error, success] = res;
 					console.log(success);
-					if (success.data) {
+					if (success.data == true) {
 						uni.showToast({
 							title: '发布成功'
 						})
+					} else{
+						uni.showToast({
+							title: '发布失败'
+						})
 					}
+					uni.hideLoading();
 					uni.navigateBack();
 				})
 			},
 			async submit() {
+				uni.showLoading();
 				this.upload();
 				setTimeout(() => {
 					this.publish();
