@@ -167,13 +167,13 @@
 							title: '发布成功'
 						})
 					}
+					uni.navigateBack();
 				})
 			},
 			async submit() {
 				this.upload();
 				setTimeout(() => {
 					this.publish();
-					uni.navigateBack();
 				}, 1000)
 			}
 		}

@@ -369,6 +369,7 @@ var _default = {
             title: '发布成功'
           });
         }
+        uni.navigateBack();
       });
     },
     submit: function submit() {
@@ -381,7 +382,6 @@ var _default = {
                 _this4.upload();
                 setTimeout(function () {
                   _this4.publish();
-                  uni.navigateBack();
                 }, 1000);
               case 2:
               case "end":
