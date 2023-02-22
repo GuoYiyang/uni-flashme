@@ -105,8 +105,8 @@ try {
     uPicker: function () {
       return Promise.all(/*! import() | uni_modules/uview-ui/components/u-picker/u-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-picker/u-picker")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-picker/u-picker.vue */ 225))
     },
-    uButton: function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-button/u-button.vue */ 233))
+    uniDataSelect: function () {
+      return Promise.all(/*! import() | uni_modules/uni-data-select/components/uni-data-select/uni-data-select */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-data-select/components/uni-data-select/uni-data-select")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-data-select/components/uni-data-select/uni-data-select.vue */ 300))
     },
     uSearch: function () {
       return Promise.all(/*! import() | uni_modules/uview-ui/components/u-search/u-search */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-search/u-search")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-search/u-search.vue */ 243))
@@ -148,9 +148,6 @@ var render = function () {
   if (!_vm._isMounted) {
     _vm.e0 = function ($event) {
       _vm.pickerShow = false
-    }
-    _vm.e1 = function ($event) {
-      _vm.pickerShow = true
     }
   }
 }
@@ -277,13 +274,23 @@ var _product = __webpack_require__(/*! @/api/product.js */ 168);
 //
 //
 //
-//
 var _default = {
   data: function data() {
     return {
-      city: '深圳',
-      pickerShow: false,
-      pickerColumns: [['深圳', '北京', '上海', '广州']],
+      city: '0',
+      cityList: [{
+        value: "0",
+        text: "深圳"
+      }, {
+        value: "1",
+        text: "北京"
+      }, {
+        value: "2",
+        text: "上海"
+      }, {
+        value: "3",
+        text: "广州"
+      }],
       // scrollTop: 0,
       // tab bar
       // tabList: [{
@@ -351,11 +358,19 @@ var _default = {
     };
   },
   methods: {
-    confirmPicker: function confirmPicker(object) {
-      this.city = object.value[0];
-      this.pickerShow = false;
+    cityChange: function cityChange(item) {
+      var _this = this;
+      this.city = item.toString();
+      (0, _product.productRandom)({
+        city: item.toString()
+      }).then(function (res) {
+        var _res = (0, _slicedToArray2.default)(res, 2),
+          error = _res[0],
+          success = _res[1];
+        _this.product.list = success.data;
+        _this.$refs.waterfallsFlowRef.refresh();
+      });
     },
-    loaded: function loaded() {},
     wapperClick: function wapperClick(item) {
       uni.navigateTo({
         url: '../product/product?id=' + item.id
@@ -388,14 +403,14 @@ var _default = {
     }
   },
   onLoad: function onLoad() {
-    var _this = this;
+    var _this2 = this;
     (0, _product.productRandom)({
       city: this.city
     }).then(function (res) {
-      var _res = (0, _slicedToArray2.default)(res, 2),
-        error = _res[0],
-        success = _res[1];
-      _this.product.list = success.data;
+      var _res2 = (0, _slicedToArray2.default)(res, 2),
+        error = _res2[0],
+        success = _res2[1];
+      _this2.product.list = success.data;
     });
   },
   onPullDownRefresh: function onPullDownRefresh() {
@@ -417,14 +432,14 @@ var _default = {
     // }, 500);
   },
   onReachBottom: function onReachBottom() {
-    var _this2 = this;
+    var _this3 = this;
     (0, _product.productRandom)({
       city: this.city
     }).then(function (res) {
-      var _res2 = (0, _slicedToArray2.default)(res, 2),
-        error = _res2[0],
-        success = _res2[1];
-      _this2.product.list = _this2.product.list.concat(success.data);
+      var _res3 = (0, _slicedToArray2.default)(res, 2),
+        error = _res3[0],
+        success = _res3[1];
+      _this3.product.list = _this3.product.list.concat(success.data);
     });
   }
 };

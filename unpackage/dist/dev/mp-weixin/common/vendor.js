@@ -9843,9 +9843,13 @@ function updateUserInfo(userInfo) {
     url: _settingConfig.baseUrl + '/user/user-info',
     method: "POST",
     data: {
-      id: userInfo.userId,
+      id: userInfo.id,
       avatar: userInfo.avatar,
-      nickname: userInfo.nickname
+      nickname: userInfo.name,
+      phone: userInfo.phone,
+      desc: userInfo.desc,
+      gender: userInfo.sex,
+      city: userInfo.city
     }
   });
 }
@@ -9913,8 +9917,8 @@ var setting = {
   // baseURL: process.env.NODE_ENV === 'development' ?
   // 	'vab-mock-server' :
   // 	'vab-mock-server',
-  // baseUrl: 'http://192.168.1.6:8888'
-  baseUrl: 'http://localhost:8888'
+  baseUrl: 'http://192.168.1.6:8888'
+  // baseUrl: 'http://localhost:8888'
   // baseUrl: 'http://118.195.215.159:8888'
 };
 

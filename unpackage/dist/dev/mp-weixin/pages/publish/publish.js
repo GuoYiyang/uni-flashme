@@ -369,11 +369,16 @@ var _default = {
           error = _res3[0],
           success = _res3[1];
         console.log(success);
-        if (success.data) {
+        if (success.data == true) {
           uni.showToast({
             title: '发布成功'
           });
+        } else {
+          uni.showToast({
+            title: '发布失败'
+          });
         }
+        uni.hideLoading();
         uni.navigateBack();
       });
     },
@@ -384,11 +389,12 @@ var _default = {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                uni.showLoading();
                 _this4.upload();
                 setTimeout(function () {
                   _this4.publish();
                 }, 1000);
-              case 2:
+              case 3:
               case "end":
                 return _context.stop();
             }

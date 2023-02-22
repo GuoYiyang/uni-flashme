@@ -19,9 +19,13 @@ export function updateUserInfo(userInfo) {
 		url: baseUrl + '/user/user-info',
 		method: "POST",
 		data: {
-			id: userInfo.userId,
+			id: userInfo.id,
 			avatar: userInfo.avatar,
-			nickname: userInfo.nickname
+			nickname: userInfo.name,
+			phone: userInfo.phone,
+			desc: userInfo.desc,
+			gender: userInfo.sex,
+			city: userInfo.city,
 		}
 	});
 }
