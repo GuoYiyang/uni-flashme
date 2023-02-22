@@ -7,7 +7,8 @@
     "pages/product/product",
     "pages/filterProduct/filterProduct",
     "pages/editUserInfo/editUserInfo",
-    "pages/publish/publish"
+    "pages/publish/publish",
+    "pages/myProduct/myProduct"
   ],
   "subPackages": [],
   "window": {

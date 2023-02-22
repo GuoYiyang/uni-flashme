@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "我的发布",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "custom-waterfalls-flow": "/uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow"
+  }
+}

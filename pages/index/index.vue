@@ -290,26 +290,6 @@
 		display: flex;
 	}
 
-	.handle {
-		display: flex;
-		flex-direction: row;
-		flex-wrap: wrap;
-		margin-bottom: 20rpx;
-		padding: 10rpx;
-
-		.btn {
-			margin: 20rpx 10rpx;
-			padding: 0 20rpx;
-			background: #2878FF;
-			font-size: 28rpx;
-			color: #fff;
-
-			&::after {
-				border: 0;
-			}
-		}
-	}
-
 	.item {
 		padding: 10rpx 10rpx 20rpx;
 

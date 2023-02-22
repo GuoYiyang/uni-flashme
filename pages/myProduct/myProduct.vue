@@ -31,9 +31,6 @@
 			return {
 				page: 1,
 				pageSize: 10,
-				city: '',
-				tag: '',
-				query: '',
 				product: {
 					list: []
 				}
@@ -53,33 +50,24 @@
 		},
 		onLoad: function(param) { //option为object类型，会序列化上个页面传递的参数
 			let _this = this;
-			this.city = param.city;
-			if (param.tag != null) {
-				this.tag = param.tag;
-			}
-			if (param.query != null) {
-				this.query = param.query;
-			}
 			getProductPage({
-				city: this.city,
-				tag: this.tag,
-				query: this.query,
+				city:'',
+				tag:'',
+				query:'',
+				userId: getApp().globalData.USER_ID,
 				page: this.page,
 				pageSize: this.pageSize
 			}).then((res) => {
 				let [error, success] = res;
 				_this.product.list = success.data;
-				console.log(this.product.list)
-				// this.$refs.waterfallsFlowRef.refresh();
+				console.log(_this.product.list)
 			})
 
 		},
 		onReachBottom() {
 			this.page = this.page + 1;
 			getProductPage({
-				city: this.city,
-				tag: this.tag,
-				query: this.query,
+				userId: getApp().globalData.USER_ID,
 				page: this.page,
 				pageSize: this.pageSize
 			}).then((res) => {
@@ -88,7 +76,6 @@
 
 				}
 				this.product.list = this.product.list.concat(success.data);
-				// this.$refs.waterfallsFlowRef.refresh();
 			})
 		}
 	}

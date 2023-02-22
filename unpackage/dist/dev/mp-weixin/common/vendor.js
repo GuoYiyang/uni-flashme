@@ -20567,13 +20567,18 @@ function productDetail(req) {
 
 // 根据tag分页获取商品
 function getProductPage(req) {
+  var userId = req.userId == null ? "" : req.userId;
+  var city = req.city == null ? "" : req.city;
+  var tag = req.tag == null ? "" : req.tag;
+  var query = req.query == null ? "" : req.query;
   return uni.request({
     url: _settingConfig.baseUrl + '/product/page',
     method: "GET",
     data: {
-      city: req.city,
-      tag: req.tag,
-      query: req.query,
+      userId: userId,
+      city: city,
+      tag: tag,
+      query: query,
       page: req.page,
       pageSize: req.pageSize
     }
@@ -28491,6 +28496,12 @@ var _default = {
     "path": "pages/publish/publish",
     "style": {
       "navigationBarTitleText": "发布",
+      "enablePullDownRefresh": false
+    }
+  }, {
+    "path": "pages/myProduct/myProduct",
+    "style": {
+      "navigationBarTitleText": "我的发布",
       "enablePullDownRefresh": false
     }
   }],
