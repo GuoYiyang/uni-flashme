@@ -54,7 +54,7 @@
 			}).then((res) => {
 				let [error, success] = res;
 				console.log(success);
-				_this.name = success.data.nickname;
+				_this.username = success.data.nickname;
 				_this.city = success.data.city;
 				_this.gender = success.data.gender;
 				_this.avatar = success.data.avatar;

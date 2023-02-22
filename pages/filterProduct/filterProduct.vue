@@ -1,5 +1,23 @@
 <template>
 	<view>
+		<u-row justify="center" gutter="10">
+			<u-col span="4">
+				<uni-data-picker popup-title="城市" :localdata="cityList" v-model="city" :clear-icon="false"
+					@change="cityChange" placeholder="城市">
+				</uni-data-picker>
+			</u-col>
+			<u-col span="4">
+				<uni-data-picker popup-title="主题" :localdata="tagList" v-model="tag" :clear-icon="false"
+					@change="cityChange" placeholder="主题">
+				</uni-data-picker>
+			</u-col>
+<!-- 			<u-col span="4">
+				<uni-data-picker popup-title="价格" :localdata="cityList" v-model="city" :clear-icon="false"
+					@change="cityChange" placeholder="价格">
+				</uni-data-picker>
+			</u-col> -->
+		</u-row>
+		<u-line></u-line>
 		<view style="padding: 10rpx;">
 			<custom-waterfalls-flow :value="product.list" :column="2" :columnSpace="1.5" @imageClick="imageClick"
 				@wapperClick="wapperClick" ref="waterfallsFlowRef">
@@ -36,7 +54,24 @@
 				query: '',
 				product: {
 					list: []
-				}
+				},
+				cityList: [{
+						value: "0",
+						text: "深圳"
+					},
+					{
+						value: "1",
+						text: "北京"
+					},
+					{
+						value: "2",
+						text: "上海"
+					},
+					{
+						value: "3",
+						text: "广州"
+					},
+				],
 			}
 		},
 		methods: {

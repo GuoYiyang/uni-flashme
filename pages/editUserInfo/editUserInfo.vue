@@ -46,7 +46,7 @@
 						</uni-forms-item>
 						<uni-forms-item label="城市" required name="city">
 							<uni-data-picker  popup-title="请选择城市" :localdata="cityList"
-								v-model="userInfo.city" >
+								v-model="userInfo.city" @change="cityChange">
 							</uni-data-picker>
 							<!-- <uni-data-select v-model="userInfo.city" :localdata="cityList"></uni-data-select> -->
 						</uni-forms-item>
@@ -104,7 +104,7 @@
 					desc: '',
 					phone: '',
 					sex: '',
-					city: ''
+					city: '0'
 				},
 				sexs: [{
 					text: '男',
@@ -136,6 +136,9 @@
 			};
 		},
 		methods: {
+			cityChange(item) {
+				this.userInfo.city = item.detail.value[0].value;
+			},
 			sexSelect(e) {
 				this.userInfo.sex = e.name
 			},
