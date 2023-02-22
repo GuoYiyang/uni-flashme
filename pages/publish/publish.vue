@@ -33,8 +33,11 @@
 						<uni-forms-item label="主题" required>
 							<uni-data-checkbox v-model="baseFormData.tag" multiple :localdata="tags" />
 						</uni-forms-item>
-						<uni-forms-item label="描述" required>
-							<uni-easyinput type="textarea" v-model="baseFormData.introduction" />
+						<uni-forms-item label="基本信息" required>
+							<uni-easyinput type="textarea" v-model="baseFormData.info" />
+						</uni-forms-item>
+						<uni-forms-item label="拍摄须知" required>
+							<uni-easyinput type="textarea" v-model="baseFormData.notice" />
 						</uni-forms-item>
 					</uni-forms>
 				</view>
@@ -70,8 +73,10 @@
 				baseFormData: {
 					title: '',
 					price: '',
-					introduction: '',
-					tag: []
+					introduction: {},
+					tag: [],
+					info:'',
+					notice:''
 				},
 				sexs: [{
 					text: '男',

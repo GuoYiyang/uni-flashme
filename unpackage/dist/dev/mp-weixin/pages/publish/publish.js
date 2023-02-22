@@ -237,6 +237,9 @@ var _upload = _interopRequireDefault(__webpack_require__(/*! ../../uni_modules/u
 //
 //
 //
+//
+//
+//
 var _default = {
   data: function data() {
     return {
@@ -264,8 +267,10 @@ var _default = {
       baseFormData: {
         title: '',
         price: '',
-        introduction: '',
-        tag: []
+        introduction: {},
+        tag: [],
+        info: '',
+        notice: ''
       },
       sexs: [{
         text: '男',
