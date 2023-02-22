@@ -45,7 +45,10 @@
 							<uni-easyinput v-model="userInfo.name" />
 						</uni-forms-item>
 						<uni-forms-item label="城市" required name="city">
-							<uni-data-select v-model="userInfo.city" :localdata="cityList"></uni-data-select>
+							<uni-data-picker  popup-title="请选择城市" :localdata="cityList"
+								v-model="userInfo.city" >
+							</uni-data-picker>
+							<!-- <uni-data-select v-model="userInfo.city" :localdata="cityList"></uni-data-select> -->
 						</uni-forms-item>
 						<uni-forms-item label="手机" name="phone">
 							<uni-easyinput v-model="userInfo.phone" />
@@ -75,6 +78,23 @@
 	export default {
 		data() {
 			return {
+				cityList: [{
+						text: "深圳",
+						value: "0"
+					},
+					{
+						text: "北京",
+						value: "1"
+					},
+					{
+						value: "2",
+						text: "上海"
+					},
+					{
+						value: "3",
+						text: "广州"
+					},
+				],
 				userId: '',
 				showSex: false,
 				userInfo: {
@@ -93,23 +113,6 @@
 					text: '女',
 					value: 2
 				}],
-				cityList: [{
-						value: "0",
-						text: "深圳"
-					},
-					{
-						value: "1",
-						text: "北京"
-					},
-					{
-						value: "2",
-						text: "上海"
-					},
-					{
-						value: "3",
-						text: "广州"
-					},
-				],
 				rules: {
 					name: {
 						type: 'string',

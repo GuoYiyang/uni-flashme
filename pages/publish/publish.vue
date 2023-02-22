@@ -37,7 +37,7 @@
 							<uni-easyinput type="textarea" v-model="baseFormData.info" />
 						</uni-forms-item>
 						<uni-forms-item label="拍摄须知" required>
-							<uni-easyinput type="textarea" v-model="baseFormData.notice" />
+							<uni-easyinput type="textarea" v-model="baseFormData.introduction" />
 						</uni-forms-item>
 					</uni-forms>
 				</view>

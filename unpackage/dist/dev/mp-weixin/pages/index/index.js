@@ -102,26 +102,23 @@ __webpack_require__.r(__webpack_exports__);
 var components
 try {
   components = {
-    uPicker: function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-picker/u-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-picker/u-picker")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-picker/u-picker.vue */ 225))
-    },
-    uniDataSelect: function () {
-      return Promise.all(/*! import() | uni_modules/uni-data-select/components/uni-data-select/uni-data-select */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-data-select/components/uni-data-select/uni-data-select")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-data-select/components/uni-data-select/uni-data-select.vue */ 300))
+    uniDataPicker: function () {
+      return Promise.all(/*! import() | uni_modules/uni-data-picker/components/uni-data-picker/uni-data-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-data-picker/components/uni-data-picker/uni-data-picker")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-data-picker/components/uni-data-picker/uni-data-picker.vue */ 225))
     },
     uSearch: function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-search/u-search */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-search/u-search")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-search/u-search.vue */ 243))
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-search/u-search */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-search/u-search")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-search/u-search.vue */ 242))
     },
     uGrid: function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-grid/u-grid */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-grid/u-grid")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-grid/u-grid.vue */ 251))
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-grid/u-grid */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-grid/u-grid")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-grid/u-grid.vue */ 250))
     },
     uGridItem: function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-grid-item/u-grid-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-grid-item/u-grid-item")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-grid-item/u-grid-item.vue */ 259))
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-grid-item/u-grid-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-grid-item/u-grid-item")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-grid-item/u-grid-item.vue */ 258))
     },
     uIcon: function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-icon/u-icon */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-icon/u-icon")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-icon/u-icon.vue */ 267))
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-icon/u-icon */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-icon/u-icon")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-icon/u-icon.vue */ 266))
     },
     customWaterfallsFlow: function () {
-      return Promise.all(/*! import() | uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow")]).then(__webpack_require__.bind(null, /*! @/uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow.vue */ 276))
+      return Promise.all(/*! import() | uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow")]).then(__webpack_require__.bind(null, /*! @/uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow.vue */ 275))
     },
   }
 } catch (e) {
@@ -145,11 +142,6 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  if (!_vm._isMounted) {
-    _vm.e0 = function ($event) {
-      _vm.pickerShow = false
-    }
-  }
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -192,6 +184,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ 5));
 var _product = __webpack_require__(/*! @/api/product.js */ 168);
+var _user = __webpack_require__(/*! @/api/user.js */ 33);
 //
 //
 //
@@ -359,16 +352,16 @@ var _default = {
   },
   methods: {
     cityChange: function cityChange(item) {
-      var _this = this;
-      this.city = item.toString();
+      var _this2 = this;
+      this.city = item.detail.value[0].value;
       (0, _product.productRandom)({
-        city: item.toString()
+        city: item.detail.value[0].value
       }).then(function (res) {
         var _res = (0, _slicedToArray2.default)(res, 2),
           error = _res[0],
           success = _res[1];
-        _this.product.list = success.data;
-        _this.$refs.waterfallsFlowRef.refresh();
+        _this2.product.list = success.data;
+        _this2.$refs.waterfallsFlowRef.refresh();
       });
     },
     wapperClick: function wapperClick(item) {
@@ -383,7 +376,7 @@ var _default = {
     },
     search: function search(res) {
       uni.navigateTo({
-        url: '/pages/filterProduct/filterProduct?query=' + res
+        url: '/pages/filterProduct/filterProduct?query=' + res + '&city=' + this.city
       });
     },
     selectedBanner: function selectedBanner(item, index) {
@@ -391,7 +384,7 @@ var _default = {
     },
     clickFastEnter: function clickFastEnter(index) {
       uni.navigateTo({
-        url: '/pages/filterProduct/filterProduct?index=' + index
+        url: '/pages/filterProduct/filterProduct?tag=' + index + '&city=' + this.city
       });
     },
     changeTab: function changeTab(index) {
@@ -402,20 +395,34 @@ var _default = {
       });
     }
   },
-  onLoad: function onLoad() {
-    var _this2 = this;
+  onLoad: function onLoad(param) {
+    var _this = this;
+    // getUserInfo({
+    // 	userId: getApp().globalData.USER_ID
+    // }).then((res) => {
+    // 	let [error, success] = res;
+    // 	if (success.data.city != '') {
+    // 		_this.city = success.data.city;
+    // 	}
+    var city = this.city;
+    if (param.city != null) {
+      this.city = param.city;
+      city = param.city;
+    }
     (0, _product.productRandom)({
-      city: this.city
+      city: city
     }).then(function (res) {
       var _res2 = (0, _slicedToArray2.default)(res, 2),
         error = _res2[0],
         success = _res2[1];
-      _this2.product.list = success.data;
+      _this.product.list = success.data;
     });
+    // })
   },
   onPullDownRefresh: function onPullDownRefresh() {
+    var _this = this;
     uni.redirectTo({
-      url: '/pages/index/index'
+      url: '/pages/index/index?city=' + _this.city
     });
     // setTimeout(() => {
     // 	uni.stopPullDownRefresh();

@@ -5,12 +5,12 @@
 			<view>在PhotoCall，探索自我</view>
 		</view>
 
-		<u-picker title="请选择城市" :show="pickerShow" :columns="pickerColumns" @confirm="confirmPicker"
-			@cancel="pickerShow=false"></u-picker>
-
 		<!-- 搜索 -->
 		<view class="flex-row">
-			<uni-data-select v-model="city" :localdata="cityList" :clear="false" @change="cityChange"></uni-data-select>
+			<uni-data-picker popup-title="请选择城市" :localdata="cityList" v-model="city" :clear-icon="false"
+				@change="cityChange">
+			</uni-data-picker>
+			<!-- <uni-data-select v-model="city" :localdata="cityList" :clear="false" @change="cityChange"></uni-data-select> -->
 			<u-search :showAction="false" :animation="true" shape="square" placeholder="摄影师或者主题" bgColor="#FFFFFF"
 				@search="search"></u-search>
 		</view>
@@ -60,7 +60,7 @@
 		<!--  瀑布流  -->
 		<view style="padding: 10rpx;">
 			<custom-waterfalls-flow :value="product.list" :column="2" :columnSpace="1.5" @imageClick="imageClick"
-				 @wapperClick="wapperClick" ref="waterfallsFlowRef">
+				@wapperClick="wapperClick" ref="waterfallsFlowRef">
 				<!-- #ifdef MP-WEIXIN -->
 				<view class="item" v-for="(item,index) in product.list" :key="index" slot="slot{{index}}">
 					<view class="title">{{item.title}}</view>
@@ -85,10 +85,13 @@
 		productDetail,
 		productRandom
 	} from '@/api/product.js'
+	import {
+		getUserInfo
+	} from '@/api/user.js'
 	export default {
 		data() {
 			return {
-				city:'0',
+				city: '0',
 				cityList: [{
 						value: "0",
 						text: "深圳"
@@ -181,10 +184,10 @@
 			}
 		},
 		methods: {
-			cityChange(item){
-				this.city = item.toString();
+			cityChange(item) {
+				this.city = item.detail.value[0].value;
 				productRandom({
-					city: item.toString()
+					city: item.detail.value[0].value
 				}).then((res) => {
 					let [error, success] = res;
 					this.product.list = success.data;
@@ -203,7 +206,7 @@
 			},
 			search(res) {
 				uni.navigateTo({
-					url: '/pages/filterProduct/filterProduct?query=' + res,
+					url: '/pages/filterProduct/filterProduct?query=' + res + '&city=' + this.city
 				});
 			},
 			selectedBanner(item, index) {
@@ -211,7 +214,7 @@
 			},
 			clickFastEnter(index) {
 				uni.navigateTo({
-					url: '/pages/filterProduct/filterProduct?index=' + index,
+					url: '/pages/filterProduct/filterProduct?tag=' + index + '&city=' + this.city
 				});
 			},
 			changeTab(index) {
@@ -222,17 +225,32 @@
 				})
 			}
 		},
-		onLoad() {
+		onLoad: function(param) {
+			let _this = this;
+			// getUserInfo({
+			// 	userId: getApp().globalData.USER_ID
+			// }).then((res) => {
+			// 	let [error, success] = res;
+			// 	if (success.data.city != '') {
+			// 		_this.city = success.data.city;
+			// 	}
+			let city = this.city;
+			if (param.city != null) {
+				this.city = param.city;
+				city = param.city;
+			}
 			productRandom({
-				city: this.city
+				city: city
 			}).then((res) => {
 				let [error, success] = res;
-				this.product.list = success.data;
+				_this.product.list = success.data;
 			})
+			// })
 		},
 		onPullDownRefresh() {
+			let _this = this;
 			uni.redirectTo({
-				url: '/pages/index/index'
+				url: '/pages/index/index?city=' + _this.city
 			});
 			// setTimeout(() => {
 			// 	uni.stopPullDownRefresh();

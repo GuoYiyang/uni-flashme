@@ -13,6 +13,20 @@ export function productDetail(req) {
 	});
 }
 
+// 根据tag分页获取商品
+export function getProductPage(req) {
+	return uni.request({
+		url: baseUrl + '/product/page',
+		method: "GET",
+		data: {
+			city: req.city,
+			tag: req.tag,
+			query: req.query,
+			page: req.page,
+			pageSize: req.pageSize
+		}
+	});
+}
 
 // 随机获取10条产品
 export function productRandom(req) {
