@@ -7,6 +7,9 @@ export function productDetail(req) {
 	return uni.request({
 		url: baseUrl + '/product/detail',
 		method: "GET",
+		header:{
+			"X-USER-ID": getApp().globalData.USER_ID
+		},
 		data: {
 			id: req.id
 		}
@@ -22,6 +25,9 @@ export function getProductPage(req) {
 	return uni.request({
 		url: baseUrl + '/product/page',
 		method: "GET",
+		header:{
+			"X-USER-ID": getApp().globalData.USER_ID
+		},
 		data: {
 			userId: userId,
 			city: city,
@@ -38,6 +44,9 @@ export function productRandom(req) {
 	return uni.request({
 		url: baseUrl + '/product/random',
 		method: "GET",
+		header:{
+			"X-USER-ID": getApp().globalData.USER_ID
+		},
 		data: {
 			city: req.city,
 			tag: req.tag,
@@ -51,6 +60,9 @@ export function productCollect(req) {
 	return uni.request({
 		url: baseUrl + '/product/collect',
 		method: "POST",
+		header:{
+			"X-USER-ID": getApp().globalData.USER_ID
+		},
 		data: {
 			userId: req.userId,
 			productId: req.productId,
@@ -65,6 +77,9 @@ export function getProductCollect(req) {
 	return uni.request({
 		url: baseUrl + '/product/collect',
 		method: "GET",
+		header:{
+			"X-USER-ID": getApp().globalData.USER_ID
+		},
 		data: {
 			userId: req.userId
 		}
@@ -76,6 +91,9 @@ export function getProductCollectStatus(req) {
 	return uni.request({
 		url: baseUrl + '/product/collect/status',
 		method: "GET",
+		header:{
+			"X-USER-ID": getApp().globalData.USER_ID
+		},
 		data: {
 			userId: req.userId,
 			productId: req.productId
@@ -99,6 +117,9 @@ export function publishProduct(req) {
 	return uni.request({
 		url: baseUrl + '/product/publish',
 		method: "POST",
+		header:{
+			"X-USER-ID": getApp().globalData.USER_ID
+		},
 		data: {
 			userId: req.userId,
 			title: req.title,

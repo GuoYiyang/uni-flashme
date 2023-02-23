@@ -8,7 +8,10 @@
     "pages/filterProduct/filterProduct",
     "pages/editUserInfo/editUserInfo",
     "pages/publish/publish",
-    "pages/myProduct/myProduct"
+    "pages/myProduct/myProduct",
+    "pages/becomePher/becomePher",
+    "pages/policyDoc/policyDoc",
+    "pages/feedback/feedback"
   ],
   "subPackages": [],
   "window": {

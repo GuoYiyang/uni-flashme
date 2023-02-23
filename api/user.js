@@ -18,6 +18,9 @@ export function updateUserInfo(userInfo) {
 	return uni.request({
 		url: baseUrl + '/user/user-info',
 		method: "POST",
+		header:{
+			"X-USER-ID": getApp().globalData.USER_ID
+		},
 		data: {
 			id: userInfo.id,
 			avatar: userInfo.avatar,
@@ -35,6 +38,9 @@ export function getUserInfo(param) {
 	return uni.request({
 		url: baseUrl + '/user/user-info',
 		method: "GET",
+		header:{
+			"X-USER-ID": getApp().globalData.USER_ID
+		},
 		data: {
 			userId: param.userId,
 		}
@@ -47,6 +53,9 @@ export function pherCollect(req) {
 	return uni.request({
 		url: baseUrl + '/user/collect',
 		method: "POST",
+		header:{
+			"X-USER-ID": getApp().globalData.USER_ID
+		},
 		data: {
 			userId: req.userId,
 			pherId: req.pherId,
@@ -61,6 +70,9 @@ export function getPherCollect(req) {
 	return uni.request({
 		url: baseUrl + '/user/collect',
 		method: "GET",
+		header:{
+			"X-USER-ID": getApp().globalData.USER_ID
+		},
 		data: {
 			userId: req.userId
 		}
@@ -72,6 +84,9 @@ export function getPherCollectStatus(req) {
 	return uni.request({
 		url: baseUrl + '/user/collect/status',
 		method: "GET",
+		header:{
+			"X-USER-ID": getApp().globalData.USER_ID
+		},
 		data: {
 			userId: req.userId,
 			pherId: req.pherId
