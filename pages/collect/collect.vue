@@ -126,9 +126,11 @@
 			});
 		},
 		onPullDownRefresh() {
-			uni.redirectTo({
-				url: '/pages/collect/collect'
-			});
+			let _this = this;
+			setTimeout(() => {
+				_this.$refs.waterfallsFlowRef.refresh();
+				uni.stopPullDownRefresh();
+			}, 500);
 		},
 	}
 </script>

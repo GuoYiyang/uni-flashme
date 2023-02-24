@@ -101,13 +101,13 @@ var components
 try {
   components = {
     uTabs: function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-tabs/u-tabs */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-tabs/u-tabs")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-tabs/u-tabs.vue */ 292))
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-tabs/u-tabs */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-tabs/u-tabs")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-tabs/u-tabs.vue */ 310))
     },
     customWaterfallsFlow: function () {
-      return Promise.all(/*! import() | uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow")]).then(__webpack_require__.bind(null, /*! @/uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow.vue */ 285))
+      return Promise.all(/*! import() | uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow")]).then(__webpack_require__.bind(null, /*! @/uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow.vue */ 303))
     },
     fuiCard: function () {
-      return __webpack_require__.e(/*! import() | components/fui-card/fui-card */ "components/fui-card/fui-card").then(__webpack_require__.bind(null, /*! @/components/fui-card/fui-card.vue */ 300))
+      return __webpack_require__.e(/*! import() | components/fui-card/fui-card */ "components/fui-card/fui-card").then(__webpack_require__.bind(null, /*! @/components/fui-card/fui-card.vue */ 318))
     },
   }
 } catch (e) {
@@ -296,9 +296,11 @@ var _default = {
     });
   },
   onPullDownRefresh: function onPullDownRefresh() {
-    uni.redirectTo({
-      url: '/pages/collect/collect'
-    });
+    var _this = this;
+    setTimeout(function () {
+      _this.$refs.waterfallsFlowRef.refresh();
+      uni.stopPullDownRefresh();
+    }, 500);
   }
 };
 exports.default = _default;

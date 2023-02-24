@@ -249,12 +249,13 @@
 		},
 		onPullDownRefresh() {
 			let _this = this;
-			uni.redirectTo({
-				url: '/pages/index/index?city=' + _this.city
-			});
-			// setTimeout(() => {
-			// 	uni.stopPullDownRefresh();
-			// }, 500);
+			// uni.redirectTo({
+			// 	url: '/pages/index/index?city=' + _this.city
+			// });
+			setTimeout(() => {
+				_this.$refs.waterfallsFlowRef.refresh();
+				uni.stopPullDownRefresh();
+			}, 500);
 			// productRandom({
 			// 	city: this.city
 			// }).then((res)=>{
