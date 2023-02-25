@@ -12,13 +12,13 @@
 				</u-col>
 			</u-row>
 			
-			<u-row gutter="10" customStyle="padding: 10rpx;">
+			<u-row gutter="0" customStyle="padding: 10rpx;">
 				<u-col span="12">
 					<text>{{username}}</text>
 				</u-col>
 			</u-row>
 			
-			<u-row gutter="30" customStyle="padding: 10rpx;">
+			<u-row gutter="0" customStyle="padding: 10rpx;">
 				<u-col span="4">
 					<view @click="aboutMe">关于我</view>
 				</u-col>

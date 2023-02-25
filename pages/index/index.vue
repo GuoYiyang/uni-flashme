@@ -6,13 +6,13 @@
 		</view>
 
 		<!-- 搜索 -->
-		<u-row gutter="10" customStyle="padding: 20rpx;">
-			<u-col span="4">
+		<u-row gutter="0" customStyle="padding: 20rpx;">
+			<u-col span="3">
 				<uni-data-picker popup-title="请选择城市" :localdata="cityList" v-model="city" :clear-icon="false"
 					@change="cityChange">
 				</uni-data-picker>
 			</u-col>
-			<u-col span="8">
+			<u-col span="9">
 				<view @click="searchClick">
 					<u-search :showAction="false" :animation="true" shape="square" placeholder="摄影师或者主题" bgColor="#FFFFFF">
 					</u-search>
