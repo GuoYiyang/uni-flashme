@@ -243,10 +243,10 @@ var _upload = _interopRequireDefault(__webpack_require__(/*! ../../uni_modules/u
 var _default = {
   data: function data() {
     return {
-      img: '',
-      imgUrl: '',
-      imageList: [],
-      imageUrlList: [],
+      imagePath: '',
+      imageName: '',
+      imagePathList: [],
+      imageNameList: [],
       imageStyles: {
         "height": 100,
         // 边框高度
@@ -308,49 +308,48 @@ var _default = {
   },
   methods: {
     selectMainImg: function selectMainImg(e) {
-      this.img = e.tempFilePaths[0];
+      console.log(e);
+      this.imagePath = e.tempFilePaths[0];
+      this.imageName = e.tempFiles[0].name;
     },
     deleteMainImg: function deleteMainImg(e) {
-      this.img = "";
+      this.imagePath = "";
+      this.imageName = "";
     },
     seleteImage: function seleteImage(e) {
       var _this2 = this;
+      console.log(e);
       e.tempFilePaths.map(function (item) {
-        _this2.imageList.push({
-          name: 'url',
-          uri: item
-        });
+        _this2.imagePathList.push(item);
+      });
+      e.tempFiles.map(function (item) {
+        _this2.imageNameList.push(item.name);
       });
     },
     deleteImage: function deleteImage(e) {
       var _this3 = this;
-      this.imageList.map(function (item, i) {
-        if (item.uri == e.tempFilePath) {
-          _this3.imageList.splice(i, 1);
+      this.imagePathList.map(function (item, i) {
+        if (item == e.tempFilePath) {
+          _this3.imagePathList.splice(i, 1);
+        }
+      });
+      this.imageNameList.map(function (item, i) {
+        if (item == e.tempFile.name) {
+          _this3.imageNameList.splice(i, 1);
         }
       });
     },
     upload: function upload() {
       var _this = this;
-      if (this.img != "") {
+      if (this.imagePath != "") {
         (0, _product.uploadImages)({
-          filePath: this.img
-        }).then(function (res) {
-          var _res = (0, _slicedToArray2.default)(res, 2),
-            error = _res[0],
-            success = _res[1];
-          _this.imgUrl = success.data;
+          filePath: this.imagePath
         });
       }
-      if (this.imageList.length > 0) {
-        this.imageList.forEach(function (item) {
+      if (this.imagePathList.length > 0) {
+        this.imagePathList.forEach(function (item) {
           (0, _product.uploadImages)({
-            filePath: item.uri
-          }).then(function (res) {
-            var _res2 = (0, _slicedToArray2.default)(res, 2),
-              error = _res2[0],
-              success = _res2[1];
-            _this.imageUrlList.push(success.data.toString());
+            filePath: item
           });
         });
       }
@@ -366,13 +365,12 @@ var _default = {
         content: JSON.stringify(content),
         tags: this.baseFormData.tag.toString(),
         price: this.baseFormData.price,
-        imgUrl: this.imgUrl,
-        imgUrlList: this.imageUrlList
+        imgName: this.imageName,
+        imgNameList: this.imageNameList
       }).then(function (res) {
-        var _res3 = (0, _slicedToArray2.default)(res, 2),
-          error = _res3[0],
-          success = _res3[1];
-        console.log(success);
+        var _res = (0, _slicedToArray2.default)(res, 2),
+          error = _res[0],
+          success = _res[1];
         if (success.data == true) {
           uni.showToast({
             title: '发布成功'
@@ -391,14 +389,16 @@ var _default = {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                console.log(_this4.imageName);
+                console.log(_this4.imageNameList);
                 uni.showLoading();
                 _this4.upload();
+                _this4.publish();
                 setTimeout(function () {
-                  _this4.publish();
-                }, 1000);
-                uni.hideLoading();
-                uni.navigateBack();
-              case 5:
+                  uni.hideLoading();
+                  uni.navigateBack();
+                }, 2000);
+              case 6:
               case "end":
                 return _context.stop();
             }

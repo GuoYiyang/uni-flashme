@@ -125,6 +125,18 @@
 		},
 		onPullDownRefresh() {
 			let _this = this;
+			getProductCollect({
+				userId: getApp().globalData.USER_ID
+			}).then((res) => {
+				let [error, success] = res;
+				_this.product.list = success.data;
+			});
+			getPherCollect({
+				userId: getApp().globalData.USER_ID
+			}).then((res) => {
+				let [error, success] = res;
+				_this.pher.list = success.data;
+			});
 			setTimeout(() => {
 				_this.$refs.waterfallsFlowRef.refresh();
 				uni.stopPullDownRefresh();

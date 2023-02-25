@@ -20692,8 +20692,8 @@ function publishProduct(req) {
       content: req.content,
       tags: req.tags,
       price: req.price,
-      imgUrl: req.imgUrl,
-      imgUrlList: req.imgUrlList
+      imgName: req.imgName,
+      imgNameList: req.imgNameList
     }
   });
 }

@@ -109,6 +109,9 @@ try {
     customWaterfallsFlow: function () {
       return Promise.all(/*! import() | uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow")]).then(__webpack_require__.bind(null, /*! @/uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow.vue */ 303))
     },
+    uniGoodsNav: function () {
+      return Promise.all(/*! import() | uni_modules/uni-goods-nav/components/uni-goods-nav/uni-goods-nav */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-goods-nav/components/uni-goods-nav/uni-goods-nav")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-goods-nav/components/uni-goods-nav/uni-goods-nav.vue */ 383))
+    },
   }
 } catch (e) {
   if (
@@ -211,6 +214,11 @@ var _product = __webpack_require__(/*! @/api/product.js */ 168);
 //
 //
 //
+//
+//
+//
+//
+//
 var _default = {
   data: function data() {
     return {
@@ -225,6 +233,11 @@ var _default = {
         name: '情侣'
       }, {
         name: '写真'
+      }],
+      tabbarGroup: [{
+        text: '发布新产品',
+        backgroundColor: '#000000',
+        color: '#fff'
       }]
     };
   },
@@ -237,6 +250,11 @@ var _default = {
     imageClick: function imageClick(item) {
       uni.navigateTo({
         url: '../product/product?id=' + item.id
+      });
+    },
+    buttonClick: function buttonClick(item) {
+      uni.navigateTo({
+        url: '../publish/publish'
       });
     }
   },

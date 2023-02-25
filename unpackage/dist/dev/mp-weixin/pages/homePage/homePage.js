@@ -208,8 +208,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ 5));
 var _product = __webpack_require__(/*! @/api/product.js */ 168);
-//
-//
+var _user = __webpack_require__(/*! @/api/user.js */ 33);
 //
 //
 //
@@ -279,7 +278,7 @@ var _default = {
     this.username = getApp().globalData.USER_NAME;
     this.avatar = getApp().globalData.AVATAR;
     var _this = this;
-    getUserInfo({
+    (0, _user.getUserInfo)({
       userId: getApp().globalData.USER_ID
     }).then(function (res) {
       var _res = (0, _slicedToArray2.default)(res, 2),

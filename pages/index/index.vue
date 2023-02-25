@@ -7,12 +7,12 @@
 
 		<!-- 搜索 -->
 		<u-row gutter="10" customStyle="padding: 20rpx;">
-			<u-col span="3">
+			<u-col span="4">
 				<uni-data-picker popup-title="请选择城市" :localdata="cityList" v-model="city" :clear-icon="false"
 					@change="cityChange">
 				</uni-data-picker>
 			</u-col>
-			<u-col span="9">
+			<u-col span="8">
 				<view @click="searchClick">
 					<u-search :showAction="false" :animation="true" shape="square" placeholder="摄影师或者主题" bgColor="#FFFFFF">
 					</u-search>
@@ -254,24 +254,24 @@
 			// })
 		},
 		onPullDownRefresh() {
-			let _this = this;
+			// let _this = this;
 			// uni.redirectTo({
 			// 	url: '/pages/index/index?city=' + _this.city
 			// });
-			setTimeout(() => {
-				_this.$refs.waterfallsFlowRef.refresh();
-				uni.stopPullDownRefresh();
-			}, 500);
-			// productRandom({
-			// 	city: this.city
-			// }).then((res)=>{
-			// 	let [error, success] = res;
-			// 	this.product.list = success.data;
-			// 	this.$refs.waterfallsFlowRef.refresh();
-			// })
-			// setTimeout(function() {
+			// setTimeout(() => {
+			// 	_this.$refs.waterfallsFlowRef.refresh();
 			// 	uni.stopPullDownRefresh();
 			// }, 500);
+			productRandom({
+				city: this.city
+			}).then((res)=>{
+				let [error, success] = res;
+				this.product.list = success.data;
+				this.$refs.waterfallsFlowRef.refresh();
+			})
+			setTimeout(function() {
+				uni.stopPullDownRefresh();
+			}, 500);
 		},
 		onReachBottom() {
 			productRandom({

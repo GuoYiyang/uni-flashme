@@ -20,15 +20,13 @@
 			
 			<u-row gutter="30" customStyle="padding: 10rpx;">
 				<u-col span="4">
-					<view @click="aboutMe">关于TA</view>
+					<view @click="aboutMe">关于我</view>
 				</u-col>
-				<u-col span="4">
-					<view @click="contact">联系TA</view>
-					<!-- <text @click="contact">联系TA</text> -->
+				<u-col span="5">
+					<view @click="contact">联系方式</view>
 				</u-col>
 				<u-col span="6">
 					<view @click="priceDetail">套餐价格</view>
-					<!-- <text @click="priceDetail">套餐价格</text> -->
 				</u-col>
 			</u-row>
 		</view>
@@ -36,8 +34,8 @@
 		<view style="padding: 20rpx;">
 			
 			<uni-list>
-				<uni-list-item title="发布产品" showArrow link="navigateTo" to="../publish/publish"/>
-				<uni-list-item title="发布的作品" showArrow link="navigateTo" to="../myProduct/myProduct"/>
+				<!-- <uni-list-item title="发布产品" showArrow link="navigateTo" to="../publish/publish"/> -->
+				<uni-list-item title="我的作品" showArrow link="navigateTo" to="../myProduct/myProduct"/>
 				<uni-list-item title="成为摄影师" showArrow link="navigateTo" to="../becomePher/becomePher"/>
 				<uni-list-item title="PhotoCall预定保障" showArrow link="navigateTo" to="../policyDoc/policyDoc"/>
 				<uni-list-item title="问题反馈" showArrow link="navigateTo" to="../feedback/feedback"/>
@@ -52,6 +50,10 @@
 	import {
 		getProductPage
 	} from '@/api/product.js'
+	import {
+		updateUserInfo,
+		getUserInfo
+	} from '@/api/user.js';
 	export default {
 		data() {
 			return {

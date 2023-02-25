@@ -410,34 +410,37 @@ var _default = {
     // })
   },
   onPullDownRefresh: function onPullDownRefresh() {
-    var _this = this;
+    var _this3 = this;
+    // let _this = this;
     // uni.redirectTo({
     // 	url: '/pages/index/index?city=' + _this.city
     // });
-    setTimeout(function () {
-      _this.$refs.waterfallsFlowRef.refresh();
-      uni.stopPullDownRefresh();
-    }, 500);
-    // productRandom({
-    // 	city: this.city
-    // }).then((res)=>{
-    // 	let [error, success] = res;
-    // 	this.product.list = success.data;
-    // 	this.$refs.waterfallsFlowRef.refresh();
-    // })
-    // setTimeout(function() {
+    // setTimeout(() => {
+    // 	_this.$refs.waterfallsFlowRef.refresh();
     // 	uni.stopPullDownRefresh();
     // }, 500);
-  },
-  onReachBottom: function onReachBottom() {
-    var _this3 = this;
     (0, _product.productRandom)({
       city: this.city
     }).then(function (res) {
       var _res3 = (0, _slicedToArray2.default)(res, 2),
         error = _res3[0],
         success = _res3[1];
-      _this3.product.list = _this3.product.list.concat(success.data);
+      _this3.product.list = success.data;
+      _this3.$refs.waterfallsFlowRef.refresh();
+    });
+    setTimeout(function () {
+      uni.stopPullDownRefresh();
+    }, 500);
+  },
+  onReachBottom: function onReachBottom() {
+    var _this4 = this;
+    (0, _product.productRandom)({
+      city: this.city
+    }).then(function (res) {
+      var _res4 = (0, _slicedToArray2.default)(res, 2),
+        error = _res4[0],
+        success = _res4[1];
+      _this4.product.list = _this4.product.list.concat(success.data);
     });
   }
 };

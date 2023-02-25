@@ -33,6 +33,11 @@
 				<!-- #endif -->
 			</custom-waterfalls-flow>
 		</view>
+		
+		<view class="collect-tabbar">
+			<uni-goods-nav :options="[]" :button-group="tabbarGroup" @buttonClick="buttonClick" />
+		</view>
+		
 	</view>
 </template>
 
@@ -58,6 +63,11 @@
 						name: '写真'
 					},
 				],
+				tabbarGroup: [{
+					text: '发布新产品',
+					backgroundColor: '#000000',
+					color: '#fff'
+				}],
 			}
 		},
 		methods: {
@@ -71,6 +81,11 @@
 					url: '../product/product?id=' + item.id
 				})
 			},
+			buttonClick(item) {
+				uni.navigateTo({
+					url: '../publish/publish'
+				})
+			}
 		},
 		onLoad: function(param) { //option为object类型，会序列化上个页面传递的参数
 			let _this = this;
@@ -128,5 +143,19 @@
 			box-sizing: border-box;
 			/* #endif */
 		}
+	}
+	.collect-tabbar {
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex-direction: column;
+		position: fixed;
+		left: 50rpx;
+		right: 50rpx;
+		/* #ifdef H5 */
+		left: var(--window-left);
+		right: var(--window-right);
+		/* #endif */
+		bottom: 30rpx;
 	}
 </style>

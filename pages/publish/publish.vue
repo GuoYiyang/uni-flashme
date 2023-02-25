@@ -56,10 +56,10 @@
 	export default {
 		data() {
 			return {
-				img: '',
-				imgUrl: '',
-				imageList: [],
-				imageUrlList: [],
+				imagePath: '',
+				imageName: '',
+				imagePathList: [],
+				imageNameList: [],
 				imageStyles: {
 					"height": 100, // 边框高度
 					"width": 100, // 边框宽度
@@ -114,43 +114,46 @@
 		},
 		methods: {
 			selectMainImg(e) {
-				this.img = e.tempFilePaths[0];
+				console.log(e)
+				this.imagePath = e.tempFilePaths[0];
+				this.imageName = e.tempFiles[0].name;
 			},
 			deleteMainImg(e) {
-				this.img = "";
+				this.imagePath = "";
+				this.imageName = "";
 			},
 			seleteImage(e) {
+				console.log(e)
 				e.tempFilePaths.map(item => {
-					this.imageList.push({
-						name: 'url',
-						uri: item
-					})
-				})
+					this.imagePathList.push(item)
+				});
+				e.tempFiles.map(item => {
+					this.imageNameList.push(item.name)
+				});
 			},
 			deleteImage(e) {
-				this.imageList.map((item, i) => {
-					if (item.uri == e.tempFilePath) {
-						this.imageList.splice(i, 1)
+				this.imagePathList.map((item, i) => {
+					if (item == e.tempFilePath) {
+						this.imagePathList.splice(i, 1)
 					}
-				})
+				});
+				this.imageNameList.map((item, i) => {
+					if (item == e.tempFile.name) {
+						this.imageNameList.splice(i, 1)
+					}
+				});
 			},
 			upload() {
 				let _this = this;
-				if (this.img != "") {
+				if (this.imagePath != "") {
 					uploadImages({
-						filePath: this.img
-					}).then((res) => {
-						let [error, success] = res;
-						_this.imgUrl = success.data;
+						filePath: this.imagePath
 					})
 				}
-				if (this.imageList.length > 0) {
-					this.imageList.forEach(item => {
+				if (this.imagePathList.length > 0) {
+					this.imagePathList.forEach(item => {
 						uploadImages({
-							filePath: item.uri
-						}).then((res) => {
-							let [error, success] = res;
-							_this.imageUrlList.push(success.data.toString())
+							filePath: item
 						})
 					})
 				}
@@ -166,11 +169,10 @@
 					content: JSON.stringify(content),
 					tags: this.baseFormData.tag.toString(),
 					price: this.baseFormData.price,
-					imgUrl: this.imgUrl,
-					imgUrlList: this.imageUrlList,
+					imgName: this.imageName,
+					imgNameList: this.imageNameList,
 				}).then((res) => {
 					let [error, success] = res;
-					console.log(success);
 					if (success.data == true) {
 						uni.showToast({
 							title: '发布成功'
@@ -180,17 +182,18 @@
 							title: '发布失败'
 						})
 					}
-
 				})
 			},
 			async submit() {
+				console.log(this.imageName)
+				console.log(this.imageNameList)
 				uni.showLoading();
 				this.upload();
+				this.publish();
 				setTimeout(() => {
-					this.publish();
-				}, 1000)
-				uni.hideLoading();
-				uni.navigateBack();
+					uni.hideLoading();
+					uni.navigateBack();
+				}, 2000)
 			}
 		}
 	}

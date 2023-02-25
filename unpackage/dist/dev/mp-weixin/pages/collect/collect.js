@@ -296,6 +296,22 @@ var _default = {
   },
   onPullDownRefresh: function onPullDownRefresh() {
     var _this = this;
+    (0, _product.getProductCollect)({
+      userId: getApp().globalData.USER_ID
+    }).then(function (res) {
+      var _res3 = (0, _slicedToArray2.default)(res, 2),
+        error = _res3[0],
+        success = _res3[1];
+      _this.product.list = success.data;
+    });
+    (0, _user.getPherCollect)({
+      userId: getApp().globalData.USER_ID
+    }).then(function (res) {
+      var _res4 = (0, _slicedToArray2.default)(res, 2),
+        error = _res4[0],
+        success = _res4[1];
+      _this.pher.list = success.data;
+    });
     setTimeout(function () {
       _this.$refs.waterfallsFlowRef.refresh();
       uni.stopPullDownRefresh();
