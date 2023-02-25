@@ -3,8 +3,6 @@
   "enablePullDownRefresh": false,
   "usingComponents": {
     "u-row": "/uni_modules/uview-ui/components/u-row/u-row",
-    "u-col": "/uni_modules/uview-ui/components/u-col/u-col",
-    "uni-data-picker": "/uni_modules/uni-data-picker/components/uni-data-picker/uni-data-picker",
     "u-line": "/uni_modules/uview-ui/components/u-line/u-line",
     "custom-waterfalls-flow": "/uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow"
   }

@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view style="padding: 20rpx;">
-		<fui-card @click="clickPherCard" :src="avatar" :title="username" tag="优质摄影师" full="true">
+		<fui-card @click="clickAvatar" :src="avatar" :title="username" tag="优质摄影师" full="true">
 			<view class="fui-card__content" style="padding: 20rpx;">
 				{{desc}}
 			</view>
@@ -13,7 +13,7 @@
 			
 			<uni-list>
 				<uni-list-item title="发布产品" showArrow link="navigateTo" to="../publish/publish"/>
-				<uni-list-item title="发布的产品" showArrow link="navigateTo" to="../myProduct/myProduct"/>
+				<uni-list-item title="修改资料" showArrow link="navigateTo" to="../editUserInfo/editUserInfo"/>
 				<!-- <uni-list-item title="发布的客片" showArrow link="navigateTo" to=""/> -->
 				<uni-list-item title="成为摄影师" showArrow link="navigateTo" to="../becomePher/becomePher"/>
 				<uni-list-item title="PhotoCall预定保障" showArrow link="navigateTo" to="../policyDoc/policyDoc"/>
@@ -38,9 +38,9 @@
 			}
 		},
 		methods: {
-			clickPherCard() {
+			clickAvatar() {
 				uni.navigateTo({
-					url: '/pages/editUserInfo/editUserInfo'
+					url: '/pages/homePage/homePage'
 				})
 			},
 		},

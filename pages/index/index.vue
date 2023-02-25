@@ -6,14 +6,19 @@
 		</view>
 
 		<!-- 搜索 -->
-		<view class="flex-row">
-			<uni-data-picker popup-title="请选择城市" :localdata="cityList" v-model="city" :clear-icon="false"
-				@change="cityChange">
-			</uni-data-picker>
-			<!-- <uni-data-select v-model="city" :localdata="cityList" :clear="false" @change="cityChange"></uni-data-select> -->
-			<u-search :showAction="false" :animation="true" shape="square" placeholder="摄影师或者主题" bgColor="#FFFFFF"
-				@search="search"></u-search>
-		</view>
+		<u-row gutter="10" customStyle="padding: 20rpx;">
+			<u-col span="3">
+				<uni-data-picker popup-title="请选择城市" :localdata="cityList" v-model="city" :clear-icon="false"
+					@change="cityChange">
+				</uni-data-picker>
+			</u-col>
+			<u-col span="9">
+				<view @click="searchClick">
+					<u-search :showAction="false" :animation="true" shape="square" placeholder="摄影师或者主题" bgColor="#FFFFFF">
+					</u-search>
+				</view>
+			</u-col>
+		</u-row>
 
 
 		<!-- 快捷入口 -->
@@ -180,7 +185,7 @@
 				// 产品瀑布流
 				product: {
 					list: []
-				}
+				},
 			}
 		},
 		methods: {
@@ -204,11 +209,6 @@
 					url: '../product/product?id=' + item.id
 				})
 			},
-			search(res) {
-				uni.navigateTo({
-					url: '/pages/filterProduct/filterProduct?query=' + res + '&city=' + this.city
-				});
-			},
 			selectedBanner(item, index) {
 				console.log(item, index)
 			},
@@ -223,7 +223,13 @@
 					title: index.name,
 					icon: 'none'
 				})
-			}
+			},
+			searchClick() {
+				uni.navigateTo({
+					url: '/pages/search/search?city=' + this.city
+				});
+			},
+
 		},
 		onLoad: function(param) {
 			let _this = this;

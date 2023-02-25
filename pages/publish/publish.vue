@@ -73,7 +73,7 @@
 				baseFormData: {
 					title: '',
 					price: '',
-					introduction: {},
+					introduction:'',
 					tag: [],
 					info:'',
 					notice:''
@@ -156,10 +156,14 @@
 				}
 			},
 			publish() {
+				let content = {
+					'info': this.baseFormData.info,
+					'introduction': this.baseFormData.introduction
+				}
 				publishProduct({
 					userId: getApp().globalData.USER_ID,
 					title: this.baseFormData.title,
-					content: this.baseFormData.introduction,
+					content: JSON.stringify(content),
 					tags: this.baseFormData.tag.toString(),
 					price: this.baseFormData.price,
 					imgUrl: this.imgUrl,
@@ -176,8 +180,7 @@
 							title: '发布失败'
 						})
 					}
-					uni.hideLoading();
-					uni.navigateBack();
+
 				})
 			},
 			async submit() {
@@ -186,6 +189,8 @@
 				setTimeout(() => {
 					this.publish();
 				}, 1000)
+				uni.hideLoading();
+				uni.navigateBack();
 			}
 		}
 	}

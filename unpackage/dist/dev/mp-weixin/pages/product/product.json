@@ -9,6 +9,7 @@
     "u-tabs": "/uni_modules/uview-ui/components/u-tabs/u-tabs",
     "uni-section": "/uni_modules/uni-section/components/uni-section/uni-section",
     "uni-group": "/uni_modules/uni-group/components/uni-group/uni-group",
+    "u-popup": "/uni_modules/uview-ui/components/u-popup/u-popup",
     "uni-goods-nav": "/uni_modules/uni-goods-nav/components/uni-goods-nav/uni-goods-nav"
   }
 }

@@ -172,9 +172,9 @@
 			}
 		},
 		onShow() {
-			this.userInfo.id = getApp().globalData.USER_ID;
 		},
 		onLoad() {
+			this.userInfo.id = getApp().globalData.USER_ID;
 			let _this = this;
 			getUserInfo({
 				userId: getApp().globalData.USER_ID

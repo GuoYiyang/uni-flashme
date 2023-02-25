@@ -1,8 +1,8 @@
 <template>
 	<view>
 		<!-- 轮播图 -->
-		<view style="padding: 0 10rpx;">
-			<u-swiper :list="imgUrlList" indicator indicatorMode="line" circular height="500"></u-swiper>
+		<view>
+			<u-swiper :list="imgUrlList" indicator indicatorMode="line" circular height="500px"></u-swiper>
 		</view>
 
 		<view style="padding: 10rpx;">
@@ -21,11 +21,10 @@
 			</uni-row>
 		</view>
 
-		<fui-card @click="clickCard" :src="cameramanAvatar" :title="cameramanName" tag="优质摄影师">
-			<view class="fui-card__content" style="padding: 20rpx;">{{cameramanDesc}}</view>
-		</fui-card>
+		<fui-card :src="cameramanAvatar" :title="cameramanName" tag="优质摄影师" @click="clickCard"></fui-card>
 
-		<view class="center">
+
+				<view class="center">
 			<u-tabs :list="tabsList" lineWidth="60" lineHeight="3" lineColor="#000000" :activeStyle="{
 			        color: '#303133',
 			        fontWeight: 'bold',
@@ -35,7 +34,6 @@
 			        transform: 'scale(1)'
 			    }" itemStyle="padding-left: 15px; padding-right: 15px; height: 34px;" @change="tabsChange" :duration="100">
 			</u-tabs>
-
 		</view>
 
 		<view v-if="productDetailShow" class="info">
@@ -56,6 +54,14 @@
 
 		<view v-if="productCustomerShow" class="info">
 			<uni-section title="客片展示" type="line" titleFontSize="30rpx">
+			</uni-section>
+		</view>
+
+
+
+		<u-popup :show="popShow" :round="20" @close="this.popShow = false" mode="bottom" :safeAreaInsetBottom="false">
+			
+			<uni-section title="基本信息" type="line" titleFontSize="30rpx">
 				<uni-group>
 					<view>拍摄人数:1</view>
 					<view>拍摄张数:15</view>
@@ -67,15 +73,14 @@
 					<view>拍摄需要提前化妆。。。</view>
 				</uni-group>
 			</uni-section>
-		</view>
-
-
+		</u-popup>
 
 
 		<view class="collect-tabbar">
 			<uni-goods-nav :options="tabbarOptions" :fill="false" :button-group="tabbarGroup" @click="optionClick"
 				@buttonClick="buttonClick" />
 		</view>
+
 
 
 
@@ -94,12 +99,13 @@
 	export default {
 		data() {
 			return {
+				swiperHeight: '',
 				productId: '',
 				cameramanId: '',
 				cameramanAvatar: '',
 				cameramanName: '',
 				cameramanDesc: '',
-				cameramanPhone:'',
+				cameramanPhone: '',
 				options: [{
 					icon: 'heart',
 					text: '收藏'
@@ -118,7 +124,7 @@
 				tabsCurrent: 0,
 				productDetailShow: true,
 				productCustomerShow: false,
-				isCollect:false,
+				isCollect: false,
 				tabbarOptions: [{
 					icon: 'heart',
 					text: '收藏'
@@ -128,9 +134,17 @@
 					backgroundColor: '#000000',
 					color: '#fff'
 				}],
+				info: '',
+				introduction: '',
+				popShow: false
 			}
 		},
 		methods: {
+			clickCard(){
+				uni.navigateTo({
+					url: '../userShow/userShow?userId=' + this.cameramanId 
+				})
+			},
 			tabsChange(index) {
 				this.tabsCurrent = index.index;
 				if (index.index == 0) {
@@ -151,7 +165,7 @@
 						productId: this.productId,
 						isDelete: 0
 					})
-				} else{
+				} else {
 					this.tabbarOptions[0].icon = 'heart'
 					productCollect({
 						userId: getApp().globalData.USER_ID,
@@ -159,7 +173,7 @@
 						isDelete: 1
 					})
 				}
-				
+
 			},
 			buttonClick(item) {
 				uni.makePhoneCall({
@@ -186,8 +200,14 @@
 				this.price = success.data.price;
 				this.tags = success.data.tags;
 				this.cameramanId = success.data.userId;
+
+				let content = JSON.parse(success.data.userId);
+
+				this.info = content.info;
+				this.introduction = content.introduction;
+
 				getUserInfo({
-					userId: success.data.userId
+					userId: this.cameramanId
 				}).then((res) => {
 					let [error, success] = res;
 					this.cameramanAvatar = success.data.avatar;
@@ -199,13 +219,13 @@
 			getProductCollectStatus({
 				userId: getApp().globalData.USER_ID,
 				productId: this.productId,
-			}).then((res)=>{
+			}).then((res) => {
 				let [error, success] = res;
 				console.log("getProductCollectStatus", success)
 				this.isCollect = success.data;
 				if (this.isCollect) {
 					this.tabbarOptions[0].icon = 'heart-filled'
-				} else{
+				} else {
 					this.tabbarOptions[0].icon = 'heart'
 				}
 			})

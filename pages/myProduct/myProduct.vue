@@ -1,5 +1,19 @@
 <template>
 	<view>
+		<view>
+			 <u-sticky bgColor="#f5f5f5">
+				<u-tabs :list="tabsList" lineWidth="30" lineHeight="3" lineColor="#000000" :activeStyle="{
+				        color: '#303133',
+				        fontWeight: 'bold',
+				        transform: 'scale(1.1)'
+				    }" :inactiveStyle="{
+				        color: '#606266',
+				        transform: 'scale(1)'
+				    }" itemStyle="padding-left: 15px; padding-right: 15px; height: 34px;" @change="tabsChange" :duration="100">
+				</u-tabs> 
+			 </u-sticky>
+		</view>
+		
 		<view style="padding: 10rpx;">
 			<custom-waterfalls-flow :value="product.list" :column="2" :columnSpace="1.5" @imageClick="imageClick"
 				@wapperClick="wapperClick" ref="waterfallsFlowRef">
@@ -33,7 +47,17 @@
 				pageSize: 10,
 				product: {
 					list: []
-				}
+				},
+				tabsList: [{
+						name: '全部'
+					},
+					{
+						name: '情侣'
+					},
+					{
+						name: '写真'
+					},
+				],
 			}
 		},
 		methods: {

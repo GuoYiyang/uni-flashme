@@ -103,20 +103,12 @@
 			}
 		},
 		onLoad() {
-			
-		},
-		onShow() {
-			console.log("collect show")
 			let _this = this;
-			_this.tabsCurrent = 0;
-			_this.collectProductShow = true;
-			_this.collectPhotographerShow = false;
 			getProductCollect({
 				userId: getApp().globalData.USER_ID
 			}).then((res) => {
 				let [error, success] = res;
 				_this.product.list = success.data;
-				this.$refs.waterfallsFlowRef.refresh();
 			});
 			getPherCollect({
 				userId: getApp().globalData.USER_ID
@@ -124,6 +116,12 @@
 				let [error, success] = res;
 				_this.pher.list = success.data;
 			});
+		},
+		onShow() {
+			let _this = this;
+			_this.tabsCurrent = 0;
+			_this.collectProductShow = true;
+			_this.collectPhotographerShow = false;
 		},
 		onPullDownRefresh() {
 			let _this = this;

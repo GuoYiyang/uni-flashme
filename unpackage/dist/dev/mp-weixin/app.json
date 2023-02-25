@@ -11,7 +11,10 @@
     "pages/myProduct/myProduct",
     "pages/becomePher/becomePher",
     "pages/policyDoc/policyDoc",
-    "pages/feedback/feedback"
+    "pages/feedback/feedback",
+    "pages/homePage/homePage",
+    "pages/search/search",
+    "pages/userShow/userShow"
   ],
   "subPackages": [],
   "window": {
@@ -24,7 +27,7 @@
     "fontSize": "20rpx",
     "height": "100rpx",
     "color": "#7A7E83",
-    "selectedColor": "#3cc51f",
+    "selectedColor": "#000000",
     "borderStyle": "white",
     "backgroundColor": "#ffffff",
     "list": [
@@ -43,7 +46,7 @@
       {
         "iconPath": "static/user.png",
         "selectedIconPath": "static/user.png",
-        "pagePath": "pages/user/user",
+        "pagePath": "pages/homePage/homePage",
         "text": "我的"
       }
     ]
