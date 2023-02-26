@@ -1,8 +1,6 @@
 {
   "navigationBarTitleText": "详情",
   "enablePullDownRefresh": false,
-  "navigationStyle": "custom",
-  "navigationBarTextStyle": "white",
   "usingComponents": {
     "u-swiper": "/uni_modules/uview-ui/components/u-swiper/u-swiper",
     "uni-row": "/uni_modules/uni-row/components/uni-row/uni-row",

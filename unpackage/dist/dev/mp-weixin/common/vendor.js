@@ -28679,9 +28679,7 @@ var _default = {
     "path": "pages/product/product",
     "style": {
       "navigationBarTitleText": "详情",
-      "enablePullDownRefresh": false,
-      "navigationStyle": "custom",
-      "navigationBarTextStyle": "white"
+      "enablePullDownRefresh": false
     }
   }, {
     "path": "pages/filterProduct/filterProduct",
