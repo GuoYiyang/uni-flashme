@@ -68,7 +68,7 @@
 		</view>
 
 		<view class="collect-tabbar">
-			<uni-goods-nav :options="[]" :button-group="tabbarGroup" @buttonClick="buttonClick" />
+			<u-button @click="buttonClick">发布新作品</u-button>
 		</view>
 
 	</view>
@@ -94,13 +94,7 @@
 				},
 				tabsList: [{
 						name: '全部'
-					},
-					{
-						name: '情侣'
-					},
-					{
-						name: '写真'
-					},
+					}
 				],
 				tabbarGroup: [{
 					text: '发布新产品',
@@ -171,6 +165,7 @@
 			})
 		},
 		onShow() {
+			let _this = this;
 			getProductPage({
 				userId: getApp().globalData.USER_ID,
 				page: this.page,
@@ -178,24 +173,26 @@
 			}).then((res) => {
 				let [error, success] = res;
 				if (success.data.length == 0) {}
-				this.product.list = success.data;
-				this.$refs.waterfallsFlowRef.refresh();
+				_this.product.list = success.data;
+				_this.$refs.waterfallsFlowRef.refresh();
 			})
 		},
 		onReachBottom() {
+			let _this = this;
 			this.page = this.page + 1;
 			getProductPage({
 				userId: getApp().globalData.USER_ID,
-				page: this.page,
-				pageSize: this.pageSize
+				page: _this.page,
+				pageSize: _this.pageSize
 			}).then((res) => {
 				let [error, success] = res;
 				if (success.data.length == 0) {}
-				this.product.list = this.product.list.concat(success.data);
+				_this.product.list = _this.product.list.concat(success.data);
 			})
 		},
 		onPullDownRefresh() {
 			this.page = 1;
+			let _this = this;
 			getProductPage({
 				userId: getApp().globalData.USER_ID,
 				page: this.page,
@@ -203,8 +200,8 @@
 			}).then((res) => {
 				let [error, success] = res;
 				if (success.data.length == 0) {}
-				this.product.list = success.data;
-				this.$refs.waterfallsFlowRef.refresh();
+				_this.product.list = success.data;
+				_this.$refs.waterfallsFlowRef.refresh();
 			})
 			setTimeout(function() {
 				uni.stopPullDownRefresh();
@@ -250,6 +247,6 @@
 		left: var(--window-left);
 		right: var(--window-right);
 		/* #endif */
-		bottom: 30rpx;
+		bottom: 40rpx;
 	}
 </style>

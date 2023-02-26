@@ -407,6 +407,7 @@ var _default = {
     }
   },
   onLoad: function onLoad(param) {
+    uni.showShareMenu();
     var _this = this;
     // getUserInfo({
     // 	userId: getApp().globalData.USER_ID
@@ -427,6 +428,10 @@ var _default = {
         error = _res2[0],
         success = _res2[1];
       _this.product.list = success.data;
+    });
+    uni.showShareMenu({
+      withShareTicket: true,
+      menus: ["shareAppMessage", "shareTimeline"]
     });
     // })
   },

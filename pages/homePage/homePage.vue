@@ -1,23 +1,24 @@
 <template>
 	<view>
 		<view class="center">
-			
+
 			<u-row gutter="10" customStyle="padding: 10rpx;">
 				<u-col span="12">
 					<view @click="avatarClick">
-						<u-avatar src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fsafe-img.xhscdn.com%2Fbw1%2Fb420e1ac-6042-4d62-adbd-490724e2cf3a%3FimageView2%2F2%2Fw%2F1080%2Fformat%2Fjpg&refer=http%3A%2F%2Fsafe-img.xhscdn.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1679896500&t=2d6a0897e062565697949783ab7f9725"
-						size="80" ></u-avatar>
+						<u-avatar
+							src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fsafe-img.xhscdn.com%2Fbw1%2Fb420e1ac-6042-4d62-adbd-490724e2cf3a%3FimageView2%2F2%2Fw%2F1080%2Fformat%2Fjpg&refer=http%3A%2F%2Fsafe-img.xhscdn.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1679896500&t=2d6a0897e062565697949783ab7f9725"
+							size="80"></u-avatar>
 					</view>
 
 				</u-col>
 			</u-row>
-			
+
 			<u-row gutter="0" customStyle="padding: 10rpx;">
 				<u-col span="12">
 					<text>{{username}}</text>
 				</u-col>
 			</u-row>
-			
+
 			<u-row gutter="0" customStyle="padding: 10rpx;">
 				<u-col span="4">
 					<view @click="aboutMe">关于我</view>
@@ -30,19 +31,19 @@
 				</u-col>
 			</u-row>
 		</view>
-		
+
 		<view style="padding: 20rpx;">
-			
+
 			<uni-list>
 				<!-- <uni-list-item title="发布产品" showArrow link="navigateTo" to="../publish/publish"/> -->
-				<uni-list-item title="我的作品" showArrow link="navigateTo" to="../myProduct/myProduct"/>
-				<uni-list-item title="成为摄影师" showArrow link="navigateTo" to="../becomePher/becomePher"/>
-				<uni-list-item title="PhotoCall预定保障" showArrow link="navigateTo" to="../policyDoc/policyDoc"/>
-				<uni-list-item title="问题反馈" showArrow link="navigateTo" to="../feedback/feedback"/>
+				<uni-list-item title="我的作品" showArrow link="navigateTo" to="../myProduct/myProduct" />
+				<uni-list-item title="成为摄影师" showArrow link="navigateTo" to="../becomePher/becomePher" />
+				<uni-list-item title="PhotoCall预定保障" showArrow link="navigateTo" to="../policyDoc/policyDoc" />
+				<uni-list-item title="问题反馈" showArrow link="navigateTo" to="../feedback/feedback" />
 			</uni-list>
 		</view>
-		
-		
+
+
 	</view>
 </template>
 
@@ -60,17 +61,17 @@
 				userId: '',
 				username: '',
 				avatar: '',
-				desc:'',
+				desc: '',
 			}
 		},
 		methods: {
-			avatarClick(){
+			avatarClick() {
 				uni.navigateTo({
 					url: '../editUserInfo/editUserInfo'
 				})
 			}
 		},
-		onShow() {
+		onLoad() {
 			this.userId = getApp().globalData.USER_ID;
 			this.username = getApp().globalData.USER_NAME;
 			this.avatar = getApp().globalData.AVATAR;
@@ -86,7 +87,8 @@
 				_this.desc = success.data.desc;
 				_this.phone = success.data.phone;
 			})
-		}
+		},
+		
 	}
 </script>
 
@@ -99,20 +101,21 @@
 		justify-content: center;
 		align-items: center;
 	}
+
 	.item {
 		padding: 10rpx 10rpx 20rpx;
-	
+
 		.title {
 			line-height: 48rpx;
 			font-size: 30rpx;
 			color: #222;
 		}
-	
+
 		.desc {
 			font-size: 24rpx;
 			color: #666;
 		}
-	
+
 		.grid-text {
 			font-size: 14px;
 			color: #909399;
@@ -122,5 +125,4 @@
 			/* #endif */
 		}
 	}
-
 </style>

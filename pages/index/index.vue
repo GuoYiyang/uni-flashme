@@ -232,6 +232,7 @@
 
 		},
 		onLoad: function(param) {
+			uni.showShareMenu();
 			let _this = this;
 			// getUserInfo({
 			// 	userId: getApp().globalData.USER_ID
@@ -251,6 +252,10 @@
 				let [error, success] = res;
 				_this.product.list = success.data;
 			})
+			uni.showShareMenu({
+				withShareTicket: true,
+				menus: ["shareAppMessage", "shareTimeline"]
+			});
 			// })
 		},
 		onPullDownRefresh() {

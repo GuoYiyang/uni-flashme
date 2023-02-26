@@ -228,6 +228,7 @@ var _user = __webpack_require__(/*! @/api/user.js */ 33);
 //
 //
 //
+//
 var _default = {
   data: function data() {
     return {
@@ -244,7 +245,7 @@ var _default = {
       });
     }
   },
-  onShow: function onShow() {
+  onLoad: function onLoad() {
     this.userId = getApp().globalData.USER_ID;
     this.username = getApp().globalData.USER_NAME;
     this.avatar = getApp().globalData.AVATAR;

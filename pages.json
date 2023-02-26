@@ -5,7 +5,7 @@
 	"pages": [{
 		"path": "pages/index/index",
 		"style": {
-			"navigationBarTitleText": "首页",
+			"navigationBarTitleText": "PhotoCall",
 			"enablePullDownRefresh": true
 		}
 	}, {
@@ -33,12 +33,9 @@
 		"path": "pages/product/product",
 		"style": {
 			"navigationBarTitleText": "详情",
-			"enablePullDownRefresh": false
-			// "navigationStyle": "custom"
-			// "navigationBarTextStyle": "white"
-			// "mp-weixin": {
-			// 	""
-			// }
+			"enablePullDownRefresh": false,
+			"navigationStyle": "custom", // 隐藏系统导航栏
+			"navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
 
 		}
 	}, {
@@ -90,34 +87,28 @@
 			"enablePullDownRefresh": false
 		}
 
-	}    ,{
-            "path" : "pages/homePage/homePage",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "主页",
-                "enablePullDownRefresh": true
-            }
-            
-        }
-        ,{
-            "path" : "pages/search/search",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "搜索",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/userShow/userShow",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "摄影师主页",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-    ],
+	}, {
+		"path": "pages/homePage/homePage",
+		"style": {
+			"navigationBarTitleText": "主页",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/search/search",
+		"style": {
+			"navigationBarTitleText": "搜索",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/userShow/userShow",
+		"style": {
+			"navigationBarTitleText": "摄影师主页",
+			"enablePullDownRefresh": false
+		}
+
+	}],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "微摄影",
@@ -136,21 +127,19 @@
 		"backgroundColor": "#ffffff",
 		"list": [{
 				"iconPath": "static/home.png",
-				"selectedIconPath": "static/home.png",
-				"pagePath": "pages/index/index",
-				"text": "首页"
+				"selectedIconPath": "static/home-fill.png",
+				"pagePath": "pages/index/index"
+				// "text": "首页"
 			},
 			{
 				"iconPath": "static/heart.png",
-				"selectedIconPath": "static/heart.png",
-				"pagePath": "pages/collect/collect",
-				"text": "收藏"
+				"selectedIconPath": "static/heart-fill.png",
+				"pagePath": "pages/collect/collect"
 			},
 			{
 				"iconPath": "static/user.png",
-				"selectedIconPath": "static/user.png",
-				"pagePath": "pages/homePage/homePage",
-				"text": "我的"
+				"selectedIconPath": "static/user-fill.png",
+				"pagePath": "pages/homePage/homePage"
 			}
 		]
 	}

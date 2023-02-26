@@ -26,6 +26,6 @@
   position: fixed;
   left: 50rpx;
   right: 50rpx;
-  bottom: 30rpx;
+  bottom: 40rpx;
 }
 

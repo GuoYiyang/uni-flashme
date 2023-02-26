@@ -255,6 +255,7 @@ var _user = __webpack_require__(/*! @/api/user.js */ 33);
 //
 //
 //
+//
 var _default = {
   data: function data() {
     return {
@@ -292,6 +293,7 @@ var _default = {
     }
   },
   onLoad: function onLoad(param) {
+    var _this2 = this;
     this.userId = param.userId;
     var _this = this;
     (0, _user.getUserInfo)({
@@ -306,6 +308,9 @@ var _default = {
       _this.avatar = success.data.avatar;
       _this.desc = success.data.desc;
       _this.phone = success.data.phone;
+      uni.setNavigationBarTitle({
+        title: _this2.username + "的主页"
+      });
     });
     (0, _product.getProductPage)({
       userId: this.userId,
@@ -318,9 +323,13 @@ var _default = {
       _this.product.list = success.data;
       console.log(_this.product.list);
     });
+    uni.showShareMenu({
+      withShareTicket: true,
+      menus: ["shareAppMessage", "shareTimeline"]
+    });
   },
   onReachBottom: function onReachBottom() {
-    var _this2 = this;
+    var _this3 = this;
     this.page = this.page + 1;
     (0, _product.getProductPage)({
       userId: this.userId,
@@ -331,8 +340,16 @@ var _default = {
         error = _res3[0],
         success = _res3[1];
       if (success.data.length == 0) {}
-      _this2.product.list = _this2.product.list.concat(success.data);
+      _this3.product.list = _this3.product.list.concat(success.data);
     });
+  },
+  onShareAppMessage: function onShareAppMessage(res) {
+    console.log(res);
+    return {
+      title: this.username,
+      //如果有参数的情况可以写path
+      path: "/pages/userShow/userShow?userId=" + this.userId
+    };
   }
 };
 exports.default = _default;

@@ -116,13 +116,13 @@ try {
       return Promise.all(/*! import() | uni_modules/uview-ui/components/u-col/u-col */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-col/u-col")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-col/u-col.vue */ 283))
     },
     uniIcons: function () {
-      return Promise.all(/*! import() | uni_modules/uni-icons/components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-icons/components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-icons/components/uni-icons/uni-icons.vue */ 523))
+      return Promise.all(/*! import() | uni_modules/uni-icons/components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-icons/components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-icons/components/uni-icons/uni-icons.vue */ 512))
     },
     uActionSheet: function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-action-sheet/u-action-sheet */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-action-sheet/u-action-sheet")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-action-sheet/u-action-sheet.vue */ 695))
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-action-sheet/u-action-sheet */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-action-sheet/u-action-sheet")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-action-sheet/u-action-sheet.vue */ 520))
     },
-    uniGoodsNav: function () {
-      return Promise.all(/*! import() | uni_modules/uni-goods-nav/components/uni-goods-nav/uni-goods-nav */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-goods-nav/components/uni-goods-nav/uni-goods-nav")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-goods-nav/components/uni-goods-nav/uni-goods-nav.vue */ 421))
+    uButton: function () {
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-button/u-button.vue */ 478))
     },
   }
 } catch (e) {
@@ -284,10 +284,6 @@ var _default = {
       },
       tabsList: [{
         name: '全部'
-      }, {
-        name: '情侣'
-      }, {
-        name: '写真'
       }],
       tabbarGroup: [{
         text: '发布新产品',
@@ -363,7 +359,7 @@ var _default = {
     });
   },
   onShow: function onShow() {
-    var _this2 = this;
+    var _this = this;
     (0, _product.getProductPage)({
       userId: getApp().globalData.USER_ID,
       page: this.page,
@@ -373,28 +369,28 @@ var _default = {
         error = _res3[0],
         success = _res3[1];
       if (success.data.length == 0) {}
-      _this2.product.list = success.data;
-      _this2.$refs.waterfallsFlowRef.refresh();
+      _this.product.list = success.data;
+      _this.$refs.waterfallsFlowRef.refresh();
     });
   },
   onReachBottom: function onReachBottom() {
-    var _this3 = this;
+    var _this = this;
     this.page = this.page + 1;
     (0, _product.getProductPage)({
       userId: getApp().globalData.USER_ID,
-      page: this.page,
-      pageSize: this.pageSize
+      page: _this.page,
+      pageSize: _this.pageSize
     }).then(function (res) {
       var _res4 = (0, _slicedToArray2.default)(res, 2),
         error = _res4[0],
         success = _res4[1];
       if (success.data.length == 0) {}
-      _this3.product.list = _this3.product.list.concat(success.data);
+      _this.product.list = _this.product.list.concat(success.data);
     });
   },
   onPullDownRefresh: function onPullDownRefresh() {
-    var _this4 = this;
     this.page = 1;
+    var _this = this;
     (0, _product.getProductPage)({
       userId: getApp().globalData.USER_ID,
       page: this.page,
@@ -404,8 +400,8 @@ var _default = {
         error = _res5[0],
         success = _res5[1];
       if (success.data.length == 0) {}
-      _this4.product.list = success.data;
-      _this4.$refs.waterfallsFlowRef.refresh();
+      _this.product.list = success.data;
+      _this.$refs.waterfallsFlowRef.refresh();
     });
     setTimeout(function () {
       uni.stopPullDownRefresh();

@@ -214,7 +214,7 @@ var _default = {
       });
     }
   },
-  onShow: function onShow() {
+  onLoad: function onLoad() {
     this.userId = getApp().globalData.USER_ID;
     this.username = getApp().globalData.USER_NAME;
     this.avatar = getApp().globalData.AVATAR;
@@ -232,7 +232,8 @@ var _default = {
       _this.desc = success.data.desc;
       _this.phone = success.data.phone;
     });
-  }
+  },
+  onShow: function onShow() {}
 };
 exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))

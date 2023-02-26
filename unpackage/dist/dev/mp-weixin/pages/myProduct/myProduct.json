@@ -9,6 +9,6 @@
     "u-col": "/uni_modules/uview-ui/components/u-col/u-col",
     "uni-icons": "/uni_modules/uni-icons/components/uni-icons/uni-icons",
     "u-action-sheet": "/uni_modules/uview-ui/components/u-action-sheet/u-action-sheet",
-    "uni-goods-nav": "/uni_modules/uni-goods-nav/components/uni-goods-nav/uni-goods-nav"
+    "u-button": "/uni_modules/uview-ui/components/u-button/u-button"
   }
 }

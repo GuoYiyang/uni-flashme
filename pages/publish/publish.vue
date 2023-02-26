@@ -42,7 +42,10 @@
 					</uni-forms>
 				</view>
 			</uni-section>
-			<u-button @click="submit">点击上传</u-button>
+			<view style="padding: 20rpx;">
+				<u-button @click="submit">发布</u-button>
+			</view>
+			
 		</view>
 	</view>
 </template>

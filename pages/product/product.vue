@@ -1,8 +1,10 @@
 <template>
 	<view>
+
 		<!-- 轮播图 -->
 		<view>
-			<u-swiper :list="imgUrlList" indicator indicatorMode="line" circular imgMode="aspectFit" height="550" @click="previewImg"></u-swiper>
+			<u-swiper :list="imgUrlList" indicator indicatorMode="line" circular imgMode="aspectFit" height="550"
+				@click="previewImg"></u-swiper>
 		</view>
 
 		<view style="padding: 10rpx;">
@@ -21,10 +23,17 @@
 			</uni-row>
 		</view>
 
+
+		<view style="padding: 20rpx;" class="collect-tabbar">
+			<uni-goods-nav :options="tabbarOptions" :fill="false" :button-group="tabbarGroup" @click="optionClick"
+				@buttonClick="buttonClick" />
+		</view>
+
 		<fui-card :src="cameramanAvatar" :title="cameramanName" tag="优质摄影师" @click="clickCard"></fui-card>
 
 
-				<view class="center">
+
+		<view class="center">
 			<u-tabs :list="tabsList" lineWidth="60" lineHeight="3" lineColor="#000000" :activeStyle="{
 			        color: '#303133',
 			        fontWeight: 'bold',
@@ -60,7 +69,7 @@
 
 
 		<u-popup :show="popShow" :round="20" @close="this.popShow = false" mode="bottom" :safeAreaInsetBottom="false">
-			
+
 			<uni-section title="基本信息" type="line" titleFontSize="30rpx">
 				<uni-group>
 					<view>拍摄人数:1</view>
@@ -74,12 +83,6 @@
 				</uni-group>
 			</uni-section>
 		</u-popup>
-
-
-		<view class="collect-tabbar">
-			<uni-goods-nav :options="tabbarOptions" :fill="false" :button-group="tabbarGroup" @click="optionClick"
-				@buttonClick="buttonClick" />
-		</view>
 
 
 
@@ -99,7 +102,7 @@
 	export default {
 		data() {
 			return {
-				windowWidth:'',
+				windowWidth: '',
 				swiperHeight: '',
 				productId: '',
 				cameramanId: '',
@@ -141,15 +144,15 @@
 			}
 		},
 		methods: {
-			previewImg(item){
+			previewImg(item) {
 				uni.previewImage({
 					current: item,
-					urls:this.imgUrlList
+					urls: this.imgUrlList
 				});
 			},
-			clickCard(){
+			clickCard() {
 				uni.navigateTo({
-					url: '../userShow/userShow?userId=' + this.cameramanId 
+					url: '../userShow/userShow?userId=' + this.cameramanId
 				})
 			},
 			tabsChange(index) {
@@ -197,6 +200,7 @@
 			}
 		},
 		onLoad: function(param) {
+
 			this.productId = param.id;
 			productDetail({
 				id: param.id
@@ -207,6 +211,11 @@
 				this.price = success.data.price;
 				this.tags = success.data.tags;
 				this.cameramanId = success.data.userId;
+
+
+				uni.setNavigationBarTitle({
+					title: this.title
+				});
 
 				let content = JSON.parse(success.data.userId);
 
@@ -228,7 +237,6 @@
 				productId: this.productId,
 			}).then((res) => {
 				let [error, success] = res;
-				console.log("getProductCollectStatus", success)
 				this.isCollect = success.data;
 				if (this.isCollect) {
 					this.tabbarOptions[0].icon = 'heart-filled'
@@ -236,14 +244,24 @@
 					this.tabbarOptions[0].icon = 'heart'
 				}
 			})
-
+			uni.showShareMenu({
+				withShareTicket: true,
+				menus: ["shareAppMessage", "shareTimeline"]
+			});
 		},
 		onShow() {
 			this.tabsCurrent = 0;
 			this.productDetailShow = true;
 			this.productCustomerShow = false;
-			this.windowWidth = uni.getSystemInfoSync().screenWidth
+		},
+		onShareAppMessage(res) {
+			console.log(res)
+			return {
+				title: this.title,
+				path: '/pages/product/product?id=' + this.productId
+			};
 		}
+
 	}
 </script>
 
@@ -295,6 +313,6 @@
 		left: var(--window-left);
 		right: var(--window-right);
 		/* #endif */
-		bottom: 30rpx;
+		bottom: 40rpx;
 	}
 </style>

@@ -60,9 +60,15 @@
     "mp-weixin" : {
         "appid" : "wxc0821a0da706d8e0",
         "setting" : {
-            "urlCheck" : false
+            "urlCheck" : false,
+            "minified" : true
         },
-        "usingComponents" : true
+        "usingComponents" : true,
+        "permission" : {
+            "scope.userLocation" : {
+                "desc" : "你的位置信息将用于小程序位置接口的效果展示"
+            }
+        }
     },
     "vueVersion" : "2"
 }
