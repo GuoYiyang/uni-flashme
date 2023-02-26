@@ -131,3 +131,19 @@ export function publishProduct(req) {
 		}
 	});
 }
+
+
+// 删除产品
+export function deleteProduct(req) {
+	return uni.request({
+		url: baseUrl + '/product/delete',
+		method: "POST",
+		header:{
+			"X-USER-ID": getApp().globalData.USER_ID
+		},
+		data: {
+			userId: req.userId,
+			productId: req.productId
+		}
+	});
+}

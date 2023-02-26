@@ -73,10 +73,10 @@
 				baseFormData: {
 					title: '',
 					price: '',
-					introduction:'',
+					introduction: '',
 					tag: [],
-					info:'',
-					notice:''
+					info: '',
+					notice: ''
 				},
 				sexs: [{
 					text: '男',
@@ -173,27 +173,30 @@
 					imgNameList: this.imageNameList,
 				}).then((res) => {
 					let [error, success] = res;
-					if (success.data == true) {
-						uni.showToast({
-							title: '发布成功'
-						})
-					} else{
-						uni.showToast({
-							title: '发布失败'
-						})
-					}
+					setTimeout(() => {
+						uni.hideLoading();
+						uni.navigateBack();
+						if (success.data == true) {
+							uni.showToast({
+								title: '发布成功'
+							})
+						} else {
+							uni.showToast({
+								title: '发布失败'
+							})
+						}
+					}, 10000)
 				})
 			},
 			async submit() {
 				console.log(this.imageName)
 				console.log(this.imageNameList)
-				uni.showLoading();
+				uni.showLoading({
+					title:"发布中，请稍等",
+					mask: true
+				});
 				this.upload();
 				this.publish();
-				setTimeout(() => {
-					uni.hideLoading();
-					uni.navigateBack();
-				}, 2000)
 			}
 		}
 	}

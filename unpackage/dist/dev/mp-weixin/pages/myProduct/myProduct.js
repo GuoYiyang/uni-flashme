@@ -101,16 +101,28 @@ var components
 try {
   components = {
     uSticky: function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-sticky/u-sticky */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-sticky/u-sticky")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-sticky/u-sticky.vue */ 671))
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-sticky/u-sticky */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-sticky/u-sticky")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-sticky/u-sticky.vue */ 504))
     },
     uTabs: function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-tabs/u-tabs */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-tabs/u-tabs")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-tabs/u-tabs.vue */ 310))
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-tabs/u-tabs */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-tabs/u-tabs")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-tabs/u-tabs.vue */ 348))
     },
     customWaterfallsFlow: function () {
-      return Promise.all(/*! import() | uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow")]).then(__webpack_require__.bind(null, /*! @/uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow.vue */ 303))
+      return Promise.all(/*! import() | uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow")]).then(__webpack_require__.bind(null, /*! @/uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow.vue */ 341))
+    },
+    uRow: function () {
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-row/u-row */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-row/u-row")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-row/u-row.vue */ 275))
+    },
+    uCol: function () {
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-col/u-col */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-col/u-col")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-col/u-col.vue */ 283))
+    },
+    uniIcons: function () {
+      return Promise.all(/*! import() | uni_modules/uni-icons/components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-icons/components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-icons/components/uni-icons/uni-icons.vue */ 523))
+    },
+    uActionSheet: function () {
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-action-sheet/u-action-sheet */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-action-sheet/u-action-sheet")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-action-sheet/u-action-sheet.vue */ 695))
     },
     uniGoodsNav: function () {
-      return Promise.all(/*! import() | uni_modules/uni-goods-nav/components/uni-goods-nav/uni-goods-nav */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-goods-nav/components/uni-goods-nav/uni-goods-nav")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-goods-nav/components/uni-goods-nav/uni-goods-nav.vue */ 383))
+      return Promise.all(/*! import() | uni_modules/uni-goods-nav/components/uni-goods-nav/uni-goods-nav */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-goods-nav/components/uni-goods-nav/uni-goods-nav")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-goods-nav/components/uni-goods-nav/uni-goods-nav.vue */ 421))
     },
   }
 } catch (e) {
@@ -134,6 +146,11 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  if (!_vm._isMounted) {
+    _vm.e0 = function ($event) {
+      this.popShow = false
+    }
+  }
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -219,9 +236,47 @@ var _product = __webpack_require__(/*! @/api/product.js */ 168);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default = {
   data: function data() {
     return {
+      selectedProductId: '',
+      popShow: false,
+      popList: [{
+        name: '删除'
+      }],
       page: 1,
       pageSize: 10,
       product: {
@@ -242,10 +297,41 @@ var _default = {
     };
   },
   methods: {
-    wapperClick: function wapperClick(item) {
-      uni.navigateTo({
-        url: '../product/product?id=' + item.id
+    // shouMoreAction(item) {
+    // 	console.log(item)
+    // },
+    selectClick: function selectClick(item) {
+      console.log(item);
+      if ("删除" == item.name) {
+        this.delete();
+      }
+    },
+    delete: function _delete() {
+      (0, _product.deleteProduct)({
+        userId: getApp().globalData.USER_ID,
+        productId: this.selectedProductId
+      }).then(function (res) {
+        var _res = (0, _slicedToArray2.default)(res, 2),
+          error = _res[0],
+          success = _res[1];
+        if (success.data) {
+          uni.showToast({
+            title: '删除成功'
+          });
+        } else {
+          uni.showToast({
+            title: '删除失败'
+          });
+        }
       });
+    },
+    wapperClick: function wapperClick(item) {
+      console.log(item);
+      this.selectedProductId = item.id;
+      this.popShow = true;
+      // uni.navigateTo({
+      // 	url: '../product/product?id=' + item.id
+      // })
     },
     imageClick: function imageClick(item) {
       uni.navigateTo({
@@ -269,27 +355,61 @@ var _default = {
       page: this.page,
       pageSize: this.pageSize
     }).then(function (res) {
-      var _res = (0, _slicedToArray2.default)(res, 2),
-        error = _res[0],
-        success = _res[1];
+      var _res2 = (0, _slicedToArray2.default)(res, 2),
+        error = _res2[0],
+        success = _res2[1];
       _this.product.list = success.data;
       console.log(_this.product.list);
     });
   },
-  onReachBottom: function onReachBottom() {
+  onShow: function onShow() {
     var _this2 = this;
+    (0, _product.getProductPage)({
+      userId: getApp().globalData.USER_ID,
+      page: this.page,
+      pageSize: this.pageSize
+    }).then(function (res) {
+      var _res3 = (0, _slicedToArray2.default)(res, 2),
+        error = _res3[0],
+        success = _res3[1];
+      if (success.data.length == 0) {}
+      _this2.product.list = success.data;
+      _this2.$refs.waterfallsFlowRef.refresh();
+    });
+  },
+  onReachBottom: function onReachBottom() {
+    var _this3 = this;
     this.page = this.page + 1;
     (0, _product.getProductPage)({
       userId: getApp().globalData.USER_ID,
       page: this.page,
       pageSize: this.pageSize
     }).then(function (res) {
-      var _res2 = (0, _slicedToArray2.default)(res, 2),
-        error = _res2[0],
-        success = _res2[1];
+      var _res4 = (0, _slicedToArray2.default)(res, 2),
+        error = _res4[0],
+        success = _res4[1];
       if (success.data.length == 0) {}
-      _this2.product.list = _this2.product.list.concat(success.data);
+      _this3.product.list = _this3.product.list.concat(success.data);
     });
+  },
+  onPullDownRefresh: function onPullDownRefresh() {
+    var _this4 = this;
+    this.page = 1;
+    (0, _product.getProductPage)({
+      userId: getApp().globalData.USER_ID,
+      page: this.page,
+      pageSize: this.pageSize
+    }).then(function (res) {
+      var _res5 = (0, _slicedToArray2.default)(res, 2),
+        error = _res5[0],
+        success = _res5[1];
+      if (success.data.length == 0) {}
+      _this4.product.list = success.data;
+      _this4.$refs.waterfallsFlowRef.refresh();
+    });
+    setTimeout(function () {
+      uni.stopPullDownRefresh();
+    }, 500);
   }
 };
 exports.default = _default;

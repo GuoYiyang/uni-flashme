@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view>
-			 <u-sticky bgColor="#f5f5f5">
+			<u-sticky bgColor="#f5f5f5">
 				<u-tabs :list="tabsList" lineWidth="30" lineHeight="3" lineColor="#000000" :activeStyle="{
 				        color: '#303133',
 				        fontWeight: 'bold',
@@ -10,44 +10,83 @@
 				        color: '#606266',
 				        transform: 'scale(1)'
 				    }" itemStyle="padding-left: 15px; padding-right: 15px; height: 34px;" @change="tabsChange" :duration="100">
-				</u-tabs> 
-			 </u-sticky>
+				</u-tabs>
+			</u-sticky>
 		</view>
-		
+
 		<view style="padding: 10rpx;">
 			<custom-waterfalls-flow :value="product.list" :column="2" :columnSpace="1.5" @imageClick="imageClick"
 				@wapperClick="wapperClick" ref="waterfallsFlowRef">
 				<!-- #ifdef MP-WEIXIN -->
 				<view class="item" v-for="(item,index) in product.list" :key="index" slot="slot{{index}}">
-					<view class="title">{{item.title}}</view>
-					<view class="title">￥{{item.price}}</view>
+					<u-row>
+						<view class="title">￥{{item.title}}</view>
+					</u-row>
+					<u-row>
+						<u-col span="10" justify="flex-start">
+							<view class="title">￥{{item.price}}</view>
+						</u-col>
+						<u-col span="2" justify="flex-end">
+							<uni-icons type="more-filled" size="20" color="#1f1f1f"></uni-icons>
+						</u-col>
+					</u-row>
+
 				</view>
 				<!-- #endif -->
 				<!-- #ifndef MP-WEIXIN -->
 				<template v-slot:default="item">
 					<view class="item">
-						<view class="title">{{item.title}}</view>
-						<view class="title">{{item.price}}</view>
+
+						<u-row>
+							<view class="title">{{item.title}}</view>
+						</u-row>
+						<u-row>
+							<u-col span="10" justify="flex-start">
+								<view class="title">￥{{item.price}}</view>
+							</u-col>
+							<u-col span="2" justify="flex-end">
+								<uni-icons type="more-filled" size="20" color="#1f1f1f"></uni-icons>
+							</u-col>
+						</u-row>
+
+
 					</view>
 				</template>
 				<!-- #endif -->
 			</custom-waterfalls-flow>
 		</view>
-		
+
+		<!-- 		<u-popup :show="popShow" @close="this.popShow=false" :round="10">
+			<view>
+				<u-button @click="deleteProduct">删除</u-button>
+			</view>
+		</u-popup> -->
+
+		<view>
+			<u-action-sheet :actions="popList" @select="selectClick" :show="popShow" cancelText="取消" @close="this.popShow=false"
+			:closeOnClickOverlay="true" :closeOnClickAction="true" :safeAreaInsetBottom="true"></u-action-sheet>
+		</view>
+
 		<view class="collect-tabbar">
 			<uni-goods-nav :options="[]" :button-group="tabbarGroup" @buttonClick="buttonClick" />
 		</view>
-		
+
 	</view>
 </template>
 
 <script>
 	import {
-		getProductPage
+		getProductPage,
+		deleteProduct
 	} from '@/api/product.js'
 	export default {
 		data() {
 			return {
+				selectedProductId: '',
+				popShow: false,
+				popList: [{
+					name: '删除'
+				}],
 				page: 1,
 				pageSize: 10,
 				product: {
@@ -71,10 +110,39 @@
 			}
 		},
 		methods: {
-			wapperClick(item) {
-				uni.navigateTo({
-					url: '../product/product?id=' + item.id
+			// shouMoreAction(item) {
+			// 	console.log(item)
+			// },
+			selectClick(item){
+				console.log(item)
+				if ("删除" == item.name) {
+					this.delete();
+				}
+			},
+			delete() {
+				deleteProduct({
+					userId: getApp().globalData.USER_ID,
+					productId: this.selectedProductId
+				}).then((res) => {
+					let [error, success] = res;
+					if (success.data) {
+						uni.showToast({
+							title: '删除成功'
+						})
+					} else {
+						uni.showToast({
+							title: '删除失败'
+						})
+					}
 				})
+			},
+			wapperClick(item) {
+				console.log(item);
+				this.selectedProductId = item.id;
+				this.popShow = true;
+				// uni.navigateTo({
+				// 	url: '../product/product?id=' + item.id
+				// })
 			},
 			imageClick(item) {
 				uni.navigateTo({
@@ -90,9 +158,9 @@
 		onLoad: function(param) { //option为object类型，会序列化上个页面传递的参数
 			let _this = this;
 			getProductPage({
-				city:'',
-				tag:'',
-				query:'',
+				city: '',
+				tag: '',
+				query: '',
 				userId: getApp().globalData.USER_ID,
 				page: this.page,
 				pageSize: this.pageSize
@@ -101,7 +169,18 @@
 				_this.product.list = success.data;
 				console.log(_this.product.list)
 			})
-
+		},
+		onShow() {
+			getProductPage({
+				userId: getApp().globalData.USER_ID,
+				page: this.page,
+				pageSize: this.pageSize
+			}).then((res) => {
+				let [error, success] = res;
+				if (success.data.length == 0) {}
+				this.product.list = success.data;
+				this.$refs.waterfallsFlowRef.refresh();
+			})
 		},
 		onReachBottom() {
 			this.page = this.page + 1;
@@ -111,12 +190,26 @@
 				pageSize: this.pageSize
 			}).then((res) => {
 				let [error, success] = res;
-				if (success.data.length == 0) {
-
-				}
+				if (success.data.length == 0) {}
 				this.product.list = this.product.list.concat(success.data);
 			})
-		}
+		},
+		onPullDownRefresh() {
+			this.page = 1;
+			getProductPage({
+				userId: getApp().globalData.USER_ID,
+				page: this.page,
+				pageSize: this.pageSize
+			}).then((res) => {
+				let [error, success] = res;
+				if (success.data.length == 0) {}
+				this.product.list = success.data;
+				this.$refs.waterfallsFlowRef.refresh();
+			})
+			setTimeout(function() {
+				uni.stopPullDownRefresh();
+			}, 500)
+		},
 	}
 </script>
 
@@ -144,6 +237,7 @@
 			/* #endif */
 		}
 	}
+
 	.collect-tabbar {
 		/* #ifndef APP-NVUE */
 		display: flex;

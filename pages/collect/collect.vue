@@ -124,6 +124,7 @@
 			_this.collectPhotographerShow = false;
 		},
 		onPullDownRefresh() {
+			this.page = 1;
 			let _this = this;
 			getProductCollect({
 				userId: getApp().globalData.USER_ID

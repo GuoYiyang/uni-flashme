@@ -2,7 +2,7 @@
 	<view>
 		<!-- 轮播图 -->
 		<view>
-			<u-swiper :list="imgUrlList" indicator indicatorMode="line" circular height="500px"></u-swiper>
+			<u-swiper :list="imgUrlList" indicator indicatorMode="line" circular imgMode="aspectFit" height="550" @click="previewImg"></u-swiper>
 		</view>
 
 		<view style="padding: 10rpx;">
@@ -99,6 +99,7 @@
 	export default {
 		data() {
 			return {
+				windowWidth:'',
 				swiperHeight: '',
 				productId: '',
 				cameramanId: '',
@@ -140,6 +141,12 @@
 			}
 		},
 		methods: {
+			previewImg(item){
+				uni.previewImage({
+					current: item,
+					urls:this.imgUrlList
+				});
+			},
 			clickCard(){
 				uni.navigateTo({
 					url: '../userShow/userShow?userId=' + this.cameramanId 
@@ -189,7 +196,7 @@
 				console.log(item)
 			}
 		},
-		onLoad: function(param) { //param为object类型，会序列化上个页面传递的参数
+		onLoad: function(param) {
 			this.productId = param.id;
 			productDetail({
 				id: param.id
@@ -235,6 +242,7 @@
 			this.tabsCurrent = 0;
 			this.productDetailShow = true;
 			this.productCustomerShow = false;
+			this.windowWidth = uni.getSystemInfoSync().screenWidth
 		}
 	}
 </script>
