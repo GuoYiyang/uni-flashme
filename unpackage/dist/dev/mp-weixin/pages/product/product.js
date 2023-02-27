@@ -115,18 +115,6 @@ try {
     fuiCard: function () {
       return __webpack_require__.e(/*! import() | components/fui-card/fui-card */ "components/fui-card/fui-card").then(__webpack_require__.bind(null, /*! @/components/fui-card/fui-card.vue */ 356))
     },
-    uTabs: function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-tabs/u-tabs */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-tabs/u-tabs")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-tabs/u-tabs.vue */ 348))
-    },
-    uniSection: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-section/components/uni-section/uni-section */ "uni_modules/uni-section/components/uni-section/uni-section").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-section/components/uni-section/uni-section.vue */ 410))
-    },
-    uniGroup: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-group/components/uni-group/uni-group */ "uni_modules/uni-group/components/uni-group/uni-group").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-group/components/uni-group/uni-group.vue */ 417))
-    },
-    uPopup: function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-popup/u-popup */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-popup/u-popup")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-popup/u-popup.vue */ 424))
-    },
   }
 } catch (e) {
   if (
@@ -149,11 +137,6 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  if (!_vm._isMounted) {
-    _vm.e0 = function ($event) {
-      this.popShow = false
-    }
-  }
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -374,18 +357,11 @@ var _default = {
     },
     buttonClick: function buttonClick(item) {
       uni.makePhoneCall({
-        phoneNumber: "18188606406",
-        //电话号码
-        success: function success(e) {
-          console.log(e);
-        },
-        fail: function fail(e) {
-          console.log(e);
-        }
+        phoneNumber: "18188606406" //电话号码
       });
-      console.log(item);
     }
   },
+
   onLoad: function onLoad(param) {
     var _this = this;
     this.productId = param.id;

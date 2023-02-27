@@ -153,15 +153,10 @@ var _default = {
     }
   },
   onLaunch: function onLaunch() {
-    console.log('App Launch');
     this.loginUser();
   },
-  onShow: function onShow() {
-    console.log('App Show');
-  },
-  onHide: function onHide() {
-    console.log('App Hide');
-  },
+  onShow: function onShow() {},
+  onHide: function onHide() {},
   onLoad: function onLoad() {
     var _this3 = this;
     return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2() {

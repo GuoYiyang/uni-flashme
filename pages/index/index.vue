@@ -13,10 +13,9 @@
 				</uni-data-picker>
 			</u-col>
 			<u-col span="9">
-				<view @click="searchClick">
-					<u-search :showAction="false" :animation="true" shape="square" placeholder="摄影师或者主题" bgColor="#FFFFFF">
-					</u-search>
-				</view>
+				<u-search disabled @click="searchClick" :showAction="false" :animation="true" shape="square"
+					placeholder="摄影师或者主题" bgColor="#FFFFFF">
+				</u-search>
 			</u-col>
 		</u-row>
 
@@ -156,7 +155,6 @@
 				});
 			},
 			changeTab(index) {
-				console.log(index);
 				uni.showToast({
 					title: index.name,
 					icon: 'none'
@@ -191,7 +189,7 @@
 		onPullDownRefresh() {
 			productRandom({
 				city: this.city
-			}).then((res)=>{
+			}).then((res) => {
 				let [error, success] = res;
 				this.product.list = success.data;
 				this.$refs.waterfallsFlowRef.refresh();

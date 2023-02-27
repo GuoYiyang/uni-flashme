@@ -80,10 +80,10 @@ var components
 try {
   components = {
     uniLoadMore: function () {
-      return Promise.all(/*! import() | uni_modules/uni-load-more/components/uni-load-more/uni-load-more */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-load-more/components/uni-load-more/uni-load-more")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-load-more/components/uni-load-more/uni-load-more.vue */ 528))
+      return Promise.all(/*! import() | uni_modules/uni-load-more/components/uni-load-more/uni-load-more */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-load-more/components/uni-load-more/uni-load-more")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-load-more/components/uni-load-more/uni-load-more.vue */ 505))
     },
     uniIcons: function () {
-      return Promise.all(/*! import() | uni_modules/uni-icons/components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-icons/components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-icons/components/uni-icons/uni-icons.vue */ 512))
+      return Promise.all(/*! import() | uni_modules/uni-icons/components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-icons/components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-icons/components/uni-icons/uni-icons.vue */ 489))
     },
   }
 } catch (e) {
@@ -234,7 +234,7 @@ var _uniDataPicker = _interopRequireDefault(__webpack_require__(/*! ../uni-data-
 //
 var DataPickerView = function DataPickerView() {
   __webpack_require__.e(/*! require.ensure | uni_modules/uni-data-picker/components/uni-data-pickerview/uni-data-pickerview */ "uni_modules/uni-data-picker/components/uni-data-pickerview/uni-data-pickerview").then((function () {
-    return resolve(__webpack_require__(/*! ../uni-data-pickerview/uni-data-pickerview.vue */ 539));
+    return resolve(__webpack_require__(/*! ../uni-data-pickerview/uni-data-pickerview.vue */ 516));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 /**

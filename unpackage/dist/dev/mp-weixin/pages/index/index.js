@@ -251,33 +251,6 @@ var _user = __webpack_require__(/*! @/api/user.js */ 33);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 var _default = {
   data: function data() {
     return {
@@ -295,30 +268,6 @@ var _default = {
         value: "3",
         text: "广州"
       }],
-      // scrollTop: 0,
-      // tab bar
-      // tabList: [{
-      // 	name: '证件',
-      // }, {
-      // 	name: '写真',
-      // }, {
-      // 	name: '结婚'
-      // }, {
-      // 	name: '亲子'
-      // }, {
-      // 	name: '情侣'
-      // }, {
-      // 	name: '好友'
-      // }, {
-      // 	name: '宠物'
-      // }],
-      // 轮播图
-      // swiperList: [
-      // 	'https://cdn.uviewui.com/uview/swiper/swiper1.png',
-      // 	'https://cdn.uviewui.com/uview/swiper/swiper2.png',
-      // 	'https://cdn.uviewui.com/uview/swiper/swiper3.png',
-      // ],
-      // 快捷入口
       fastList: [{
         name: 'camera',
         title: '写真'
@@ -344,18 +293,6 @@ var _default = {
         name: 'more-dot-fill',
         title: '其他'
       }],
-      // scrollList: [{
-      // 	thumb: "https://cdn.uviewui.com/uview/goods/1.jpg"
-      // }, {
-      // 	thumb: "https://cdn.uviewui.com/uview/goods/2.jpg"
-      // }, {
-      // 	thumb: "https://cdn.uviewui.com/uview/goods/3.jpg"
-      // }, {
-      // 	thumb: "https://cdn.uviewui.com/uview/goods/4.jpg"
-      // }, {
-      // 	thumb: "https://cdn.uviewui.com/uview/goods/5.jpg"
-      // }],
-      // 产品瀑布流
       product: {
         list: []
       }
@@ -394,7 +331,6 @@ var _default = {
       });
     },
     changeTab: function changeTab(index) {
-      console.log(index);
       uni.showToast({
         title: index.name,
         icon: 'none'
@@ -407,15 +343,7 @@ var _default = {
     }
   },
   onLoad: function onLoad(param) {
-    uni.showShareMenu();
     var _this = this;
-    // getUserInfo({
-    // 	userId: getApp().globalData.USER_ID
-    // }).then((res) => {
-    // 	let [error, success] = res;
-    // 	if (success.data.city != '') {
-    // 		_this.city = success.data.city;
-    // 	}
     var city = this.city;
     if (param.city != null) {
       this.city = param.city;
@@ -437,14 +365,6 @@ var _default = {
   },
   onPullDownRefresh: function onPullDownRefresh() {
     var _this3 = this;
-    // let _this = this;
-    // uni.redirectTo({
-    // 	url: '/pages/index/index?city=' + _this.city
-    // });
-    // setTimeout(() => {
-    // 	_this.$refs.waterfallsFlowRef.refresh();
-    // 	uni.stopPullDownRefresh();
-    // }, 500);
     (0, _product.productRandom)({
       city: this.city
     }).then(function (res) {

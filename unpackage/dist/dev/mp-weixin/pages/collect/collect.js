@@ -221,9 +221,6 @@ var _user = __webpack_require__(/*! @/api/user.js */ 33);
 //
 //
 var _default = {
-  loaded: function loaded() {
-    console.log('加载完成');
-  },
   data: function data() {
     return {
       tabsList: [{
@@ -246,7 +243,6 @@ var _default = {
     clickPherCard: function clickPherCard(item) {
       console.log(item);
     },
-    loaded: function loaded() {},
     tabsChange: function tabsChange(index) {
       this.tabsCurrent = index.index;
       if (index.index == 0) {

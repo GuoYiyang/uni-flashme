@@ -1,6 +1,5 @@
 {
-  "navigationBarTitleText": "浏览",
-  "enablePullDownRefresh": false,
+  "component": true,
   "usingComponents": {
     "filterProduct-custom-waterfalls-flow-default": "/pages/filterProduct/filterProduct-custom-waterfalls-flow-default",
     "custom-waterfalls-flow": "/uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow"

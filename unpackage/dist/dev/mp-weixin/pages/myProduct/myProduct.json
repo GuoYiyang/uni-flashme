@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "我的发布",
+  "navigationBarTitleText": "我的作品",
   "enablePullDownRefresh": true,
   "usingComponents": {
     "u-sticky": "/uni_modules/uview-ui/components/u-sticky/u-sticky",
