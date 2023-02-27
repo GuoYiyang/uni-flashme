@@ -45,7 +45,7 @@
 			<view style="padding: 20rpx;">
 				<u-button @click="submit">发布</u-button>
 			</view>
-			
+
 		</view>
 	</view>
 </template>
@@ -146,8 +146,7 @@
 					}
 				});
 			},
-			upload() {
-				let _this = this;
+			publish() {
 				if (this.imagePath != "") {
 					uploadImages({
 						filePath: this.imagePath
@@ -160,8 +159,6 @@
 						})
 					})
 				}
-			},
-			publish() {
 				let content = {
 					'info': this.baseFormData.info,
 					'introduction': this.baseFormData.introduction
@@ -176,30 +173,28 @@
 					imgNameList: this.imageNameList,
 				}).then((res) => {
 					let [error, success] = res;
-					setTimeout(() => {
-						uni.hideLoading();
-						uni.navigateBack();
-						if (success.data == true) {
-							uni.showToast({
-								title: '发布成功'
-							})
-						} else {
-							uni.showToast({
-								title: '发布失败'
-							})
-						}
-					}, 10000)
+					if (success.data == true) {
+						uni.showToast({
+							title: '发布成功'
+						})
+					} else {
+						uni.showToast({
+							title: '发布失败'
+						})
+					}
 				})
 			},
-			async submit() {
+			submit() {
 				console.log(this.imageName)
 				console.log(this.imageNameList)
 				uni.showLoading({
-					title:"发布中，请稍等",
-					mask: true
+					title: "发布中，请稍等"
 				});
-				this.upload();
 				this.publish();
+				setTimeout(function () {
+					uni.hideLoading();
+					uni.navigateBack();
+				}, 2000);
 			}
 		}
 	}

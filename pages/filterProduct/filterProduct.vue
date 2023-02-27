@@ -1,7 +1,7 @@
 <template>
 	<view>
-		<u-row justify="center" gutter="10">
-<!-- 			<u-col span="4">
+<!-- 		<u-row justify="center" gutter="10">
+			<u-col span="4">
 				<uni-data-picker popup-title="城市" :localdata="cityList" v-model="city" :clear-icon="false"
 					@change="cityChange" placeholder="城市">
 				</uni-data-picker>
@@ -10,18 +10,18 @@
 				<uni-data-picker popup-title="主题" :localdata="tagList" v-model="tag" :clear-icon="false"
 					@change="cityChange" placeholder="主题">
 				</uni-data-picker>
-			</u-col> -->
-<!-- 			<u-col span="4">
+			</u-col>
+			<u-col span="4">
 				<uni-data-picker popup-title="价格" :localdata="cityList" v-model="city" :clear-icon="false"
 					@change="cityChange" placeholder="价格">
 				</uni-data-picker>
-			</u-col> -->
-		</u-row>
-		<u-line></u-line>
+			</u-col>
+		</u-row> -->
+		<!-- <u-line></u-line> -->
 		<view style="padding: 10rpx;">
 			<custom-waterfalls-flow :value="product.list" :column="2" :columnSpace="1.5" @imageClick="imageClick"
 				@wapperClick="wapperClick" ref="waterfallsFlowRef">
-				<!-- #ifdef MP-WEIXIN -->
+				<!-- #ifdef MP-WEIXIN
 				<view class="item" v-for="(item,index) in product.list" :key="index" slot="slot{{index}}">
 					<view class="title">{{item.title}}</view>
 					<view class="title">￥{{item.price}}</view>

@@ -1,6 +1,9 @@
 <template>
 	<view>
-		<u-search :showAction="false" :animation="true" shape="square" placeholder="摄影师或者主题" bgColor="#FFFFFF" @search="search"></u-search>
+		<view style="padding: 20rpx;">
+			<u-search :showAction="false" :animation="true" shape="square" placeholder="摄影师或者主题" bgColor="#FFFFFF"
+				@search="search"></u-search>
+		</view>
 	</view>
 </template>
 
@@ -8,7 +11,7 @@
 	export default {
 		data() {
 			return {
-				city:'',
+				city: '',
 			}
 		},
 		methods: {

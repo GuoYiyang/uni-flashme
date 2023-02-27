@@ -131,7 +131,6 @@
 				})
 			},
 			wapperClick(item) {
-				console.log(item);
 				this.selectedProductId = item.id;
 				this.popShow = true;
 				// uni.navigateTo({
@@ -178,8 +177,8 @@
 			})
 		},
 		onReachBottom() {
-			let _this = this;
 			this.page = this.page + 1;
+			let _this = this;
 			getProductPage({
 				userId: getApp().globalData.USER_ID,
 				page: _this.page,

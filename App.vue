@@ -27,14 +27,11 @@
 			}
 		},
 		onLaunch: function() {
-			console.log('App Launch');
 			this.loginUser();
 		},
 		onShow: function() {
-			console.log('App Show')
 		},
 		onHide: function() {
-			console.log('App Hide')
 		},
 		async onLoad() {
 			await this.$onLaunched;

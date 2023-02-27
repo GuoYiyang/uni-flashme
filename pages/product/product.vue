@@ -31,7 +31,7 @@
 
 		<fui-card :src="cameramanAvatar" :title="cameramanName" tag="优质摄影师" @click="clickCard"></fui-card>
 
-
+<!-- 
 
 		<view class="center">
 			<u-tabs :list="tabsList" lineWidth="60" lineHeight="3" lineColor="#000000" :activeStyle="{
@@ -84,7 +84,7 @@
 			</uni-section>
 		</u-popup>
 
-
+ -->
 
 
 	</view>
@@ -183,20 +183,11 @@
 						isDelete: 1
 					})
 				}
-
 			},
 			buttonClick(item) {
 				uni.makePhoneCall({
-					phoneNumber: "18188606406", //电话号码
-					success: function(e) {
-						console.log(e);
-					},
-					fail: function(e) {
-						console.log(e);
-
-					}
+					phoneNumber: "18188606406" //电话号码
 				})
-				console.log(item)
 			}
 		},
 		onLoad: function(param) {

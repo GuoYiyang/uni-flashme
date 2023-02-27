@@ -52,9 +52,6 @@
 		getPherCollect
 	} from '@/api/user.js'
 	export default {
-		loaded() {
-			console.log('加载完成')
-		},
 		data() {
 			return {
 				tabsList: [{
@@ -79,7 +76,6 @@
 			clickPherCard(item) {
 				console.log(item)
 			},
-			loaded() {},
 			tabsChange(index) {
 				this.tabsCurrent = index.index;
 				if (index.index == 0) {

@@ -31,36 +31,10 @@
 			</u-grid>
 		</view>
 
-		<!-- 		<view>
-			<u-scroll-list :indicator="true" indicatorColor="#fff0f0" indicatorActiveColor="#f56c6c">
-				<view v-for="(item, index) in scrollList" :key="index">
-					<image :src="item.thumb""></image>
-				</view>
-			</u-scroll-list>
-		</view> -->
-
-		<!-- <u-divider text="分割线" :dot="true"></u-divider> -->
-
-		<!-- 轮播图 -->
-		<!-- 		<view style="padding: 0 10rpx;">
-			<u-swiper :list="swiperList" indicator indicatorMode="line" circular></u-swiper>
-		</view> -->
-
-
-		<!-- tab切换 -->
-		<!-- 		<template>
-			<u-sticky bgColor="#FFFFFF">
-				<u-tabs :list="tabList" @click="changeTab"></u-tabs>
-			</u-sticky>
-		</template> -->
-
-
 		<!-- 返回顶部 -->
 		<!-- 		<template>
 			<u-back-top :scroll-top="scrollTop" icon="arrow-up" top="1000"></u-back-top>
 		</template> -->
-
-
 
 		<!--  瀑布流  -->
 		<view style="padding: 10rpx;">
@@ -114,30 +88,6 @@
 						text: "广州"
 					},
 				],
-				// scrollTop: 0,
-				// tab bar
-				// tabList: [{
-				// 	name: '证件',
-				// }, {
-				// 	name: '写真',
-				// }, {
-				// 	name: '结婚'
-				// }, {
-				// 	name: '亲子'
-				// }, {
-				// 	name: '情侣'
-				// }, {
-				// 	name: '好友'
-				// }, {
-				// 	name: '宠物'
-				// }],
-				// 轮播图
-				// swiperList: [
-				// 	'https://cdn.uviewui.com/uview/swiper/swiper1.png',
-				// 	'https://cdn.uviewui.com/uview/swiper/swiper2.png',
-				// 	'https://cdn.uviewui.com/uview/swiper/swiper3.png',
-				// ],
-				// 快捷入口
 				fastList: [{
 						name: 'camera',
 						title: '写真'
@@ -171,18 +121,6 @@
 						title: '其他'
 					}
 				],
-				// scrollList: [{
-				// 	thumb: "https://cdn.uviewui.com/uview/goods/1.jpg"
-				// }, {
-				// 	thumb: "https://cdn.uviewui.com/uview/goods/2.jpg"
-				// }, {
-				// 	thumb: "https://cdn.uviewui.com/uview/goods/3.jpg"
-				// }, {
-				// 	thumb: "https://cdn.uviewui.com/uview/goods/4.jpg"
-				// }, {
-				// 	thumb: "https://cdn.uviewui.com/uview/goods/5.jpg"
-				// }],
-				// 产品瀑布流
 				product: {
 					list: []
 				},
@@ -232,15 +170,7 @@
 
 		},
 		onLoad: function(param) {
-			uni.showShareMenu();
 			let _this = this;
-			// getUserInfo({
-			// 	userId: getApp().globalData.USER_ID
-			// }).then((res) => {
-			// 	let [error, success] = res;
-			// 	if (success.data.city != '') {
-			// 		_this.city = success.data.city;
-			// 	}
 			let city = this.city;
 			if (param.city != null) {
 				this.city = param.city;
@@ -259,14 +189,6 @@
 			// })
 		},
 		onPullDownRefresh() {
-			// let _this = this;
-			// uni.redirectTo({
-			// 	url: '/pages/index/index?city=' + _this.city
-			// });
-			// setTimeout(() => {
-			// 	_this.$refs.waterfallsFlowRef.refresh();
-			// 	uni.stopPullDownRefresh();
-			// }, 500);
 			productRandom({
 				city: this.city
 			}).then((res)=>{

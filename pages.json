@@ -32,7 +32,7 @@
 	}, {
 		"path": "pages/product/product",
 		"style": {
-			"navigationBarTitleText": "详情",
+			"navigationBarTitleText": "",
 			"enablePullDownRefresh": false
 			// "navigationStyle": "custom", // 隐藏系统导航栏
 			// "navigationBarTextStyle": "white" // 状态栏字体为白色，只能为 white-白色，black-黑色 二选一
@@ -62,7 +62,7 @@
 	}, {
 		"path": "pages/myProduct/myProduct",
 		"style": {
-			"navigationBarTitleText": "我的发布",
+			"navigationBarTitleText": "我的作品",
 			"enablePullDownRefresh": true
 		}
 
@@ -111,7 +111,7 @@
 	}],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "微摄影",
+		"navigationBarTitleText": "",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8",
 		"app-plus": {
@@ -129,7 +129,6 @@
 				"iconPath": "static/home.png",
 				"selectedIconPath": "static/home-fill.png",
 				"pagePath": "pages/index/index"
-				// "text": "首页"
 			},
 			{
 				"iconPath": "static/heart.png",
