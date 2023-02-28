@@ -265,6 +265,12 @@ var _default = {
       });
     }
   },
+  onTabItemTap: function onTabItemTap() {
+    uni.pageScrollTo({
+      scrollTop: 0,
+      duration: 200
+    });
+  },
   onLoad: function onLoad() {
     var _this = this;
     (0, _product.getProductCollect)({

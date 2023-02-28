@@ -342,6 +342,12 @@ var _default = {
       });
     }
   },
+  onTabItemTap: function onTabItemTap() {
+    uni.pageScrollTo({
+      scrollTop: 0,
+      duration: 200
+    });
+  },
   onLoad: function onLoad(param) {
     var _this = this;
     var city = this.city;

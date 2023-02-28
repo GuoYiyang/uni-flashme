@@ -1,1 +1,1 @@
-<view><view style="padding:20rpx;"><u-search vue-id="50cad900-1" showAction="{{false}}" animation="{{true}}" shape="square" placeholder="摄影师或者主题" bgColor="#FFFFFF" focus="{{true}}" data-event-opts="{{[['^search',[['search']]]]}}" bind:search="__e" bind:__l="__l"></u-search></view></view>
+<view><view style="padding:20rpx;"><u-search vue-id="50cad900-1" showAction="{{false}}" animation="{{true}}" shape="square" bgColor="#FFFFFF" focus="{{true}}" data-event-opts="{{[['^search',[['search']]]]}}" bind:search="__e" bind:__l="__l"></u-search></view></view>

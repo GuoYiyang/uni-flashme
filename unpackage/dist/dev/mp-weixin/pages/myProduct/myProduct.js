@@ -341,6 +341,7 @@ var _default = {
   },
   onLoad: function onLoad(param) {
     //option为object类型，会序列化上个页面传递的参数
+    this.page = 1;
     var _this = this;
     (0, _product.getProductPage)({
       city: '',
@@ -358,19 +359,17 @@ var _default = {
     });
   },
   onShow: function onShow() {
-    var _this = this;
-    (0, _product.getProductPage)({
-      userId: getApp().globalData.USER_ID,
-      page: this.page,
-      pageSize: this.pageSize
-    }).then(function (res) {
-      var _res3 = (0, _slicedToArray2.default)(res, 2),
-        error = _res3[0],
-        success = _res3[1];
-      if (success.data.length == 0) {}
-      _this.product.list = success.data;
-      _this.$refs.waterfallsFlowRef.refresh();
-    });
+    // let _this = this;
+    // getProductPage({
+    // 	userId: getApp().globalData.USER_ID,
+    // 	page: this.page,
+    // 	pageSize: this.pageSize
+    // }).then((res) => {
+    // 	let [error, success] = res;
+    // 	if (success.data.length == 0) {}
+    // 	_this.product.list = success.data;
+    // 	_this.$refs.waterfallsFlowRef.refresh();
+    // })
   },
   onReachBottom: function onReachBottom() {
     this.page = this.page + 1;
@@ -380,9 +379,9 @@ var _default = {
       page: _this.page,
       pageSize: _this.pageSize
     }).then(function (res) {
-      var _res4 = (0, _slicedToArray2.default)(res, 2),
-        error = _res4[0],
-        success = _res4[1];
+      var _res3 = (0, _slicedToArray2.default)(res, 2),
+        error = _res3[0],
+        success = _res3[1];
       if (success.data.length == 0) {}
       _this.product.list = _this.product.list.concat(success.data);
     });
@@ -395,9 +394,9 @@ var _default = {
       page: this.page,
       pageSize: this.pageSize
     }).then(function (res) {
-      var _res5 = (0, _slicedToArray2.default)(res, 2),
-        error = _res5[0],
-        success = _res5[1];
+      var _res4 = (0, _slicedToArray2.default)(res, 2),
+        error = _res4[0],
+        success = _res4[1];
       if (success.data.length == 0) {}
       _this.product.list = success.data;
       _this.$refs.waterfallsFlowRef.refresh();

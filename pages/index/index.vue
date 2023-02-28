@@ -167,6 +167,12 @@
 			},
 
 		},
+		onTabItemTap() {
+			uni.pageScrollTo({
+				scrollTop: 0,
+				duration: 200,
+			});
+		},
 		onLoad: function(param) {
 			let _this = this;
 			let city = this.city;

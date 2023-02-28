@@ -8,28 +8,30 @@
 		</view>
 
 		<view style="padding: 10rpx;">
-			<uni-row>
-				<uni-col :span="16">
+			<uni-row justify="">
+				<uni-col :span="18">
 					<view class="title">{{title}}</view>
 				</uni-col>
-				<uni-col :span="8">
+				<uni-col :span="6">
 					<view class="title">￥{{price}}</view>
 				</uni-col>
 			</uni-row>
 			<uni-row>
-				<uni-col :span="16">
-					<view class="desc">{{tags}}</view>
+				<uni-col :span="24">
+					<view class="desc">{{content}}</view>
 				</uni-col>
 			</uni-row>
 		</view>
 
-
-		<view style="padding: 20rpx;" class="collect-tabbar">
-			<uni-goods-nav :options="tabbarOptions" :fill="false" :button-group="tabbarGroup" @click="optionClick"
+		<view style=" padding-bottom: 50rpx;">
+			<fui-card :src="cameramanAvatar" :title="cameramanName" tag="优质摄影师" @click="clickCard" :full="true"></fui-card>
+			<uni-goods-nav :options="tabbarOptions" :button-group="tabbarGroup" @click="optionClick"
 				@buttonClick="buttonClick" />
 		</view>
+		
 
-		<fui-card :src="cameramanAvatar" :title="cameramanName" tag="优质摄影师" @click="clickCard"></fui-card>
+		
+		
 
 <!-- 
 
@@ -118,6 +120,7 @@
 				title: '',
 				price: '',
 				tags: '',
+				content:'',
 				tabsList: [{
 						name: '拍摄须知'
 					},
@@ -202,7 +205,7 @@
 				this.price = success.data.price;
 				this.tags = success.data.tags;
 				this.cameramanId = success.data.userId;
-
+				this.content = success.data.content;
 
 				uni.setNavigationBarTitle({
 					title: this.title

@@ -109,11 +109,11 @@ try {
     uniCol: function () {
       return __webpack_require__.e(/*! import() | uni_modules/uni-row/components/uni-col/uni-col */ "uni_modules/uni-row/components/uni-col/uni-col").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-row/components/uni-col/uni-col.vue */ 392))
     },
-    uniGoodsNav: function () {
-      return Promise.all(/*! import() | uni_modules/uni-goods-nav/components/uni-goods-nav/uni-goods-nav */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-goods-nav/components/uni-goods-nav/uni-goods-nav")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-goods-nav/components/uni-goods-nav/uni-goods-nav.vue */ 399))
-    },
     fuiCard: function () {
       return __webpack_require__.e(/*! import() | components/fui-card/fui-card */ "components/fui-card/fui-card").then(__webpack_require__.bind(null, /*! @/components/fui-card/fui-card.vue */ 356))
+    },
+    uniGoodsNav: function () {
+      return Promise.all(/*! import() | uni_modules/uni-goods-nav/components/uni-goods-nav/uni-goods-nav */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-goods-nav/components/uni-goods-nav/uni-goods-nav")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-goods-nav/components/uni-goods-nav/uni-goods-nav.vue */ 399))
     },
   }
 } catch (e) {
@@ -272,6 +272,8 @@ var _user = __webpack_require__(/*! @/api/user.js */ 33);
 //
 //
 //
+//
+//
 var _default = {
   data: function data() {
     return {
@@ -291,6 +293,7 @@ var _default = {
       title: '',
       price: '',
       tags: '',
+      content: '',
       tabsList: [{
         name: '拍摄须知'
       }, {
@@ -376,6 +379,7 @@ var _default = {
       _this.price = success.data.price;
       _this.tags = success.data.tags;
       _this.cameramanId = success.data.userId;
+      _this.content = success.data.content;
       uni.setNavigationBarTitle({
         title: _this.title
       });

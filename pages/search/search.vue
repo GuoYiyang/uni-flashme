@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view style="padding: 20rpx;">
-			<u-search :showAction="false" :animation="true" shape="square" placeholder="摄影师或者主题" bgColor="#FFFFFF"
+			<u-search :showAction="false" :animation="true" shape="square" bgColor="#FFFFFF"
 				@search="search" focus></u-search>
 		</view>
 	</view>

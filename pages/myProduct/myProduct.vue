@@ -149,6 +149,7 @@
 			}
 		},
 		onLoad: function(param) { //option为object类型，会序列化上个页面传递的参数
+			this.page = 1;
 			let _this = this;
 			getProductPage({
 				city: '',
@@ -164,17 +165,17 @@
 			})
 		},
 		onShow() {
-			let _this = this;
-			getProductPage({
-				userId: getApp().globalData.USER_ID,
-				page: this.page,
-				pageSize: this.pageSize
-			}).then((res) => {
-				let [error, success] = res;
-				if (success.data.length == 0) {}
-				_this.product.list = success.data;
-				_this.$refs.waterfallsFlowRef.refresh();
-			})
+			// let _this = this;
+			// getProductPage({
+			// 	userId: getApp().globalData.USER_ID,
+			// 	page: this.page,
+			// 	pageSize: this.pageSize
+			// }).then((res) => {
+			// 	let [error, success] = res;
+			// 	if (success.data.length == 0) {}
+			// 	_this.product.list = success.data;
+			// 	_this.$refs.waterfallsFlowRef.refresh();
+			// })
 		},
 		onReachBottom() {
 			this.page = this.page + 1;

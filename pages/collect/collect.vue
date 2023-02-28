@@ -98,6 +98,12 @@
 				})
 			}
 		},
+		onTabItemTap() {
+			uni.pageScrollTo({
+				scrollTop: 0,
+				duration: 200,
+			});
+		},
 		onLoad() {
 			let _this = this;
 			getProductCollect({
