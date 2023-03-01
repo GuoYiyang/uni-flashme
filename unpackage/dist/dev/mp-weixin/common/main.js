@@ -167,6 +167,14 @@ var _default = {
               _context2.next = 2;
               return _this3.$onLaunched;
             case 2:
+              uni.addInterceptor('request', {
+                invoke: function invoke(args) {
+                  // request 触发前拼接 url 
+                  args.header;
+                  args.url = 'https://www.example.com/' + args.url;
+                }
+              });
+            case 3:
             case "end":
               return _context2.stop();
           }

@@ -109,6 +109,9 @@ try {
     uAvatar: function () {
       return Promise.all(/*! import() | uni_modules/uview-ui/components/u-avatar/u-avatar */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-avatar/u-avatar")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-avatar/u-avatar.vue */ 433))
     },
+    uButton: function () {
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-button/u-button.vue */ 455))
+    },
     uniList: function () {
       return __webpack_require__.e(/*! import() | uni_modules/uni-list/components/uni-list/uni-list */ "uni_modules/uni-list/components/uni-list/uni-list").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-list/components/uni-list/uni-list.vue */ 363))
     },
@@ -229,13 +232,24 @@ var _user = __webpack_require__(/*! @/api/user.js */ 33);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default = {
   data: function data() {
     return {
-      userId: '',
-      username: '',
-      avatar: '',
-      desc: ''
+      userInfo: {
+        userId: '',
+        username: '',
+        avatar: '',
+        desc: ''
+      }
     };
   },
   methods: {
@@ -245,7 +259,7 @@ var _default = {
       });
     }
   },
-  onLoad: function onLoad() {
+  onShow: function onShow() {
     this.userId = getApp().globalData.USER_ID;
     this.username = getApp().globalData.USER_NAME;
     this.avatar = getApp().globalData.AVATAR;
@@ -256,12 +270,12 @@ var _default = {
       var _res = (0, _slicedToArray2.default)(res, 2),
         error = _res[0],
         success = _res[1];
-      _this.username = success.data.nickname;
-      _this.city = success.data.city;
-      _this.gender = success.data.gender;
-      _this.avatar = success.data.avatar;
-      _this.desc = success.data.desc;
-      _this.phone = success.data.phone;
+      _this.userInfo.username = success.data.nickname;
+      _this.userInfo.city = success.data.city;
+      _this.userInfo.gender = success.data.gender;
+      _this.userInfo.avatar = success.data.avatar;
+      _this.userInfo.desc = success.data.desc;
+      _this.userInfo.phone = success.data.phone;
     });
   }
 };

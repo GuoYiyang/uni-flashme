@@ -6,8 +6,9 @@
 				<u-col span="12">
 					<view @click="avatarClick">
 						<u-avatar
-							src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fsafe-img.xhscdn.com%2Fbw1%2Fb420e1ac-6042-4d62-adbd-490724e2cf3a%3FimageView2%2F2%2Fw%2F1080%2Fformat%2Fjpg&refer=http%3A%2F%2Fsafe-img.xhscdn.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1679896500&t=2d6a0897e062565697949783ab7f9725"
-							size="80"></u-avatar>
+							:src="userInfo.avatar"
+							size="80">
+							</u-avatar>
 					</view>
 
 				</u-col>
@@ -15,22 +16,30 @@
 
 			<u-row gutter="0" customStyle="padding: 10rpx;">
 				<u-col span="12">
-					<text>{{username}}</text>
+					<text>{{userInfo.username}}</text>
 				</u-col>
 			</u-row>
 
-			<u-row gutter="0" customStyle="padding: 10rpx;">
-				<u-col span="4">
-					<view @click="aboutMe">关于我</view>
-				</u-col>
-				<u-col span="5">
-					<view @click="contact">联系方式</view>
-				</u-col>
-				<u-col span="6">
-					<view @click="priceDetail">套餐价格</view>
-				</u-col>
-			</u-row>
+
 		</view>
+
+		<u-row gutter="0" customStyle="padding: 10rpx;">
+			<u-col span="4">
+				<u-button @click="aboutMe">
+					关于我
+				</u-button>
+			</u-col>
+			<u-col span="4">
+				<u-button @click="contact">
+					联系方式
+				</u-button>
+			</u-col>
+			<u-col span="4">
+				<u-button @click="priceDetail">
+					套餐价格
+				</u-button>
+			</u-col>
+		</u-row>
 
 		<view style="padding: 20rpx;">
 
@@ -58,10 +67,13 @@
 	export default {
 		data() {
 			return {
-				userId: '',
-				username: '',
-				avatar: '',
-				desc: '',
+				userInfo:{
+					userId: '',
+					username: '',
+					avatar: '',
+					desc: '',
+				}
+
 			}
 		},
 		methods: {
@@ -71,7 +83,7 @@
 				})
 			}
 		},
-		onLoad() {
+		onShow() {
 			this.userId = getApp().globalData.USER_ID;
 			this.username = getApp().globalData.USER_NAME;
 			this.avatar = getApp().globalData.AVATAR;
@@ -80,15 +92,15 @@
 				userId: getApp().globalData.USER_ID
 			}).then((res) => {
 				let [error, success] = res;
-				_this.username = success.data.nickname;
-				_this.city = success.data.city;
-				_this.gender = success.data.gender;
-				_this.avatar = success.data.avatar;
-				_this.desc = success.data.desc;
-				_this.phone = success.data.phone;
+				_this.userInfo.username = success.data.nickname;
+				_this.userInfo.city = success.data.city;
+				_this.userInfo.gender = success.data.gender;
+				_this.userInfo.avatar = success.data.avatar;
+				_this.userInfo.desc = success.data.desc;
+				_this.userInfo.phone = success.data.phone;
 			})
 		},
-		
+
 	}
 </script>
 

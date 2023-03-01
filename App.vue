@@ -35,6 +35,13 @@
 		},
 		async onLoad() {
 			await this.$onLaunched;
+			uni.addInterceptor('request', {
+			  invoke(args) {
+			    // request 触发前拼接 url 
+				args.header
+			    args.url = 'https://www.example.com/'+args.url
+			  },
+			})
 		},
 	}
 </script>

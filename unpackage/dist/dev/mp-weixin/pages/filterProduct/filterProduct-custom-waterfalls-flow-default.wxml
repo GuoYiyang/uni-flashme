@@ -1,1 +1,0 @@
-<view class="item data-v-9e044194"><view class="title data-v-9e044194">{{item.title}}</view><view class="title data-v-9e044194">{{item.price}}</view></view>

@@ -102,6 +102,9 @@ __webpack_require__.r(__webpack_exports__);
 var components
 try {
   components = {
+    nv: function () {
+      return __webpack_require__.e(/*! import() | uni_modules/pyh-nv/components/pyh-nv/pyh-nv */ "uni_modules/pyh-nv/components/pyh-nv/pyh-nv").then(__webpack_require__.bind(null, /*! @/uni_modules/pyh-nv/components/pyh-nv/pyh-nv.vue */ 705))
+    },
     uRow: function () {
       return Promise.all(/*! import() | uni_modules/uview-ui/components/u-row/u-row */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-row/u-row")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-row/u-row.vue */ 275))
     },
@@ -251,9 +254,32 @@ var _user = __webpack_require__(/*! @/api/user.js */ 33);
 //
 //
 //
+//
+//
+//
 var _default = {
   data: function data() {
     return {
+      nvConfig: {
+        title: 'PhotoCall',
+        bgColor: '#ffffff',
+        type: 'search',
+        search: {
+          value: '摄影主题',
+          input: false,
+          url: '/pages/search/search'
+        },
+        back: {
+          hide: true
+        }
+        // transparent:{
+        // 	type: 'content',
+        // },
+        // address:{
+
+        // }
+      },
+
       city: '0',
       cityList: [{
         value: "0",

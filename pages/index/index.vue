@@ -1,12 +1,15 @@
 <template>
 	<view>
+	
+		<nv :config="nvConfig"></nv>
+		
 		<view style="padding: 40rpx; font-weight: bold;">
-			<view style="font-size: 35rpx;">HI 爱拍照的你</view>
-			<view>在PhotoCall，探索自我</view>
+			<view style="font-size: 35rpx; padding-left: 20rpx;">HI 爱拍照的你</view>
+			<view style="padding-left: 20rpx;">在PhotoCall，探索自我</view>
 		</view>
 
 		<!-- 搜索 -->
-		<u-row gutter="0" customStyle="padding: 20rpx;">
+		<u-row gutter="0" customStyle="padding: 20rpx; mar">
 			<u-col span="3">
 				<uni-data-picker popup-title="请选择城市" :localdata="cityList" v-model="city" :clear-icon="false"
 					@change="cityChange">
@@ -69,6 +72,25 @@
 	export default {
 		data() {
 			return {
+				nvConfig:{
+					title: 'PhotoCall',
+					bgColor: '#ffffff',
+					type: 'search',
+					search:{
+						value: '摄影主题',
+						input: false,
+						url: '/pages/search/search'
+					},
+					back:{
+						hide: true
+					}
+					// transparent:{
+					// 	type: 'content',
+					// },
+					// address:{
+						
+					// }
+				},
 				city: '0',
 				cityList: [{
 						value: "0",
@@ -227,6 +249,8 @@
 		justify-content: flex-start;
 		display: flex;
 	}
+
+	$nav-height: 30px;
 
 	.item {
 		padding: 10rpx 10rpx 20rpx;

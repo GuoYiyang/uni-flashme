@@ -8,7 +8,7 @@
 			    }" :inactiveStyle="{
 			        color: '#606266',
 			        transform: 'scale(1)'
-			    }" itemStyle="padding-left: 15px; padding-right: 15px; height: 34px;" :current="tabsCurrent" :scrollable='false'
+			    }" itemStyle="padding: 15rpx; padding-bottom: 10rpx; height: 60rpx;" :current="tabsCurrent" :scrollable='false'
 				:duration="100" @change="tabsChange">
 			</u-tabs>
 		</view>

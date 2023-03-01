@@ -107,7 +107,10 @@ export function uploadImages(req) {
 	return uni.uploadFile({
 		url: baseUrl + '/product/image/upload',
 		filePath: req.filePath,//这里是图片的本地文件路径列表（选择图片成功的时候可以拿到,在上边的success回调中res.tempFilePaths即可拿到）
-		name: 'file'
+		name: 'file',
+		header: {
+			"X-USER-ID": getApp().globalData.USER_ID
+		}
 	})
 }
 

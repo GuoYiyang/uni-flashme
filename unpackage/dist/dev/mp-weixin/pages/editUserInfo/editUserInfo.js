@@ -188,6 +188,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ 5));
 var _user = __webpack_require__(/*! @/api/user.js */ 33);
+var _product = __webpack_require__(/*! @/api/product.js */ 168);
 //
 //
 //
@@ -263,6 +264,7 @@ var _user = __webpack_require__(/*! @/api/user.js */ 33);
 var _default = {
   data: function data() {
     return {
+      selectedAvatarPath: '',
       cityList: [{
         text: "深圳",
         value: "0"
@@ -278,6 +280,7 @@ var _default = {
       }],
       userId: '',
       showSex: false,
+      avatar: '',
       userInfo: {
         id: '',
         name: '',
@@ -317,6 +320,18 @@ var _default = {
     };
   },
   methods: {
+    chooseAvatar: function chooseAvatar() {
+      var _this = this;
+      uni.chooseImage({
+        count: 1,
+        sizeType: ['compressed'],
+        success: function success(res) {
+          _this.selectedAvatarPath = res.tempFilePaths[0];
+          _this.userInfo.avatar = _this.selectedAvatarPath;
+          _this.avatar = _this.selectedAvatarPath;
+        }
+      });
+    },
     cityChange: function cityChange(item) {
       this.userInfo.city = item.detail.value[0].value;
     },
@@ -329,27 +344,36 @@ var _default = {
     submit: function submit() {
       var _this2 = this;
       this.$refs.baseForm.validate().then(function (res) {
-        console.log(_this2.userInfo);
-        (0, _user.updateUserInfo)(_this2.userInfo).then(function (res) {
-          console.log(res);
-          if (res[1].data == true) {
-            uni.showToast({
-              title: "修改成功"
+        console.log(_this2.selectedAvatarPath);
+        if (_this2.selectedAvatarPath != "") {
+          (0, _product.uploadImages)({
+            filePath: _this2.selectedAvatarPath
+          }).then(function (res) {
+            var _res = (0, _slicedToArray2.default)(res, 2),
+              error = _res[0],
+              success = _res[1];
+            _this2.userInfo.avatar = success.data;
+            (0, _user.updateUserInfo)(_this2.userInfo).then(function (res) {
+              if (res[1].data == true) {
+                uni.showToast({
+                  title: "修改成功"
+                });
+              } else {
+                uni.showToast({
+                  title: "修改失败，请检查必填项"
+                });
+              }
             });
-            setTimeout(function () {
-              uni.navigateBack();
-            }, 500);
-          } else {
-            uni.showToast({
-              title: "修改失败，请检查必填项"
-            });
-          }
-        });
+          });
+        }
       }).catch(function (err) {
         uni.showToast({
           title: "请检查参数"
         });
       });
+      setTimeout(function () {
+        uni.navigateBack();
+      }, 500);
     }
   },
   onShow: function onShow() {},
@@ -359,13 +383,14 @@ var _default = {
     (0, _user.getUserInfo)({
       userId: getApp().globalData.USER_ID
     }).then(function (res) {
-      var _res = (0, _slicedToArray2.default)(res, 2),
-        error = _res[0],
-        success = _res[1];
+      var _res2 = (0, _slicedToArray2.default)(res, 2),
+        error = _res2[0],
+        success = _res2[1];
       _this.userInfo.name = success.data.nickname;
       _this.userInfo.city = success.data.city;
       _this.userInfo.sex = success.data.gender;
       _this.userInfo.avatar = success.data.avatar;
+      _this.avatar = success.data.avatar;
       _this.userInfo.desc = success.data.desc;
       _this.userInfo.phone = success.data.phone;
       console.log(_this.userInfo);

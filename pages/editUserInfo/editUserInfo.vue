@@ -38,7 +38,7 @@
 					<!-- 基础用法，不包含校验规则 -->
 					<uni-forms ref="baseForm" :model="userInfo" :rules="rules">
 						<uni-forms-item label="头像" required name="avatar">
-							<u-avatar :src="userInfo.avatar" shape="square">
+							<u-avatar :src="avatar" shape="square" @click="chooseAvatar">
 							</u-avatar>
 						</uni-forms-item>
 						<uni-forms-item label="姓名" required name="name">
@@ -75,9 +75,13 @@
 		updateUserInfo,
 		getUserInfo
 	} from '@/api/user.js';
+	import {
+		uploadImages,
+	} from '@/api/product.js'
 	export default {
 		data() {
 			return {
+				selectedAvatarPath:'',
 				cityList: [{
 						text: "深圳",
 						value: "0"
@@ -97,6 +101,7 @@
 				],
 				userId: '',
 				showSex: false,
+				avatar:'',
 				userInfo: {
 					id: '',
 					name: '',
@@ -136,6 +141,18 @@
 			};
 		},
 		methods: {
+			chooseAvatar() {
+				let _this = this;
+				uni.chooseImage({
+					count: 1,
+					sizeType: ['compressed'],
+					success: (res)=>{
+						_this.selectedAvatarPath = res.tempFilePaths[0];
+						_this.userInfo.avatar = _this.selectedAvatarPath;
+						_this.avatar = _this.selectedAvatarPath;
+					}
+				})
+			},
 			cityChange(item) {
 				this.userInfo.city = item.detail.value[0].value;
 			},
@@ -147,28 +164,35 @@
 			},
 			submit() {
 				this.$refs.baseForm.validate().then(res => {
-					console.log(this.userInfo);
-					updateUserInfo(this.userInfo).then((res) => {
-						console.log(res);
-						if (res[1].data == true) {
-							uni.showToast({
-								title: "修改成功"
-							})
-							setTimeout(() => {
-								uni.navigateBack()
-							}, 500)
-						} else {
-							uni.showToast({
-								title: "修改失败，请检查必填项"
-							})
-						}
-					});
+					console.log(this.selectedAvatarPath)
+					if (this.selectedAvatarPath != "") {
+						uploadImages({
+							filePath: this.selectedAvatarPath
+						}).then((res)=>{
+							let [error, success] = res;
+							this.userInfo.avatar = success.data
+							updateUserInfo(this.userInfo).then((res) => {
+								if (res[1].data == true) {
+									uni.showToast({
+										title: "修改成功"
+									})
+								} else {
+									uni.showToast({
+										title: "修改失败，请检查必填项"
+									})
+								}
+							});
+						})
+					}
 
 				}).catch(err => {
 					uni.showToast({
 						title: "请检查参数"
 					})
 				})
+				setTimeout(() => {
+					uni.navigateBack()
+				}, 500)
 			}
 		},
 		onShow() {
@@ -184,6 +208,7 @@
 				_this.userInfo.city = success.data.city;
 				_this.userInfo.sex = success.data.gender;
 				_this.userInfo.avatar = success.data.avatar;
+				_this.avatar = success.data.avatar;
 				_this.userInfo.desc = success.data.desc;
 				_this.userInfo.phone = success.data.phone;
 				console.log(_this.userInfo);
