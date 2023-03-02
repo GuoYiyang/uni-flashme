@@ -33,7 +33,9 @@
 				</u-col>
 			</u-row>
 		</view>
-
+		
+		<u-button  @click="follow" :text="isFollow ? '取消关注': '关注'"></u-button>
+	
 		<view>
 			<u-sticky bgColor="#f5f5f5">
 				<u-tabs :list="tabsList" lineWidth="30" lineHeight="3" lineColor="#000000" :activeStyle="{
@@ -76,7 +78,9 @@
 		getProductPage
 	} from '@/api/product.js'
 	import {
-		getUserInfo
+		getUserInfo,
+		pherCollect,
+		getPherCollectStatus
 	} from '@/api/user.js';
 	export default {
 		data() {
@@ -103,9 +107,22 @@
 						name: '写真'
 					},
 				],
+				isFollow:false,
 			}
 		},
 		methods: {
+			follow() {
+				this.isFollow = !this.isFollow;
+				let deleted = 0;
+				if (!this.isFollow) {
+					deleted = 1;
+				}
+				pherCollect({
+					userId: getApp().globalData.USER_ID,
+					pherId: this.userId,
+					isDelete: deleted
+				})
+			},
 			wapperClick(item) {
 				uni.navigateTo({
 					url: '../product/product?id=' + item.id
@@ -118,7 +135,6 @@
 			}
 		},
 		onLoad: function(param) {
-
 			this.userId = param.userId;
 			let _this = this;
 			getUserInfo({
@@ -131,8 +147,6 @@
 				_this.avatar = success.data.avatar;
 				_this.desc = success.data.desc;
 				_this.phone = success.data.phone;
-
-
 				uni.setNavigationBarTitle({
 					title: this.username + "的主页"
 				});
@@ -145,7 +159,13 @@
 			}).then((res) => {
 				let [error, success] = res;
 				_this.product.list = success.data;
-				console.log(_this.product.list)
+			})
+			getPherCollectStatus({
+				userId: getApp().globalData.USER_ID,
+				pherId: this.userId
+			}).then((res)=>{
+				let [error, success] = res;
+				_this.isFollow = success.data;
 			})
 			uni.showShareMenu({
 				withShareTicket: true,

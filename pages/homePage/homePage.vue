@@ -1,7 +1,6 @@
 <template>
 	<view>
 		<view class="center">
-
 			<u-row gutter="10" customStyle="padding: 10rpx;">
 				<u-col span="12">
 					<view @click="avatarClick">
@@ -13,17 +12,14 @@
 
 				</u-col>
 			</u-row>
-
 			<u-row gutter="0" customStyle="padding: 10rpx;">
 				<u-col span="12">
 					<text>{{userInfo.username}}</text>
 				</u-col>
 			</u-row>
-
-
 		</view>
 
-		<u-row gutter="0" customStyle="padding: 10rpx;">
+<!-- 		<u-row gutter="0" customStyle="padding: 10rpx;">
 			<u-col span="4">
 				<u-button @click="aboutMe">
 					关于我
@@ -39,7 +35,7 @@
 					套餐价格
 				</u-button>
 			</u-col>
-		</u-row>
+		</u-row> -->
 
 		<view style="padding: 20rpx;">
 
@@ -51,8 +47,6 @@
 				<uni-list-item title="问题反馈" showArrow link="navigateTo" to="../feedback/feedback" />
 			</uni-list>
 		</view>
-
-
 	</view>
 </template>
 

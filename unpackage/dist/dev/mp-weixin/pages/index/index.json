@@ -1,10 +1,7 @@
 {
   "navigationBarTitleText": "PhotoCall",
   "enablePullDownRefresh": true,
-  "navigationStyle": "custom",
-  "navigationBarTextStyle": "white",
   "usingComponents": {
-    "nv": "/uni_modules/pyh-nv/components/pyh-nv/pyh-nv",
     "u-row": "/uni_modules/uview-ui/components/u-row/u-row",
     "u-col": "/uni_modules/uview-ui/components/u-col/u-col",
     "uni-data-picker": "/uni_modules/uni-data-picker/components/uni-data-picker/uni-data-picker",

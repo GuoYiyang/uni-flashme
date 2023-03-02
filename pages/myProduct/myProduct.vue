@@ -20,7 +20,7 @@
 				<!-- #ifdef MP-WEIXIN -->
 				<view class="item" v-for="(item,index) in product.list" :key="index" slot="slot{{index}}">
 					<u-row>
-						<view class="title">￥{{item.title}}</view>
+						<view class="title">{{item.title}}</view>
 					</u-row>
 					<u-row>
 						<u-col span="10" justify="flex-start">
@@ -30,13 +30,11 @@
 							<uni-icons type="more-filled" size="20" color="#1f1f1f"></uni-icons>
 						</u-col>
 					</u-row>
-
 				</view>
 				<!-- #endif -->
 				<!-- #ifndef MP-WEIXIN -->
 				<template v-slot:default="item">
 					<view class="item">
-
 						<u-row>
 							<view class="title">{{item.title}}</view>
 						</u-row>
@@ -48,8 +46,6 @@
 								<uni-icons type="more-filled" size="20" color="#1f1f1f"></uni-icons>
 							</u-col>
 						</u-row>
-
-
 					</view>
 				</template>
 				<!-- #endif -->
@@ -63,8 +59,9 @@
 		</u-popup> -->
 
 		<view>
-			<u-action-sheet :actions="popList" @select="selectClick" :show="popShow" cancelText="取消" @close="this.popShow=false"
-			:closeOnClickOverlay="true" :closeOnClickAction="true" :safeAreaInsetBottom="true"></u-action-sheet>
+			<u-action-sheet :actions="popList" @select="selectClick" :show="popShow" cancelText="取消"
+				@close="this.popShow=false" :closeOnClickOverlay="true" :closeOnClickAction="true"
+				:safeAreaInsetBottom="true"></u-action-sheet>
 		</view>
 
 		<view class="collect-tabbar">
@@ -93,9 +90,8 @@
 					list: []
 				},
 				tabsList: [{
-						name: '全部'
-					}
-				],
+					name: '全部'
+				}],
 				tabbarGroup: [{
 					text: '发布新产品',
 					backgroundColor: '#000000',
@@ -107,7 +103,7 @@
 			// shouMoreAction(item) {
 			// 	console.log(item)
 			// },
-			selectClick(item){
+			selectClick(item) {
 				console.log(item)
 				if ("删除" == item.name) {
 					this.delete();

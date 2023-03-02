@@ -1,8 +1,8 @@
 <template>
 	<view>
-	
-		<nv :config="nvConfig"></nv>
-		
+
+		<!-- <nv :config="nvConfig"></nv> -->
+
 		<view style="padding: 40rpx; font-weight: bold;">
 			<view style="font-size: 35rpx; padding-left: 20rpx;">HI 爱拍照的你</view>
 			<view style="padding-left: 20rpx;">在PhotoCall，探索自我</view>
@@ -72,23 +72,23 @@
 	export default {
 		data() {
 			return {
-				nvConfig:{
+				nvConfig: {
 					title: 'PhotoCall',
 					bgColor: '#ffffff',
 					type: 'search',
-					search:{
+					search: {
 						value: '摄影主题',
 						input: false,
 						url: '/pages/search/search'
 					},
-					back:{
+					back: {
 						hide: true
 					}
 					// transparent:{
 					// 	type: 'content',
 					// },
 					// address:{
-						
+
 					// }
 				},
 				city: '0',
@@ -145,6 +145,7 @@
 				product: {
 					list: []
 				},
+				tabClickCnt: 0,
 			}
 		},
 		methods: {
@@ -190,10 +191,16 @@
 
 		},
 		onTabItemTap() {
-			uni.pageScrollTo({
-				scrollTop: 0,
-				duration: 200,
-			});
+			this.tabClickCnt++;
+			setTimeout(() => {
+				if (this.tabClickCnt >= 2) {
+					uni.pageScrollTo({
+						scrollTop: 0,
+						duration: 200,
+					});
+				}
+				this.tabClickCnt = 0
+			}, 250)
 		},
 		onLoad: function(param) {
 			let _this = this;

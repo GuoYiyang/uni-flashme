@@ -15,7 +15,7 @@
 		<view v-if="collectProductShow">
 			<view style="padding:10rpx;">
 				<custom-waterfalls-flow ref="waterfallsFlowRef" :value="product.list" :column="2" :columnSpace="1.5"
-					:seat="2" @imageClick="imageClick" @loaded="loaded" @wapperClick="wapperClick">
+					:seat="2" @imageClick="imageClick" @wapperClick="wapperClick">
 					<!-- #ifdef MP-WEIXIN -->
 					<view class="item" v-for="(item,index) in product.list" :key="index" slot="slot{{index}}">
 						<view class="title">{{item.title}}</view>
@@ -35,9 +35,12 @@
 		</view>
 		<view v-if="collectPhotographerShow" style="padding-top: 10rpx;">
 			<div v-for="item in pher.list" :key="item.id">
-				<fui-card @click="clickPherCard" :src="item.avatar" :title="item.nickname" tag="优质摄影师">
-					<view class="fui-card__content" style="padding: 20rpx;">{{item.desc}}</view>
-				</fui-card>
+				<view style="padding: 10rpx;">
+					<fui-card @click="clickPherCard(item.id)" :src="item.avatar" :title="item.nickname" tag="优质摄影师">
+						<view style="padding: 20rpx;">{{item.desc}}</view>
+					</fui-card>
+				</view>
+
 			</div>
 
 		</view>
@@ -69,12 +72,15 @@
 				},
 				pher: {
 					list: []
-				}
+				},
+				tabClickCnt:0,
 			}
 		},
 		methods: {
-			clickPherCard(item) {
-				console.log(item)
+			clickPherCard(userId) {
+				uni.navigateTo({
+					url: '../userShow/userShow?userId=' + userId
+				})
 			},
 			tabsChange(index) {
 				this.tabsCurrent = index.index;
@@ -99,10 +105,16 @@
 			}
 		},
 		onTabItemTap() {
-			uni.pageScrollTo({
-				scrollTop: 0,
-				duration: 200,
-			});
+			this.tabClickCnt++;
+			setTimeout(() => {
+				if (this.tabClickCnt >= 2) {
+					uni.pageScrollTo({
+						scrollTop: 0,
+						duration: 200,
+					});
+				}
+				this.tabClickCnt = 0
+			}, 250)
 		},
 		onLoad() {
 			let _this = this;
@@ -126,7 +138,6 @@
 			_this.collectPhotographerShow = false;
 		},
 		onPullDownRefresh() {
-			this.page = 1;
 			let _this = this;
 			getProductCollect({
 				userId: getApp().globalData.USER_ID

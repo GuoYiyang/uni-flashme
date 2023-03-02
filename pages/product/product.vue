@@ -17,20 +17,19 @@
 				</uni-col>
 			</uni-row>
 			<uni-row>
+				<fui-card :src="cameramanAvatar" :title="cameramanName" tag="优质摄影师" @click="clickCard" :full="true"></fui-card>
+			</uni-row>
+			<uni-row>
 				<uni-col :span="24">
 					<view class="desc">{{content}}</view>
 				</uni-col>
 			</uni-row>
 		</view>
-
+		
 		<view style=" padding-bottom: 50rpx;">
-			<fui-card :src="cameramanAvatar" :title="cameramanName" tag="优质摄影师" @click="clickCard" :full="true"></fui-card>
 			<uni-goods-nav :options="tabbarOptions" :button-group="tabbarGroup" @click="optionClick"
 				@buttonClick="buttonClick" />
 		</view>
-		
-
-		
 		
 
 <!-- 
