@@ -112,6 +112,8 @@
 		},
 		methods: {
 			follow() {
+				let pherId = this.userId;
+				console.log(pherId)
 				this.isFollow = !this.isFollow;
 				let deleted = 0;
 				if (!this.isFollow) {
@@ -119,7 +121,7 @@
 				}
 				pherCollect({
 					userId: getApp().globalData.USER_ID,
-					pherId: this.userId,
+					pherId: pherId,
 					isDelete: deleted
 				})
 			},

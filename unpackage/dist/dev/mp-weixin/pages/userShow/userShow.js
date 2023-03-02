@@ -288,6 +288,8 @@ var _default = {
   },
   methods: {
     follow: function follow() {
+      var pherId = this.userId;
+      console.log(pherId);
       this.isFollow = !this.isFollow;
       var deleted = 0;
       if (!this.isFollow) {
@@ -295,7 +297,7 @@ var _default = {
       }
       (0, _user.pherCollect)({
         userId: getApp().globalData.USER_ID,
-        pherId: this.userId,
+        pherId: pherId,
         isDelete: deleted
       });
     },
