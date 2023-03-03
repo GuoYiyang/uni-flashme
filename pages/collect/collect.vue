@@ -36,9 +36,13 @@
 		<view v-if="collectPhotographerShow" style="padding-top: 10rpx;">
 			<div v-for="item in pher.list" :key="item.id">
 				<view style="padding: 10rpx;">
-					<fui-card @click="clickPherCard(item.id)" :src="item.avatar" :title="item.nickname" tag="优质摄影师">
+<!-- 					<fui-card @click="clickPherCard(item.id)" :src="item.avatar" :title="item.nickname" tag="优质摄影师">
 						<view style="padding: 20rpx;">{{item.desc}}</view>
-					</fui-card>
+					</fui-card> -->
+					<uni-card :title="item.nickname"  extra="优质摄影师" :thumbnail="item.avatar"
+						@click="clickPherCard(item.id)" is-shadow is-full>
+						<text>{{item.desc}}</text>
+					</uni-card>
 				</view>
 
 			</div>
@@ -73,7 +77,7 @@
 				pher: {
 					list: []
 				},
-				tabClickCnt:0,
+				tabClickCnt: 0,
 			}
 		},
 		methods: {

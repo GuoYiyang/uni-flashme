@@ -9,7 +9,7 @@
 
 		<view style="padding: 10rpx;">
 			<uni-row justify="">
-				<uni-col :span="18">
+				<uni-col :span="16">
 					<view class="title">{{title}}</view>
 				</uni-col>
 				<uni-col :span="6">
@@ -17,7 +17,9 @@
 				</uni-col>
 			</uni-row>
 			<uni-row>
-				<fui-card :src="cameramanAvatar" :title="cameramanName" tag="优质摄影师" @click="clickCard" :full="true"></fui-card>
+				<uni-card :title="cameramanName"  extra="优质摄影师" :thumbnail="cameramanAvatar" @click="clickCard" is-shadow is-full>
+					<text>{{cameramanDesc}}</text>
+				</uni-card>
 			</uni-row>
 			<uni-row>
 				<uni-col :span="24">
@@ -25,14 +27,14 @@
 				</uni-col>
 			</uni-row>
 		</view>
-		
+
 		<view style=" padding-bottom: 50rpx;">
 			<uni-goods-nav :options="tabbarOptions" :button-group="tabbarGroup" @click="optionClick"
 				@buttonClick="buttonClick" />
 		</view>
-		
 
-<!-- 
+
+		<!-- 
 
 		<view class="center">
 			<u-tabs :list="tabsList" lineWidth="60" lineHeight="3" lineColor="#000000" :activeStyle="{
@@ -119,7 +121,7 @@
 				title: '',
 				price: '',
 				tags: '',
-				content:'',
+				content: '',
 				tabsList: [{
 						name: '拍摄须知'
 					},
@@ -142,7 +144,8 @@
 				}],
 				info: '',
 				introduction: '',
-				popShow: false
+				popShow: false,
+				image:'',
 			}
 		},
 		methods: {
@@ -205,6 +208,7 @@
 				this.tags = success.data.tags;
 				this.cameramanId = success.data.userId;
 				this.content = success.data.content;
+				this.image = success.data.image;
 
 				uni.setNavigationBarTitle({
 					title: this.title
@@ -248,7 +252,6 @@
 			this.productCustomerShow = false;
 		},
 		onShareAppMessage(res) {
-			console.log(res)
 			return {
 				title: this.title,
 				path: '/pages/product/product?id=' + this.productId

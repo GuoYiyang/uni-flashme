@@ -6,7 +6,7 @@
 				<u-col span="12">
 					<view @click="avatarClick">
 						<u-avatar
-							src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fsafe-img.xhscdn.com%2Fbw1%2Fb420e1ac-6042-4d62-adbd-490724e2cf3a%3FimageView2%2F2%2Fw%2F1080%2Fformat%2Fjpg&refer=http%3A%2F%2Fsafe-img.xhscdn.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1679896500&t=2d6a0897e062565697949783ab7f9725"
+							:src="avatar"
 							size="80"></u-avatar>
 					</view>
 
@@ -113,7 +113,6 @@
 		methods: {
 			follow() {
 				let pherId = this.userId;
-				console.log(pherId)
 				this.isFollow = !this.isFollow;
 				let deleted = 0;
 				if (!this.isFollow) {

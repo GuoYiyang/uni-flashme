@@ -101,19 +101,19 @@ var components
 try {
   components = {
     uSwiper: function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-swiper/u-swiper */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-swiper/u-swiper")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-swiper/u-swiper.vue */ 384))
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-swiper/u-swiper */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-swiper/u-swiper")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-swiper/u-swiper.vue */ 377))
     },
     uniRow: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-row/components/uni-row/uni-row */ "uni_modules/uni-row/components/uni-row/uni-row").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-row/components/uni-row/uni-row.vue */ 392))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-row/components/uni-row/uni-row */ "uni_modules/uni-row/components/uni-row/uni-row").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-row/components/uni-row/uni-row.vue */ 385))
     },
     uniCol: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-row/components/uni-col/uni-col */ "uni_modules/uni-row/components/uni-col/uni-col").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-row/components/uni-col/uni-col.vue */ 399))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-row/components/uni-col/uni-col */ "uni_modules/uni-row/components/uni-col/uni-col").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-row/components/uni-col/uni-col.vue */ 392))
     },
-    fuiCard: function () {
-      return __webpack_require__.e(/*! import() | components/fui-card/fui-card */ "components/fui-card/fui-card").then(__webpack_require__.bind(null, /*! @/components/fui-card/fui-card.vue */ 363))
+    uniCard: function () {
+      return __webpack_require__.e(/*! import() | uni_modules/uni-card/components/uni-card/uni-card */ "uni_modules/uni-card/components/uni-card/uni-card").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-card/components/uni-card/uni-card.vue */ 465))
     },
     uniGoodsNav: function () {
-      return Promise.all(/*! import() | uni_modules/uni-goods-nav/components/uni-goods-nav/uni-goods-nav */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-goods-nav/components/uni-goods-nav/uni-goods-nav")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-goods-nav/components/uni-goods-nav/uni-goods-nav.vue */ 406))
+      return Promise.all(/*! import() | uni_modules/uni-goods-nav/components/uni-goods-nav/uni-goods-nav */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-goods-nav/components/uni-goods-nav/uni-goods-nav")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-goods-nav/components/uni-goods-nav/uni-goods-nav.vue */ 399))
     },
   }
 } catch (e) {
@@ -273,6 +273,8 @@ var _user = __webpack_require__(/*! @/api/user.js */ 33);
 //
 //
 //
+//
+//
 var _default = {
   data: function data() {
     return {
@@ -313,7 +315,8 @@ var _default = {
       }],
       info: '',
       introduction: '',
-      popShow: false
+      popShow: false,
+      image: ''
     };
   },
   methods: {
@@ -379,6 +382,7 @@ var _default = {
       _this.tags = success.data.tags;
       _this.cameramanId = success.data.userId;
       _this.content = success.data.content;
+      _this.image = success.data.image;
       uni.setNavigationBarTitle({
         title: _this.title
       });
@@ -422,7 +426,6 @@ var _default = {
     this.productCustomerShow = false;
   },
   onShareAppMessage: function onShareAppMessage(res) {
-    console.log(res);
     return {
       title: this.title,
       path: '/pages/product/product?id=' + this.productId
