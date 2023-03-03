@@ -35,7 +35,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
 /* harmony import */ var _index_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./index.vue?vue&type=style&index=0&lang=css& */ 169);
 /* harmony import */ var _index_vue_vue_type_style_index_1_id_57280228_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./index.vue?vue&type=style&index=1&id=57280228&lang=scss&scoped=true& */ 171);
-/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js */ 37);
+/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js */ 34);
 
 var renderjs
 
@@ -188,9 +188,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 57));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 59));
 var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ 5));
 var _product = __webpack_require__(/*! @/api/product.js */ 168);
-var _user = __webpack_require__(/*! @/api/user.js */ 33);
+var _user = __webpack_require__(/*! @/api/user.js */ 30);
 //
 //
 //
@@ -380,50 +382,64 @@ var _default = {
     }, 250);
   },
   onLoad: function onLoad(param) {
-    var _this = this;
-    var city = this.city;
-    if (param.city != null) {
-      this.city = param.city;
-      city = param.city;
-    }
-    (0, _product.productRandom)({
-      city: city
-    }).then(function (res) {
-      var _res2 = (0, _slicedToArray2.default)(res, 2),
-        error = _res2[0],
-        success = _res2[1];
-      _this.product.list = success.data;
-    });
-    uni.showShareMenu({
-      withShareTicket: true,
-      menus: ["shareAppMessage", "shareTimeline"]
-    });
-    // })
+    var _this4 = this;
+    return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
+      var _this, city;
+      return _regenerator.default.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _this = _this4;
+              city = _this4.city;
+              if (param.city != null) {
+                _this4.city = param.city;
+                city = param.city;
+              }
+              (0, _product.productRandom)({
+                city: city
+              }).then(function (res) {
+                var _res2 = (0, _slicedToArray2.default)(res, 2),
+                  error = _res2[0],
+                  success = _res2[1];
+                _this.product.list = success.data;
+              });
+              uni.showShareMenu({
+                withShareTicket: true,
+                menus: ["shareAppMessage", "shareTimeline"]
+              });
+              // })
+            case 5:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
   },
   onPullDownRefresh: function onPullDownRefresh() {
-    var _this4 = this;
+    var _this5 = this;
     (0, _product.productRandom)({
       city: this.city
     }).then(function (res) {
       var _res3 = (0, _slicedToArray2.default)(res, 2),
         error = _res3[0],
         success = _res3[1];
-      _this4.product.list = success.data;
-      _this4.$refs.waterfallsFlowRef.refresh();
+      _this5.product.list = success.data;
+      _this5.$refs.waterfallsFlowRef.refresh();
     });
     setTimeout(function () {
       uni.stopPullDownRefresh();
     }, 500);
   },
   onReachBottom: function onReachBottom() {
-    var _this5 = this;
+    var _this6 = this;
     (0, _product.productRandom)({
       city: this.city
     }).then(function (res) {
       var _res4 = (0, _slicedToArray2.default)(res, 2),
         error = _res4[0],
         success = _res4[1];
-      _this5.product.list = _this5.product.list.concat(success.data);
+      _this6.product.list = _this6.product.list.concat(success.data);
     });
   }
 };

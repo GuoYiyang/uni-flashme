@@ -9433,380 +9433,6 @@ internalMixin(Vue);
 /* 28 */,
 /* 29 */,
 /* 30 */
-/*!************************************************************************************************!*\
-  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/@babel/runtime/regenerator/index.js ***!
-  \************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-// TODO(Babel 8): Remove this file.
-
-var runtime = __webpack_require__(/*! @babel/runtime/helpers/regeneratorRuntime */ 31)();
-module.exports = runtime;
-
-/***/ }),
-/* 31 */
-/*!*******************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/regeneratorRuntime.js ***!
-  \*******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var _typeof = __webpack_require__(/*! ./typeof.js */ 13)["default"];
-function _regeneratorRuntime() {
-  "use strict";
-
-  /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */
-  module.exports = _regeneratorRuntime = function _regeneratorRuntime() {
-    return exports;
-  }, module.exports.__esModule = true, module.exports["default"] = module.exports;
-  var exports = {},
-    Op = Object.prototype,
-    hasOwn = Op.hasOwnProperty,
-    defineProperty = Object.defineProperty || function (obj, key, desc) {
-      obj[key] = desc.value;
-    },
-    $Symbol = "function" == typeof Symbol ? Symbol : {},
-    iteratorSymbol = $Symbol.iterator || "@@iterator",
-    asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator",
-    toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
-  function define(obj, key, value) {
-    return Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: !0,
-      configurable: !0,
-      writable: !0
-    }), obj[key];
-  }
-  try {
-    define({}, "");
-  } catch (err) {
-    define = function define(obj, key, value) {
-      return obj[key] = value;
-    };
-  }
-  function wrap(innerFn, outerFn, self, tryLocsList) {
-    var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator,
-      generator = Object.create(protoGenerator.prototype),
-      context = new Context(tryLocsList || []);
-    return defineProperty(generator, "_invoke", {
-      value: makeInvokeMethod(innerFn, self, context)
-    }), generator;
-  }
-  function tryCatch(fn, obj, arg) {
-    try {
-      return {
-        type: "normal",
-        arg: fn.call(obj, arg)
-      };
-    } catch (err) {
-      return {
-        type: "throw",
-        arg: err
-      };
-    }
-  }
-  exports.wrap = wrap;
-  var ContinueSentinel = {};
-  function Generator() {}
-  function GeneratorFunction() {}
-  function GeneratorFunctionPrototype() {}
-  var IteratorPrototype = {};
-  define(IteratorPrototype, iteratorSymbol, function () {
-    return this;
-  });
-  var getProto = Object.getPrototypeOf,
-    NativeIteratorPrototype = getProto && getProto(getProto(values([])));
-  NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype);
-  var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype);
-  function defineIteratorMethods(prototype) {
-    ["next", "throw", "return"].forEach(function (method) {
-      define(prototype, method, function (arg) {
-        return this._invoke(method, arg);
-      });
-    });
-  }
-  function AsyncIterator(generator, PromiseImpl) {
-    function invoke(method, arg, resolve, reject) {
-      var record = tryCatch(generator[method], generator, arg);
-      if ("throw" !== record.type) {
-        var result = record.arg,
-          value = result.value;
-        return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) {
-          invoke("next", value, resolve, reject);
-        }, function (err) {
-          invoke("throw", err, resolve, reject);
-        }) : PromiseImpl.resolve(value).then(function (unwrapped) {
-          result.value = unwrapped, resolve(result);
-        }, function (error) {
-          return invoke("throw", error, resolve, reject);
-        });
-      }
-      reject(record.arg);
-    }
-    var previousPromise;
-    defineProperty(this, "_invoke", {
-      value: function value(method, arg) {
-        function callInvokeWithMethodAndArg() {
-          return new PromiseImpl(function (resolve, reject) {
-            invoke(method, arg, resolve, reject);
-          });
-        }
-        return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg();
-      }
-    });
-  }
-  function makeInvokeMethod(innerFn, self, context) {
-    var state = "suspendedStart";
-    return function (method, arg) {
-      if ("executing" === state) throw new Error("Generator is already running");
-      if ("completed" === state) {
-        if ("throw" === method) throw arg;
-        return doneResult();
-      }
-      for (context.method = method, context.arg = arg;;) {
-        var delegate = context.delegate;
-        if (delegate) {
-          var delegateResult = maybeInvokeDelegate(delegate, context);
-          if (delegateResult) {
-            if (delegateResult === ContinueSentinel) continue;
-            return delegateResult;
-          }
-        }
-        if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) {
-          if ("suspendedStart" === state) throw state = "completed", context.arg;
-          context.dispatchException(context.arg);
-        } else "return" === context.method && context.abrupt("return", context.arg);
-        state = "executing";
-        var record = tryCatch(innerFn, self, context);
-        if ("normal" === record.type) {
-          if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue;
-          return {
-            value: record.arg,
-            done: context.done
-          };
-        }
-        "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg);
-      }
-    };
-  }
-  function maybeInvokeDelegate(delegate, context) {
-    var methodName = context.method,
-      method = delegate.iterator[methodName];
-    if (undefined === method) return context.delegate = null, "throw" === methodName && delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method) || "return" !== methodName && (context.method = "throw", context.arg = new TypeError("The iterator does not provide a '" + methodName + "' method")), ContinueSentinel;
-    var record = tryCatch(method, delegate.iterator, context.arg);
-    if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel;
-    var info = record.arg;
-    return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel);
-  }
-  function pushTryEntry(locs) {
-    var entry = {
-      tryLoc: locs[0]
-    };
-    1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry);
-  }
-  function resetTryEntry(entry) {
-    var record = entry.completion || {};
-    record.type = "normal", delete record.arg, entry.completion = record;
-  }
-  function Context(tryLocsList) {
-    this.tryEntries = [{
-      tryLoc: "root"
-    }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0);
-  }
-  function values(iterable) {
-    if (iterable) {
-      var iteratorMethod = iterable[iteratorSymbol];
-      if (iteratorMethod) return iteratorMethod.call(iterable);
-      if ("function" == typeof iterable.next) return iterable;
-      if (!isNaN(iterable.length)) {
-        var i = -1,
-          next = function next() {
-            for (; ++i < iterable.length;) {
-              if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next;
-            }
-            return next.value = undefined, next.done = !0, next;
-          };
-        return next.next = next;
-      }
-    }
-    return {
-      next: doneResult
-    };
-  }
-  function doneResult() {
-    return {
-      value: undefined,
-      done: !0
-    };
-  }
-  return GeneratorFunction.prototype = GeneratorFunctionPrototype, defineProperty(Gp, "constructor", {
-    value: GeneratorFunctionPrototype,
-    configurable: !0
-  }), defineProperty(GeneratorFunctionPrototype, "constructor", {
-    value: GeneratorFunction,
-    configurable: !0
-  }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) {
-    var ctor = "function" == typeof genFun && genFun.constructor;
-    return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name));
-  }, exports.mark = function (genFun) {
-    return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun;
-  }, exports.awrap = function (arg) {
-    return {
-      __await: arg
-    };
-  }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () {
-    return this;
-  }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) {
-    void 0 === PromiseImpl && (PromiseImpl = Promise);
-    var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl);
-    return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) {
-      return result.done ? result.value : iter.next();
-    });
-  }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () {
-    return this;
-  }), define(Gp, "toString", function () {
-    return "[object Generator]";
-  }), exports.keys = function (val) {
-    var object = Object(val),
-      keys = [];
-    for (var key in object) {
-      keys.push(key);
-    }
-    return keys.reverse(), function next() {
-      for (; keys.length;) {
-        var key = keys.pop();
-        if (key in object) return next.value = key, next.done = !1, next;
-      }
-      return next.done = !0, next;
-    };
-  }, exports.values = values, Context.prototype = {
-    constructor: Context,
-    reset: function reset(skipTempReset) {
-      if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) {
-        "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined);
-      }
-    },
-    stop: function stop() {
-      this.done = !0;
-      var rootRecord = this.tryEntries[0].completion;
-      if ("throw" === rootRecord.type) throw rootRecord.arg;
-      return this.rval;
-    },
-    dispatchException: function dispatchException(exception) {
-      if (this.done) throw exception;
-      var context = this;
-      function handle(loc, caught) {
-        return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught;
-      }
-      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
-        var entry = this.tryEntries[i],
-          record = entry.completion;
-        if ("root" === entry.tryLoc) return handle("end");
-        if (entry.tryLoc <= this.prev) {
-          var hasCatch = hasOwn.call(entry, "catchLoc"),
-            hasFinally = hasOwn.call(entry, "finallyLoc");
-          if (hasCatch && hasFinally) {
-            if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0);
-            if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc);
-          } else if (hasCatch) {
-            if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0);
-          } else {
-            if (!hasFinally) throw new Error("try statement without catch or finally");
-            if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc);
-          }
-        }
-      }
-    },
-    abrupt: function abrupt(type, arg) {
-      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
-        var entry = this.tryEntries[i];
-        if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) {
-          var finallyEntry = entry;
-          break;
-        }
-      }
-      finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null);
-      var record = finallyEntry ? finallyEntry.completion : {};
-      return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record);
-    },
-    complete: function complete(record, afterLoc) {
-      if ("throw" === record.type) throw record.arg;
-      return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel;
-    },
-    finish: function finish(finallyLoc) {
-      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
-        var entry = this.tryEntries[i];
-        if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel;
-      }
-    },
-    "catch": function _catch(tryLoc) {
-      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
-        var entry = this.tryEntries[i];
-        if (entry.tryLoc === tryLoc) {
-          var record = entry.completion;
-          if ("throw" === record.type) {
-            var thrown = record.arg;
-            resetTryEntry(entry);
-          }
-          return thrown;
-        }
-      }
-      throw new Error("illegal catch attempt");
-    },
-    delegateYield: function delegateYield(iterable, resultName, nextLoc) {
-      return this.delegate = {
-        iterator: values(iterable),
-        resultName: resultName,
-        nextLoc: nextLoc
-      }, "next" === this.method && (this.arg = undefined), ContinueSentinel;
-    }
-  }, exports;
-}
-module.exports = _regeneratorRuntime, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-/* 32 */
-/*!*****************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/asyncToGenerator.js ***!
-  \*****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
-  try {
-    var info = gen[key](arg);
-    var value = info.value;
-  } catch (error) {
-    reject(error);
-    return;
-  }
-  if (info.done) {
-    resolve(value);
-  } else {
-    Promise.resolve(value).then(_next, _throw);
-  }
-}
-function _asyncToGenerator(fn) {
-  return function () {
-    var self = this,
-      args = arguments;
-    return new Promise(function (resolve, reject) {
-      var gen = fn.apply(self, args);
-      function _next(value) {
-        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
-      }
-      function _throw(err) {
-        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);
-      }
-      _next(undefined);
-    });
-  };
-}
-module.exports = _asyncToGenerator, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-/* 33 */
 /*!********************************************!*\
   !*** F:/uniappProjects/uniapp/api/user.js ***!
   \********************************************/
@@ -9825,7 +9451,7 @@ exports.getUserInfo = getUserInfo;
 exports.login = login;
 exports.pherCollect = pherCollect;
 exports.updateUserInfo = updateUserInfo;
-var _settingConfig = __webpack_require__(/*! @/config/setting.config.js */ 34);
+var _settingConfig = __webpack_require__(/*! @/config/setting.config.js */ 31);
 // 登录
 function login(code) {
   return uni.request({
@@ -9918,7 +9544,7 @@ function getPherCollectStatus(req) {
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 34 */
+/* 31 */
 /*!*********************************************************!*\
   !*** F:/uniappProjects/uniapp/config/setting.config.js ***!
   \*********************************************************/
@@ -9941,9 +9567,9 @@ var setting = {
 module.exports = setting;
 
 /***/ }),
-/* 35 */,
-/* 36 */,
-/* 37 */
+/* 32 */,
+/* 33 */,
+/* 34 */
 /*!**********************************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js ***!
   \**********************************************************************************************************/
@@ -10071,7 +9697,7 @@ function normalizeComponent (
 
 
 /***/ }),
-/* 38 */
+/* 35 */
 /*!**************************************************************!*\
   !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/index.js ***!
   \**************************************************************/
@@ -10087,10 +9713,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 11));
-var _mixin = _interopRequireDefault(__webpack_require__(/*! ./libs/mixin/mixin.js */ 39));
-var _mpMixin = _interopRequireDefault(__webpack_require__(/*! ./libs/mixin/mpMixin.js */ 40));
-var _luchRequest = _interopRequireDefault(__webpack_require__(/*! ./libs/luch-request */ 41));
-var _route = _interopRequireDefault(__webpack_require__(/*! ./libs/util/route.js */ 59));
+var _mixin = _interopRequireDefault(__webpack_require__(/*! ./libs/mixin/mixin.js */ 36));
+var _mpMixin = _interopRequireDefault(__webpack_require__(/*! ./libs/mixin/mpMixin.js */ 37));
+var _luchRequest = _interopRequireDefault(__webpack_require__(/*! ./libs/luch-request */ 38));
+var _route = _interopRequireDefault(__webpack_require__(/*! ./libs/util/route.js */ 56));
 var _colorGradient = _interopRequireDefault(__webpack_require__(/*! ./libs/function/colorGradient.js */ 60));
 var _test = _interopRequireDefault(__webpack_require__(/*! ./libs/function/test.js */ 61));
 var _debounce = _interopRequireDefault(__webpack_require__(/*! ./libs/function/debounce.js */ 62));
@@ -10160,7 +9786,7 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 39 */
+/* 36 */
 /*!*************************************************************************!*\
   !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/mixin/mixin.js ***!
   \*************************************************************************/
@@ -10328,7 +9954,7 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 40 */
+/* 37 */
 /*!***************************************************************************!*\
   !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/mixin/mpMixin.js ***!
   \***************************************************************************/
@@ -10351,7 +9977,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 41 */
+/* 38 */
 /*!********************************************************************************!*\
   !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/luch-request/index.js ***!
   \********************************************************************************/
@@ -10366,12 +9992,12 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _Request = _interopRequireDefault(__webpack_require__(/*! ./core/Request */ 42));
+var _Request = _interopRequireDefault(__webpack_require__(/*! ./core/Request */ 39));
 var _default = _Request.default;
 exports.default = _default;
 
 /***/ }),
-/* 42 */
+/* 39 */
 /*!***************************************************************************************!*\
   !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/luch-request/core/Request.js ***!
   \***************************************************************************************/
@@ -10389,12 +10015,12 @@ exports.default = void 0;
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 11));
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ 23));
 var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ 24));
-var _dispatchRequest = _interopRequireDefault(__webpack_require__(/*! ./dispatchRequest */ 43));
-var _InterceptorManager = _interopRequireDefault(__webpack_require__(/*! ./InterceptorManager */ 51));
-var _mergeConfig = _interopRequireDefault(__webpack_require__(/*! ./mergeConfig */ 52));
-var _defaults = _interopRequireDefault(__webpack_require__(/*! ./defaults */ 53));
-var _utils = __webpack_require__(/*! ../utils */ 46);
-var _clone = _interopRequireDefault(__webpack_require__(/*! ../utils/clone */ 54));
+var _dispatchRequest = _interopRequireDefault(__webpack_require__(/*! ./dispatchRequest */ 40));
+var _InterceptorManager = _interopRequireDefault(__webpack_require__(/*! ./InterceptorManager */ 48));
+var _mergeConfig = _interopRequireDefault(__webpack_require__(/*! ./mergeConfig */ 49));
+var _defaults = _interopRequireDefault(__webpack_require__(/*! ./defaults */ 50));
+var _utils = __webpack_require__(/*! ../utils */ 43);
+var _clone = _interopRequireDefault(__webpack_require__(/*! ../utils/clone */ 51));
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 var Request = /*#__PURE__*/function () {
@@ -10577,7 +10203,7 @@ var Request = /*#__PURE__*/function () {
 exports.default = Request;
 
 /***/ }),
-/* 43 */
+/* 40 */
 /*!***********************************************************************************************!*\
   !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/luch-request/core/dispatchRequest.js ***!
   \***********************************************************************************************/
@@ -10592,14 +10218,14 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _index = _interopRequireDefault(__webpack_require__(/*! ../adapters/index */ 44));
+var _index = _interopRequireDefault(__webpack_require__(/*! ../adapters/index */ 41));
 var _default = function _default(config) {
   return (0, _index.default)(config);
 };
 exports.default = _default;
 
 /***/ }),
-/* 44 */
+/* 41 */
 /*!*****************************************************************************************!*\
   !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/luch-request/adapters/index.js ***!
   \*****************************************************************************************/
@@ -10615,10 +10241,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 11));
-var _buildURL = _interopRequireDefault(__webpack_require__(/*! ../helpers/buildURL */ 45));
-var _buildFullPath = _interopRequireDefault(__webpack_require__(/*! ../core/buildFullPath */ 47));
-var _settle = _interopRequireDefault(__webpack_require__(/*! ../core/settle */ 50));
-var _utils = __webpack_require__(/*! ../utils */ 46);
+var _buildURL = _interopRequireDefault(__webpack_require__(/*! ../helpers/buildURL */ 42));
+var _buildFullPath = _interopRequireDefault(__webpack_require__(/*! ../core/buildFullPath */ 44));
+var _settle = _interopRequireDefault(__webpack_require__(/*! ../core/settle */ 47));
+var _utils = __webpack_require__(/*! ../utils */ 43);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 /**
@@ -10680,7 +10306,7 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 45 */
+/* 42 */
 /*!*******************************************************************************************!*\
   !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/luch-request/helpers/buildURL.js ***!
   \*******************************************************************************************/
@@ -10695,7 +10321,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = buildURL;
-var utils = _interopRequireWildcard(__webpack_require__(/*! ../utils */ 46));
+var utils = _interopRequireWildcard(__webpack_require__(/*! ../utils */ 43));
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 function encode(val) {
@@ -10750,7 +10376,7 @@ function buildURL(url, params) {
 }
 
 /***/ }),
-/* 46 */
+/* 43 */
 /*!********************************************************************************!*\
   !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/luch-request/utils.js ***!
   \********************************************************************************/
@@ -10903,7 +10529,7 @@ function isUndefined(val) {
 }
 
 /***/ }),
-/* 47 */
+/* 44 */
 /*!*********************************************************************************************!*\
   !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/luch-request/core/buildFullPath.js ***!
   \*********************************************************************************************/
@@ -10918,8 +10544,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = buildFullPath;
-var _isAbsoluteURL = _interopRequireDefault(__webpack_require__(/*! ../helpers/isAbsoluteURL */ 48));
-var _combineURLs = _interopRequireDefault(__webpack_require__(/*! ../helpers/combineURLs */ 49));
+var _isAbsoluteURL = _interopRequireDefault(__webpack_require__(/*! ../helpers/isAbsoluteURL */ 45));
+var _combineURLs = _interopRequireDefault(__webpack_require__(/*! ../helpers/combineURLs */ 46));
 /**
  * Creates a new URL by combining the baseURL with the requestedURL,
  * only when the requestedURL is not already an absolute URL.
@@ -10937,7 +10563,7 @@ function buildFullPath(baseURL, requestedURL) {
 }
 
 /***/ }),
-/* 48 */
+/* 45 */
 /*!************************************************************************************************!*\
   !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/luch-request/helpers/isAbsoluteURL.js ***!
   \************************************************************************************************/
@@ -10965,7 +10591,7 @@ function isAbsoluteURL(url) {
 }
 
 /***/ }),
-/* 49 */
+/* 46 */
 /*!**********************************************************************************************!*\
   !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/luch-request/helpers/combineURLs.js ***!
   \**********************************************************************************************/
@@ -10991,7 +10617,7 @@ function combineURLs(baseURL, relativeURL) {
 }
 
 /***/ }),
-/* 50 */
+/* 47 */
 /*!**************************************************************************************!*\
   !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/luch-request/core/settle.js ***!
   \**************************************************************************************/
@@ -11023,7 +10649,7 @@ function settle(resolve, reject, response) {
 }
 
 /***/ }),
-/* 51 */
+/* 48 */
 /*!**************************************************************************************************!*\
   !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/luch-request/core/InterceptorManager.js ***!
   \**************************************************************************************************/
@@ -11087,7 +10713,7 @@ var _default = InterceptorManager;
 exports.default = _default;
 
 /***/ }),
-/* 52 */
+/* 49 */
 /*!*******************************************************************************************!*\
   !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/luch-request/core/mergeConfig.js ***!
   \*******************************************************************************************/
@@ -11103,7 +10729,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 11));
-var _utils = __webpack_require__(/*! ../utils */ 46);
+var _utils = __webpack_require__(/*! ../utils */ 43);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 /**
@@ -11163,7 +10789,7 @@ var _default = function _default(globalsConfig) {
 exports.default = _default;
 
 /***/ }),
-/* 53 */
+/* 50 */
 /*!****************************************************************************************!*\
   !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/luch-request/core/defaults.js ***!
   \****************************************************************************************/
@@ -11195,7 +10821,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 54 */
+/* 51 */
 /*!**************************************************************************************!*\
   !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/luch-request/utils/clone.js ***!
   \**************************************************************************************/
@@ -11444,10 +11070,10 @@ var clone = function () {
 }();
 var _default = clone;
 exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../../../HBuilderX/plugins/uniapp-cli/node_modules/buffer/index.js */ 55).Buffer))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../../../HBuilderX/plugins/uniapp-cli/node_modules/buffer/index.js */ 52).Buffer))
 
 /***/ }),
-/* 55 */
+/* 52 */
 /*!**************************************!*\
   !*** ./node_modules/buffer/index.js ***!
   \**************************************/
@@ -11465,9 +11091,9 @@ exports.default = _default;
 
 
 
-var base64 = __webpack_require__(/*! base64-js */ 56)
-var ieee754 = __webpack_require__(/*! ieee754 */ 57)
-var isArray = __webpack_require__(/*! isarray */ 58)
+var base64 = __webpack_require__(/*! base64-js */ 53)
+var ieee754 = __webpack_require__(/*! ieee754 */ 54)
+var isArray = __webpack_require__(/*! isarray */ 55)
 
 exports.Buffer = Buffer
 exports.SlowBuffer = SlowBuffer
@@ -13248,7 +12874,7 @@ function isnan (val) {
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ 3)))
 
 /***/ }),
-/* 56 */
+/* 53 */
 /*!*****************************************!*\
   !*** ./node_modules/base64-js/index.js ***!
   \*****************************************/
@@ -13409,7 +13035,7 @@ function fromByteArray (uint8) {
 
 
 /***/ }),
-/* 57 */
+/* 54 */
 /*!***************************************!*\
   !*** ./node_modules/ieee754/index.js ***!
   \***************************************/
@@ -13504,7 +13130,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 
 
 /***/ }),
-/* 58 */
+/* 55 */
 /*!***************************************!*\
   !*** ./node_modules/isarray/index.js ***!
   \***************************************/
@@ -13519,7 +13145,7 @@ module.exports = Array.isArray || function (arr) {
 
 
 /***/ }),
-/* 59 */
+/* 56 */
 /*!************************************************************************!*\
   !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/util/route.js ***!
   \************************************************************************/
@@ -13534,8 +13160,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 30));
-var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 32));
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 57));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 59));
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ 23));
 var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ 24));
 /**
@@ -13705,6 +13331,380 @@ var Router = /*#__PURE__*/function () {
 var _default = new Router().route;
 exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
+
+/***/ }),
+/* 57 */
+/*!************************************************************************************************!*\
+  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/@babel/runtime/regenerator/index.js ***!
+  \************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// TODO(Babel 8): Remove this file.
+
+var runtime = __webpack_require__(/*! @babel/runtime/helpers/regeneratorRuntime */ 58)();
+module.exports = runtime;
+
+/***/ }),
+/* 58 */
+/*!*******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/regeneratorRuntime.js ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _typeof = __webpack_require__(/*! ./typeof.js */ 13)["default"];
+function _regeneratorRuntime() {
+  "use strict";
+
+  /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */
+  module.exports = _regeneratorRuntime = function _regeneratorRuntime() {
+    return exports;
+  }, module.exports.__esModule = true, module.exports["default"] = module.exports;
+  var exports = {},
+    Op = Object.prototype,
+    hasOwn = Op.hasOwnProperty,
+    defineProperty = Object.defineProperty || function (obj, key, desc) {
+      obj[key] = desc.value;
+    },
+    $Symbol = "function" == typeof Symbol ? Symbol : {},
+    iteratorSymbol = $Symbol.iterator || "@@iterator",
+    asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator",
+    toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
+  function define(obj, key, value) {
+    return Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: !0,
+      configurable: !0,
+      writable: !0
+    }), obj[key];
+  }
+  try {
+    define({}, "");
+  } catch (err) {
+    define = function define(obj, key, value) {
+      return obj[key] = value;
+    };
+  }
+  function wrap(innerFn, outerFn, self, tryLocsList) {
+    var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator,
+      generator = Object.create(protoGenerator.prototype),
+      context = new Context(tryLocsList || []);
+    return defineProperty(generator, "_invoke", {
+      value: makeInvokeMethod(innerFn, self, context)
+    }), generator;
+  }
+  function tryCatch(fn, obj, arg) {
+    try {
+      return {
+        type: "normal",
+        arg: fn.call(obj, arg)
+      };
+    } catch (err) {
+      return {
+        type: "throw",
+        arg: err
+      };
+    }
+  }
+  exports.wrap = wrap;
+  var ContinueSentinel = {};
+  function Generator() {}
+  function GeneratorFunction() {}
+  function GeneratorFunctionPrototype() {}
+  var IteratorPrototype = {};
+  define(IteratorPrototype, iteratorSymbol, function () {
+    return this;
+  });
+  var getProto = Object.getPrototypeOf,
+    NativeIteratorPrototype = getProto && getProto(getProto(values([])));
+  NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype);
+  var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype);
+  function defineIteratorMethods(prototype) {
+    ["next", "throw", "return"].forEach(function (method) {
+      define(prototype, method, function (arg) {
+        return this._invoke(method, arg);
+      });
+    });
+  }
+  function AsyncIterator(generator, PromiseImpl) {
+    function invoke(method, arg, resolve, reject) {
+      var record = tryCatch(generator[method], generator, arg);
+      if ("throw" !== record.type) {
+        var result = record.arg,
+          value = result.value;
+        return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) {
+          invoke("next", value, resolve, reject);
+        }, function (err) {
+          invoke("throw", err, resolve, reject);
+        }) : PromiseImpl.resolve(value).then(function (unwrapped) {
+          result.value = unwrapped, resolve(result);
+        }, function (error) {
+          return invoke("throw", error, resolve, reject);
+        });
+      }
+      reject(record.arg);
+    }
+    var previousPromise;
+    defineProperty(this, "_invoke", {
+      value: function value(method, arg) {
+        function callInvokeWithMethodAndArg() {
+          return new PromiseImpl(function (resolve, reject) {
+            invoke(method, arg, resolve, reject);
+          });
+        }
+        return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg();
+      }
+    });
+  }
+  function makeInvokeMethod(innerFn, self, context) {
+    var state = "suspendedStart";
+    return function (method, arg) {
+      if ("executing" === state) throw new Error("Generator is already running");
+      if ("completed" === state) {
+        if ("throw" === method) throw arg;
+        return doneResult();
+      }
+      for (context.method = method, context.arg = arg;;) {
+        var delegate = context.delegate;
+        if (delegate) {
+          var delegateResult = maybeInvokeDelegate(delegate, context);
+          if (delegateResult) {
+            if (delegateResult === ContinueSentinel) continue;
+            return delegateResult;
+          }
+        }
+        if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) {
+          if ("suspendedStart" === state) throw state = "completed", context.arg;
+          context.dispatchException(context.arg);
+        } else "return" === context.method && context.abrupt("return", context.arg);
+        state = "executing";
+        var record = tryCatch(innerFn, self, context);
+        if ("normal" === record.type) {
+          if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue;
+          return {
+            value: record.arg,
+            done: context.done
+          };
+        }
+        "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg);
+      }
+    };
+  }
+  function maybeInvokeDelegate(delegate, context) {
+    var methodName = context.method,
+      method = delegate.iterator[methodName];
+    if (undefined === method) return context.delegate = null, "throw" === methodName && delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method) || "return" !== methodName && (context.method = "throw", context.arg = new TypeError("The iterator does not provide a '" + methodName + "' method")), ContinueSentinel;
+    var record = tryCatch(method, delegate.iterator, context.arg);
+    if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel;
+    var info = record.arg;
+    return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel);
+  }
+  function pushTryEntry(locs) {
+    var entry = {
+      tryLoc: locs[0]
+    };
+    1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry);
+  }
+  function resetTryEntry(entry) {
+    var record = entry.completion || {};
+    record.type = "normal", delete record.arg, entry.completion = record;
+  }
+  function Context(tryLocsList) {
+    this.tryEntries = [{
+      tryLoc: "root"
+    }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0);
+  }
+  function values(iterable) {
+    if (iterable) {
+      var iteratorMethod = iterable[iteratorSymbol];
+      if (iteratorMethod) return iteratorMethod.call(iterable);
+      if ("function" == typeof iterable.next) return iterable;
+      if (!isNaN(iterable.length)) {
+        var i = -1,
+          next = function next() {
+            for (; ++i < iterable.length;) {
+              if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next;
+            }
+            return next.value = undefined, next.done = !0, next;
+          };
+        return next.next = next;
+      }
+    }
+    return {
+      next: doneResult
+    };
+  }
+  function doneResult() {
+    return {
+      value: undefined,
+      done: !0
+    };
+  }
+  return GeneratorFunction.prototype = GeneratorFunctionPrototype, defineProperty(Gp, "constructor", {
+    value: GeneratorFunctionPrototype,
+    configurable: !0
+  }), defineProperty(GeneratorFunctionPrototype, "constructor", {
+    value: GeneratorFunction,
+    configurable: !0
+  }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) {
+    var ctor = "function" == typeof genFun && genFun.constructor;
+    return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name));
+  }, exports.mark = function (genFun) {
+    return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun;
+  }, exports.awrap = function (arg) {
+    return {
+      __await: arg
+    };
+  }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () {
+    return this;
+  }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) {
+    void 0 === PromiseImpl && (PromiseImpl = Promise);
+    var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl);
+    return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) {
+      return result.done ? result.value : iter.next();
+    });
+  }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () {
+    return this;
+  }), define(Gp, "toString", function () {
+    return "[object Generator]";
+  }), exports.keys = function (val) {
+    var object = Object(val),
+      keys = [];
+    for (var key in object) {
+      keys.push(key);
+    }
+    return keys.reverse(), function next() {
+      for (; keys.length;) {
+        var key = keys.pop();
+        if (key in object) return next.value = key, next.done = !1, next;
+      }
+      return next.done = !0, next;
+    };
+  }, exports.values = values, Context.prototype = {
+    constructor: Context,
+    reset: function reset(skipTempReset) {
+      if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) {
+        "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined);
+      }
+    },
+    stop: function stop() {
+      this.done = !0;
+      var rootRecord = this.tryEntries[0].completion;
+      if ("throw" === rootRecord.type) throw rootRecord.arg;
+      return this.rval;
+    },
+    dispatchException: function dispatchException(exception) {
+      if (this.done) throw exception;
+      var context = this;
+      function handle(loc, caught) {
+        return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught;
+      }
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i],
+          record = entry.completion;
+        if ("root" === entry.tryLoc) return handle("end");
+        if (entry.tryLoc <= this.prev) {
+          var hasCatch = hasOwn.call(entry, "catchLoc"),
+            hasFinally = hasOwn.call(entry, "finallyLoc");
+          if (hasCatch && hasFinally) {
+            if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0);
+            if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc);
+          } else if (hasCatch) {
+            if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0);
+          } else {
+            if (!hasFinally) throw new Error("try statement without catch or finally");
+            if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc);
+          }
+        }
+      }
+    },
+    abrupt: function abrupt(type, arg) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) {
+          var finallyEntry = entry;
+          break;
+        }
+      }
+      finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null);
+      var record = finallyEntry ? finallyEntry.completion : {};
+      return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record);
+    },
+    complete: function complete(record, afterLoc) {
+      if ("throw" === record.type) throw record.arg;
+      return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel;
+    },
+    finish: function finish(finallyLoc) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel;
+      }
+    },
+    "catch": function _catch(tryLoc) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.tryLoc === tryLoc) {
+          var record = entry.completion;
+          if ("throw" === record.type) {
+            var thrown = record.arg;
+            resetTryEntry(entry);
+          }
+          return thrown;
+        }
+      }
+      throw new Error("illegal catch attempt");
+    },
+    delegateYield: function delegateYield(iterable, resultName, nextLoc) {
+      return this.delegate = {
+        iterator: values(iterable),
+        resultName: resultName,
+        nextLoc: nextLoc
+      }, "next" === this.method && (this.arg = undefined), ContinueSentinel;
+    }
+  }, exports;
+}
+module.exports = _regeneratorRuntime, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+/* 59 */
+/*!*****************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/asyncToGenerator.js ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
+  try {
+    var info = gen[key](arg);
+    var value = info.value;
+  } catch (error) {
+    reject(error);
+    return;
+  }
+  if (info.done) {
+    resolve(value);
+  } else {
+    Promise.resolve(value).then(_next, _throw);
+  }
+}
+function _asyncToGenerator(fn) {
+  return function () {
+    var self = this,
+      args = arguments;
+    return new Promise(function (resolve, reject) {
+      var gen = fn.apply(self, args);
+      function _next(value) {
+        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
+      }
+      function _throw(err) {
+        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);
+      }
+      _next(undefined);
+    });
+  };
+}
+module.exports = _asyncToGenerator, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
 /* 60 */
@@ -20565,7 +20565,7 @@ exports.productDetail = productDetail;
 exports.productRandom = productRandom;
 exports.publishProduct = publishProduct;
 exports.uploadImages = uploadImages;
-var _settingConfig = __webpack_require__(/*! @/config/setting.config.js */ 34);
+var _settingConfig = __webpack_require__(/*! @/config/setting.config.js */ 31);
 // 获取产品详情
 function productDetail(req) {
   return uni.request({
@@ -20938,9 +20938,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 30));
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 57));
 var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ 13));
-var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 32));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 59));
 var _default2 = {
   props: {
     localdata: {
@@ -21607,11 +21607,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 30));
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 57));
 var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ 5));
 var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ 13));
 var _toConsumableArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ 18));
-var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 32));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 59));
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 11));
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ 23));
 var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ 24));
@@ -29490,7 +29490,14 @@ exports.default = _default;
 /* 379 */,
 /* 380 */,
 /* 381 */,
-/* 382 */
+/* 382 */,
+/* 383 */,
+/* 384 */,
+/* 385 */,
+/* 386 */,
+/* 387 */,
+/* 388 */,
+/* 389 */
 /*!**********************************************************************************!*\
   !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-swiper/props.js ***!
   \**********************************************************************************/
@@ -29633,13 +29640,6 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 383 */,
-/* 384 */,
-/* 385 */,
-/* 386 */,
-/* 387 */,
-/* 388 */,
-/* 389 */,
 /* 390 */,
 /* 391 */,
 /* 392 */,
@@ -29654,7 +29654,14 @@ exports.default = _default;
 /* 401 */,
 /* 402 */,
 /* 403 */,
-/* 404 */
+/* 404 */,
+/* 405 */,
+/* 406 */,
+/* 407 */,
+/* 408 */,
+/* 409 */,
+/* 410 */,
+/* 411 */
 /*!*************************************************************************************************!*\
   !*** F:/uniappProjects/uniapp/uni_modules/uni-goods-nav/components/uni-goods-nav/i18n/index.js ***!
   \*************************************************************************************************/
@@ -29669,9 +29676,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 405));
-var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 406));
-var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 407));
+var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 412));
+var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 413));
+var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 414));
 var _default = {
   en: _en.default,
   'zh-Hans': _zhHans.default,
@@ -29680,7 +29687,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 405 */
+/* 412 */
 /*!************************************************************************************************!*\
   !*** F:/uniappProjects/uniapp/uni_modules/uni-goods-nav/components/uni-goods-nav/i18n/en.json ***!
   \************************************************************************************************/
@@ -29690,7 +29697,7 @@ exports.default = _default;
 module.exports = JSON.parse("{\"uni-goods-nav.options.shop\":\"shop\",\"uni-goods-nav.options.cart\":\"cart\",\"uni-goods-nav.buttonGroup.addToCart\":\"add to cart\",\"uni-goods-nav.buttonGroup.buyNow\":\"buy now\"}");
 
 /***/ }),
-/* 406 */
+/* 413 */
 /*!*****************************************************************************************************!*\
   !*** F:/uniappProjects/uniapp/uni_modules/uni-goods-nav/components/uni-goods-nav/i18n/zh-Hans.json ***!
   \*****************************************************************************************************/
@@ -29700,7 +29707,7 @@ module.exports = JSON.parse("{\"uni-goods-nav.options.shop\":\"shop\",\"uni-good
 module.exports = JSON.parse("{\"uni-goods-nav.options.shop\":\"店铺\",\"uni-goods-nav.options.cart\":\"购物车\",\"uni-goods-nav.buttonGroup.addToCart\":\"加入购物车\",\"uni-goods-nav.buttonGroup.buyNow\":\"立即购买\"}");
 
 /***/ }),
-/* 407 */
+/* 414 */
 /*!*****************************************************************************************************!*\
   !*** F:/uniappProjects/uniapp/uni_modules/uni-goods-nav/components/uni-goods-nav/i18n/zh-Hant.json ***!
   \*****************************************************************************************************/
@@ -29710,13 +29717,6 @@ module.exports = JSON.parse("{\"uni-goods-nav.options.shop\":\"店铺\",\"uni-go
 module.exports = JSON.parse("{\"uni-goods-nav.options.shop\":\"店鋪\",\"uni-goods-nav.options.cart\":\"購物車\",\"uni-goods-nav.buttonGroup.addToCart\":\"加入購物車\",\"uni-goods-nav.buttonGroup.buyNow\":\"立即購買\"}");
 
 /***/ }),
-/* 408 */,
-/* 409 */,
-/* 410 */,
-/* 411 */,
-/* 412 */,
-/* 413 */,
-/* 414 */,
 /* 415 */,
 /* 416 */,
 /* 417 */,
@@ -29724,7 +29724,14 @@ module.exports = JSON.parse("{\"uni-goods-nav.options.shop\":\"店鋪\",\"uni-go
 /* 419 */,
 /* 420 */,
 /* 421 */,
-/* 422 */
+/* 422 */,
+/* 423 */,
+/* 424 */,
+/* 425 */,
+/* 426 */,
+/* 427 */,
+/* 428 */,
+/* 429 */
 /*!***************************************************************************************!*\
   !*** F:/uniappProjects/uniapp/uni_modules/uni-forms/components/uni-forms/validate.js ***!
   \***************************************************************************************/
@@ -29739,11 +29746,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 30));
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 57));
 var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ 298));
 var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ 299));
 var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ 301));
-var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 32));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 59));
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ 23));
 var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ 24));
 var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ 13));
@@ -30415,7 +30422,7 @@ var _default = SchemaValidator;
 exports.default = _default;
 
 /***/ }),
-/* 423 */
+/* 430 */
 /*!************************************************************************************!*\
   !*** F:/uniappProjects/uniapp/uni_modules/uni-forms/components/uni-forms/utils.js ***!
   \************************************************************************************/
@@ -30750,13 +30757,6 @@ var isEqual = function isEqual(a, b) {
 exports.isEqual = isEqual;
 
 /***/ }),
-/* 424 */,
-/* 425 */,
-/* 426 */,
-/* 427 */,
-/* 428 */,
-/* 429 */,
-/* 430 */,
 /* 431 */,
 /* 432 */,
 /* 433 */,
@@ -30764,7 +30764,14 @@ exports.isEqual = isEqual;
 /* 435 */,
 /* 436 */,
 /* 437 */,
-/* 438 */
+/* 438 */,
+/* 439 */,
+/* 440 */,
+/* 441 */,
+/* 442 */,
+/* 443 */,
+/* 444 */,
+/* 445 */
 /*!**********************************************************************************!*\
   !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-avatar/props.js ***!
   \**********************************************************************************/
@@ -30860,13 +30867,6 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 439 */,
-/* 440 */,
-/* 441 */,
-/* 442 */,
-/* 443 */,
-/* 444 */,
-/* 445 */,
 /* 446 */,
 /* 447 */,
 /* 448 */,
@@ -30881,7 +30881,14 @@ exports.default = _default;
 /* 457 */,
 /* 458 */,
 /* 459 */,
-/* 460 */
+/* 460 */,
+/* 461 */,
+/* 462 */,
+/* 463 */,
+/* 464 */,
+/* 465 */,
+/* 466 */,
+/* 467 */
 /*!**************************************************************************!*\
   !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/mixin/button.js ***!
   \**************************************************************************/
@@ -30911,7 +30918,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 461 */
+/* 468 */
 /*!****************************************************************************!*\
   !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/mixin/openType.js ***!
   \****************************************************************************/
@@ -30953,7 +30960,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 462 */
+/* 469 */
 /*!**********************************************************************************!*\
   !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-button/props.js ***!
   \**********************************************************************************/
@@ -31132,13 +31139,6 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 463 */,
-/* 464 */,
-/* 465 */,
-/* 466 */,
-/* 467 */,
-/* 468 */,
-/* 469 */,
 /* 470 */,
 /* 471 */,
 /* 472 */,
@@ -31378,8 +31378,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.get_files_and_is_max = exports.get_file_info = exports.get_file_ext = exports.get_file_data = exports.get_extname = void 0;
-var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 30));
-var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 32));
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 57));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 59));
 /**
  * 获取文件名和后缀
  * @param {String} name
@@ -33590,8 +33590,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 30));
-var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 32));
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 57));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 59));
 var _nvueAniMap = _interopRequireDefault(__webpack_require__(/*! ./nvue.ani-map.js */ 621));
 // 定义一个一定时间后自动成功的promise，让调用nextTick方法处，进入下一个then方法
 var nextTick = function nextTick() {

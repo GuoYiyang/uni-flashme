@@ -9,39 +9,31 @@
 			AVATAR: ''
 		},
 		methods: {
-			async loginUser() {
-				let _this = this;
-				await uni.login({
-					provider: 'weixin',
-					onlyAuthorize: true,
-					success: (res) => {
-						login(res.code).then((res) => {
-							let [err, success] = res;
-							console.log("login success", success)
-							_this.globalData.USER_ID = success.data.id;
-							_this.globalData.USER_NAME = success.data.nickname;
-							_this.globalData.AVATAR = success.data.avatar;
-						})
-					}
-				});
-			}
 		},
 		onLaunch: function() {
-			this.loginUser();
+			let _this = this;
+			uni.login({
+				provider: 'weixin',
+				onlyAuthorize: true,
+				success: (res) => {
+					login(res.code).then((res) => {
+						let [err, success] = res;
+						console.log("login success", success)
+						_this.globalData.USER_ID = success.data.id;
+						_this.globalData.USER_NAME = success.data.nickname;
+						_this.globalData.AVATAR = success.data.avatar;
+					}).then(()=>{
+						this.$isResolve()
+					})
+				}
+			});
+			
 		},
-		onShow: function() {
-		},
-		onHide: function() {
-		},
+		// async onShow() {
+		// 	await this.$onLaunched;
+		// },
 		async onLoad() {
 			await this.$onLaunched;
-			uni.addInterceptor('request', {
-			  invoke(args) {
-			    // request 触发前拼接 url 
-				args.header
-			    args.url = 'https://www.example.com/'+args.url
-			  },
-			})
 		},
 	}
 </script>

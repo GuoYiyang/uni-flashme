@@ -34,7 +34,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _userShow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./userShow.vue?vue&type=script&lang=js& */ 271);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _userShow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _userShow_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
 /* harmony import */ var _userShow_vue_vue_type_style_index_0_id_4189eb86_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./userShow.vue?vue&type=style&index=0&id=4189eb86&lang=scss&scoped=true& */ 273);
-/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js */ 37);
+/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js */ 34);
 
 var renderjs
 
@@ -107,10 +107,10 @@ try {
       return Promise.all(/*! import() | uni_modules/uview-ui/components/u-col/u-col */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-col/u-col")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-col/u-col.vue */ 283))
     },
     uAvatar: function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-avatar/u-avatar */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-avatar/u-avatar")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-avatar/u-avatar.vue */ 433))
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-avatar/u-avatar */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-avatar/u-avatar")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-avatar/u-avatar.vue */ 440))
     },
     uButton: function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-button/u-button.vue */ 455))
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-button/u-button.vue */ 462))
     },
     uSticky: function () {
       return Promise.all(/*! import() | uni_modules/uview-ui/components/u-sticky/u-sticky */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-sticky/u-sticky")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-sticky/u-sticky.vue */ 481))
@@ -183,9 +183,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 57));
 var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ 5));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 59));
 var _product = __webpack_require__(/*! @/api/product.js */ 168);
-var _user = __webpack_require__(/*! @/api/user.js */ 33);
+var _user = __webpack_require__(/*! @/api/user.js */ 30);
 //
 //
 //
@@ -313,47 +315,60 @@ var _default = {
   },
   onLoad: function onLoad(param) {
     var _this2 = this;
-    this.userId = param.userId;
-    var _this = this;
-    (0, _user.getUserInfo)({
-      userId: this.userId
-    }).then(function (res) {
-      var _res = (0, _slicedToArray2.default)(res, 2),
-        error = _res[0],
-        success = _res[1];
-      _this.username = success.data.nickname;
-      _this.city = success.data.city;
-      _this.gender = success.data.gender;
-      _this.avatar = success.data.avatar;
-      _this.desc = success.data.desc;
-      _this.phone = success.data.phone;
-      uni.setNavigationBarTitle({
-        title: _this2.username + "的主页"
-      });
-    });
-    (0, _product.getProductPage)({
-      userId: this.userId,
-      page: this.page,
-      pageSize: this.pageSize
-    }).then(function (res) {
-      var _res2 = (0, _slicedToArray2.default)(res, 2),
-        error = _res2[0],
-        success = _res2[1];
-      _this.product.list = success.data;
-    });
-    (0, _user.getPherCollectStatus)({
-      userId: getApp().globalData.USER_ID,
-      pherId: this.userId
-    }).then(function (res) {
-      var _res3 = (0, _slicedToArray2.default)(res, 2),
-        error = _res3[0],
-        success = _res3[1];
-      _this.isFollow = success.data;
-    });
-    uni.showShareMenu({
-      withShareTicket: true,
-      menus: ["shareAppMessage", "shareTimeline"]
-    });
+    return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
+      var _this;
+      return _regenerator.default.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _this2.userId = param.userId;
+              _this = _this2;
+              (0, _user.getUserInfo)({
+                userId: _this2.userId
+              }).then(function (res) {
+                var _res = (0, _slicedToArray2.default)(res, 2),
+                  error = _res[0],
+                  success = _res[1];
+                _this.username = success.data.nickname;
+                _this.city = success.data.city;
+                _this.gender = success.data.gender;
+                _this.avatar = success.data.avatar;
+                _this.desc = success.data.desc;
+                _this.phone = success.data.phone;
+                uni.setNavigationBarTitle({
+                  title: _this2.username + "的主页"
+                });
+              });
+              (0, _product.getProductPage)({
+                userId: _this2.userId,
+                page: _this2.page,
+                pageSize: _this2.pageSize
+              }).then(function (res) {
+                var _res2 = (0, _slicedToArray2.default)(res, 2),
+                  error = _res2[0],
+                  success = _res2[1];
+                _this.product.list = success.data;
+              });
+              (0, _user.getPherCollectStatus)({
+                userId: getApp().globalData.USER_ID,
+                pherId: _this2.userId
+              }).then(function (res) {
+                var _res3 = (0, _slicedToArray2.default)(res, 2),
+                  error = _res3[0],
+                  success = _res3[1];
+                _this.isFollow = success.data;
+              });
+              uni.showShareMenu({
+                withShareTicket: true,
+                menus: ["shareAppMessage", "shareTimeline"]
+              });
+            case 6:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
   },
   onReachBottom: function onReachBottom() {
     var _this3 = this;

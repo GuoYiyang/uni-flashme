@@ -195,8 +195,7 @@
 				})
 			}
 		},
-		onLoad: function(param) {
-
+		async onLoad(param) {
 			this.productId = param.id;
 			productDetail({
 				id: param.id

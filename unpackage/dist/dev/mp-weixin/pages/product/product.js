@@ -34,7 +34,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _product_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./product.vue?vue&type=script&lang=js& */ 199);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _product_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _product_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
 /* harmony import */ var _product_vue_vue_type_style_index_0_id_2fbdbe34_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./product.vue?vue&type=style&index=0&id=2fbdbe34&lang=scss&scoped=true& */ 201);
-/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js */ 37);
+/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js */ 34);
 
 var renderjs
 
@@ -101,19 +101,19 @@ var components
 try {
   components = {
     uSwiper: function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-swiper/u-swiper */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-swiper/u-swiper")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-swiper/u-swiper.vue */ 377))
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-swiper/u-swiper */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-swiper/u-swiper")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-swiper/u-swiper.vue */ 384))
     },
     uniRow: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-row/components/uni-row/uni-row */ "uni_modules/uni-row/components/uni-row/uni-row").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-row/components/uni-row/uni-row.vue */ 385))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-row/components/uni-row/uni-row */ "uni_modules/uni-row/components/uni-row/uni-row").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-row/components/uni-row/uni-row.vue */ 392))
     },
     uniCol: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-row/components/uni-col/uni-col */ "uni_modules/uni-row/components/uni-col/uni-col").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-row/components/uni-col/uni-col.vue */ 392))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-row/components/uni-col/uni-col */ "uni_modules/uni-row/components/uni-col/uni-col").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-row/components/uni-col/uni-col.vue */ 399))
     },
     uniCard: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-card/components/uni-card/uni-card */ "uni_modules/uni-card/components/uni-card/uni-card").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-card/components/uni-card/uni-card.vue */ 465))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-card/components/uni-card/uni-card */ "uni_modules/uni-card/components/uni-card/uni-card").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-card/components/uni-card/uni-card.vue */ 356))
     },
     uniGoodsNav: function () {
-      return Promise.all(/*! import() | uni_modules/uni-goods-nav/components/uni-goods-nav/uni-goods-nav */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-goods-nav/components/uni-goods-nav/uni-goods-nav")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-goods-nav/components/uni-goods-nav/uni-goods-nav.vue */ 399))
+      return Promise.all(/*! import() | uni_modules/uni-goods-nav/components/uni-goods-nav/uni-goods-nav */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-goods-nav/components/uni-goods-nav/uni-goods-nav")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-goods-nav/components/uni-goods-nav/uni-goods-nav.vue */ 406))
     },
   }
 } catch (e) {
@@ -177,9 +177,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 57));
 var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ 5));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 59));
 var _product = __webpack_require__(/*! @/api/product.js */ 168);
-var _user = __webpack_require__(/*! @/api/user.js */ 33);
+var _user = __webpack_require__(/*! @/api/user.js */ 30);
 //
 //
 //
@@ -366,59 +368,70 @@ var _default = {
       });
     }
   },
-
   onLoad: function onLoad(param) {
     var _this = this;
-    this.productId = param.id;
-    (0, _product.productDetail)({
-      id: param.id
-    }).then(function (res) {
-      var _res = (0, _slicedToArray2.default)(res, 2),
-        error = _res[0],
-        success = _res[1];
-      _this.imgUrlList = success.data.imgUrlList;
-      _this.title = success.data.title;
-      _this.price = success.data.price;
-      _this.tags = success.data.tags;
-      _this.cameramanId = success.data.userId;
-      _this.content = success.data.content;
-      _this.image = success.data.image;
-      uni.setNavigationBarTitle({
-        title: _this.title
-      });
-      var content = JSON.parse(success.data.userId);
-      _this.info = content.info;
-      _this.introduction = content.introduction;
-      (0, _user.getUserInfo)({
-        userId: _this.cameramanId
-      }).then(function (res) {
-        var _res2 = (0, _slicedToArray2.default)(res, 2),
-          error = _res2[0],
-          success = _res2[1];
-        _this.cameramanAvatar = success.data.avatar;
-        _this.cameramanName = success.data.nickname;
-        _this.cameramanDesc = success.data.desc;
-        _this.cameramanPhone = success.data.phone;
-      });
-    });
-    (0, _product.getProductCollectStatus)({
-      userId: getApp().globalData.USER_ID,
-      productId: this.productId
-    }).then(function (res) {
-      var _res3 = (0, _slicedToArray2.default)(res, 2),
-        error = _res3[0],
-        success = _res3[1];
-      _this.isCollect = success.data;
-      if (_this.isCollect) {
-        _this.tabbarOptions[0].icon = 'heart-filled';
-      } else {
-        _this.tabbarOptions[0].icon = 'heart';
-      }
-    });
-    uni.showShareMenu({
-      withShareTicket: true,
-      menus: ["shareAppMessage", "shareTimeline"]
-    });
+    return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
+      return _regenerator.default.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _this.productId = param.id;
+              (0, _product.productDetail)({
+                id: param.id
+              }).then(function (res) {
+                var _res = (0, _slicedToArray2.default)(res, 2),
+                  error = _res[0],
+                  success = _res[1];
+                _this.imgUrlList = success.data.imgUrlList;
+                _this.title = success.data.title;
+                _this.price = success.data.price;
+                _this.tags = success.data.tags;
+                _this.cameramanId = success.data.userId;
+                _this.content = success.data.content;
+                _this.image = success.data.image;
+                uni.setNavigationBarTitle({
+                  title: _this.title
+                });
+                var content = JSON.parse(success.data.userId);
+                _this.info = content.info;
+                _this.introduction = content.introduction;
+                (0, _user.getUserInfo)({
+                  userId: _this.cameramanId
+                }).then(function (res) {
+                  var _res2 = (0, _slicedToArray2.default)(res, 2),
+                    error = _res2[0],
+                    success = _res2[1];
+                  _this.cameramanAvatar = success.data.avatar;
+                  _this.cameramanName = success.data.nickname;
+                  _this.cameramanDesc = success.data.desc;
+                  _this.cameramanPhone = success.data.phone;
+                });
+              });
+              (0, _product.getProductCollectStatus)({
+                userId: getApp().globalData.USER_ID,
+                productId: _this.productId
+              }).then(function (res) {
+                var _res3 = (0, _slicedToArray2.default)(res, 2),
+                  error = _res3[0],
+                  success = _res3[1];
+                _this.isCollect = success.data;
+                if (_this.isCollect) {
+                  _this.tabbarOptions[0].icon = 'heart-filled';
+                } else {
+                  _this.tabbarOptions[0].icon = 'heart';
+                }
+              });
+              uni.showShareMenu({
+                withShareTicket: true,
+                menus: ["shareAppMessage", "shareTimeline"]
+              });
+            case 4:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
   },
   onShow: function onShow() {
     this.tabsCurrent = 0;

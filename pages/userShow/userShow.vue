@@ -135,7 +135,7 @@
 				})
 			}
 		},
-		onLoad: function(param) {
+		async onLoad(param) {
 			this.userId = param.userId;
 			let _this = this;
 			getUserInfo({

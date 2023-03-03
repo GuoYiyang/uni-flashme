@@ -202,7 +202,7 @@
 				this.tabClickCnt = 0
 			}, 250)
 		},
-		onLoad: function(param) {
+		async onLoad(param) {
 			let _this = this;
 			let city = this.city;
 			if (param.city != null) {
