@@ -342,8 +342,7 @@ var _default = {
     (0, _product.getProductPage)({
       userId: getApp().globalData.USER_ID,
       page: this.page,
-      pageSize: this.pageSize,
-      status: 'SUCCESS'
+      pageSize: this.pageSize
     }).then(function (res) {
       var _res2 = (0, _slicedToArray2.default)(res, 2),
         error = _res2[0],
@@ -357,8 +356,7 @@ var _default = {
     (0, _product.getProductPage)({
       userId: getApp().globalData.USER_ID,
       page: _this.page,
-      pageSize: _this.pageSize,
-      status: 'SUCCESS'
+      pageSize: _this.pageSize
     }).then(function (res) {
       var _res3 = (0, _slicedToArray2.default)(res, 2),
         error = _res3[0],
@@ -373,8 +371,7 @@ var _default = {
     (0, _product.getProductPage)({
       userId: getApp().globalData.USER_ID,
       page: this.page,
-      pageSize: this.pageSize,
-      status: 'SUCCESS'
+      pageSize: this.pageSize
     }).then(function (res) {
       var _res4 = (0, _slicedToArray2.default)(res, 2),
         error = _res4[0],

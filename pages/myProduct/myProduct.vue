@@ -151,7 +151,6 @@
 				userId: getApp().globalData.USER_ID,
 				page: this.page,
 				pageSize: this.pageSize,
-				status: 'SUCCESS'
 			}).then((res) => {
 				let [error, success] = res;
 				_this.product.list = success.data;
@@ -164,7 +163,6 @@
 				userId: getApp().globalData.USER_ID,
 				page: _this.page,
 				pageSize: _this.pageSize,
-				status: 'SUCCESS'
 			}).then((res) => {
 				let [error, success] = res;
 				if (success.data.length == 0) {}
@@ -178,7 +176,6 @@
 				userId: getApp().globalData.USER_ID,
 				page: this.page,
 				pageSize: this.pageSize,
-				status: 'SUCCESS'
 			}).then((res) => {
 				let [error, success] = res;
 				if (success.data.length == 0) {}

@@ -124,6 +124,9 @@ try {
     uButton: function () {
       return Promise.all(/*! import() | uni_modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-button/u-button.vue */ 441))
     },
+    uOverlay: function () {
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-overlay/u-overlay */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-overlay/u-overlay")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-overlay/u-overlay.vue */ 592))
+    },
   }
 } catch (e) {
   if (
@@ -241,9 +244,14 @@ var _upload = _interopRequireDefault(__webpack_require__(/*! ../../uni_modules/u
 //
 //
 //
+//
+//
+//
+//
 var _default = {
   data: function data() {
     return {
+      overlayShow: false,
       imagePath: '',
       imageName: '',
       imagePathList: [],
@@ -369,28 +377,27 @@ var _default = {
         var _res = (0, _slicedToArray2.default)(res, 2),
           error = _res[0],
           success = _res[1];
-        if (success.data == true) {
-          uni.showToast({
-            title: '发布成功'
-          });
-        } else {
-          uni.showToast({
-            title: '发布失败'
-          });
-        }
+        setTimeout(function () {
+          if (success.data == true) {
+            uni.showToast({
+              title: '发布成功'
+            });
+          } else {
+            uni.showToast({
+              title: '发布失败'
+            });
+          }
+          this.overlayShow = false;
+          uni.navigateBack();
+        }, 5000);
       });
     },
     submit: function submit() {
-      console.log(this.imageName);
-      console.log(this.imageNameList);
       uni.showLoading({
         title: "发布中，请稍等"
       });
+      this.overlayShow = true;
       this.publish();
-      setTimeout(function () {
-        uni.hideLoading();
-        uni.navigateBack();
-      }, 2000);
     }
   }
 };

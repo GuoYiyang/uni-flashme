@@ -47,6 +47,10 @@
 			</view>
 
 		</view>
+		
+		
+		<u-overlay :show="overlayShow"></u-overlay>
+		
 	</view>
 </template>
 
@@ -59,6 +63,7 @@
 	export default {
 		data() {
 			return {
+				overlayShow:false,
 				imagePath: '',
 				imageName: '',
 				imagePathList: [],
@@ -173,28 +178,28 @@
 					imgNameList: this.imageNameList,
 				}).then((res) => {
 					let [error, success] = res;
-					if (success.data == true) {
-						uni.showToast({
-							title: '发布成功'
-						})
-					} else {
-						uni.showToast({
-							title: '发布失败'
-						})
-					}
+					setTimeout(function () {
+						if (success.data == true) {
+							uni.showToast({
+								title: '发布成功'
+							})
+						} else {
+							uni.showToast({
+								title: '发布失败'
+							})
+						}
+						this.overlayShow = false;
+						uni.navigateBack();
+					}, 5000);
 				})
 			},
 			submit() {
-				console.log(this.imageName)
-				console.log(this.imageNameList)
 				uni.showLoading({
 					title: "发布中，请稍等"
 				});
+				this.overlayShow = true;
 				this.publish();
-				setTimeout(function () {
-					uni.hideLoading();
-					uni.navigateBack();
-				}, 2000);
+
 			}
 		}
 	}
