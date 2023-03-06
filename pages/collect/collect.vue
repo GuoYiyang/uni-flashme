@@ -14,19 +14,19 @@
 		</view>
 		<view v-if="collectProductShow">
 			<view style="padding:10rpx;">
-				<custom-waterfalls-flow ref="waterfallsFlowRef" :value="product.list" :column="2" :columnSpace="1.5"
+				<custom-waterfalls-flow ref="waterfallsFlowRef" :value="product.list" :column="2" :columnSpace="1"
 					:seat="2" @imageClick="imageClick" @wapperClick="wapperClick">
 					<!-- #ifdef MP-WEIXIN -->
 					<view class="item" v-for="(item,index) in product.list" :key="index" slot="slot{{index}}">
 						<view class="title">{{item.title}}</view>
-						<view class="title">￥{{item.price}}</view>
+						<view class="desc">￥{{item.price}}</view>
 					</view>
 					<!-- #endif -->
 					<!-- #ifndef MP-WEIXIN -->
 					<template v-slot:default="item">
 						<view class="item">
 							<view class="title">{{item.title}}</view>
-							<view class="title">{{item.price}}</view>
+							<view class="desc">{{item.price}}</view>
 						</view>
 					</template>
 					<!-- #endif -->
@@ -136,10 +136,9 @@
 			});
 		},
 		onShow() {
-			let _this = this;
-			_this.tabsCurrent = 0;
-			_this.collectProductShow = true;
-			_this.collectPhotographerShow = false;
+			// this.tabsCurrent = 0;
+			// this.collectProductShow = true;
+			// this.collectPhotographerShow = false;
 		},
 		onPullDownRefresh() {
 			let _this = this;
@@ -148,6 +147,7 @@
 			}).then((res) => {
 				let [error, success] = res;
 				_this.product.list = success.data;
+				_this.$refs.waterfallsFlowRef.refresh();
 			});
 			getPherCollect({
 				userId: getApp().globalData.USER_ID
@@ -156,7 +156,6 @@
 				_this.pher.list = success.data;
 			});
 			setTimeout(() => {
-				_this.$refs.waterfallsFlowRef.refresh();
 				uni.stopPullDownRefresh();
 			}, 500);
 		},

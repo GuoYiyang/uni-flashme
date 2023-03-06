@@ -15,7 +15,7 @@
 		</view>
 
 		<view style="padding: 10rpx;">
-			<custom-waterfalls-flow :value="product.list" :column="2" :columnSpace="1.5" @imageClick="imageClick"
+			<custom-waterfalls-flow :value="product.list" :column="2" :columnSpace="1" @imageClick="imageClick"
 				@wapperClick="wapperClick" ref="waterfallsFlowRef">
 				<!-- #ifdef MP-WEIXIN -->
 				<view class="item" v-for="(item,index) in product.list" :key="index" slot="slot{{index}}">
@@ -24,7 +24,7 @@
 					</u-row>
 					<u-row>
 						<u-col span="10" justify="flex-start">
-							<view class="title">￥{{item.price}}</view>
+							<view class="desc">￥{{item.price}}</view>
 						</u-col>
 						<u-col span="2" justify="flex-end">
 							<uni-icons type="more-filled" size="20" color="#1f1f1f"></uni-icons>
@@ -40,7 +40,7 @@
 						</u-row>
 						<u-row>
 							<u-col span="10" justify="flex-start">
-								<view class="title">￥{{item.price}}</view>
+								<view class="desc">￥{{item.price}}</view>
 							</u-col>
 							<u-col span="2" justify="flex-end">
 								<uni-icons type="more-filled" size="20" color="#1f1f1f"></uni-icons>
@@ -64,9 +64,11 @@
 				:safeAreaInsetBottom="true"></u-action-sheet>
 		</view>
 
-		<view class="collect-tabbar">
+		<uni-fab :popMenu="false" @fabClick="buttonClick" :pattern="{buttonColor: '#000000'}"/>
+
+<!-- 		<view class="collect-tabbar">
 			<u-button @click="buttonClick">发布新作品</u-button>
-		</view>
+		</view> -->
 
 	</view>
 </template>
@@ -82,8 +84,9 @@
 				selectedProductId: '',
 				popShow: false,
 				popList: [{
-					name: '删除'
-				}],
+						name: '删除'
+					}
+				],
 				page: 1,
 				pageSize: 10,
 				product: {
@@ -100,11 +103,8 @@
 			}
 		},
 		methods: {
-			// shouMoreAction(item) {
-			// 	console.log(item)
-			// },
 			selectClick(item) {
-				console.log(item)
+				console.log(item.name)
 				if ("删除" == item.name) {
 					this.delete();
 				}
@@ -148,30 +148,14 @@
 			this.page = 1;
 			let _this = this;
 			getProductPage({
-				city: '',
-				tag: '',
-				query: '',
 				userId: getApp().globalData.USER_ID,
 				page: this.page,
-				pageSize: this.pageSize
+				pageSize: this.pageSize,
+				status: 'SUCCESS'
 			}).then((res) => {
 				let [error, success] = res;
 				_this.product.list = success.data;
-				console.log(_this.product.list)
 			})
-		},
-		onShow() {
-			// let _this = this;
-			// getProductPage({
-			// 	userId: getApp().globalData.USER_ID,
-			// 	page: this.page,
-			// 	pageSize: this.pageSize
-			// }).then((res) => {
-			// 	let [error, success] = res;
-			// 	if (success.data.length == 0) {}
-			// 	_this.product.list = success.data;
-			// 	_this.$refs.waterfallsFlowRef.refresh();
-			// })
 		},
 		onReachBottom() {
 			this.page = this.page + 1;
@@ -179,7 +163,8 @@
 			getProductPage({
 				userId: getApp().globalData.USER_ID,
 				page: _this.page,
-				pageSize: _this.pageSize
+				pageSize: _this.pageSize,
+				status: 'SUCCESS'
 			}).then((res) => {
 				let [error, success] = res;
 				if (success.data.length == 0) {}
@@ -192,7 +177,8 @@
 			getProductPage({
 				userId: getApp().globalData.USER_ID,
 				page: this.page,
-				pageSize: this.pageSize
+				pageSize: this.pageSize,
+				status: 'SUCCESS'
 			}).then((res) => {
 				let [error, success] = res;
 				if (success.data.length == 0) {}

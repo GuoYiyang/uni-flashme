@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "摄影师主页",
+  "navigationBarTitleText": "",
   "enablePullDownRefresh": false,
   "usingComponents": {
     "u-row": "/uni_modules/uview-ui/components/u-row/u-row",

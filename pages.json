@@ -107,11 +107,20 @@
 	}, {
 		"path": "pages/userShow/userShow",
 		"style": {
-			"navigationBarTitleText": "摄影师主页",
+			"navigationBarTitleText": "",
 			"enablePullDownRefresh": false
 		}
 
-	}],
+	}    ,{
+            "path" : "pages/audit/audit",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "审核",
+                "enablePullDownRefresh": true
+            }
+            
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "",

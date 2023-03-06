@@ -4,10 +4,8 @@
 			<u-row gutter="10" customStyle="padding: 10rpx;">
 				<u-col span="12">
 					<view @click="avatarClick">
-						<u-avatar
-							:src="userInfo.avatar"
-							size="80">
-							</u-avatar>
+						<u-avatar :src="userInfo.avatar" size="80">
+						</u-avatar>
 					</view>
 
 				</u-col>
@@ -19,7 +17,7 @@
 			</u-row>
 		</view>
 
-<!-- 		<u-row gutter="0" customStyle="padding: 10rpx;">
+		<!-- 		<u-row gutter="0" customStyle="padding: 10rpx;">
 			<u-col span="4">
 				<u-button @click="aboutMe">
 					关于我
@@ -42,6 +40,9 @@
 			<uni-list>
 				<!-- <uni-list-item title="发布产品" showArrow link="navigateTo" to="../publish/publish"/> -->
 				<uni-list-item title="我的作品" showArrow link="navigateTo" to="../myProduct/myProduct" />
+				<view v-if="isAdmin">
+					<uni-list-item title="待审核" showArrow link="navigateTo" to="../audit/audit" />
+				</view>
 				<uni-list-item title="成为摄影师" showArrow link="navigateTo" to="../becomePher/becomePher" />
 				<uni-list-item title="PhotoCall预定保障" showArrow link="navigateTo" to="../policyDoc/policyDoc" />
 				<uni-list-item title="问题反馈" showArrow link="navigateTo" to="../feedback/feedback" />
@@ -61,13 +62,13 @@
 	export default {
 		data() {
 			return {
-				userInfo:{
+				userInfo: {
 					userId: '',
 					username: '',
 					avatar: '',
-					desc: '',
-				}
-
+					desc: ''
+				},
+				isAdmin: false,
 			}
 		},
 		methods: {
@@ -92,7 +93,11 @@
 				_this.userInfo.avatar = success.data.avatar;
 				_this.userInfo.desc = success.data.desc;
 				_this.userInfo.phone = success.data.phone;
+				if (success.data.role == 0) {
+					_this.isAdmin = true;
+				}
 			})
+
 		},
 
 	}

@@ -8,24 +8,21 @@
 		</view>
 
 		<view style="padding: 10rpx;">
-			<uni-row justify="">
-				<uni-col :span="16">
+			<u-row>
+				<u-col :span="8" justify="flex-start">
 					<view class="title">{{title}}</view>
-				</uni-col>
-				<uni-col :span="6">
+				</u-col>
+				<u-col :span="4" justify="flex-end">
 					<view class="title">￥{{price}}</view>
-				</uni-col>
-			</uni-row>
-			<uni-row>
-				<uni-card :title="cameramanName"  extra="优质摄影师" :thumbnail="cameramanAvatar" @click="clickCard" is-shadow is-full>
-					<text>{{cameramanDesc}}</text>
-				</uni-card>
-			</uni-row>
-			<uni-row>
-				<uni-col :span="24">
-					<view class="desc">{{content}}</view>
-				</uni-col>
-			</uni-row>
+				</u-col>
+			</u-row>
+
+			<uni-card :title="cameramanName" extra="优质摄影师" :thumbnail="cameramanAvatar" @click="clickCard" is-shadow
+				is-full>
+				<text>{{cameramanDesc}}</text>
+			</uni-card>
+			<view class="desc">{{content}}</view>
+
 		</view>
 
 		<view style=" padding-bottom: 50rpx;">
@@ -145,7 +142,7 @@
 				info: '',
 				introduction: '',
 				popShow: false,
-				image:'',
+				image: '',
 			}
 		},
 		methods: {
@@ -196,6 +193,7 @@
 			}
 		},
 		async onLoad(param) {
+			await this.$onLaunched;
 			this.productId = param.id;
 			productDetail({
 				id: param.id

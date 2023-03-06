@@ -22,6 +22,7 @@ export function getProductPage(req) {
 	let city = req.city == null ? "" : req.city;
 	let tag = req.tag == null ? "" : req.tag;
 	let query = req.query == null ? "" : req.query;
+	let status = req.status == null ? "" : req.status;
 	return uni.request({
 		url: baseUrl + '/product/page',
 		method: "GET",
@@ -34,7 +35,8 @@ export function getProductPage(req) {
 			tag: tag,
 			query: query,
 			page: req.page,
-			pageSize: req.pageSize
+			pageSize: req.pageSize,
+			status: status
 		}
 	});
 }
@@ -147,6 +149,23 @@ export function deleteProduct(req) {
 		data: {
 			userId: req.userId,
 			productId: req.productId
+		}
+	});
+}
+
+
+// 审核产品
+export function updateProductStatus(req) {
+	return uni.request({
+		url: baseUrl + '/product/status/update',
+		method: "POST",
+		header:{
+			"X-USER-ID": getApp().globalData.USER_ID
+		},
+		data: {
+			status: req.status,
+			productId: req.productId,
+			remark: req.remark
 		}
 	});
 }

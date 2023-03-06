@@ -10,7 +10,7 @@
 		},
 		methods: {
 		},
-		onLaunch: function() {
+		onLaunch() {
 			let _this = this;
 			uni.login({
 				provider: 'weixin',
@@ -22,16 +22,12 @@
 						_this.globalData.USER_ID = success.data.id;
 						_this.globalData.USER_NAME = success.data.nickname;
 						_this.globalData.AVATAR = success.data.avatar;
-					}).then(()=>{
 						this.$isResolve()
 					})
 				}
 			});
 			
 		},
-		// async onShow() {
-		// 	await this.$onLaunched;
-		// },
 		async onLoad() {
 			await this.$onLaunched;
 		},
