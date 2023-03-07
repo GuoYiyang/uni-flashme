@@ -1,11 +1,16 @@
 {
   "navigationBarTitleText": "",
   "enablePullDownRefresh": false,
+  "navigationBarBackgroundColor": "#FFFFFF",
   "usingComponents": {
     "u-row": "/uni_modules/uview-ui/components/u-row/u-row",
     "u-col": "/uni_modules/uview-ui/components/u-col/u-col",
     "u-avatar": "/uni_modules/uview-ui/components/u-avatar/u-avatar",
+    "u-icon": "/uni_modules/uview-ui/components/u-icon/u-icon",
     "u-button": "/uni_modules/uview-ui/components/u-button/u-button",
+    "u-line": "/uni_modules/uview-ui/components/u-line/u-line",
+    "u-grid": "/uni_modules/uview-ui/components/u-grid/u-grid",
+    "u-grid-item": "/uni_modules/uview-ui/components/u-grid-item/u-grid-item",
     "u-sticky": "/uni_modules/uview-ui/components/u-sticky/u-sticky",
     "u-tabs": "/uni_modules/uview-ui/components/u-tabs/u-tabs",
     "custom-waterfalls-flow": "/uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow"

@@ -162,7 +162,6 @@
 			this.page = 1;
 			let _this = this;
 			getProductPage({
-				userId: getApp().globalData.USER_ID,
 				page: this.page,
 				pageSize: this.pageSize,
 				status: 'REVIEW'
@@ -175,7 +174,6 @@
 			this.page = this.page + 1;
 			let _this = this;
 			getProductPage({
-				userId: getApp().globalData.USER_ID,
 				page: _this.page,
 				pageSize: _this.pageSize,
 				status: 'REVIEW'
@@ -189,7 +187,6 @@
 			this.page = 1;
 			let _this = this;
 			getProductPage({
-				userId: getApp().globalData.USER_ID,
 				page: this.page,
 				pageSize: this.pageSize,
 				status: 'REVIEW'

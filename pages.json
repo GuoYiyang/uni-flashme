@@ -108,7 +108,8 @@
 		"path": "pages/userShow/userShow",
 		"style": {
 			"navigationBarTitleText": "",
-			"enablePullDownRefresh": false
+			"enablePullDownRefresh": false,
+			"navigationBarBackgroundColor": "#FFFFFF"
 		}
 
 	}    ,{

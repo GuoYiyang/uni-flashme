@@ -1,73 +1,93 @@
 <template>
 	<view>
-		<view class="center">
+		<view style="background-color: #FFFFFF; padding-bottom: 10px; border-radius:0 0 15px 15px;">
 
-			<u-row gutter="0" customStyle="padding: 10rpx;">
-				<u-col span="12">
-					<view @click="avatarClick">
-						<u-avatar
-							:src="avatar"
-							size="80"></u-avatar>
-					</view>
+			<view class="center">
+				<u-row gutter="0" customStyle="padding: 10px;">
+					<u-col span="12">
+						<view @click="avatarClick">
+							<u-avatar :src="avatar" size="80"></u-avatar>
+						</view>
+					</u-col>
+				</u-row>
+				<u-row customStyle="padding-top: 10px;">
+					<u-col span="12">
+						<text style="font-size: 20px; font-weight: bolder;">{{username}}</text>
+					</u-col>
+				</u-row>
+				
+				<u-row customStyle="padding-top: 10px;">
+					<u-col span="12">
+						<text style="font-size: 14px; color: #4E4E4E;">{{desc}}</text>
+					</u-col>
+				</u-row>
 
-				</u-col>
-			</u-row>
+				<u-row gutter="10" customStyle="padding-top: 10px;">
+					<u-col span="6">
+						<u-icon name="map" :label="city"></u-icon>
+					</u-col>
+					<u-col span="10">
+						<u-icon name="checkmark-circle" label="已验证"></u-icon>
+						<!-- <text style="font-size: 12px; color: #4E4E4E;">已验证</text> -->
+					</u-col>
+				</u-row>
 
-			<u-row gutter="10" customStyle="padding: 10rpx;">
-				<u-col span="12">
-					<text>{{username}}</text>
-				</u-col>
-			</u-row>
+				<view style="padding: 10px;">
+					<u-button @click="follow" :text="isFollow ? '取消关注': '关注'" type="primary" customStyle="border-radius:15px; width:100px"></u-button>
+				</view>
 
-			<u-row gutter="30" customStyle="padding: 10rpx;">
-				<u-col span="4">
-					<view @click="aboutMe">关于TA</view>
-				</u-col>
-				<u-col span="4">
-					<view @click="contact">联系TA</view>
-					<!-- <text @click="contact">联系TA</text> -->
-				</u-col>
-				<u-col span="6">
-					<view @click="priceDetail">套餐价格</view>
-					<!-- <text @click="priceDetail">套餐价格</text> -->
-				</u-col>
-			</u-row>
+			</view>
+
+			<u-line></u-line>
+
+			<view style="padding: 10px;">
+				<u-grid :border="false" col="3" @click="clickFastEnter">
+					<u-grid-item v-for="(listItem,listIndex) in fastList" :key="listIndex">
+						<u-icon :name="listItem.name" :size="22" customStyle="padding:10px"></u-icon>
+						<text class="grid-text">{{listItem.title}}</text>
+					</u-grid-item>
+				</u-grid>
+			</view>
 		</view>
 		
-		<u-button  @click="follow" :text="isFollow ? '取消关注': '关注'"></u-button>
-	
-		<view>
-			<u-sticky bgColor="#f5f5f5">
-				<u-tabs :list="tabsList" lineWidth="30" lineHeight="3" lineColor="#000000" :activeStyle="{
-				        color: '#303133',
-				        fontWeight: 'bold',
-				        transform: 'scale(1.1)'
-				    }" :inactiveStyle="{
-				        color: '#606266',
-				        transform: 'scale(1)'
-				    }" itemStyle="padding-left: 15px; padding-right: 15px; height: 34px;" @change="tabsChange" :duration="100">
-				</u-tabs>
-			</u-sticky>
+		<view style="padding: 10px;">
+		
 		</view>
 
-		<view style="padding: 10rpx;">
-			<custom-waterfalls-flow :value="product.list" :column="2" :columnSpace="1" @imageClick="imageClick"
-				@wapperClick="wapperClick" ref="waterfallsFlowRef">
-				<!-- #ifdef MP-WEIXIN -->
-				<view class="item" v-for="(item,index) in product.list" :key="index" slot="slot{{index}}">
-					<view class="title">{{item.title}}</view>
-					<view class="desc">￥{{item.price}}</view>
-				</view>
-				<!-- #endif -->
-				<!-- #ifndef MP-WEIXIN -->
-				<template v-slot:default="item">
-					<view class="item">
+		<view style="background-color: #F7F9FB; padding-top: 0px; border-radius:15px 15px 0 0;">
+			<view style="background-color: #FFFFFF; padding: 6px;">
+				<u-sticky bgColor="FFFFFF">
+					<u-tabs :list="tabsList" lineWidth="30" lineHeight="3" lineColor="#000000" :activeStyle="{
+					        color: '#303133',
+					        fontWeight: 'bold',
+					        transform: 'scale(1)'
+					    }" :inactiveStyle="{
+					        color: '#606266',
+					        transform: 'scale(1)'
+					    }" itemStyle="padding-left: 15px; padding-right: 15px; height: 34px;" @change="tabsChange" :duration="100">
+					</u-tabs>
+				</u-sticky>
+			</view>
+
+			<view style="padding: 10rpx;">
+				<custom-waterfalls-flow :value="product.list" :column="2" :columnSpace="1" @imageClick="imageClick"
+					@wapperClick="wapperClick" ref="waterfallsFlowRef">
+					<!-- #ifdef MP-WEIXIN -->
+					<view class="item" v-for="(item,index) in product.list" :key="index" slot="slot{{index}}">
 						<view class="title">{{item.title}}</view>
-						<view class="desc">{{item.price}}</view>
+						<view class="desc">￥{{item.price}}</view>
 					</view>
-				</template>
-				<!-- #endif -->
-			</custom-waterfalls-flow>
+					<!-- #endif -->
+					<!-- #ifndef MP-WEIXIN -->
+					<template v-slot:default="item">
+						<view class="item">
+							<view class="title">{{item.title}}</view>
+							<view class="desc">{{item.price}}</view>
+						</view>
+					</template>
+					<!-- #endif -->
+				</custom-waterfalls-flow>
+			</view>
 		</view>
 
 	</view>
@@ -98,10 +118,22 @@
 					list: []
 				},
 				tabsList: [{
-						name: '全部'
-					}
+					name: '全部'
+				}],
+				isFollow: false,
+				fastList: [{
+						name: '/static/message.png',
+						title: '留言'
+					},
+					{
+						name: '/static/price.png',
+						title: '套餐价格'
+					},
+					{
+						name: '/static/phone.png',
+						title: '联系方式'
+					},
 				],
-				isFollow:false,
 			}
 		},
 		methods: {
@@ -127,6 +159,13 @@
 				uni.navigateTo({
 					url: '../product/product?id=' + item.id
 				})
+			},
+			changeCity(index) {
+				if (index == 0) {
+					return "深圳"
+				} else {
+					return "未知城市"
+				}
 			}
 		},
 		async onLoad(param) {
@@ -138,7 +177,7 @@
 			}).then((res) => {
 				let [error, success] = res;
 				_this.username = success.data.nickname;
-				_this.city = success.data.city;
+				_this.city = this.changeCity(success.data.city);
 				_this.gender = success.data.gender;
 				_this.avatar = success.data.avatar;
 				_this.desc = success.data.desc;
@@ -159,7 +198,7 @@
 			getPherCollectStatus({
 				userId: getApp().globalData.USER_ID,
 				pherId: this.userId
-			}).then((res)=>{
+			}).then((res) => {
 				let [error, success] = res;
 				_this.isFollow = success.data;
 			})
