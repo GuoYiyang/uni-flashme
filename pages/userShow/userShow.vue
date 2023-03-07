@@ -15,13 +15,7 @@
 						<text style="font-size: 20px; font-weight: bolder;">{{username}}</text>
 					</u-col>
 				</u-row>
-				
-				<u-row customStyle="padding-top: 10px;">
-					<u-col span="12">
-						<text style="font-size: 14px; color: #4E4E4E;">{{desc}}</text>
-					</u-col>
-				</u-row>
-
+			
 				<u-row gutter="10" customStyle="padding-top: 10px;">
 					<u-col span="6">
 						<u-icon name="map" :label="city"></u-icon>
@@ -29,6 +23,12 @@
 					<u-col span="10">
 						<u-icon name="checkmark-circle" label="已验证"></u-icon>
 						<!-- <text style="font-size: 12px; color: #4E4E4E;">已验证</text> -->
+					</u-col>
+				</u-row>
+				
+				<u-row customStyle="padding-top: 10px;">
+					<u-col span="12">
+						<text style="font-size: 14px; color: #4E4E4E;">{{desc}}</text>
 					</u-col>
 				</u-row>
 
