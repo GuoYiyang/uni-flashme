@@ -29,13 +29,11 @@
 			<uni-card :title="cameramanName" extra="优质摄影师" :thumbnail="cameramanAvatar" @click="clickCard" is-full
 				:is-shadow="false" :border="false">
 				<text>{{cameramanDesc}}</text>
+				<uni-goods-nav :options="tabbarOptions" :button-group="tabbarGroup" @click="optionClick" @buttonClick="buttonClick" />
 			</uni-card>
+			<view style="padding: 5px;"></view>
 		</view>
 
-		<view>
-			<uni-goods-nav :options="tabbarOptions" :button-group="tabbarGroup" @click="optionClick"
-				@buttonClick="buttonClick" />
-		</view>
 
 		<view style="padding: 10px;"></view>
 
