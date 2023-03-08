@@ -7,27 +7,64 @@
 				@click="previewImg"></u-swiper>
 		</view>
 
-		<view style="padding: 10rpx;">
-			<u-row>
-				<u-col :span="8" justify="flex-start">
-					<view class="title">{{title}}</view>
-				</u-col>
-				<u-col :span="4" justify="flex-end">
-					<view class="title">￥{{price}}</view>
-				</u-col>
-			</u-row>
-
-			<uni-card :title="cameramanName" extra="优质摄影师" :thumbnail="cameramanAvatar" @click="clickCard" is-shadow
-				is-full>
-				<text>{{cameramanDesc}}</text>
-			</uni-card>
-			<view class="desc">{{content}}</view>
-
+		<view style="background-color: #FFFFFF; border-radius:0 0 15px 15px; padding-top: 10px;">
+			<view style="padding: 10px;">
+				<view style="font-size: 25px; font-weight: bold;">{{title}}</view>
+				<u-row>
+					<u-col span="8">
+						<view>{{tags}}</view>
+					</u-col>
+					<u-col span="4">
+						<u-button text="查看套餐价格"></u-button>
+					</u-col>
+				</u-row>
+			</view>
+			<view style="padding: 5px;"></view>
 		</view>
 
-		<view style=" padding-bottom: 50rpx;">
+		<view style="padding: 10px;"></view>
+
+		<view style="background-color: #FFFFFF; border-radius:15px 15px 15px 15px;">
+			<view style="padding: 5px;"></view>
+			<uni-card :title="cameramanName" extra="优质摄影师" :thumbnail="cameramanAvatar" @click="clickCard" is-full
+				:is-shadow="false" :border="false">
+				<text>{{cameramanDesc}}</text>
+			</uni-card>
+		</view>
+
+		<view>
 			<uni-goods-nav :options="tabbarOptions" :button-group="tabbarGroup" @click="optionClick"
 				@buttonClick="buttonClick" />
+		</view>
+
+		<view style="padding: 10px;"></view>
+
+		<view style="background-color: #FFFFFF; border-radius:15px 15px 15px 15px;">
+			<view style="font-size: 20px; font-weight: bold; padding: 10px;">{{cameramanName}}的其他作品</view>
+<!-- 			<u-scroll-list>
+				<view v-for="(item, index) in other.list" :key="index" class="scroll-item">
+					<view>
+						<u--image :src="item.image" :lazy-load="true" mode="heightFix" height="200"></u--image>
+					</view>
+				</view>
+			</u-scroll-list> -->
+			<view style="padding: 10px;">
+				<custom-waterfalls-flow :value="other.list" :column="2" :columnSpace="1" @imageClick="imageClick"
+					@wapperClick="wapperClick" ref="waterfallsFlowRef">
+					<!-- #ifdef MP-WEIXIN -->
+					<view class="item" v-for="(item,index) in other.list" :key="index" slot="slot{{index}}">
+						<view class="title">{{item.title}}</view>
+					</view>
+					<!-- #endif -->
+					<!-- #ifndef MP-WEIXIN -->
+					<template v-slot:default="item">
+						<view class="item">
+							<view class="title">{{item.title}}</view>
+						</view>
+					</template>
+					<!-- #endif -->
+				</custom-waterfalls-flow>
+			</view>
 		</view>
 
 
@@ -94,6 +131,7 @@
 	import {
 		productDetail,
 		productCollect,
+		getProductPage,
 		getProductCollectStatus
 	} from '@/api/product.js'
 	import {
@@ -102,6 +140,9 @@
 	export default {
 		data() {
 			return {
+				other: {
+					list: [],
+				},
 				windowWidth: '',
 				swiperHeight: '',
 				productId: '',
@@ -146,6 +187,16 @@
 			}
 		},
 		methods: {
+			wapperClick(item) {
+				uni.navigateTo({
+					url: '../product/product?id=' + item.id
+				})
+			},
+			imageClick(item) {
+				uni.navigateTo({
+					url: '../product/product?id=' + item.id
+				})
+			},
 			previewImg(item) {
 				uni.previewImage({
 					current: item,
@@ -225,6 +276,15 @@
 					this.cameramanDesc = success.data.desc;
 					this.cameramanPhone = success.data.phone;
 				})
+
+				getProductPage({
+					userId: this.cameramanId,
+					page: 1,
+					pageSize: 2
+				}).then((res) => {
+					let [error, success] = res;
+					this.other.list = success.data;
+				})
 			});
 			getProductCollectStatus({
 				userId: getApp().globalData.USER_ID,
@@ -242,6 +302,7 @@
 				withShareTicket: true,
 				menus: ["shareAppMessage", "shareTimeline"]
 			});
+			console.log(this.other.list)
 		},
 		onShow() {
 			this.tabsCurrent = 0;
@@ -259,6 +320,31 @@
 </script>
 
 <style lang="scss" scoped>
+	
+	.item {
+		padding: 10rpx 10rpx 20rpx;
+	
+		.title {
+			line-height: 48rpx;
+			font-size: 30rpx;
+			color: #222;
+		}
+	
+		.desc {
+			font-size: 24rpx;
+			color: #666;
+		}
+	
+		.grid-text {
+			font-size: 14px;
+			color: #909399;
+			padding: 10rpx 0 20rpx 0rpx;
+			/* #ifndef APP-PLUS */
+			box-sizing: border-box;
+			/* #endif */
+		}
+	}
+
 	.center {
 		padding: 10rpx;
 		height: 100%;
@@ -267,12 +353,6 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-	}
-
-	.title {
-		padding: 10px;
-		font-size: 25px;
-		font-weight: bold;
 	}
 
 	.desc {

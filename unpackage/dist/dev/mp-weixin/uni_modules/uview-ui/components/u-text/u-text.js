@@ -174,7 +174,7 @@ exports.default = void 0;
 var _value = _interopRequireDefault(__webpack_require__(/*! ./value.js */ 615));
 var _button = _interopRequireDefault(__webpack_require__(/*! ../../libs/mixin/button.js */ 454));
 var _openType = _interopRequireDefault(__webpack_require__(/*! ../../libs/mixin/openType.js */ 455));
-var _props = _interopRequireDefault(__webpack_require__(/*! ./props.js */ 561));
+var _props = _interopRequireDefault(__webpack_require__(/*! ./props.js */ 569));
 //
 //
 //

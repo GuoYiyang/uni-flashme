@@ -109,11 +109,17 @@ try {
     uCol: function () {
       return Promise.all(/*! import() | uni_modules/uview-ui/components/u-col/u-col */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-col/u-col")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-col/u-col.vue */ 291))
     },
+    uButton: function () {
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-button/u-button.vue */ 449))
+    },
     uniCard: function () {
       return __webpack_require__.e(/*! import() | uni_modules/uni-card/components/uni-card/uni-card */ "uni_modules/uni-card/components/uni-card/uni-card").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-card/components/uni-card/uni-card.vue */ 364))
     },
     uniGoodsNav: function () {
       return Promise.all(/*! import() | uni_modules/uni-goods-nav/components/uni-goods-nav/uni-goods-nav */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-goods-nav/components/uni-goods-nav/uni-goods-nav")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-goods-nav/components/uni-goods-nav/uni-goods-nav.vue */ 393))
+    },
+    customWaterfallsFlow: function () {
+      return Promise.all(/*! import() | uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow")]).then(__webpack_require__.bind(null, /*! @/uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow.vue */ 349))
     },
   }
 } catch (e) {
@@ -274,9 +280,49 @@ var _user = __webpack_require__(/*! @/api/user.js */ 33);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default = {
   data: function data() {
     return {
+      other: {
+        list: []
+      },
       windowWidth: '',
       swiperHeight: '',
       productId: '',
@@ -319,6 +365,16 @@ var _default = {
     };
   },
   methods: {
+    wapperClick: function wapperClick(item) {
+      uni.navigateTo({
+        url: '../product/product?id=' + item.id
+      });
+    },
+    imageClick: function imageClick(item) {
+      uni.navigateTo({
+        url: '../product/product?id=' + item.id
+      });
+    },
     previewImg: function previewImg(item) {
       uni.previewImage({
         current: item,
@@ -406,14 +462,24 @@ var _default = {
                   _this.cameramanDesc = success.data.desc;
                   _this.cameramanPhone = success.data.phone;
                 });
+                (0, _product.getProductPage)({
+                  userId: _this.cameramanId,
+                  page: 1,
+                  pageSize: 2
+                }).then(function (res) {
+                  var _res3 = (0, _slicedToArray2.default)(res, 2),
+                    error = _res3[0],
+                    success = _res3[1];
+                  _this.other.list = success.data;
+                });
               });
               (0, _product.getProductCollectStatus)({
                 userId: getApp().globalData.USER_ID,
                 productId: _this.productId
               }).then(function (res) {
-                var _res3 = (0, _slicedToArray2.default)(res, 2),
-                  error = _res3[0],
-                  success = _res3[1];
+                var _res4 = (0, _slicedToArray2.default)(res, 2),
+                  error = _res4[0],
+                  success = _res4[1];
                 _this.isCollect = success.data;
                 if (_this.isCollect) {
                   _this.tabbarOptions[0].icon = 'heart-filled';
@@ -425,7 +491,8 @@ var _default = {
                 withShareTicket: true,
                 menus: ["shareAppMessage", "shareTimeline"]
               });
-            case 6:
+              console.log(_this.other.list);
+            case 7:
             case "end":
               return _context.stop();
           }
