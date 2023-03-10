@@ -172,8 +172,9 @@
 				userId: this.userId
 			}).then((res) => {
 				let [error, success] = res;
+				console.log(success)
 				_this.username = success.data.nickname;
-				_this.city = this.changeCity(success.data.city);
+				_this.city = changeCity(success.data.city);
 				_this.gender = success.data.gender;
 				_this.avatar = success.data.avatar;
 				_this.desc = success.data.desc;

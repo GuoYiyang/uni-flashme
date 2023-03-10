@@ -7,7 +7,7 @@
   "setting": {
     "urlCheck": false,
     "es6": false,
-    "postcss": false,
+    "postcss": true,
     "minified": true,
     "newFeature": true,
     "bigPackageSizeSupport": true,
@@ -20,7 +20,7 @@
   "compileType": "miniprogram",
   "libVersion": "",
   "appid": "wxc0821a0da706d8e0",
-  "projectname": "mydemo",
+  "projectname": "photocall",
   "condition": {},
   "editorSetting": {
     "tabIndent": "insertSpaces",

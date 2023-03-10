@@ -371,8 +371,9 @@ var _default = {
                 var _res = (0, _slicedToArray2.default)(res, 2),
                   error = _res[0],
                   success = _res[1];
+                console.log(success);
                 _this.username = success.data.nickname;
-                _this.city = _this2.changeCity(success.data.city);
+                _this.city = (0, _method.changeCity)(success.data.city);
                 _this.gender = success.data.gender;
                 _this.avatar = success.data.avatar;
                 _this.desc = success.data.desc;
