@@ -7,16 +7,17 @@
 				@click="previewImg"></u-swiper>
 		</view>
 
+
+
 		<view style="background-color: #FFFFFF; border-radius:0 0 15px 15px; padding-top: 10px;">
 			<view style="padding: 10px;">
 				<view style="font-size: 25px; font-weight: bold;">{{title}}</view>
 				<u-row>
-					<u-col span="8">
-						<view>{{tags}}</view>
-					</u-col>
-					<u-col span="4">
-						<u-button text="查看套餐价格"></u-button>
-					</u-col>
+					<view v-for="(item,index) in tags" :key="index">
+						<view style="padding: 5px;">
+							<u-tag :text="item" bgColor="#F3F4F5" color="#191919" borderColor="#F3F4F5"></u-tag>
+						</view>
+					</view>
 				</u-row>
 			</view>
 			<view style="padding: 5px;"></view>
@@ -26,10 +27,9 @@
 
 		<view style="background-color: #FFFFFF; border-radius:15px 15px 15px 15px;">
 			<view style="padding: 5px;"></view>
-			<uni-card :title="cameramanName" extra="优质摄影师" :thumbnail="cameramanAvatar" @click="clickCard" is-full
-				:is-shadow="false" :border="false">
+			<uni-card :title="cameramanName" :subTitle="cameramanCity" extra="优质摄影师" :thumbnail="cameramanAvatar"
+				@click="clickCard" is-full :is-shadow="false" :border="false">
 				<text>{{cameramanDesc}}</text>
-				<uni-goods-nav :options="tabbarOptions" :button-group="tabbarGroup" @click="optionClick" @buttonClick="buttonClick" />
 			</uni-card>
 			<view style="padding: 5px;"></view>
 		</view>
@@ -37,9 +37,9 @@
 
 		<view style="padding: 10px;"></view>
 
-		<view style="background-color: #FFFFFF; border-radius:15px 15px 15px 15px;">
+		<view style="background-color: #FFFFFF; border-radius:15px 15px 15px 15px; padding-bottom: 50px;">
 			<view style="font-size: 20px; font-weight: bold; padding: 10px;">{{cameramanName}}的其他作品</view>
-<!-- 			<u-scroll-list>
+			<!-- 			<u-scroll-list>
 				<view v-for="(item, index) in other.list" :key="index" class="scroll-item">
 					<view>
 						<u--image :src="item.image" :lazy-load="true" mode="heightFix" height="200"></u--image>
@@ -65,7 +65,43 @@
 			</view>
 		</view>
 
+		<u-tabbar :border="false">
+			<u-tabbar-item text="200" :icon='icon.collectIcon' @click="collectClick">
+			</u-tabbar-item>
+			<u-tabbar-item text="留言" icon='/static/message.png' @click="click1">
+			</u-tabbar-item>
+			<u-tabbar-item text="方案" icon='/static/price.png' @click="click1">
+			</u-tabbar-item>
 
+			<view style="padding-top: 5px;padding-right: 20px;">
+				<u-button color="#000000" text="联系摄影师" @click="contactClick"></u-button>
+			</view>
+
+		</u-tabbar>
+
+		<!-- 		<view style="background-color: #FFFFFF; border-radius:15px 15px 15px 15px;">
+			<u-row>
+				<u-col span="2">
+					<u-icon name='/static/heart.png' :size="22" customStyle="padding-left:10px; padding-right:10px"></u-icon>
+					<text class="grid-text">200</text>
+				</u-col>
+				<u-col span="2">
+					<u-icon name='/static/message.png' :size="22" customStyle="padding-left:10px; padding-right:10px"></u-icon>
+					<text class="grid-text">留言</text>
+				</u-col>
+				<u-col span="2">
+					<u-icon name='/static/price.png' :size="22" customStyle="padding-left:10px; padding-right:10px">
+					</u-icon>
+					<text class="grid-text">方案</text>
+				</u-col>
+				<u-col span="6">
+					<u-button>联系摄影师</u-button>
+				</u-col>
+			</u-row>
+		</view> -->
+
+
+		<!-- <uni-goods-nav :options="tabbarOptions" :button-group="tabbarGroup" @click="optionClick" @buttonClick="buttonClick" :fill="true/> -->
 		<!-- 
 
 		<view class="center">
@@ -135,9 +171,16 @@
 	import {
 		getUserInfo
 	} from '@/api/user.js'
+	import {
+		changeCity,
+		changeTag
+	} from '@/common/method.js'
 	export default {
 		data() {
 			return {
+				icon: {
+					collectIcon: '/static/heart.png'
+				},
 				other: {
 					list: [],
 				},
@@ -149,6 +192,7 @@
 				cameramanName: '',
 				cameramanDesc: '',
 				cameramanPhone: '',
+				cameramanCity: '',
 				options: [{
 					icon: 'heart',
 					text: '收藏'
@@ -156,7 +200,7 @@
 				imgUrlList: [],
 				title: '',
 				price: '',
-				tags: '',
+				tags: [],
 				content: '',
 				tabsList: [{
 						name: '拍摄须知'
@@ -170,8 +214,14 @@
 				productCustomerShow: false,
 				isCollect: false,
 				tabbarOptions: [{
-					icon: 'heart',
+					icon: '/static/message.png',
 					text: '收藏'
+				}, {
+					icon: 'heart',
+					text: '留言'
+				}, {
+					icon: 'heart',
+					text: "方案"
 				}],
 				tabbarGroup: [{
 					text: '联系摄影师',
@@ -217,17 +267,17 @@
 					this.productCustomerShow = true;
 				}
 			},
-			optionClick(item) {
+			collectClick() {
 				this.isCollect = !this.isCollect;
 				if (this.isCollect) {
-					this.tabbarOptions[0].icon = 'heart-filled'
+					this.icon.collectIcon = '/static/heart-fill.png'
 					productCollect({
 						userId: getApp().globalData.USER_ID,
 						productId: this.productId,
 						isDelete: 0
 					})
 				} else {
-					this.tabbarOptions[0].icon = 'heart'
+					this.icon.collectIcon = '/static/heart.png'
 					productCollect({
 						userId: getApp().globalData.USER_ID,
 						productId: this.productId,
@@ -235,7 +285,7 @@
 					})
 				}
 			},
-			buttonClick(item) {
+			contactClick(item) {
 				uni.makePhoneCall({
 					phoneNumber: "18188606406" //电话号码
 				})
@@ -251,7 +301,7 @@
 				this.imgUrlList = success.data.imgUrlList;
 				this.title = success.data.title;
 				this.price = success.data.price;
-				this.tags = success.data.tags;
+				this.tags = changeTag(success.data.tags);
 				this.cameramanId = success.data.userId;
 				this.content = success.data.content;
 				this.image = success.data.image;
@@ -273,6 +323,7 @@
 					this.cameramanName = success.data.nickname;
 					this.cameramanDesc = success.data.desc;
 					this.cameramanPhone = success.data.phone;
+					this.cameramanCity = changeCity(success.data.city);
 				})
 
 				getProductPage({
@@ -291,16 +342,15 @@
 				let [error, success] = res;
 				this.isCollect = success.data;
 				if (this.isCollect) {
-					this.tabbarOptions[0].icon = 'heart-filled'
+					this.icon.collectIcon = '/static/heart-fill.png'
 				} else {
-					this.tabbarOptions[0].icon = 'heart'
+					this.icon.collectIcon = '/static/heart.png'
 				}
 			})
 			uni.showShareMenu({
 				withShareTicket: true,
 				menus: ["shareAppMessage", "shareTimeline"]
 			});
-			console.log(this.other.list)
 		},
 		onShow() {
 			this.tabsCurrent = 0;
@@ -318,21 +368,20 @@
 </script>
 
 <style lang="scss" scoped>
-	
 	.item {
 		padding: 10rpx 10rpx 20rpx;
-	
+
 		.title {
 			line-height: 48rpx;
 			font-size: 30rpx;
 			color: #222;
 		}
-	
+
 		.desc {
 			font-size: 24rpx;
 			color: #666;
 		}
-	
+
 		.grid-text {
 			font-size: 14px;
 			color: #909399;
@@ -372,18 +421,12 @@
 		}
 	}
 
-	.collect-tabbar {
-		/* #ifndef APP-NVUE */
-		display: flex;
+	.grid-text {
+		font-size: 14px;
+		color: #909399;
+		padding: 10rpx 0 20rpx 0rpx;
+		/* #ifndef APP-PLUS */
+		box-sizing: border-box;
 		/* #endif */
-		flex-direction: column;
-		position: fixed;
-		left: 50rpx;
-		right: 50rpx;
-		/* #ifdef H5 */
-		left: var(--window-left);
-		right: var(--window-right);
-		/* #endif */
-		bottom: 40rpx;
 	}
 </style>

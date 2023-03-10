@@ -172,8 +172,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _value = _interopRequireDefault(__webpack_require__(/*! ./value.js */ 615));
-var _button = _interopRequireDefault(__webpack_require__(/*! ../../libs/mixin/button.js */ 454));
-var _openType = _interopRequireDefault(__webpack_require__(/*! ../../libs/mixin/openType.js */ 455));
+var _button = _interopRequireDefault(__webpack_require__(/*! ../../libs/mixin/button.js */ 398));
+var _openType = _interopRequireDefault(__webpack_require__(/*! ../../libs/mixin/openType.js */ 399));
 var _props = _interopRequireDefault(__webpack_require__(/*! ./props.js */ 569));
 //
 //

@@ -102,6 +102,9 @@
 		pherCollect,
 		getPherCollectStatus
 	} from '@/api/user.js';
+	import {
+		changeCity
+	} from '@/common/method.js'
 	export default {
 		data() {
 			return {
@@ -159,13 +162,6 @@
 				uni.navigateTo({
 					url: '../product/product?id=' + item.id
 				})
-			},
-			changeCity(index) {
-				if (index == 0) {
-					return "深圳"
-				} else {
-					return "未知城市"
-				}
 			}
 		},
 		async onLoad(param) {
