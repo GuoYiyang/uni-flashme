@@ -112,9 +112,6 @@ try {
     uniCard: function () {
       return __webpack_require__.e(/*! import() | uni_modules/uni-card/components/uni-card/uni-card */ "uni_modules/uni-card/components/uni-card/uni-card").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-card/components/uni-card/uni-card.vue */ 364))
     },
-    customWaterfallsFlow: function () {
-      return Promise.all(/*! import() | uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow")]).then(__webpack_require__.bind(null, /*! @/uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow.vue */ 349))
-    },
     uTabbar: function () {
       return Promise.all(/*! import() | uni_modules/uview-ui/components/u-tabbar/u-tabbar */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-tabbar/u-tabbar")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-tabbar/u-tabbar.vue */ 403))
     },
@@ -344,17 +341,6 @@ var _method = __webpack_require__(/*! @/common/method.js */ 698);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 var _default = {
   data: function data() {
     return {
@@ -413,6 +399,12 @@ var _default = {
     };
   },
   methods: {
+    clickSwiper: function clickSwiper(item) {
+      var productId = this.other.list[item].id;
+      uni.navigateTo({
+        url: '../product/product?id=' + productId
+      });
+    },
     wapperClick: function wapperClick(item) {
       uni.navigateTo({
         url: '../product/product?id=' + item.id
@@ -514,7 +506,7 @@ var _default = {
                 (0, _product.getProductPage)({
                   userId: _this.cameramanId,
                   page: 1,
-                  pageSize: 2
+                  pageSize: 5
                 }).then(function (res) {
                   var _res3 = (0, _slicedToArray2.default)(res, 2),
                     error = _res3[0],

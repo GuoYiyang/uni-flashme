@@ -38,39 +38,28 @@
 		<view style="padding: 10px;"></view>
 
 		<view style="background-color: #FFFFFF; border-radius:15px 15px 15px 15px; padding-bottom: 50px;">
+
 			<view style="font-size: 20px; font-weight: bold; padding: 10px;">{{cameramanName}}的其他作品</view>
-			<!-- 			<u-scroll-list>
-				<view v-for="(item, index) in other.list" :key="index" class="scroll-item">
-					<view>
-						<u--image :src="item.image" :lazy-load="true" mode="heightFix" height="200"></u--image>
-					</view>
-				</view>
-			</u-scroll-list> -->
-			<view style="padding: 10px;">
-				<custom-waterfalls-flow :value="other.list" :column="2" :columnSpace="1" @imageClick="imageClick"
-					@wapperClick="wapperClick" ref="waterfallsFlowRef">
-					<!-- #ifdef MP-WEIXIN -->
-					<view class="item" v-for="(item,index) in other.list" :key="index" slot="slot{{index}}">
-						<view class="title">{{item.title}}</view>
-					</view>
-					<!-- #endif -->
-					<!-- #ifndef MP-WEIXIN -->
-					<template v-slot:default="item">
-						<view class="item">
-							<view class="title">{{item.title}}</view>
-						</view>
-					</template>
-					<!-- #endif -->
-				</custom-waterfalls-flow>
-			</view>
+
+			<u-swiper :list="other.list" keyName="image" circular imgMode="aspectFill" @click="clickSwiper"
+				height="300" previousMargin="100" nextMargin="100" :autoplay="false"></u-swiper>
+			<!-- 			<view class="content-item">
+			    <u-scroll-list :indicator="false">
+			        <view class="pic-wrap">
+			            <view v-for="(item, index) in other.list" :key="index" class="pic-item">
+			              <u--image :src="item.image" :lazy-load="true" mode="heightFix" height="200"></u--image>
+			            </view>
+			        </view>
+			    </u-scroll-list>
+			</view> -->
 		</view>
 
 		<u-tabbar :border="false">
 			<u-tabbar-item text="200" :icon='icon.collectIcon' @click="collectClick">
 			</u-tabbar-item>
-			<u-tabbar-item text="留言" icon='/static/message.png' @click="click1">
+			<u-tabbar-item text="留言" icon='/static/message.png' @click="">
 			</u-tabbar-item>
-			<u-tabbar-item text="方案" icon='/static/price.png' @click="click1">
+			<u-tabbar-item text="方案" icon='/static/price.png' @click="">
 			</u-tabbar-item>
 
 			<view style="padding-top: 5px;padding-right: 20px;">
@@ -235,6 +224,12 @@
 			}
 		},
 		methods: {
+			clickSwiper(item) {
+				let productId = this.other.list[item].id;
+				uni.navigateTo({
+					url: '../product/product?id=' + productId
+				})
+			},
 			wapperClick(item) {
 				uni.navigateTo({
 					url: '../product/product?id=' + item.id
@@ -329,11 +324,11 @@
 				getProductPage({
 					userId: this.cameramanId,
 					page: 1,
-					pageSize: 2
+					pageSize: 5
 				}).then((res) => {
 					let [error, success] = res;
 					this.other.list = success.data;
-				})
+				});
 			});
 			getProductCollectStatus({
 				userId: getApp().globalData.USER_ID,
@@ -420,6 +415,29 @@
 			font-weight: bolder;
 		}
 	}
+
+
+	.content-item {
+		margin-bottom: 30rpx;
+
+		.pic-wrap {
+			display: flex;
+
+			.pic-item {
+				padding: 10px;
+				// box-sizing: border-box;
+
+				// width: 150px;
+				// height: 300rpx;
+				// margin: 20rpx 20rpx;
+				// position: relative;
+				border-radius: 10px 10px 10px 10px;
+				// overflow: hidden;
+			}
+
+		}
+	}
+
 
 	.grid-text {
 		font-size: 14px;
