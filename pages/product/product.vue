@@ -4,12 +4,12 @@
 		<!-- 轮播图 -->
 		<view>
 			<u-swiper :list="imgUrlList" indicator indicatorMode="line" circular imgMode="aspectFit" height="550"
-				@click="previewImg"></u-swiper>
+				@click="previewImg" bgColor="#ffffff"></u-swiper>
 		</view>
 
 
 
-		<view style="background-color: #FFFFFF; border-radius:0 0 15px 15px; padding-top: 10px;">
+		<view style="background-color: #FFFFFF; border-radius:0px 0px 15px 15px;">
 			<view style="padding: 10px;">
 				<view style="font-size: 25px; font-weight: bold; padding: 5px;">{{title}}</view>
 				<u-row>
@@ -23,26 +23,26 @@
 			<view style="padding: 5px;"></view>
 		</view>
 
-		<view style="padding: 10px;"></view>
+		<view style="padding: 5px;"></view>
 
 		<view style="background-color: #FFFFFF; border-radius:15px 15px 15px 15px;">
 			<view style="padding: 5px;"></view>
-			<uni-card :title="cameramanName" :subTitle="cameramanCity" extra="优质摄影师" :thumbnail="cameramanAvatar"
-				@click="clickCard" is-full :is-shadow="false" :border="false">
+			<uni-card :title="cameramanName" :subTitle="cameramanCity" :thumbnail="cameramanAvatar" @click="clickCard"
+				is-full :is-shadow="false" :border="false">
 				<text>{{cameramanDesc}}</text>
 			</uni-card>
 			<view style="padding: 5px;"></view>
 		</view>
 
 
-		<view style="padding: 10px;"></view>
+		<view style="padding: 5px;"></view>
 
-		<view style="background-color: #FFFFFF; border-radius:15px 15px 15px 15px; padding-bottom: 50px;">
+		<view style="background-color: #FFFFFF; border-radius:15px 15px 15px 15px; padding-bottom: 40px;">
 
-			<view style="font-size: 20px; font-weight: bold; padding: 10px;">{{cameramanName}}的其他作品</view>
+			<view style="font-weight:bold; font-size: 16px; padding: 18px;">{{cameramanName}}的其他作品</view>
 
 			<u-swiper :list="other.list" keyName="image" circular imgMode="aspectFill" @click="clickSwiper" height="300"
-				previousMargin="100" nextMargin="100" :autoplay="false"></u-swiper>
+				previousMargin="100" nextMargin="100" :autoplay="false" bgColor="#ffffff"></u-swiper>
 			<!-- 			<view class="content-item">
 			    <u-scroll-list :indicator="false">
 			        <view class="pic-wrap">
@@ -76,14 +76,31 @@
 		</view>
 
 
-		<u-tabbar :border="false">
+		<u-tabbar :border="false"
+			customStyle="box-shadow: 0px -6px 20px rgba(0, 0, 0, 0.06); border-radius: 8px 8px 0px 0px;">
+			<u-col span="2">
+				<view style="padding: 15px;">
+					<u-icon :name="icon.collectIcon" @click="collectClick" :size="20" :label="collectCnt"
+						labelPos="bottom"></u-icon>
+				</view>
+			</u-col>
+			<u-col span="5">
+				<view style="padding: 10px;">
+					<u-button @click="this.popPlanShow=true">拍摄方案</u-button>
+				</view>
+			</u-col>
+			<u-col span="5">
+				<view style="padding: 10px;">
+					<u-button color="#000000" @click="this.popShow=true">咨询预约</u-button>
+				</view>
+			</u-col>
 
-			<u-tabbar-item text="200" :icon='icon.collectIcon' @click="collectClick">
+			<!-- 			<u-tabbar-item text="200" :icon='icon.collectIcon' @click="collectClick">
 			</u-tabbar-item>
 			<u-tabbar-item text="联系TA" icon='/static/phone.png' @click="this.popShow=true">
 			</u-tabbar-item>
 			<u-tabbar-item text="方案" icon='/static/price.png' @click="this.popPlanShow=true">
-			</u-tabbar-item>
+			</u-tabbar-item> -->
 
 			<!-- 			<view style="padding-top: 5px;padding-right: 20px;">
 				<u-button color="#000000" text="联系摄影师" @click="contactClick"></u-button>
@@ -114,61 +131,7 @@
 		</view> -->
 
 
-		<!-- <uni-goods-nav :options="tabbarOptions" :button-group="tabbarGroup" @click="optionClick" @buttonClick="buttonClick" :fill="true/> -->
-		<!-- 
 
-		<view class="center">
-			<u-tabs :list="tabsList" lineWidth="60" lineHeight="3" lineColor="#000000" :activeStyle="{
-			        color: '#303133',
-			        fontWeight: 'bold',
-			        transform: 'scale(1.1)'
-			    }" :inactiveStyle="{
-			        color: '#606266',
-			        transform: 'scale(1)'
-			    }" itemStyle="padding-left: 15px; padding-right: 15px; height: 34px;" @change="tabsChange" :duration="100">
-			</u-tabs>
-		</view>
-
-		<view v-if="productDetailShow" class="info">
-
-			<uni-section title="基本信息" type="line" titleFontSize="30rpx">
-				<uni-group>
-					<view>拍摄人数:1</view>
-					<view>拍摄张数:15</view>
-					<view>拍摄时长:1h</view>
-				</uni-group>
-			</uni-section>
-			<uni-section title="拍摄须知" type="line" titleFontSize="30rpx">
-				<uni-group>
-					<view>拍摄需要提前化妆。。。</view>
-				</uni-group>
-			</uni-section>
-		</view>
-
-		<view v-if="productCustomerShow" class="info">
-			<uni-section title="客片展示" type="line" titleFontSize="30rpx">
-			</uni-section>
-		</view>
-
-
-
-		<u-popup :show="popShow" :round="20" @close="this.popShow = false" mode="bottom" :safeAreaInsetBottom="false">
-
-			<uni-section title="基本信息" type="line" titleFontSize="30rpx">
-				<uni-group>
-					<view>拍摄人数:1</view>
-					<view>拍摄张数:15</view>
-					<view>拍摄时长:1h</view>
-				</uni-group>
-			</uni-section>
-			<uni-section title="拍摄须知" type="line" titleFontSize="30rpx">
-				<uni-group>
-					<view>拍摄需要提前化妆。。。</view>
-				</uni-group>
-			</uni-section>
-		</u-popup>
-
- -->
 
 
 	</view>
@@ -179,7 +142,8 @@
 		productDetail,
 		productCollect,
 		getProductPage,
-		getProductCollectStatus
+		getProductCollectStatus,
+		getProductCollectCnt
 	} from '@/api/product.js'
 	import {
 		getUserInfo
@@ -206,10 +170,6 @@
 				cameramanDesc: '',
 				cameramanPhone: '',
 				cameramanCity: '',
-				options: [{
-					icon: 'heart',
-					text: '收藏'
-				}],
 				imgUrlList: [],
 				title: '',
 				price: '',
@@ -236,6 +196,7 @@
 				}, {
 					name: '微信'
 				}],
+				collectCnt: 0,
 			}
 		},
 		methods: {
@@ -293,6 +254,7 @@
 				this.isCollect = !this.isCollect;
 				if (this.isCollect) {
 					this.icon.collectIcon = '/static/heart-fill.png'
+					this.collectCnt++;
 					productCollect({
 						userId: getApp().globalData.USER_ID,
 						productId: this.productId,
@@ -300,6 +262,7 @@
 					})
 				} else {
 					this.icon.collectIcon = '/static/heart.png'
+					this.collectCnt--;
 					productCollect({
 						userId: getApp().globalData.USER_ID,
 						productId: this.productId,
@@ -364,6 +327,12 @@
 				} else {
 					this.icon.collectIcon = '/static/heart.png'
 				}
+			})
+			getProductCollectCnt({
+				productId: this.productId,
+			}).then((res) => {
+				let [error, success] = res;
+				this.collectCnt = success.data;
 			})
 			uni.showShareMenu({
 				withShareTicket: true,

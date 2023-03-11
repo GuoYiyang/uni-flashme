@@ -20558,6 +20558,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.deleteProduct = deleteProduct;
 exports.getProductCollect = getProductCollect;
+exports.getProductCollectCnt = getProductCollectCnt;
 exports.getProductCollectStatus = getProductCollectStatus;
 exports.getProductPage = getProductPage;
 exports.productCollect = productCollect;
@@ -20649,6 +20650,20 @@ function getProductCollect(req) {
     },
     data: {
       userId: req.userId
+    }
+  });
+}
+
+// 获取产品收藏数量
+function getProductCollectCnt(req) {
+  return uni.request({
+    url: _settingConfig.baseUrl + '/product/collect/cnt',
+    method: "GET",
+    header: {
+      "X-USER-ID": getApp().globalData.USER_ID
+    },
+    data: {
+      productId: req.productId
     }
   });
 }
@@ -29905,58 +29920,7 @@ exports.default = _default;
 /* 412 */,
 /* 413 */,
 /* 414 */,
-/* 415 */
-/*!***************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-tabbar-item/props.js ***!
-  \***************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _default = {
-  props: {
-    // item标签的名称，作为与u-tabbar的value参数匹配的标识符
-    name: {
-      type: [String, Number, null],
-      default: uni.$u.props.tabbarItem.name
-    },
-    // uView内置图标或者绝对路径的图片
-    icon: {
-      icon: String,
-      default: uni.$u.props.tabbarItem.icon
-    },
-    // 右上角的角标提示信息
-    badge: {
-      type: [String, Number, null],
-      default: uni.$u.props.tabbarItem.badge
-    },
-    // 是否显示圆点，将会覆盖badge参数
-    dot: {
-      type: Boolean,
-      default: uni.$u.props.tabbarItem.dot
-    },
-    // 描述文本
-    text: {
-      type: String,
-      default: uni.$u.props.tabbarItem.text
-    },
-    // 控制徽标的位置，对象或者字符串形式，可以设置top和right属性
-    badgeStyle: {
-      type: [Object, String],
-      default: uni.$u.props.tabbarItem.badgeStyle
-    }
-  }
-};
-exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
-
-/***/ }),
+/* 415 */,
 /* 416 */,
 /* 417 */,
 /* 418 */,

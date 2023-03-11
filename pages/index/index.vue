@@ -44,6 +44,16 @@
 				@wapperClick="wapperClick" ref="waterfallsFlowRef">
 				<view class="item" v-for="(item,index) in product.list" :key="index" slot="slot{{index}}">
 					<view class="title">{{item.title}}</view>
+					<view>
+						<u-row>
+							<u-col span="1.5" align="center">
+								<u-avatar :src="item.userInfo.avatar" size='18'></u-avatar>
+							</u-col>
+							<u-col span="10.5" align="center">
+								<text style="font-size: 12px; color: #4e4e4e;">{{item.userInfo.nickname}}</text>
+							</u-col>
+						</u-row>
+					</view>
 				</view>
 			</custom-waterfalls-flow>
 		</view>

@@ -127,8 +127,14 @@ try {
     uTabbar: function () {
       return Promise.all(/*! import() | uni_modules/uview-ui/components/u-tabbar/u-tabbar */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-tabbar/u-tabbar")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-tabbar/u-tabbar.vue */ 402))
     },
-    uTabbarItem: function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-tabbar-item/u-tabbar-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-tabbar-item/u-tabbar-item")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-tabbar-item/u-tabbar-item.vue */ 410))
+    uCol: function () {
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-col/u-col */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-col/u-col")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-col/u-col.vue */ 292))
+    },
+    uIcon: function () {
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-icon/u-icon */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-icon/u-icon")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-icon/u-icon.vue */ 341))
+    },
+    uButton: function () {
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-button/u-button.vue */ 418))
     },
   }
 } catch (e) {
@@ -160,10 +166,10 @@ var render = function () {
       this.popPlanShow = false
     }
     _vm.e2 = function ($event) {
-      this.popShow = true
+      this.popPlanShow = true
     }
     _vm.e3 = function ($event) {
-      this.popPlanShow = true
+      this.popShow = true
     }
   }
 }
@@ -351,43 +357,6 @@ var _method = __webpack_require__(/*! @/common/method.js */ 201);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 var _default = {
   data: function data() {
     return {
@@ -406,10 +375,6 @@ var _default = {
       cameramanDesc: '',
       cameramanPhone: '',
       cameramanCity: '',
-      options: [{
-        icon: 'heart',
-        text: '收藏'
-      }],
       imgUrlList: [],
       title: '',
       price: '',
@@ -433,7 +398,8 @@ var _default = {
         name: '电话'
       }, {
         name: '微信'
-      }]
+      }],
+      collectCnt: 0
     };
   },
   methods: {
@@ -492,6 +458,7 @@ var _default = {
       this.isCollect = !this.isCollect;
       if (this.isCollect) {
         this.icon.collectIcon = '/static/heart-fill.png';
+        this.collectCnt++;
         (0, _product.productCollect)({
           userId: getApp().globalData.USER_ID,
           productId: this.productId,
@@ -499,6 +466,7 @@ var _default = {
         });
       } else {
         this.icon.collectIcon = '/static/heart.png';
+        this.collectCnt--;
         (0, _product.productCollect)({
           userId: getApp().globalData.USER_ID,
           productId: this.productId,
@@ -575,11 +543,19 @@ var _default = {
                   _this.icon.collectIcon = '/static/heart.png';
                 }
               });
+              (0, _product.getProductCollectCnt)({
+                productId: _this.productId
+              }).then(function (res) {
+                var _res5 = (0, _slicedToArray2.default)(res, 2),
+                  error = _res5[0],
+                  success = _res5[1];
+                _this.collectCnt = success.data;
+              });
               uni.showShareMenu({
                 withShareTicket: true,
                 menus: ["shareAppMessage", "shareTimeline"]
               });
-            case 6:
+            case 7:
             case "end":
               return _context.stop();
           }

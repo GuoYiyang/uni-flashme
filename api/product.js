@@ -89,6 +89,20 @@ export function getProductCollect(req) {
 	});
 }
 
+// 获取产品收藏数量
+export function getProductCollectCnt(req) {
+	return uni.request({
+		url: baseUrl + '/product/collect/cnt',
+		method: "GET",
+		header:{
+			"X-USER-ID": getApp().globalData.USER_ID
+		},
+		data: {
+			productId: req.productId
+		}
+	});
+}
+
 // 获取产品收藏状态
 export function getProductCollectStatus(req) {
 	return uni.request({

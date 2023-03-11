@@ -389,7 +389,7 @@ var _default = {
           }
           this.overlayShow = false;
           uni.navigateBack();
-        }, 5000);
+        }, 2000);
       });
     },
     submit: function submit() {
