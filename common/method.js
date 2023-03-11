@@ -1,3 +1,13 @@
+export function changeProductStatus(index) {
+	if (index == 'REVIEW') {
+		return "审核中"
+	} else if (index == 'REJECT'){
+		return "驳回"
+	} else if (index == 'SUCCESS'){
+		return "已发布"
+	}
+}
+
 export function changeCity(index) {
 	if (index == 0) {
 		return "深圳"

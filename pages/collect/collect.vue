@@ -16,20 +16,9 @@
 			<view style="padding:10rpx;">
 				<custom-waterfalls-flow ref="waterfallsFlowRef" :value="product.list" :column="2" :columnSpace="1"
 					:seat="2" @imageClick="imageClick" @wapperClick="wapperClick">
-					<!-- #ifdef MP-WEIXIN -->
 					<view class="item" v-for="(item,index) in product.list" :key="index" slot="slot{{index}}">
 						<view class="title">{{item.title}}</view>
-						<view class="desc">￥{{item.price}}</view>
 					</view>
-					<!-- #endif -->
-					<!-- #ifndef MP-WEIXIN -->
-					<template v-slot:default="item">
-						<view class="item">
-							<view class="title">{{item.title}}</view>
-							<view class="desc">{{item.price}}</view>
-						</view>
-					</template>
-					<!-- #endif -->
 				</custom-waterfalls-flow>
 			</view>
 		</view>

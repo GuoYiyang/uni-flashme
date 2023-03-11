@@ -17,38 +17,22 @@
 		<view style="padding: 10rpx;">
 			<custom-waterfalls-flow :value="product.list" :column="2" :columnSpace="1" @imageClick="imageClick"
 				@wapperClick="wapperClick" ref="waterfallsFlowRef">
-				<!-- #ifdef MP-WEIXIN -->
 				<view class="item" v-for="(item,index) in product.list" :key="index" slot="slot{{index}}">
 					<u-row>
 						<view class="title">{{item.title}}</view>
 					</u-row>
 					<u-row>
-						<u-col span="10" justify="flex-start">
-							<view class="desc">￥{{item.price}}</view>
+						<u-col span="6">
+							<u-tag :text="item.status" bgColor="#F3F4F5" color="#191919" borderColor="#F3F4F5"></u-tag>
+							<!-- <view class="desc">￥{{item.price}}</view> -->
 						</u-col>
-						<u-col span="2" justify="flex-end">
+						<u-col span="4">
+						</u-col>
+						<u-col span="2">
 							<uni-icons type="more-filled" size="20" color="#1f1f1f"></uni-icons>
 						</u-col>
 					</u-row>
 				</view>
-				<!-- #endif -->
-				<!-- #ifndef MP-WEIXIN -->
-				<template v-slot:default="item">
-					<view class="item">
-						<u-row>
-							<view class="title">{{item.title}}</view>
-						</u-row>
-						<u-row>
-							<u-col span="10" justify="flex-start">
-								<view class="desc">￥{{item.price}}</view>
-							</u-col>
-							<u-col span="2" justify="flex-end">
-								<uni-icons type="more-filled" size="20" color="#1f1f1f"></uni-icons>
-							</u-col>
-						</u-row>
-					</view>
-				</template>
-				<!-- #endif -->
 			</custom-waterfalls-flow>
 		</view>
 
@@ -64,9 +48,9 @@
 				:safeAreaInsetBottom="true"></u-action-sheet>
 		</view>
 
-		<uni-fab :popMenu="false" @fabClick="buttonClick" :pattern="{buttonColor: '#000000'}"/>
+		<uni-fab horizontal="right" :popMenu="false" @fabClick="buttonClick" :pattern="{buttonColor: '#000000'}" />
 
-<!-- 		<view class="collect-tabbar">
+		<!-- 		<view class="collect-tabbar">
 			<u-button @click="buttonClick">发布新作品</u-button>
 		</view> -->
 
@@ -78,15 +62,18 @@
 		getProductPage,
 		deleteProduct
 	} from '@/api/product.js'
+	import {
+		changeProductStatus
+	} from '@/common/method.js'
 	export default {
 		data() {
 			return {
+				productStatus: '',
 				selectedProductId: '',
 				popShow: false,
 				popList: [{
-						name: '删除'
-					}
-				],
+					name: '删除'
+				}],
 				page: 1,
 				pageSize: 10,
 				product: {

@@ -3,7 +3,6 @@
     "pages/index/index",
     "pages/explore/explore",
     "pages/collect/collect",
-    "pages/user/user",
     "pages/product/product",
     "pages/filterProduct/filterProduct",
     "pages/editUserInfo/editUserInfo",
