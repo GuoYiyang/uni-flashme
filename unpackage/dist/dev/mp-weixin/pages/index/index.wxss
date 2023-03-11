@@ -17,6 +17,7 @@ page {
   padding: 10rpx 10rpx 20rpx;
 }
 .item .title.data-v-57280228 {
+  font-weight: bold;
   line-height: 48rpx;
   font-size: 30rpx;
   color: #222;
@@ -24,11 +25,5 @@ page {
 .item .desc.data-v-57280228 {
   font-size: 24rpx;
   color: #666;
-}
-.item .grid-text.data-v-57280228 {
-  font-size: 14px;
-  color: #909399;
-  padding: 10rpx 0 20rpx 0rpx;
-  box-sizing: border-box;
 }
 

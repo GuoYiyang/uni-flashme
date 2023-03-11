@@ -6,6 +6,7 @@
   padding: 10rpx 10rpx 20rpx;
 }
 .item .title.data-v-53242dce {
+  font-weight: bold;
   line-height: 48rpx;
   font-size: 30rpx;
   color: #222;
@@ -13,12 +14,6 @@
 .item .desc.data-v-53242dce {
   font-size: 24rpx;
   color: #666;
-}
-.item .grid-text.data-v-53242dce {
-  font-size: 14px;
-  color: #909399;
-  padding: 10rpx 0 20rpx 0rpx;
-  box-sizing: border-box;
 }
 .collect-tabbar.data-v-53242dce {
   display: flex;

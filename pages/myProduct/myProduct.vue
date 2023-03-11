@@ -181,6 +181,7 @@
 		padding: 10rpx 10rpx 20rpx;
 
 		.title {
+			font-weight: bold;
 			line-height: 48rpx;
 			font-size: 30rpx;
 			color: #222;
@@ -189,15 +190,6 @@
 		.desc {
 			font-size: 24rpx;
 			color: #666;
-		}
-
-		.grid-text {
-			font-size: 14px;
-			color: #909399;
-			padding: 10rpx 0 20rpx 0rpx;
-			/* #ifndef APP-PLUS */
-			box-sizing: border-box;
-			/* #endif */
 		}
 	}
 

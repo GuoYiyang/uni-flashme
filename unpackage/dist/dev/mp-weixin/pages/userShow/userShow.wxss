@@ -2,6 +2,12 @@
 /* 水平间距 */
 /* 水平间距 */
 /* uni.scss */
+.topright.data-v-4189eb86 {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  font-size: 15px;
+}
 .center.data-v-4189eb86 {
   height: 100%;
   flex: auto;
@@ -14,6 +20,7 @@
   padding: 10rpx 10rpx 20rpx;
 }
 .item .title.data-v-4189eb86 {
+  font-weight: bold;
   line-height: 48rpx;
   font-size: 30rpx;
   color: #222;
@@ -21,11 +28,5 @@
 .item .desc.data-v-4189eb86 {
   font-size: 24rpx;
   color: #666;
-}
-.item .grid-text.data-v-4189eb86 {
-  font-size: 14px;
-  color: #909399;
-  padding: 10rpx 0 20rpx 0rpx;
-  box-sizing: border-box;
 }
 

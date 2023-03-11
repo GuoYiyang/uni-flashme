@@ -41,8 +41,8 @@
 
 			<view style="font-size: 20px; font-weight: bold; padding: 10px;">{{cameramanName}}的其他作品</view>
 
-			<u-swiper :list="other.list" keyName="image" circular imgMode="aspectFill" @click="clickSwiper"
-				height="300" previousMargin="100" nextMargin="100" :autoplay="false"></u-swiper>
+			<u-swiper :list="other.list" keyName="image" circular imgMode="aspectFill" @click="clickSwiper" height="300"
+				previousMargin="100" nextMargin="100" :autoplay="false"></u-swiper>
 			<!-- 			<view class="content-item">
 			    <u-scroll-list :indicator="false">
 			        <view class="pic-wrap">
@@ -54,19 +54,43 @@
 			</view> -->
 		</view>
 
+		<view>
+			<u-action-sheet :actions="popList" @select="selectClick" :show="popShow" cancelText="取消"
+				@close="this.popShow=false" :closeOnClickOverlay="true" :closeOnClickAction="true"
+				:safeAreaInsetBottom="true"></u-action-sheet>
+			<u-popup :show="popPlanShow" :round="20" @close="this.popPlanShow = false" mode="bottom">
+
+				<uni-section title="基本信息" type="line" titleFontSize="30rpx">
+					<uni-group>
+						<view>拍摄人数:1</view>
+						<view>拍摄张数:15</view>
+						<view>拍摄时长:1h</view>
+					</uni-group>
+				</uni-section>
+				<uni-section title="拍摄须知" type="line" titleFontSize="30rpx">
+					<uni-group>
+						<view>拍摄需要提前化妆。。。</view>
+					</uni-group>
+				</uni-section>
+			</u-popup>
+		</view>
+
+
 		<u-tabbar :border="false">
+
 			<u-tabbar-item text="200" :icon='icon.collectIcon' @click="collectClick">
 			</u-tabbar-item>
-			<u-tabbar-item text="留言" icon='/static/message.png' @click="">
+			<u-tabbar-item text="联系TA" icon='/static/phone.png' @click="this.popShow=true">
 			</u-tabbar-item>
-			<u-tabbar-item text="方案" icon='/static/price.png' @click="">
+			<u-tabbar-item text="方案" icon='/static/price.png' @click="this.popPlanShow=true">
 			</u-tabbar-item>
 
-			<view style="padding-top: 5px;padding-right: 20px;">
+			<!-- 			<view style="padding-top: 5px;padding-right: 20px;">
 				<u-button color="#000000" text="联系摄影师" @click="contactClick"></u-button>
-			</view>
+			</view> -->
 
 		</u-tabbar>
+
 
 		<!-- 		<view style="background-color: #FFFFFF; border-radius:15px 15px 15px 15px;">
 			<u-row>
@@ -202,28 +226,31 @@
 				productDetailShow: true,
 				productCustomerShow: false,
 				isCollect: false,
-				tabbarOptions: [{
-					icon: '/static/message.png',
-					text: '收藏'
-				}, {
-					icon: 'heart',
-					text: '留言'
-				}, {
-					icon: 'heart',
-					text: "方案"
-				}],
-				tabbarGroup: [{
-					text: '联系摄影师',
-					backgroundColor: '#000000',
-					color: '#fff'
-				}],
 				info: '',
 				introduction: '',
 				popShow: false,
+				popPlanShow: false,
 				image: '',
+				popList: [{
+					name: '电话'
+				}, {
+					name: '微信'
+				}],
 			}
 		},
 		methods: {
+			selectClick(item) {
+				if ("电话" == item.name) {
+					uni.makePhoneCall({
+						phoneNumber: "18188606406" //电话号码
+					})
+				}
+				if ("微信" == item.name) {
+					uni.setClipboardData({
+						data: 'Slimshadys_'
+					})
+				}
+			},
 			clickSwiper(item) {
 				let productId = this.other.list[item].id;
 				uni.navigateTo({
@@ -279,11 +306,6 @@
 						isDelete: 1
 					})
 				}
-			},
-			contactClick(item) {
-				uni.makePhoneCall({
-					phoneNumber: "18188606406" //电话号码
-				})
 			}
 		},
 		async onLoad(param) {
@@ -324,7 +346,8 @@
 				getProductPage({
 					userId: this.cameramanId,
 					page: 1,
-					pageSize: 5
+					pageSize: 5,
+					excludeProductId: param.id
 				}).then((res) => {
 					let [error, success] = res;
 					this.other.list = success.data;

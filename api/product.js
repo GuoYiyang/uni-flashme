@@ -36,7 +36,8 @@ export function getProductPage(req) {
 			query: query,
 			page: req.page,
 			pageSize: req.pageSize,
-			status: status
+			status: status,
+			excludeProductId: req.excludeProductId
 		}
 	});
 }

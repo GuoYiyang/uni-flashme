@@ -1,6 +1,10 @@
 <template>
 	<view>
 		<view style="background-color: #FFFFFF; padding-bottom: 10px; border-radius:0 0 15px 15px;">
+			
+			<view class="topright">
+				<u-button color="#000000" @click="follow" :text="isFollow ? '取消关注': '关注'" customStyle="border-radius:15px; width:100px"></u-button>
+			</view>
 
 			<view class="center">
 				<u-row gutter="0" customStyle="padding: 10px;">
@@ -26,24 +30,20 @@
 					</u-col>
 				</u-row>
 				
-				<u-row customStyle="padding-top: 10px;">
+				<u-row customStyle="padding-top: 10px; padding-bottom: 10px;">
 					<u-col span="12">
 						<text style="font-size: 14px; color: #4E4E4E;">{{desc}}</text>
 					</u-col>
 				</u-row>
-
-				<view style="padding: 10px;">
-					<u-button @click="follow" :text="isFollow ? '取消关注': '关注'" type="primary" customStyle="border-radius:15px; width:100px"></u-button>
-				</view>
-
 			</view>
+			
 
 			<u-line></u-line>
 
 			<view style="padding: 10px;">
-				<u-grid :border="false" col="3" @click="clickFastEnter">
+				<u-grid :border="false" col="3">
 					<u-grid-item v-for="(listItem,listIndex) in fastList" :key="listIndex">
-						<u-icon :name="listItem.name" :size="22" customStyle="padding:10px"></u-icon>
+						<u-icon :name="listItem.name" :size="22" customStyle="padding:10px" @click="clickFastList(listIndex)"></u-icon>
 						<text class="grid-text">{{listItem.title}}</text>
 					</u-grid-item>
 				</u-grid>
@@ -77,6 +77,27 @@
 					</view>
 				</custom-waterfalls-flow>
 			</view>
+		</view>
+		
+		<view>
+			<u-action-sheet :actions="popList" @select="selectClick" :show="popShow" cancelText="取消"
+				@close="this.popShow=false" :closeOnClickOverlay="true" :closeOnClickAction="true"
+				:safeAreaInsetBottom="true"></u-action-sheet>
+			<u-popup :show="popPlanShow" :round="20" @close="this.popPlanShow = false" mode="bottom">
+		
+				<uni-section title="基本信息" type="line" titleFontSize="30rpx">
+					<uni-group>
+						<view>拍摄人数:1</view>
+						<view>拍摄张数:15</view>
+						<view>拍摄时长:1h</view>
+					</uni-group>
+				</uni-section>
+				<uni-section title="拍摄须知" type="line" titleFontSize="30rpx">
+					<uni-group>
+						<view>拍摄需要提前化妆。。。</view>
+					</uni-group>
+				</uni-section>
+			</u-popup>
 		</view>
 
 	</view>
@@ -126,9 +147,36 @@
 						title: '联系方式'
 					},
 				],
+				popShow: false,
+				popPlanShow:false,
+				popList: [{
+					name: '电话'
+				}, {
+					name: '微信'
+				}],
 			}
 		},
 		methods: {
+			clickFastList(item){
+				if (item == 1) {
+					this.popPlanShow = true;
+				}
+				if (item == 2) {
+					this.popShow = true;
+				}
+			},
+			selectClick(item) {
+				if ("电话" == item.name) {
+					uni.makePhoneCall({
+						phoneNumber: "18188606406" //电话号码
+					})
+				}
+				if ("微信" == item.name) {
+					uni.setClipboardData({
+						data: 'Slimshadys_'
+					})
+				}
+			},
 			follow() {
 				let pherId = this.userId;
 				this.isFollow = !this.isFollow;
@@ -217,6 +265,14 @@
 </script>
 
 <style lang="scss" scoped>
+	
+	.topright {
+	  position: absolute;
+	  top: 8px;
+	  right: 16px;
+	  font-size: 15px;
+	}
+	
 	.center {
 		height: 100%;
 		flex: auto;
@@ -230,6 +286,7 @@
 		padding: 10rpx 10rpx 20rpx;
 
 		.title {
+			font-weight: bold;
 			line-height: 48rpx;
 			font-size: 30rpx;
 			color: #222;
@@ -238,15 +295,6 @@
 		.desc {
 			font-size: 24rpx;
 			color: #666;
-		}
-
-		.grid-text {
-			font-size: 14px;
-			color: #909399;
-			padding: 10rpx 0 20rpx 0rpx;
-			/* #ifndef APP-PLUS */
-			box-sizing: border-box;
-			/* #endif */
 		}
 	}
 </style>

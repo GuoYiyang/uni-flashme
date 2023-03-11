@@ -112,14 +112,23 @@ try {
     uniCard: function () {
       return __webpack_require__.e(/*! import() | uni_modules/uni-card/components/uni-card/uni-card */ "uni_modules/uni-card/components/uni-card/uni-card").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-card/components/uni-card/uni-card.vue */ 365))
     },
+    uActionSheet: function () {
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-action-sheet/u-action-sheet */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-action-sheet/u-action-sheet")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-action-sheet/u-action-sheet.vue */ 506))
+    },
+    uPopup: function () {
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-popup/u-popup */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-popup/u-popup")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-popup/u-popup.vue */ 616))
+    },
+    uniSection: function () {
+      return __webpack_require__.e(/*! import() | uni_modules/uni-section/components/uni-section/uni-section */ "uni_modules/uni-section/components/uni-section/uni-section").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-section/components/uni-section/uni-section.vue */ 428))
+    },
+    uniGroup: function () {
+      return __webpack_require__.e(/*! import() | uni_modules/uni-group/components/uni-group/uni-group */ "uni_modules/uni-group/components/uni-group/uni-group").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-group/components/uni-group/uni-group.vue */ 187))
+    },
     uTabbar: function () {
       return Promise.all(/*! import() | uni_modules/uview-ui/components/u-tabbar/u-tabbar */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-tabbar/u-tabbar")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-tabbar/u-tabbar.vue */ 402))
     },
     uTabbarItem: function () {
       return Promise.all(/*! import() | uni_modules/uview-ui/components/u-tabbar-item/u-tabbar-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-tabbar-item/u-tabbar-item")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-tabbar-item/u-tabbar-item.vue */ 410))
-    },
-    uButton: function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-button/u-button.vue */ 418))
     },
   }
 } catch (e) {
@@ -143,6 +152,20 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  if (!_vm._isMounted) {
+    _vm.e0 = function ($event) {
+      this.popShow = false
+    }
+    _vm.e1 = function ($event) {
+      this.popPlanShow = false
+    }
+    _vm.e2 = function ($event) {
+      this.popShow = true
+    }
+    _vm.e3 = function ($event) {
+      this.popPlanShow = true
+    }
+  }
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -341,6 +364,30 @@ var _method = __webpack_require__(/*! @/common/method.js */ 201);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default = {
   data: function data() {
     return {
@@ -377,28 +424,32 @@ var _default = {
       productDetailShow: true,
       productCustomerShow: false,
       isCollect: false,
-      tabbarOptions: [{
-        icon: '/static/message.png',
-        text: '收藏'
-      }, {
-        icon: 'heart',
-        text: '留言'
-      }, {
-        icon: 'heart',
-        text: "方案"
-      }],
-      tabbarGroup: [{
-        text: '联系摄影师',
-        backgroundColor: '#000000',
-        color: '#fff'
-      }],
       info: '',
       introduction: '',
       popShow: false,
-      image: ''
+      popPlanShow: false,
+      image: '',
+      popList: [{
+        name: '电话'
+      }, {
+        name: '微信'
+      }]
     };
   },
   methods: {
+    selectClick: function selectClick(item) {
+      if ("电话" == item.name) {
+        uni.makePhoneCall({
+          phoneNumber: "18188606406" //电话号码
+        });
+      }
+
+      if ("微信" == item.name) {
+        uni.setClipboardData({
+          data: 'Slimshadys_'
+        });
+      }
+    },
     clickSwiper: function clickSwiper(item) {
       var productId = this.other.list[item].id;
       uni.navigateTo({
@@ -454,11 +505,6 @@ var _default = {
           isDelete: 1
         });
       }
-    },
-    contactClick: function contactClick(item) {
-      uni.makePhoneCall({
-        phoneNumber: "18188606406" //电话号码
-      });
     }
   },
   onLoad: function onLoad(param) {
@@ -506,7 +552,8 @@ var _default = {
                 (0, _product.getProductPage)({
                   userId: _this.cameramanId,
                   page: 1,
-                  pageSize: 5
+                  pageSize: 5,
+                  excludeProductId: param.id
                 }).then(function (res) {
                   var _res3 = (0, _slicedToArray2.default)(res, 2),
                     error = _res3[0],

@@ -23,17 +23,17 @@
 			</view>
 		</view>
 		<view v-if="collectPhotographerShow" style="padding-top: 10rpx;">
+
 			<div v-for="item in pher.list" :key="item.id">
-				<view style="padding: 10rpx;">
-<!-- 					<fui-card @click="clickPherCard(item.id)" :src="item.avatar" :title="item.nickname" tag="优质摄影师">
-						<view style="padding: 20rpx;">{{item.desc}}</view>
-					</fui-card> -->
-					<uni-card :title="item.nickname"  extra="优质摄影师" :thumbnail="item.avatar"
-						@click="clickPherCard(item.id)" is-shadow is-full>
+				<view style="background-color: #FFFFFF; border-radius:15px 15px 15px 15px;">
+					<view style="padding: 5px;"></view>
+					<uni-card :title="item.nickname" :subTitle="item.city" extra="优质摄影师" :thumbnail="item.avatar"
+						@click="clickPherCard(item.id)" is-full :is-shadow="false" :border="false">
 						<text>{{item.desc}}</text>
 					</uni-card>
+					<view style="padding: 5px;"></view>
 				</view>
-
+				<view style="padding: 10rpx;"></view>
 			</div>
 
 		</view>
@@ -47,6 +47,9 @@
 	import {
 		getPherCollect
 	} from '@/api/user.js'
+	import {
+		changeCity
+	} from '@/common/method.js'
 	export default {
 		data() {
 			return {
@@ -122,6 +125,9 @@
 			}).then((res) => {
 				let [error, success] = res;
 				_this.pher.list = success.data;
+				_this.pher.list.forEach(item => {
+					item.city = changeCity(item.city)
+				})
 			});
 		},
 		onShow() {
@@ -143,6 +149,9 @@
 			}).then((res) => {
 				let [error, success] = res;
 				_this.pher.list = success.data;
+				_this.pher.list.forEach(item => {
+					item.city = changeCity(item.city)
+				})
 			});
 			setTimeout(() => {
 				uni.stopPullDownRefresh();
@@ -165,6 +174,7 @@
 		padding: 10rpx 10rpx 20rpx;
 
 		.title {
+			font-weight: bold;
 			line-height: 48rpx;
 			font-size: 28rpx;
 			color: #222;
@@ -173,15 +183,6 @@
 		.desc {
 			font-size: 24rpx;
 			color: #666;
-		}
-
-		.grid-text {
-			font-size: 14px;
-			color: #909399;
-			padding: 10rpx 0 20rpx 0rpx;
-			/* #ifndef APP-PLUS */
-			box-sizing: border-box;
-			/* #endif */
 		}
 	}
 </style>

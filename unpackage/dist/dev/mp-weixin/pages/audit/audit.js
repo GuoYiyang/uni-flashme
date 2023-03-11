@@ -234,25 +234,6 @@ var _product = __webpack_require__(/*! @/api/product.js */ 168);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 var _default = {
   data: function data() {
     return {

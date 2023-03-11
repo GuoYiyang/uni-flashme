@@ -174,6 +174,7 @@ exports.default = void 0;
 var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ 5));
 var _product = __webpack_require__(/*! @/api/product.js */ 168);
 var _user = __webpack_require__(/*! @/api/user.js */ 33);
+var _method = __webpack_require__(/*! @/common/method.js */ 201);
 //
 //
 //
@@ -294,6 +295,9 @@ var _default = {
         error = _res2[0],
         success = _res2[1];
       _this.pher.list = success.data;
+      _this.pher.list.forEach(function (item) {
+        item.city = (0, _method.changeCity)(item.city);
+      });
     });
   },
   onShow: function onShow() {
@@ -319,6 +323,9 @@ var _default = {
         error = _res4[0],
         success = _res4[1];
       _this.pher.list = success.data;
+      _this.pher.list.forEach(function (item) {
+        item.city = (0, _method.changeCity)(item.city);
+      });
     });
     setTimeout(function () {
       uni.stopPullDownRefresh();
