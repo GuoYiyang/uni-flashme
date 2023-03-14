@@ -16,7 +16,7 @@
 
 		<view style="padding: 10rpx;">
 			<custom-waterfalls-flow :value="product.list" :column="2" :columnSpace="1" @imageClick="imageClick"
-				@wapperClick="wapperClick" ref="waterfallsFlowRef">
+				@wapperClick="wapperClick" ref="waterfallsFlowRef" @loaded="loaded">
 				<view class="item" v-for="(item,index) in product.list" :key="index" slot="slot{{index}}">
 					<u-row>
 						<view class="title">{{item.title}}</view>
@@ -53,6 +53,8 @@
 		<!-- 		<view class="collect-tabbar">
 			<u-button @click="buttonClick">发布新作品</u-button>
 		</view> -->
+		
+		<u-overlay :show="overlayShow"></u-overlay>
 
 	</view>
 </template>
@@ -68,6 +70,7 @@
 	export default {
 		data() {
 			return {
+				overlayShow:false,
 				productStatus: '',
 				selectedProductId: '',
 				popShow: false,
@@ -90,6 +93,10 @@
 			}
 		},
 		methods: {
+			loaded() {
+				uni.hideLoading()
+				this.overlayShow = false;
+			},
 			selectClick(item) {
 				console.log(item.name)
 				if ("删除" == item.name) {
@@ -131,7 +138,11 @@
 				})
 			}
 		},
-		onLoad: function(param) { //option为object类型，会序列化上个页面传递的参数
+		onLoad: function(param) {
+			uni.showLoading({
+				title: "加载中"
+			});
+			this.overlayShow = true;
 			this.page = 1;
 			let _this = this;
 			getProductPage({

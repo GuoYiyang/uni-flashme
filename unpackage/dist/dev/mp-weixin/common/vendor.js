@@ -1524,7 +1524,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"photocall","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"photocall","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -8878,7 +8878,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"photocall","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"NODE_ENV":"development","VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"photocall","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -8899,14 +8899,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"photocall","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"photocall","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"photocall","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"photocall","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -9002,7 +9002,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"photocall","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"photocall","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -9420,9 +9420,9 @@ internalMixin(Vue);
 
 /***/ }),
 /* 26 */
-/*!*******************************************!*\
-  !*** F:/uniappProjects/uniapp/pages.json ***!
-  \*******************************************/
+/*!************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/pages.json ***!
+  \************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -9807,9 +9807,9 @@ module.exports = _asyncToGenerator, module.exports.__esModule = true, module.exp
 
 /***/ }),
 /* 33 */
-/*!********************************************!*\
-  !*** F:/uniappProjects/uniapp/api/user.js ***!
-  \********************************************/
+/*!*************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/api/user.js ***!
+  \*************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9919,9 +9919,9 @@ function getPherCollectStatus(req) {
 
 /***/ }),
 /* 34 */
-/*!*********************************************************!*\
-  !*** F:/uniappProjects/uniapp/config/setting.config.js ***!
-  \*********************************************************/
+/*!**************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/config/setting.config.js ***!
+  \**************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -10072,9 +10072,9 @@ function normalizeComponent (
 
 /***/ }),
 /* 38 */
-/*!**************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/index.js ***!
-  \**************************************************************/
+/*!*******************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/index.js ***!
+  \*******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10161,9 +10161,9 @@ exports.default = _default;
 
 /***/ }),
 /* 39 */
-/*!*************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/mixin/mixin.js ***!
-  \*************************************************************************/
+/*!******************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/mixin/mixin.js ***!
+  \******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10329,9 +10329,9 @@ exports.default = _default;
 
 /***/ }),
 /* 40 */
-/*!***************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/mixin/mpMixin.js ***!
-  \***************************************************************************/
+/*!********************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/mixin/mpMixin.js ***!
+  \********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10352,9 +10352,9 @@ exports.default = _default;
 
 /***/ }),
 /* 41 */
-/*!********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/luch-request/index.js ***!
-  \********************************************************************************/
+/*!*************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/luch-request/index.js ***!
+  \*************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10372,9 +10372,9 @@ exports.default = _default;
 
 /***/ }),
 /* 42 */
-/*!***************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/luch-request/core/Request.js ***!
-  \***************************************************************************************/
+/*!********************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/luch-request/core/Request.js ***!
+  \********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10578,9 +10578,9 @@ exports.default = Request;
 
 /***/ }),
 /* 43 */
-/*!***********************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/luch-request/core/dispatchRequest.js ***!
-  \***********************************************************************************************/
+/*!****************************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/luch-request/core/dispatchRequest.js ***!
+  \****************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10600,9 +10600,9 @@ exports.default = _default;
 
 /***/ }),
 /* 44 */
-/*!*****************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/luch-request/adapters/index.js ***!
-  \*****************************************************************************************/
+/*!**********************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/luch-request/adapters/index.js ***!
+  \**********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10681,9 +10681,9 @@ exports.default = _default;
 
 /***/ }),
 /* 45 */
-/*!*******************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/luch-request/helpers/buildURL.js ***!
-  \*******************************************************************************************/
+/*!************************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/luch-request/helpers/buildURL.js ***!
+  \************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10751,9 +10751,9 @@ function buildURL(url, params) {
 
 /***/ }),
 /* 46 */
-/*!********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/luch-request/utils.js ***!
-  \********************************************************************************/
+/*!*************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/luch-request/utils.js ***!
+  \*************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10904,9 +10904,9 @@ function isUndefined(val) {
 
 /***/ }),
 /* 47 */
-/*!*********************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/luch-request/core/buildFullPath.js ***!
-  \*********************************************************************************************/
+/*!**************************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/luch-request/core/buildFullPath.js ***!
+  \**************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10938,9 +10938,9 @@ function buildFullPath(baseURL, requestedURL) {
 
 /***/ }),
 /* 48 */
-/*!************************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/luch-request/helpers/isAbsoluteURL.js ***!
-  \************************************************************************************************/
+/*!*****************************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/luch-request/helpers/isAbsoluteURL.js ***!
+  \*****************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10966,9 +10966,9 @@ function isAbsoluteURL(url) {
 
 /***/ }),
 /* 49 */
-/*!**********************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/luch-request/helpers/combineURLs.js ***!
-  \**********************************************************************************************/
+/*!***************************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/luch-request/helpers/combineURLs.js ***!
+  \***************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10992,9 +10992,9 @@ function combineURLs(baseURL, relativeURL) {
 
 /***/ }),
 /* 50 */
-/*!**************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/luch-request/core/settle.js ***!
-  \**************************************************************************************/
+/*!*******************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/luch-request/core/settle.js ***!
+  \*******************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11024,9 +11024,9 @@ function settle(resolve, reject, response) {
 
 /***/ }),
 /* 51 */
-/*!**************************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/luch-request/core/InterceptorManager.js ***!
-  \**************************************************************************************************/
+/*!*******************************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/luch-request/core/InterceptorManager.js ***!
+  \*******************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11088,9 +11088,9 @@ exports.default = _default;
 
 /***/ }),
 /* 52 */
-/*!*******************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/luch-request/core/mergeConfig.js ***!
-  \*******************************************************************************************/
+/*!************************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/luch-request/core/mergeConfig.js ***!
+  \************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11164,9 +11164,9 @@ exports.default = _default;
 
 /***/ }),
 /* 53 */
-/*!****************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/luch-request/core/defaults.js ***!
-  \****************************************************************************************/
+/*!*********************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/luch-request/core/defaults.js ***!
+  \*********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11196,9 +11196,9 @@ exports.default = _default;
 
 /***/ }),
 /* 54 */
-/*!**************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/luch-request/utils/clone.js ***!
-  \**************************************************************************************/
+/*!*******************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/luch-request/utils/clone.js ***!
+  \*******************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11444,7 +11444,7 @@ var clone = function () {
 }();
 var _default = clone;
 exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../../../HBuilderX/plugins/uniapp-cli/node_modules/buffer/index.js */ 55).Buffer))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../../../../../Applications/HBuilderX.app/Contents/HBuilderX/plugins/uniapp-cli/node_modules/buffer/index.js */ 55).Buffer))
 
 /***/ }),
 /* 55 */
@@ -13520,9 +13520,9 @@ module.exports = Array.isArray || function (arr) {
 
 /***/ }),
 /* 59 */
-/*!************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/util/route.js ***!
-  \************************************************************************/
+/*!*****************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/util/route.js ***!
+  \*****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13708,9 +13708,9 @@ exports.default = _default;
 
 /***/ }),
 /* 60 */
-/*!************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/function/colorGradient.js ***!
-  \************************************************************************************/
+/*!*****************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/function/colorGradient.js ***!
+  \*****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13863,9 +13863,9 @@ exports.default = _default;
 
 /***/ }),
 /* 61 */
-/*!***************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/function/test.js ***!
-  \***************************************************************************/
+/*!********************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/function/test.js ***!
+  \********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -14168,9 +14168,9 @@ exports.default = _default;
 
 /***/ }),
 /* 62 */
-/*!*******************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/function/debounce.js ***!
-  \*******************************************************************************/
+/*!************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/function/debounce.js ***!
+  \************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -14215,9 +14215,9 @@ exports.default = _default;
 
 /***/ }),
 /* 63 */
-/*!*******************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/function/throttle.js ***!
-  \*******************************************************************************/
+/*!************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/function/throttle.js ***!
+  \************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -14264,9 +14264,9 @@ exports.default = _default;
 
 /***/ }),
 /* 64 */
-/*!****************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/function/index.js ***!
-  \****************************************************************************/
+/*!*********************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/function/index.js ***!
+  \*********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15025,9 +15025,9 @@ exports.default = _default;
 
 /***/ }),
 /* 65 */
-/*!****************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/function/digit.js ***!
-  \****************************************************************************/
+/*!*********************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/function/digit.js ***!
+  \*********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15244,9 +15244,9 @@ module.exports = _toArray, module.exports.__esModule = true, module.exports["def
 
 /***/ }),
 /* 67 */
-/*!***************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/config.js ***!
-  \***************************************************************************/
+/*!********************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/config.js ***!
+  \********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15288,9 +15288,9 @@ exports.default = _default;
 
 /***/ }),
 /* 68 */
-/*!**************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props.js ***!
-  \**************************************************************************/
+/*!*******************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props.js ***!
+  \*******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15400,9 +15400,9 @@ exports.default = _default;
 
 /***/ }),
 /* 69 */
-/*!**************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/actionSheet.js ***!
-  \**************************************************************************************/
+/*!*******************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/actionSheet.js ***!
+  \*******************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15444,9 +15444,9 @@ exports.default = _default;
 
 /***/ }),
 /* 70 */
-/*!********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/album.js ***!
-  \********************************************************************************/
+/*!*************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/album.js ***!
+  \*************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15488,9 +15488,9 @@ exports.default = _default;
 
 /***/ }),
 /* 71 */
-/*!********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/alert.js ***!
-  \********************************************************************************/
+/*!*************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/alert.js ***!
+  \*************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15527,9 +15527,9 @@ exports.default = _default;
 
 /***/ }),
 /* 72 */
-/*!*********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/avatar.js ***!
-  \*********************************************************************************/
+/*!**************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/avatar.js ***!
+  \**************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15572,9 +15572,9 @@ exports.default = _default;
 
 /***/ }),
 /* 73 */
-/*!**************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/avatarGroup.js ***!
-  \**************************************************************************************/
+/*!*******************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/avatarGroup.js ***!
+  \*******************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15614,9 +15614,9 @@ exports.default = _default;
 
 /***/ }),
 /* 74 */
-/*!**********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/backtop.js ***!
-  \**********************************************************************************/
+/*!***************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/backtop.js ***!
+  \***************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15660,9 +15660,9 @@ exports.default = _default;
 
 /***/ }),
 /* 75 */
-/*!********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/badge.js ***!
-  \********************************************************************************/
+/*!*************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/badge.js ***!
+  \*************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15706,9 +15706,9 @@ exports.default = _default;
 
 /***/ }),
 /* 76 */
-/*!*********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/button.js ***!
-  \*********************************************************************************/
+/*!**************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/button.js ***!
+  \**************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15765,9 +15765,9 @@ exports.default = _default;
 
 /***/ }),
 /* 77 */
-/*!***********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/calendar.js ***!
-  \***********************************************************************************/
+/*!****************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/calendar.js ***!
+  \****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15828,9 +15828,9 @@ exports.default = _default;
 
 /***/ }),
 /* 78 */
-/*!**************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/carKeyboard.js ***!
-  \**************************************************************************************/
+/*!*******************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/carKeyboard.js ***!
+  \*******************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15860,9 +15860,9 @@ exports.default = _default;
 
 /***/ }),
 /* 79 */
-/*!*******************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/cell.js ***!
-  \*******************************************************************************/
+/*!************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/cell.js ***!
+  \************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15912,9 +15912,9 @@ exports.default = _default;
 
 /***/ }),
 /* 80 */
-/*!************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/cellGroup.js ***!
-  \************************************************************************************/
+/*!*****************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/cellGroup.js ***!
+  \*****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15946,9 +15946,9 @@ exports.default = _default;
 
 /***/ }),
 /* 81 */
-/*!***********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/checkbox.js ***!
-  \***********************************************************************************/
+/*!****************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/checkbox.js ***!
+  \****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15990,9 +15990,9 @@ exports.default = _default;
 
 /***/ }),
 /* 82 */
-/*!****************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/checkboxGroup.js ***!
-  \****************************************************************************************/
+/*!*********************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/checkboxGroup.js ***!
+  \*********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16038,9 +16038,9 @@ exports.default = _default;
 
 /***/ }),
 /* 83 */
-/*!*****************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/circleProgress.js ***!
-  \*****************************************************************************************/
+/*!**********************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/circleProgress.js ***!
+  \**********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16070,9 +16070,9 @@ exports.default = _default;
 
 /***/ }),
 /* 84 */
-/*!*******************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/code.js ***!
-  \*******************************************************************************/
+/*!************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/code.js ***!
+  \************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16107,9 +16107,9 @@ exports.default = _default;
 
 /***/ }),
 /* 85 */
-/*!************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/codeInput.js ***!
-  \************************************************************************************/
+/*!*****************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/codeInput.js ***!
+  \*****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16153,9 +16153,9 @@ exports.default = _default;
 
 /***/ }),
 /* 86 */
-/*!******************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/col.js ***!
-  \******************************************************************************/
+/*!***********************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/col.js ***!
+  \***********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16189,9 +16189,9 @@ exports.default = _default;
 
 /***/ }),
 /* 87 */
-/*!***********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/collapse.js ***!
-  \***********************************************************************************/
+/*!****************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/collapse.js ***!
+  \****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16223,9 +16223,9 @@ exports.default = _default;
 
 /***/ }),
 /* 88 */
-/*!***************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/collapseItem.js ***!
-  \***************************************************************************************/
+/*!********************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/collapseItem.js ***!
+  \********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16265,9 +16265,9 @@ exports.default = _default;
 
 /***/ }),
 /* 89 */
-/*!***************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/columnNotice.js ***!
-  \***************************************************************************************/
+/*!********************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/columnNotice.js ***!
+  \********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16306,9 +16306,9 @@ exports.default = _default;
 
 /***/ }),
 /* 90 */
-/*!************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/countDown.js ***!
-  \************************************************************************************/
+/*!*****************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/countDown.js ***!
+  \*****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16341,9 +16341,9 @@ exports.default = _default;
 
 /***/ }),
 /* 91 */
-/*!**********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/countTo.js ***!
-  \**********************************************************************************/
+/*!***************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/countTo.js ***!
+  \***************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16383,9 +16383,9 @@ exports.default = _default;
 
 /***/ }),
 /* 92 */
-/*!*****************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/datetimePicker.js ***!
-  \*****************************************************************************************/
+/*!**********************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/datetimePicker.js ***!
+  \**********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16438,9 +16438,9 @@ exports.default = _default;
 
 /***/ }),
 /* 93 */
-/*!**********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/divider.js ***!
-  \**********************************************************************************/
+/*!***************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/divider.js ***!
+  \***************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16477,9 +16477,9 @@ exports.default = _default;
 
 /***/ }),
 /* 94 */
-/*!********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/empty.js ***!
-  \********************************************************************************/
+/*!*************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/empty.js ***!
+  \*************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16519,9 +16519,9 @@ exports.default = _default;
 
 /***/ }),
 /* 95 */
-/*!*******************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/form.js ***!
-  \*******************************************************************************/
+/*!************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/form.js ***!
+  \************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16564,9 +16564,9 @@ exports.default = _default;
 
 /***/ }),
 /* 96 */
-/*!***********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/formItem.js ***!
-  \***********************************************************************************/
+/*!****************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/formItem.js ***!
+  \****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16604,9 +16604,9 @@ exports.default = _default;
 
 /***/ }),
 /* 97 */
-/*!******************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/gap.js ***!
-  \******************************************************************************/
+/*!***********************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/gap.js ***!
+  \***********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16640,9 +16640,9 @@ exports.default = _default;
 
 /***/ }),
 /* 98 */
-/*!*******************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/grid.js ***!
-  \*******************************************************************************/
+/*!************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/grid.js ***!
+  \************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16674,9 +16674,9 @@ exports.default = _default;
 
 /***/ }),
 /* 99 */
-/*!***********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/gridItem.js ***!
-  \***********************************************************************************/
+/*!****************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/gridItem.js ***!
+  \****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16707,9 +16707,9 @@ exports.default = _default;
 
 /***/ }),
 /* 100 */
-/*!*******************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/icon.js ***!
-  \*******************************************************************************/
+/*!************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/icon.js ***!
+  \************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16759,9 +16759,9 @@ exports.default = _default;
 
 /***/ }),
 /* 101 */
-/*!********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/image.js ***!
-  \********************************************************************************/
+/*!*************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/image.js ***!
+  \*************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16806,9 +16806,9 @@ exports.default = _default;
 
 /***/ }),
 /* 102 */
-/*!**************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/indexAnchor.js ***!
-  \**************************************************************************************/
+/*!*******************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/indexAnchor.js ***!
+  \*******************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16842,9 +16842,9 @@ exports.default = _default;
 
 /***/ }),
 /* 103 */
-/*!************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/indexList.js ***!
-  \************************************************************************************/
+/*!*****************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/indexList.js ***!
+  \*****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16880,9 +16880,9 @@ exports.default = _default;
 
 /***/ }),
 /* 104 */
-/*!********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/input.js ***!
-  \********************************************************************************/
+/*!*************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/input.js ***!
+  \*************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16945,9 +16945,9 @@ exports.default = _default;
 
 /***/ }),
 /* 105 */
-/*!***********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/keyboard.js ***!
-  \***********************************************************************************/
+/*!****************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/keyboard.js ***!
+  \****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16992,9 +16992,9 @@ exports.default = _default;
 
 /***/ }),
 /* 106 */
-/*!*******************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/line.js ***!
-  \*******************************************************************************/
+/*!************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/line.js ***!
+  \************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17029,9 +17029,9 @@ exports.default = _default;
 
 /***/ }),
 /* 107 */
-/*!***************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/lineProgress.js ***!
-  \***************************************************************************************/
+/*!********************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/lineProgress.js ***!
+  \********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17065,9 +17065,9 @@ exports.default = _default;
 
 /***/ }),
 /* 108 */
-/*!*******************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/link.js ***!
-  \*******************************************************************************/
+/*!************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/link.js ***!
+  \************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17107,9 +17107,9 @@ exports.default = _default;
 
 /***/ }),
 /* 109 */
-/*!*******************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/list.js ***!
-  \*******************************************************************************/
+/*!************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/list.js ***!
+  \************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17152,9 +17152,9 @@ exports.default = _default;
 
 /***/ }),
 /* 110 */
-/*!***********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/listItem.js ***!
-  \***********************************************************************************/
+/*!****************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/listItem.js ***!
+  \****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17184,9 +17184,9 @@ exports.default = _default;
 
 /***/ }),
 /* 111 */
-/*!**************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/loadingIcon.js ***!
-  \**************************************************************************************/
+/*!*******************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/loadingIcon.js ***!
+  \*******************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17230,9 +17230,9 @@ exports.default = _default;
 
 /***/ }),
 /* 112 */
-/*!**************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/loadingPage.js ***!
-  \**************************************************************************************/
+/*!*******************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/loadingPage.js ***!
+  \*******************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17270,9 +17270,9 @@ exports.default = _default;
 
 /***/ }),
 /* 113 */
-/*!***********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/loadmore.js ***!
-  \***********************************************************************************/
+/*!****************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/loadmore.js ***!
+  \****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17319,9 +17319,9 @@ exports.default = _default;
 
 /***/ }),
 /* 114 */
-/*!********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/modal.js ***!
-  \********************************************************************************/
+/*!*************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/modal.js ***!
+  \*************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17366,9 +17366,9 @@ exports.default = _default;
 
 /***/ }),
 /* 115 */
-/*!*********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/navbar.js ***!
-  \*********************************************************************************/
+/*!**************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/navbar.js ***!
+  \**************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17415,9 +17415,9 @@ exports.default = _default;
 
 /***/ }),
 /* 116 */
-/*!**************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/color.js ***!
-  \**************************************************************************/
+/*!*******************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/color.js ***!
+  \*******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17448,9 +17448,9 @@ exports.default = _default;
 
 /***/ }),
 /* 117 */
-/*!************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/noNetwork.js ***!
-  \************************************************************************************/
+/*!*****************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/noNetwork.js ***!
+  \*****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17482,9 +17482,9 @@ exports.default = _default;
 
 /***/ }),
 /* 118 */
-/*!************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/noticeBar.js ***!
-  \************************************************************************************/
+/*!*****************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/noticeBar.js ***!
+  \*****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17528,9 +17528,9 @@ exports.default = _default;
 
 /***/ }),
 /* 119 */
-/*!*********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/notify.js ***!
-  \*********************************************************************************/
+/*!**************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/notify.js ***!
+  \**************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17567,9 +17567,9 @@ exports.default = _default;
 
 /***/ }),
 /* 120 */
-/*!************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/numberBox.js ***!
-  \************************************************************************************/
+/*!*****************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/numberBox.js ***!
+  \*****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17619,9 +17619,9 @@ exports.default = _default;
 
 /***/ }),
 /* 121 */
-/*!*****************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/numberKeyboard.js ***!
-  \*****************************************************************************************/
+/*!**********************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/numberKeyboard.js ***!
+  \**********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17653,9 +17653,9 @@ exports.default = _default;
 
 /***/ }),
 /* 122 */
-/*!**********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/overlay.js ***!
-  \**********************************************************************************/
+/*!***************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/overlay.js ***!
+  \***************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17688,9 +17688,9 @@ exports.default = _default;
 
 /***/ }),
 /* 123 */
-/*!********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/parse.js ***!
-  \********************************************************************************/
+/*!*************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/parse.js ***!
+  \*************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17727,9 +17727,9 @@ exports.default = _default;
 
 /***/ }),
 /* 124 */
-/*!*********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/picker.js ***!
-  \*********************************************************************************/
+/*!**************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/picker.js ***!
+  \**************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17777,9 +17777,9 @@ exports.default = _default;
 
 /***/ }),
 /* 125 */
-/*!********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/popup.js ***!
-  \********************************************************************************/
+/*!*************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/popup.js ***!
+  \*************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17823,9 +17823,9 @@ exports.default = _default;
 
 /***/ }),
 /* 126 */
-/*!********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/radio.js ***!
-  \********************************************************************************/
+/*!*************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/radio.js ***!
+  \*************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17867,9 +17867,9 @@ exports.default = _default;
 
 /***/ }),
 /* 127 */
-/*!*************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/radioGroup.js ***!
-  \*************************************************************************************/
+/*!******************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/radioGroup.js ***!
+  \******************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17914,9 +17914,9 @@ exports.default = _default;
 
 /***/ }),
 /* 128 */
-/*!*******************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/rate.js ***!
-  \*******************************************************************************/
+/*!************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/rate.js ***!
+  \************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17957,9 +17957,9 @@ exports.default = _default;
 
 /***/ }),
 /* 129 */
-/*!***********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/readMore.js ***!
-  \***********************************************************************************/
+/*!****************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/readMore.js ***!
+  \****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17996,9 +17996,9 @@ exports.default = _default;
 
 /***/ }),
 /* 130 */
-/*!******************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/row.js ***!
-  \******************************************************************************/
+/*!***********************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/row.js ***!
+  \***********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18030,9 +18030,9 @@ exports.default = _default;
 
 /***/ }),
 /* 131 */
-/*!************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/rowNotice.js ***!
-  \************************************************************************************/
+/*!*****************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/rowNotice.js ***!
+  \*****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18068,9 +18068,9 @@ exports.default = _default;
 
 /***/ }),
 /* 132 */
-/*!*************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/scrollList.js ***!
-  \*************************************************************************************/
+/*!******************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/scrollList.js ***!
+  \******************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18105,9 +18105,9 @@ exports.default = _default;
 
 /***/ }),
 /* 133 */
-/*!*********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/search.js ***!
-  \*********************************************************************************/
+/*!**************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/search.js ***!
+  \**************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18163,9 +18163,9 @@ exports.default = _default;
 
 /***/ }),
 /* 134 */
-/*!**********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/section.js ***!
-  \**********************************************************************************/
+/*!***************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/section.js ***!
+  \***************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18204,9 +18204,9 @@ exports.default = _default;
 
 /***/ }),
 /* 135 */
-/*!***********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/skeleton.js ***!
-  \***********************************************************************************/
+/*!****************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/skeleton.js ***!
+  \****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18246,9 +18246,9 @@ exports.default = _default;
 
 /***/ }),
 /* 136 */
-/*!*********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/slider.js ***!
-  \*********************************************************************************/
+/*!**************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/slider.js ***!
+  \**************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18288,9 +18288,9 @@ exports.default = _default;
 
 /***/ }),
 /* 137 */
-/*!************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/statusBar.js ***!
-  \************************************************************************************/
+/*!*****************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/statusBar.js ***!
+  \*****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18320,9 +18320,9 @@ exports.default = _default;
 
 /***/ }),
 /* 138 */
-/*!********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/steps.js ***!
-  \********************************************************************************/
+/*!*************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/steps.js ***!
+  \*************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18358,9 +18358,9 @@ exports.default = _default;
 
 /***/ }),
 /* 139 */
-/*!************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/stepsItem.js ***!
-  \************************************************************************************/
+/*!*****************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/stepsItem.js ***!
+  \*****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18393,9 +18393,9 @@ exports.default = _default;
 
 /***/ }),
 /* 140 */
-/*!*********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/sticky.js ***!
-  \*********************************************************************************/
+/*!**************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/sticky.js ***!
+  \**************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18430,9 +18430,9 @@ exports.default = _default;
 
 /***/ }),
 /* 141 */
-/*!*************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/subsection.js ***!
-  \*************************************************************************************/
+/*!******************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/subsection.js ***!
+  \******************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18470,9 +18470,9 @@ exports.default = _default;
 
 /***/ }),
 /* 142 */
-/*!**************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/swipeAction.js ***!
-  \**************************************************************************************/
+/*!*******************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/swipeAction.js ***!
+  \*******************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18502,9 +18502,9 @@ exports.default = _default;
 
 /***/ }),
 /* 143 */
-/*!******************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/swipeActionItem.js ***!
-  \******************************************************************************************/
+/*!***********************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/swipeActionItem.js ***!
+  \***********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18540,9 +18540,9 @@ exports.default = _default;
 
 /***/ }),
 /* 144 */
-/*!*********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/swiper.js ***!
-  \*********************************************************************************/
+/*!**************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/swiper.js ***!
+  \**************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18597,9 +18597,9 @@ exports.default = _default;
 
 /***/ }),
 /* 145 */
-/*!*******************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/swipterIndicator.js ***!
-  \*******************************************************************************************/
+/*!************************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/swipterIndicator.js ***!
+  \************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18633,9 +18633,9 @@ exports.default = _default;
 
 /***/ }),
 /* 146 */
-/*!*********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/switch.js ***!
-  \*********************************************************************************/
+/*!**************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/switch.js ***!
+  \**************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18674,9 +18674,9 @@ exports.default = _default;
 
 /***/ }),
 /* 147 */
-/*!*********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/tabbar.js ***!
-  \*********************************************************************************/
+/*!**************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/tabbar.js ***!
+  \**************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18713,9 +18713,9 @@ exports.default = _default;
 
 /***/ }),
 /* 148 */
-/*!*************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/tabbarItem.js ***!
-  \*************************************************************************************/
+/*!******************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/tabbarItem.js ***!
+  \******************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18750,9 +18750,9 @@ exports.default = _default;
 
 /***/ }),
 /* 149 */
-/*!*******************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/tabs.js ***!
-  \*******************************************************************************/
+/*!************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/tabs.js ***!
+  \************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18807,9 +18807,9 @@ exports.default = _default;
 
 /***/ }),
 /* 150 */
-/*!******************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/tag.js ***!
-  \******************************************************************************/
+/*!***********************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/tag.js ***!
+  \***********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18853,9 +18853,9 @@ exports.default = _default;
 
 /***/ }),
 /* 151 */
-/*!*******************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/text.js ***!
-  \*******************************************************************************/
+/*!************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/text.js ***!
+  \************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18909,9 +18909,9 @@ exports.default = _default;
 
 /***/ }),
 /* 152 */
-/*!***********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/textarea.js ***!
-  \***********************************************************************************/
+/*!****************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/textarea.js ***!
+  \****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18962,9 +18962,9 @@ exports.default = _default;
 
 /***/ }),
 /* 153 */
-/*!********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/toast.js ***!
-  \********************************************************************************/
+/*!*************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/toast.js ***!
+  \*************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -19008,9 +19008,9 @@ exports.default = _default;
 
 /***/ }),
 /* 154 */
-/*!**********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/toolbar.js ***!
-  \**********************************************************************************/
+/*!***************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/toolbar.js ***!
+  \***************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -19045,9 +19045,9 @@ exports.default = _default;
 
 /***/ }),
 /* 155 */
-/*!**********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/tooltip.js ***!
-  \**********************************************************************************/
+/*!***************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/tooltip.js ***!
+  \***************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -19089,9 +19089,9 @@ exports.default = _default;
 
 /***/ }),
 /* 156 */
-/*!*************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/transition.js ***!
-  \*************************************************************************************/
+/*!******************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/transition.js ***!
+  \******************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -19124,9 +19124,9 @@ exports.default = _default;
 
 /***/ }),
 /* 157 */
-/*!*********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/props/upload.js ***!
-  \*********************************************************************************/
+/*!**************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/props/upload.js ***!
+  \**************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -19183,9 +19183,9 @@ exports.default = _default;
 
 /***/ }),
 /* 158 */
-/*!***************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/config/zIndex.js ***!
-  \***************************************************************************/
+/*!********************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/config/zIndex.js ***!
+  \********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -19219,9 +19219,9 @@ exports.default = _default;
 
 /***/ }),
 /* 159 */
-/*!*******************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/function/platform.js ***!
-  \*******************************************************************************/
+/*!************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/function/platform.js ***!
+  \************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -19249,9 +19249,9 @@ exports.default = _default;
 
 /***/ }),
 /* 160 */
-/*!***********************************************!*\
-  !*** F:/uniappProjects/uniapp/store/index.js ***!
-  \***********************************************/
+/*!****************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/store/index.js ***!
+  \****************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -20544,9 +20544,9 @@ module.exports = index_cjs;
 /* 166 */,
 /* 167 */,
 /* 168 */
-/*!***********************************************!*\
-  !*** F:/uniappProjects/uniapp/api/product.js ***!
-  \***********************************************/
+/*!****************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/api/product.js ***!
+  \****************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -20765,26 +20765,10 @@ function updateProductStatus(req) {
 /* 182 */,
 /* 183 */,
 /* 184 */,
-/* 185 */,
-/* 186 */,
-/* 187 */,
-/* 188 */,
-/* 189 */,
-/* 190 */,
-/* 191 */,
-/* 192 */,
-/* 193 */,
-/* 194 */,
-/* 195 */,
-/* 196 */,
-/* 197 */,
-/* 198 */,
-/* 199 */,
-/* 200 */,
-/* 201 */
-/*!*************************************************!*\
-  !*** F:/uniappProjects/uniapp/common/method.js ***!
-  \*************************************************/
+/* 185 */
+/*!******************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/common/method.js ***!
+  \******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -20839,6 +20823,22 @@ function changeTag(tagstr) {
 }
 
 /***/ }),
+/* 186 */,
+/* 187 */,
+/* 188 */,
+/* 189 */,
+/* 190 */,
+/* 191 */,
+/* 192 */,
+/* 193 */,
+/* 194 */,
+/* 195 */,
+/* 196 */,
+/* 197 */,
+/* 198 */,
+/* 199 */,
+/* 200 */,
+/* 201 */,
 /* 202 */,
 /* 203 */,
 /* 204 */,
@@ -20918,18 +20918,10 @@ function changeTag(tagstr) {
 /* 278 */,
 /* 279 */,
 /* 280 */,
-/* 281 */,
-/* 282 */,
-/* 283 */,
-/* 284 */,
-/* 285 */,
-/* 286 */,
-/* 287 */,
-/* 288 */,
-/* 289 */
-/*!*******************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-row/props.js ***!
-  \*******************************************************************************/
+/* 281 */
+/*!************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/components/u-row/props.js ***!
+  \************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -20963,17 +20955,17 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 290 */,
-/* 291 */,
-/* 292 */,
-/* 293 */,
-/* 294 */,
-/* 295 */,
-/* 296 */,
-/* 297 */
-/*!*******************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-col/props.js ***!
-  \*******************************************************************************/
+/* 282 */,
+/* 283 */,
+/* 284 */,
+/* 285 */,
+/* 286 */,
+/* 287 */,
+/* 288 */,
+/* 289 */
+/*!************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/components/u-col/props.js ***!
+  \************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -21017,17 +21009,17 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 298 */,
-/* 299 */,
-/* 300 */,
-/* 301 */,
-/* 302 */,
-/* 303 */,
-/* 304 */,
-/* 305 */
-/*!**************************************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uni-data-picker/components/uni-data-pickerview/uni-data-picker.js ***!
-  \**************************************************************************************************************/
+/* 290 */,
+/* 291 */,
+/* 292 */,
+/* 293 */,
+/* 294 */,
+/* 295 */,
+/* 296 */,
+/* 297 */
+/*!*******************************************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uni-data-picker/components/uni-data-pickerview/uni-data-picker.js ***!
+  \*******************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -21690,10 +21682,10 @@ var _default2 = {
   }
 };
 exports.default = _default2;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/uni-cloud/dist/index.js */ 306)["default"]))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/uni-cloud/dist/index.js */ 298)["default"]))
 
 /***/ }),
-/* 306 */
+/* 298 */
 /*!************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/uni-cloud/dist/index.js ***!
   \************************************************************************************/
@@ -21716,12 +21708,12 @@ var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/r
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 11));
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ 23));
 var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ 24));
-var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ 307));
-var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ 308));
-var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ 310));
-var _wrapNativeSuper2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/wrapNativeSuper */ 311));
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ 299));
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ 300));
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ 302));
+var _wrapNativeSuper2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/wrapNativeSuper */ 303));
 var _uniI18n = __webpack_require__(/*! @dcloudio/uni-i18n */ 22);
-var _pages = _interopRequireDefault(__webpack_require__(/*! @/pages.json */ 313));
+var _pages = _interopRequireDefault(__webpack_require__(/*! @/pages.json */ 305));
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e33) { throw _e33; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e34) { didErr = true; err = _e34; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
@@ -22138,7 +22130,7 @@ var k = m(undefined),
 var T = "";
 try {
   {
-    var _e2 = __webpack_require__(/*! uni-stat-config */ 314).default || __webpack_require__(/*! uni-stat-config */ 314);
+    var _e2 = __webpack_require__(/*! uni-stat-config */ 306).default || __webpack_require__(/*! uni-stat-config */ 306);
     T = _e2.appid;
   }
 } catch (e) {}
@@ -28600,7 +28592,7 @@ exports.default = Ps;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../webpack/buildin/global.js */ 3), __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/wx.js */ 1)["default"]))
 
 /***/ }),
-/* 307 */
+/* 299 */
 /*!*********************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/inherits.js ***!
   \*********************************************************/
@@ -28627,7 +28619,7 @@ function _inherits(subClass, superClass) {
 module.exports = _inherits, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 308 */
+/* 300 */
 /*!**************************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js ***!
   \**************************************************************************/
@@ -28635,7 +28627,7 @@ module.exports = _inherits, module.exports.__esModule = true, module.exports["de
 /***/ (function(module, exports, __webpack_require__) {
 
 var _typeof = __webpack_require__(/*! ./typeof.js */ 13)["default"];
-var assertThisInitialized = __webpack_require__(/*! ./assertThisInitialized.js */ 309);
+var assertThisInitialized = __webpack_require__(/*! ./assertThisInitialized.js */ 301);
 function _possibleConstructorReturn(self, call) {
   if (call && (_typeof(call) === "object" || typeof call === "function")) {
     return call;
@@ -28647,7 +28639,7 @@ function _possibleConstructorReturn(self, call) {
 module.exports = _possibleConstructorReturn, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 309 */
+/* 301 */
 /*!**********************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/assertThisInitialized.js ***!
   \**********************************************************************/
@@ -28663,7 +28655,7 @@ function _assertThisInitialized(self) {
 module.exports = _assertThisInitialized, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 310 */
+/* 302 */
 /*!***************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/getPrototypeOf.js ***!
   \***************************************************************/
@@ -28679,16 +28671,16 @@ function _getPrototypeOf(o) {
 module.exports = _getPrototypeOf, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 311 */
+/* 303 */
 /*!****************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/wrapNativeSuper.js ***!
   \****************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getPrototypeOf = __webpack_require__(/*! ./getPrototypeOf.js */ 310);
+var getPrototypeOf = __webpack_require__(/*! ./getPrototypeOf.js */ 302);
 var setPrototypeOf = __webpack_require__(/*! ./setPrototypeOf.js */ 16);
-var isNativeFunction = __webpack_require__(/*! ./isNativeFunction.js */ 312);
+var isNativeFunction = __webpack_require__(/*! ./isNativeFunction.js */ 304);
 var construct = __webpack_require__(/*! ./construct.js */ 15);
 function _wrapNativeSuper(Class) {
   var _cache = typeof Map === "function" ? new Map() : undefined;
@@ -28719,7 +28711,7 @@ function _wrapNativeSuper(Class) {
 module.exports = _wrapNativeSuper, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 312 */
+/* 304 */
 /*!*****************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/isNativeFunction.js ***!
   \*****************************************************************/
@@ -28732,10 +28724,10 @@ function _isNativeFunction(fn) {
 module.exports = _isNativeFunction, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 313 */
-/*!************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/pages.json?{"type":"origin-pages-json"} ***!
-  \************************************************************************/
+/* 305 */
+/*!*****************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/pages.json?{"type":"origin-pages-json"} ***!
+  \*****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -28877,10 +28869,10 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 314 */
-/*!***********************************************************!*\
-  !*** F:/uniappProjects/uniapp/pages.json?{"type":"stat"} ***!
-  \***********************************************************/
+/* 306 */
+/*!****************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/pages.json?{"type":"stat"} ***!
+  \****************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -28897,17 +28889,17 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 315 */,
-/* 316 */,
-/* 317 */,
-/* 318 */,
-/* 319 */,
-/* 320 */,
-/* 321 */,
-/* 322 */
-/*!**********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-search/props.js ***!
-  \**********************************************************************************/
+/* 307 */,
+/* 308 */,
+/* 309 */,
+/* 310 */,
+/* 311 */,
+/* 312 */,
+/* 313 */,
+/* 314 */
+/*!***************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/components/u-search/props.js ***!
+  \***************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -29040,17 +29032,17 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 323 */,
-/* 324 */,
-/* 325 */,
-/* 326 */,
-/* 327 */,
-/* 328 */,
-/* 329 */,
-/* 330 */
-/*!********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-grid/props.js ***!
-  \********************************************************************************/
+/* 315 */,
+/* 316 */,
+/* 317 */,
+/* 318 */,
+/* 319 */,
+/* 320 */,
+/* 321 */,
+/* 322 */
+/*!*************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/components/u-grid/props.js ***!
+  \*************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -29084,17 +29076,17 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 331 */,
-/* 332 */,
-/* 333 */,
-/* 334 */,
-/* 335 */,
-/* 336 */,
-/* 337 */,
-/* 338 */
-/*!*************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-grid-item/props.js ***!
-  \*************************************************************************************/
+/* 323 */,
+/* 324 */,
+/* 325 */,
+/* 326 */,
+/* 327 */,
+/* 328 */,
+/* 329 */,
+/* 330 */
+/*!******************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/components/u-grid-item/props.js ***!
+  \******************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -29123,17 +29115,17 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 339 */,
-/* 340 */,
-/* 341 */,
-/* 342 */,
-/* 343 */,
-/* 344 */,
-/* 345 */,
-/* 346 */
-/*!********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-icon/icons.js ***!
-  \********************************************************************************/
+/* 331 */,
+/* 332 */,
+/* 333 */,
+/* 334 */,
+/* 335 */,
+/* 336 */,
+/* 337 */,
+/* 338 */
+/*!*************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/components/u-icon/icons.js ***!
+  \*************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -29361,10 +29353,10 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 347 */
-/*!********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-icon/props.js ***!
-  \********************************************************************************/
+/* 339 */
+/*!*************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/components/u-icon/props.js ***!
+  \*************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -29468,13 +29460,116 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
+/* 340 */,
+/* 341 */,
+/* 342 */,
+/* 343 */,
+/* 344 */,
+/* 345 */,
+/* 346 */,
+/* 347 */,
 /* 348 */,
 /* 349 */,
 /* 350 */,
 /* 351 */,
 /* 352 */,
 /* 353 */,
-/* 354 */,
+/* 354 */
+/*!***************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/components/u-avatar/props.js ***!
+  \***************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _default = {
+  props: {
+    // 头像图片路径(不能为相对路径)
+    src: {
+      type: String,
+      default: uni.$u.props.avatar.src
+    },
+    // 头像形状，circle-圆形，square-方形
+    shape: {
+      type: String,
+      default: uni.$u.props.avatar.shape
+    },
+    // 头像尺寸
+    size: {
+      type: [String, Number],
+      default: uni.$u.props.avatar.size
+    },
+    // 裁剪模式
+    mode: {
+      type: String,
+      default: uni.$u.props.avatar.mode
+    },
+    // 显示的文字
+    text: {
+      type: String,
+      default: uni.$u.props.avatar.text
+    },
+    // 背景色
+    bgColor: {
+      type: String,
+      default: uni.$u.props.avatar.bgColor
+    },
+    // 文字颜色
+    color: {
+      type: String,
+      default: uni.$u.props.avatar.color
+    },
+    // 文字大小
+    fontSize: {
+      type: [String, Number],
+      default: uni.$u.props.avatar.fontSize
+    },
+    // 显示的图标
+    icon: {
+      type: String,
+      default: uni.$u.props.avatar.icon
+    },
+    // 显示小程序头像，只对百度，微信，QQ小程序有效
+    mpAvatar: {
+      type: Boolean,
+      default: uni.$u.props.avatar.mpAvatar
+    },
+    // 是否使用随机背景色
+    randomBgColor: {
+      type: Boolean,
+      default: uni.$u.props.avatar.randomBgColor
+    },
+    // 加载失败的默认头像(组件有内置默认图片)
+    defaultUrl: {
+      type: String,
+      default: uni.$u.props.avatar.defaultUrl
+    },
+    // 如果配置了randomBgColor为true，且配置了此值，则从默认的背景色数组中取出对应索引的颜色值，取值0-19之间
+    colorIndex: {
+      type: [String, Number],
+      // 校验参数规则，索引在0-19之间
+      validator: function validator(n) {
+        return uni.$u.test.range(n, [0, 19]) || n === '';
+      },
+      default: uni.$u.props.avatar.colorIndex
+    },
+    // 组件标识符
+    name: {
+      type: String,
+      default: uni.$u.props.avatar.name
+    }
+  }
+};
+exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
+
+/***/ }),
 /* 355 */,
 /* 356 */,
 /* 357 */,
@@ -29483,9 +29578,9 @@ exports.default = _default;
 /* 360 */,
 /* 361 */,
 /* 362 */
-/*!********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-tabs/props.js ***!
-  \********************************************************************************/
+/*!*************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/components/u-tabs/props.js ***!
+  \*************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -29578,24 +29673,10 @@ exports.default = _default;
 /* 374 */,
 /* 375 */,
 /* 376 */,
-/* 377 */,
-/* 378 */,
-/* 379 */,
-/* 380 */,
-/* 381 */,
-/* 382 */,
-/* 383 */,
-/* 384 */,
-/* 385 */,
-/* 386 */,
-/* 387 */,
-/* 388 */,
-/* 389 */,
-/* 390 */,
-/* 391 */
-/*!**********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-swiper/props.js ***!
-  \**********************************************************************************/
+/* 377 */
+/*!***************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/components/u-swiper/props.js ***!
+  \***************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -29735,17 +29816,17 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 392 */,
-/* 393 */,
-/* 394 */,
-/* 395 */,
-/* 396 */,
-/* 397 */,
-/* 398 */,
-/* 399 */
-/*!*******************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-tag/props.js ***!
-  \*******************************************************************************/
+/* 378 */,
+/* 379 */,
+/* 380 */,
+/* 381 */,
+/* 382 */,
+/* 383 */,
+/* 384 */,
+/* 385 */
+/*!************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/components/u-tag/props.js ***!
+  \************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -29844,17 +29925,286 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
+/* 386 */,
+/* 387 */,
+/* 388 */,
+/* 389 */,
+/* 390 */,
+/* 391 */,
+/* 392 */,
+/* 393 */
+/*!*********************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/mixin/openType.js ***!
+  \*********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _default = {
+  props: {
+    openType: String
+  },
+  methods: {
+    onGetUserInfo: function onGetUserInfo(event) {
+      this.$emit('getuserinfo', event.detail);
+    },
+    onContact: function onContact(event) {
+      this.$emit('contact', event.detail);
+    },
+    onGetPhoneNumber: function onGetPhoneNumber(event) {
+      this.$emit('getphonenumber', event.detail);
+    },
+    onError: function onError(event) {
+      this.$emit('error', event.detail);
+    },
+    onLaunchApp: function onLaunchApp(event) {
+      this.$emit('launchapp', event.detail);
+    },
+    onOpenSetting: function onOpenSetting(event) {
+      this.$emit('opensetting', event.detail);
+    }
+  }
+};
+exports.default = _default;
+
+/***/ }),
+/* 394 */
+/*!*******************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/libs/mixin/button.js ***!
+  \*******************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _default = {
+  props: {
+    lang: String,
+    sessionFrom: String,
+    sendMessageTitle: String,
+    sendMessagePath: String,
+    sendMessageImg: String,
+    showMessageCard: Boolean,
+    appParameter: String,
+    formType: String,
+    openType: String
+  }
+};
+exports.default = _default;
+
+/***/ }),
+/* 395 */
+/*!*********************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/components/u-action-sheet/props.js ***!
+  \*********************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _default = {
+  props: {
+    // 操作菜单是否展示 （默认false）
+    show: {
+      type: Boolean,
+      default: uni.$u.props.actionSheet.show
+    },
+    // 标题
+    title: {
+      type: String,
+      default: uni.$u.props.actionSheet.title
+    },
+    // 选项上方的描述信息
+    description: {
+      type: String,
+      default: uni.$u.props.actionSheet.description
+    },
+    // 数据
+    actions: {
+      type: Array,
+      default: uni.$u.props.actionSheet.actions
+    },
+    // 取消按钮的文字，不为空时显示按钮
+    cancelText: {
+      type: String,
+      default: uni.$u.props.actionSheet.cancelText
+    },
+    // 点击某个菜单项时是否关闭弹窗
+    closeOnClickAction: {
+      type: Boolean,
+      default: uni.$u.props.actionSheet.closeOnClickAction
+    },
+    // 处理底部安全区（默认true）
+    safeAreaInsetBottom: {
+      type: Boolean,
+      default: uni.$u.props.actionSheet.safeAreaInsetBottom
+    },
+    // 小程序的打开方式
+    openType: {
+      type: String,
+      default: uni.$u.props.actionSheet.openType
+    },
+    // 点击遮罩是否允许关闭 (默认true)
+    closeOnClickOverlay: {
+      type: Boolean,
+      default: uni.$u.props.actionSheet.closeOnClickOverlay
+    },
+    // 圆角值
+    round: {
+      type: [Boolean, String, Number],
+      default: uni.$u.props.actionSheet.round
+    }
+  }
+};
+exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
+
+/***/ }),
+/* 396 */,
+/* 397 */,
+/* 398 */,
+/* 399 */,
 /* 400 */,
 /* 401 */,
 /* 402 */,
-/* 403 */,
+/* 403 */
+/*!**************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/components/u-popup/props.js ***!
+  \**************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _default = {
+  props: {
+    // 是否展示弹窗
+    show: {
+      type: Boolean,
+      default: uni.$u.props.popup.show
+    },
+    // 是否显示遮罩
+    overlay: {
+      type: Boolean,
+      default: uni.$u.props.popup.overlay
+    },
+    // 弹出的方向，可选值为 top bottom right left center
+    mode: {
+      type: String,
+      default: uni.$u.props.popup.mode
+    },
+    // 动画时长，单位ms
+    duration: {
+      type: [String, Number],
+      default: uni.$u.props.popup.duration
+    },
+    // 是否显示关闭图标
+    closeable: {
+      type: Boolean,
+      default: uni.$u.props.popup.closeable
+    },
+    // 自定义遮罩的样式
+    overlayStyle: {
+      type: [Object, String],
+      default: uni.$u.props.popup.overlayStyle
+    },
+    // 点击遮罩是否关闭弹窗
+    closeOnClickOverlay: {
+      type: Boolean,
+      default: uni.$u.props.popup.closeOnClickOverlay
+    },
+    // 层级
+    zIndex: {
+      type: [String, Number],
+      default: uni.$u.props.popup.zIndex
+    },
+    // 是否为iPhoneX留出底部安全距离
+    safeAreaInsetBottom: {
+      type: Boolean,
+      default: uni.$u.props.popup.safeAreaInsetBottom
+    },
+    // 是否留出顶部安全距离（状态栏高度）
+    safeAreaInsetTop: {
+      type: Boolean,
+      default: uni.$u.props.popup.safeAreaInsetTop
+    },
+    // 自定义关闭图标位置，top-left为左上角，top-right为右上角，bottom-left为左下角，bottom-right为右下角
+    closeIconPos: {
+      type: String,
+      default: uni.$u.props.popup.closeIconPos
+    },
+    // 是否显示圆角
+    round: {
+      type: [Boolean, String, Number],
+      default: uni.$u.props.popup.round
+    },
+    // mode=center，也即中部弹出时，是否使用缩放模式
+    zoom: {
+      type: Boolean,
+      default: uni.$u.props.popup.zoom
+    },
+    // 弹窗背景色，设置为transparent可去除白色背景
+    bgColor: {
+      type: String,
+      default: uni.$u.props.popup.bgColor
+    },
+    // 遮罩的透明度，0-1之间
+    overlayOpacity: {
+      type: [Number, String],
+      default: uni.$u.props.popup.overlayOpacity
+    }
+  }
+};
+exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
+
+/***/ }),
 /* 404 */,
 /* 405 */,
 /* 406 */,
-/* 407 */
-/*!**********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-tabbar/props.js ***!
-  \**********************************************************************************/
+/* 407 */,
+/* 408 */,
+/* 409 */,
+/* 410 */,
+/* 411 */,
+/* 412 */,
+/* 413 */,
+/* 414 */,
+/* 415 */,
+/* 416 */,
+/* 417 */,
+/* 418 */,
+/* 419 */,
+/* 420 */,
+/* 421 */,
+/* 422 */,
+/* 423 */,
+/* 424 */,
+/* 425 */
+/*!***************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/components/u-tabbar/props.js ***!
+  \***************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -29913,97 +30263,17 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 408 */,
-/* 409 */,
-/* 410 */,
-/* 411 */,
-/* 412 */,
-/* 413 */,
-/* 414 */,
-/* 415 */,
-/* 416 */,
-/* 417 */,
-/* 418 */,
-/* 419 */,
-/* 420 */,
-/* 421 */,
-/* 422 */,
-/* 423 */
-/*!**************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/mixin/button.js ***!
-  \**************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _default = {
-  props: {
-    lang: String,
-    sessionFrom: String,
-    sendMessageTitle: String,
-    sendMessagePath: String,
-    sendMessageImg: String,
-    showMessageCard: Boolean,
-    appParameter: String,
-    formType: String,
-    openType: String
-  }
-};
-exports.default = _default;
-
-/***/ }),
-/* 424 */
-/*!****************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/libs/mixin/openType.js ***!
-  \****************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _default = {
-  props: {
-    openType: String
-  },
-  methods: {
-    onGetUserInfo: function onGetUserInfo(event) {
-      this.$emit('getuserinfo', event.detail);
-    },
-    onContact: function onContact(event) {
-      this.$emit('contact', event.detail);
-    },
-    onGetPhoneNumber: function onGetPhoneNumber(event) {
-      this.$emit('getphonenumber', event.detail);
-    },
-    onError: function onError(event) {
-      this.$emit('error', event.detail);
-    },
-    onLaunchApp: function onLaunchApp(event) {
-      this.$emit('launchapp', event.detail);
-    },
-    onOpenSetting: function onOpenSetting(event) {
-      this.$emit('opensetting', event.detail);
-    }
-  }
-};
-exports.default = _default;
-
-/***/ }),
-/* 425 */
-/*!**********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-button/props.js ***!
-  \**********************************************************************************/
+/* 426 */,
+/* 427 */,
+/* 428 */,
+/* 429 */,
+/* 430 */,
+/* 431 */,
+/* 432 */,
+/* 433 */
+/*!***************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/components/u-button/props.js ***!
+  \***************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -30179,24 +30449,17 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 426 */,
-/* 427 */,
-/* 428 */,
-/* 429 */,
-/* 430 */,
-/* 431 */,
-/* 432 */,
-/* 433 */,
 /* 434 */,
 /* 435 */,
 /* 436 */,
 /* 437 */,
 /* 438 */,
 /* 439 */,
-/* 440 */
-/*!***************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uni-forms/components/uni-forms/validate.js ***!
-  \***************************************************************************************/
+/* 440 */,
+/* 441 */
+/*!********************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uni-forms/components/uni-forms/validate.js ***!
+  \********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -30209,9 +30472,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 30));
-var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ 307));
-var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ 308));
-var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ 310));
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ 299));
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ 300));
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ 302));
 var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 32));
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ 23));
 var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ 24));
@@ -30884,10 +31147,10 @@ var _default = SchemaValidator;
 exports.default = _default;
 
 /***/ }),
-/* 441 */
-/*!************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uni-forms/components/uni-forms/utils.js ***!
-  \************************************************************************************/
+/* 442 */
+/*!*****************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uni-forms/components/uni-forms/utils.js ***!
+  \*****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -31219,7 +31482,6 @@ var isEqual = function isEqual(a, b) {
 exports.isEqual = isEqual;
 
 /***/ }),
-/* 442 */,
 /* 443 */,
 /* 444 */,
 /* 445 */,
@@ -31233,102 +31495,7 @@ exports.isEqual = isEqual;
 /* 453 */,
 /* 454 */,
 /* 455 */,
-/* 456 */
-/*!**********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-avatar/props.js ***!
-  \**********************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _default = {
-  props: {
-    // 头像图片路径(不能为相对路径)
-    src: {
-      type: String,
-      default: uni.$u.props.avatar.src
-    },
-    // 头像形状，circle-圆形，square-方形
-    shape: {
-      type: String,
-      default: uni.$u.props.avatar.shape
-    },
-    // 头像尺寸
-    size: {
-      type: [String, Number],
-      default: uni.$u.props.avatar.size
-    },
-    // 裁剪模式
-    mode: {
-      type: String,
-      default: uni.$u.props.avatar.mode
-    },
-    // 显示的文字
-    text: {
-      type: String,
-      default: uni.$u.props.avatar.text
-    },
-    // 背景色
-    bgColor: {
-      type: String,
-      default: uni.$u.props.avatar.bgColor
-    },
-    // 文字颜色
-    color: {
-      type: String,
-      default: uni.$u.props.avatar.color
-    },
-    // 文字大小
-    fontSize: {
-      type: [String, Number],
-      default: uni.$u.props.avatar.fontSize
-    },
-    // 显示的图标
-    icon: {
-      type: String,
-      default: uni.$u.props.avatar.icon
-    },
-    // 显示小程序头像，只对百度，微信，QQ小程序有效
-    mpAvatar: {
-      type: Boolean,
-      default: uni.$u.props.avatar.mpAvatar
-    },
-    // 是否使用随机背景色
-    randomBgColor: {
-      type: Boolean,
-      default: uni.$u.props.avatar.randomBgColor
-    },
-    // 加载失败的默认头像(组件有内置默认图片)
-    defaultUrl: {
-      type: String,
-      default: uni.$u.props.avatar.defaultUrl
-    },
-    // 如果配置了randomBgColor为true，且配置了此值，则从默认的背景色数组中取出对应索引的颜色值，取值0-19之间
-    colorIndex: {
-      type: [String, Number],
-      // 校验参数规则，索引在0-19之间
-      validator: function validator(n) {
-        return uni.$u.test.range(n, [0, 19]) || n === '';
-      },
-      default: uni.$u.props.avatar.colorIndex
-    },
-    // 组件标识符
-    name: {
-      type: String,
-      default: uni.$u.props.avatar.name
-    }
-  }
-};
-exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
-
-/***/ }),
+/* 456 */,
 /* 457 */,
 /* 458 */,
 /* 459 */,
@@ -31343,17 +31510,10 @@ exports.default = _default;
 /* 468 */,
 /* 469 */,
 /* 470 */,
-/* 471 */,
-/* 472 */,
-/* 473 */,
-/* 474 */,
-/* 475 */,
-/* 476 */,
-/* 477 */,
-/* 478 */
-/*!*****************************************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uni-file-picker/components/uni-file-picker/choose-and-upload-file.js ***!
-  \*****************************************************************************************************************/
+/* 471 */
+/*!**********************************************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uni-file-picker/components/uni-file-picker/choose-and-upload-file.js ***!
+  \**********************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -31564,13 +31724,13 @@ function chooseAndUploadFile() {
   }
   return uploadFiles(chooseAll(opts), opts);
 }
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/wx.js */ 1)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/uni-cloud/dist/index.js */ 306)["default"]))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/wx.js */ 1)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/uni-cloud/dist/index.js */ 298)["default"]))
 
 /***/ }),
-/* 479 */
-/*!************************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uni-file-picker/components/uni-file-picker/utils.js ***!
-  \************************************************************************************************/
+/* 472 */
+/*!*****************************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uni-file-picker/components/uni-file-picker/utils.js ***!
+  \*****************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -31730,17 +31890,17 @@ exports.get_file_data = get_file_data;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 480 */,
-/* 481 */,
-/* 482 */,
-/* 483 */,
-/* 484 */,
-/* 485 */,
-/* 486 */,
-/* 487 */
-/*!***********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-overlay/props.js ***!
-  \***********************************************************************************/
+/* 473 */,
+/* 474 */,
+/* 475 */,
+/* 476 */,
+/* 477 */,
+/* 478 */,
+/* 479 */,
+/* 480 */
+/*!****************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/components/u-overlay/props.js ***!
+  \****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -31779,17 +31939,17 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 488 */,
-/* 489 */,
-/* 490 */,
-/* 491 */,
-/* 492 */,
-/* 493 */,
-/* 494 */,
-/* 495 */
-/*!**********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-sticky/props.js ***!
-  \**********************************************************************************/
+/* 481 */,
+/* 482 */,
+/* 483 */,
+/* 484 */,
+/* 485 */,
+/* 486 */,
+/* 487 */,
+/* 488 */
+/*!***************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/components/u-sticky/props.js ***!
+  \***************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -31838,17 +31998,17 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 496 */,
-/* 497 */,
-/* 498 */,
-/* 499 */,
-/* 500 */,
-/* 501 */,
-/* 502 */,
-/* 503 */
-/*!************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uni-icons/components/uni-icons/icons.js ***!
-  \************************************************************************************/
+/* 489 */,
+/* 490 */,
+/* 491 */,
+/* 492 */,
+/* 493 */,
+/* 494 */,
+/* 495 */,
+/* 496 */
+/*!*****************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uni-icons/components/uni-icons/icons.js ***!
+  \*****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -32866,6 +33026,13 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
+/* 497 */,
+/* 498 */,
+/* 499 */,
+/* 500 */,
+/* 501 */,
+/* 502 */,
+/* 503 */,
 /* 504 */,
 /* 505 */,
 /* 506 */,
@@ -32873,78 +33040,7 @@ exports.default = _default;
 /* 508 */,
 /* 509 */,
 /* 510 */,
-/* 511 */
-/*!****************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-action-sheet/props.js ***!
-  \****************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _default = {
-  props: {
-    // 操作菜单是否展示 （默认false）
-    show: {
-      type: Boolean,
-      default: uni.$u.props.actionSheet.show
-    },
-    // 标题
-    title: {
-      type: String,
-      default: uni.$u.props.actionSheet.title
-    },
-    // 选项上方的描述信息
-    description: {
-      type: String,
-      default: uni.$u.props.actionSheet.description
-    },
-    // 数据
-    actions: {
-      type: Array,
-      default: uni.$u.props.actionSheet.actions
-    },
-    // 取消按钮的文字，不为空时显示按钮
-    cancelText: {
-      type: String,
-      default: uni.$u.props.actionSheet.cancelText
-    },
-    // 点击某个菜单项时是否关闭弹窗
-    closeOnClickAction: {
-      type: Boolean,
-      default: uni.$u.props.actionSheet.closeOnClickAction
-    },
-    // 处理底部安全区（默认true）
-    safeAreaInsetBottom: {
-      type: Boolean,
-      default: uni.$u.props.actionSheet.safeAreaInsetBottom
-    },
-    // 小程序的打开方式
-    openType: {
-      type: String,
-      default: uni.$u.props.actionSheet.openType
-    },
-    // 点击遮罩是否允许关闭 (默认true)
-    closeOnClickOverlay: {
-      type: Boolean,
-      default: uni.$u.props.actionSheet.closeOnClickOverlay
-    },
-    // 圆角值
-    round: {
-      type: [Boolean, String, Number],
-      default: uni.$u.props.actionSheet.round
-    }
-  }
-};
-exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
-
-/***/ }),
+/* 511 */,
 /* 512 */,
 /* 513 */,
 /* 514 */,
@@ -32958,11 +33054,10 @@ exports.default = _default;
 /* 522 */,
 /* 523 */,
 /* 524 */,
-/* 525 */,
-/* 526 */
-/*!********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-line/props.js ***!
-  \********************************************************************************/
+/* 525 */
+/*!*************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/components/u-line/props.js ***!
+  \*************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -33010,17 +33105,17 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
+/* 526 */,
 /* 527 */,
 /* 528 */,
 /* 529 */,
 /* 530 */,
 /* 531 */,
 /* 532 */,
-/* 533 */,
-/* 534 */
-/*!*************************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uni-load-more/components/uni-load-more/i18n/index.js ***!
-  \*************************************************************************************************/
+/* 533 */
+/*!******************************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uni-load-more/components/uni-load-more/i18n/index.js ***!
+  \******************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -33032,9 +33127,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 535));
-var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 536));
-var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 537));
+var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 534));
+var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 535));
+var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 536));
 var _default = {
   en: _en.default,
   'zh-Hans': _zhHans.default,
@@ -33043,36 +33138,37 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 535 */
-/*!************************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uni-load-more/components/uni-load-more/i18n/en.json ***!
-  \************************************************************************************************/
+/* 534 */
+/*!*****************************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uni-load-more/components/uni-load-more/i18n/en.json ***!
+  \*****************************************************************************************************************/
 /*! exports provided: uni-load-more.contentdown, uni-load-more.contentrefresh, uni-load-more.contentnomore, default */
 /***/ (function(module) {
 
 module.exports = JSON.parse("{\"uni-load-more.contentdown\":\"Pull up to show more\",\"uni-load-more.contentrefresh\":\"loading...\",\"uni-load-more.contentnomore\":\"No more data\"}");
 
 /***/ }),
-/* 536 */
-/*!*****************************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uni-load-more/components/uni-load-more/i18n/zh-Hans.json ***!
-  \*****************************************************************************************************/
+/* 535 */
+/*!**********************************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uni-load-more/components/uni-load-more/i18n/zh-Hans.json ***!
+  \**********************************************************************************************************************/
 /*! exports provided: uni-load-more.contentdown, uni-load-more.contentrefresh, uni-load-more.contentnomore, default */
 /***/ (function(module) {
 
 module.exports = JSON.parse("{\"uni-load-more.contentdown\":\"上拉显示更多\",\"uni-load-more.contentrefresh\":\"正在加载...\",\"uni-load-more.contentnomore\":\"没有更多数据了\"}");
 
 /***/ }),
-/* 537 */
-/*!*****************************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uni-load-more/components/uni-load-more/i18n/zh-Hant.json ***!
-  \*****************************************************************************************************/
+/* 536 */
+/*!**********************************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uni-load-more/components/uni-load-more/i18n/zh-Hant.json ***!
+  \**********************************************************************************************************************/
 /*! exports provided: uni-load-more.contentdown, uni-load-more.contentrefresh, uni-load-more.contentnomore, default */
 /***/ (function(module) {
 
 module.exports = JSON.parse("{\"uni-load-more.contentdown\":\"上拉顯示更多\",\"uni-load-more.contentrefresh\":\"正在加載...\",\"uni-load-more.contentnomore\":\"沒有更多數據了\"}");
 
 /***/ }),
+/* 537 */,
 /* 538 */,
 /* 539 */,
 /* 540 */,
@@ -33086,11 +33182,143 @@ module.exports = JSON.parse("{\"uni-load-more.contentdown\":\"上拉顯示更多
 /* 548 */,
 /* 549 */,
 /* 550 */,
-/* 551 */,
-/* 552 */
-/*!*********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-badge/props.js ***!
-  \*********************************************************************************/
+/* 551 */
+/*!*************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/components/u-text/props.js ***!
+  \*************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _default = {
+  props: {
+    // 主题颜色
+    type: {
+      type: String,
+      default: uni.$u.props.text.type
+    },
+    // 是否显示
+    show: {
+      type: Boolean,
+      default: uni.$u.props.text.show
+    },
+    // 显示的值
+    text: {
+      type: [String, Number],
+      default: uni.$u.props.text.text
+    },
+    // 前置图标
+    prefixIcon: {
+      type: String,
+      default: uni.$u.props.text.prefixIcon
+    },
+    // 后置图标
+    suffixIcon: {
+      type: String,
+      default: uni.$u.props.text.suffixIcon
+    },
+    // 文本处理的匹配模式
+    // text-普通文本，price-价格，phone-手机号，name-姓名，date-日期，link-超链接
+    mode: {
+      type: String,
+      default: uni.$u.props.text.mode
+    },
+    // mode=link下，配置的链接
+    href: {
+      type: String,
+      default: uni.$u.props.text.href
+    },
+    // 格式化规则
+    format: {
+      type: [String, Function],
+      default: uni.$u.props.text.format
+    },
+    // mode=phone时，点击文本是否拨打电话
+    call: {
+      type: Boolean,
+      default: uni.$u.props.text.call
+    },
+    // 小程序的打开方式
+    openType: {
+      type: String,
+      default: uni.$u.props.text.openType
+    },
+    // 是否粗体，默认normal
+    bold: {
+      type: Boolean,
+      default: uni.$u.props.text.bold
+    },
+    // 是否块状
+    block: {
+      type: Boolean,
+      default: uni.$u.props.text.block
+    },
+    // 文本显示的行数，如果设置，超出此行数，将会显示省略号
+    lines: {
+      type: [String, Number],
+      default: uni.$u.props.text.lines
+    },
+    // 文本颜色
+    color: {
+      type: String,
+      default: uni.$u.props.text.color
+    },
+    // 字体大小
+    size: {
+      type: [String, Number],
+      default: uni.$u.props.text.size
+    },
+    // 图标的样式
+    iconStyle: {
+      type: [Object, String],
+      default: uni.$u.props.text.iconStyle
+    },
+    // 文字装饰，下划线，中划线等，可选值 none|underline|line-through
+    decoration: {
+      tepe: String,
+      default: uni.$u.props.text.decoration
+    },
+    // 外边距，对象、字符串，数值形式均可
+    margin: {
+      type: [Object, String, Number],
+      default: uni.$u.props.text.margin
+    },
+    // 文本行高
+    lineHeight: {
+      type: [String, Number],
+      default: uni.$u.props.text.lineHeight
+    },
+    // 文本对齐方式，可选值left|center|right
+    align: {
+      type: String,
+      default: uni.$u.props.text.align
+    },
+    // 文字换行，可选值break-word|normal|anywhere
+    wordWrap: {
+      type: String,
+      default: uni.$u.props.text.wordWrap
+    }
+  }
+};
+exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
+
+/***/ }),
+/* 552 */,
+/* 553 */,
+/* 554 */,
+/* 555 */,
+/* 556 */,
+/* 557 */
+/*!**************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/components/u-badge/props.js ***!
+  \**************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -33177,11 +33405,6 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 553 */,
-/* 554 */,
-/* 555 */,
-/* 556 */,
-/* 557 */,
 /* 558 */,
 /* 559 */,
 /* 560 */,
@@ -33189,12 +33412,10 @@ exports.default = _default;
 /* 562 */,
 /* 563 */,
 /* 564 */,
-/* 565 */,
-/* 566 */,
-/* 567 */
-/*!****************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-loading-icon/props.js ***!
-  \****************************************************************************************/
+/* 565 */
+/*!*********************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/components/u-loading-icon/props.js ***!
+  \*********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -33268,17 +33489,17 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
+/* 566 */,
+/* 567 */,
 /* 568 */,
 /* 569 */,
 /* 570 */,
 /* 571 */,
 /* 572 */,
-/* 573 */,
-/* 574 */,
-/* 575 */
-/*!********************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-swiper-indicator/props.js ***!
-  \********************************************************************************************/
+/* 573 */
+/*!*************************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/components/u-swiper-indicator/props.js ***!
+  \*************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -33322,17 +33543,17 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
+/* 574 */,
+/* 575 */,
 /* 576 */,
 /* 577 */,
 /* 578 */,
 /* 579 */,
 /* 580 */,
-/* 581 */,
-/* 582 */,
-/* 583 */
-/*!**************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-transition/props.js ***!
-  \**************************************************************************************/
+/* 581 */
+/*!*******************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/components/u-transition/props.js ***!
+  \*******************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -33371,10 +33592,10 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
-/* 584 */
-/*!*******************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-transition/transition.js ***!
-  \*******************************************************************************************/
+/* 582 */
+/*!************************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/components/u-transition/transition.js ***!
+  \************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -33388,7 +33609,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 30));
 var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 32));
-var _nvueAniMap = _interopRequireDefault(__webpack_require__(/*! ./nvue.ani-map.js */ 585));
+var _nvueAniMap = _interopRequireDefault(__webpack_require__(/*! ./nvue.ani-map.js */ 583));
 // 定义一个一定时间后自动成功的promise，让调用nextTick方法处，进入下一个then方法
 var nextTick = function nextTick() {
   return new Promise(function (resolve) {
@@ -33480,10 +33701,10 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 585 */
-/*!*********************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-transition/nvue.ani-map.js ***!
-  \*********************************************************************************************/
+/* 583 */
+/*!**************************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/components/u-transition/nvue.ani-map.js ***!
+  \**************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -33673,295 +33894,17 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
+/* 584 */,
+/* 585 */,
 /* 586 */,
 /* 587 */,
 /* 588 */,
 /* 589 */,
 /* 590 */,
-/* 591 */,
-/* 592 */,
-/* 593 */
-/*!***************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-safe-bottom/props.js ***!
-  \***************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _default = {
-  props: {}
-};
-exports.default = _default;
-
-/***/ }),
-/* 594 */,
-/* 595 */,
-/* 596 */,
-/* 597 */,
-/* 598 */,
-/* 599 */,
-/* 600 */,
-/* 601 */
-/*!********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-text/props.js ***!
-  \********************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _default = {
-  props: {
-    // 主题颜色
-    type: {
-      type: String,
-      default: uni.$u.props.text.type
-    },
-    // 是否显示
-    show: {
-      type: Boolean,
-      default: uni.$u.props.text.show
-    },
-    // 显示的值
-    text: {
-      type: [String, Number],
-      default: uni.$u.props.text.text
-    },
-    // 前置图标
-    prefixIcon: {
-      type: String,
-      default: uni.$u.props.text.prefixIcon
-    },
-    // 后置图标
-    suffixIcon: {
-      type: String,
-      default: uni.$u.props.text.suffixIcon
-    },
-    // 文本处理的匹配模式
-    // text-普通文本，price-价格，phone-手机号，name-姓名，date-日期，link-超链接
-    mode: {
-      type: String,
-      default: uni.$u.props.text.mode
-    },
-    // mode=link下，配置的链接
-    href: {
-      type: String,
-      default: uni.$u.props.text.href
-    },
-    // 格式化规则
-    format: {
-      type: [String, Function],
-      default: uni.$u.props.text.format
-    },
-    // mode=phone时，点击文本是否拨打电话
-    call: {
-      type: Boolean,
-      default: uni.$u.props.text.call
-    },
-    // 小程序的打开方式
-    openType: {
-      type: String,
-      default: uni.$u.props.text.openType
-    },
-    // 是否粗体，默认normal
-    bold: {
-      type: Boolean,
-      default: uni.$u.props.text.bold
-    },
-    // 是否块状
-    block: {
-      type: Boolean,
-      default: uni.$u.props.text.block
-    },
-    // 文本显示的行数，如果设置，超出此行数，将会显示省略号
-    lines: {
-      type: [String, Number],
-      default: uni.$u.props.text.lines
-    },
-    // 文本颜色
-    color: {
-      type: String,
-      default: uni.$u.props.text.color
-    },
-    // 字体大小
-    size: {
-      type: [String, Number],
-      default: uni.$u.props.text.size
-    },
-    // 图标的样式
-    iconStyle: {
-      type: [Object, String],
-      default: uni.$u.props.text.iconStyle
-    },
-    // 文字装饰，下划线，中划线等，可选值 none|underline|line-through
-    decoration: {
-      tepe: String,
-      default: uni.$u.props.text.decoration
-    },
-    // 外边距，对象、字符串，数值形式均可
-    margin: {
-      type: [Object, String, Number],
-      default: uni.$u.props.text.margin
-    },
-    // 文本行高
-    lineHeight: {
-      type: [String, Number],
-      default: uni.$u.props.text.lineHeight
-    },
-    // 文本对齐方式，可选值left|center|right
-    align: {
-      type: String,
-      default: uni.$u.props.text.align
-    },
-    // 文字换行，可选值break-word|normal|anywhere
-    wordWrap: {
-      type: String,
-      default: uni.$u.props.text.wordWrap
-    }
-  }
-};
-exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
-
-/***/ }),
-/* 602 */,
-/* 603 */,
-/* 604 */,
-/* 605 */,
-/* 606 */,
-/* 607 */,
-/* 608 */,
-/* 609 */,
-/* 610 */,
-/* 611 */,
-/* 612 */,
-/* 613 */,
-/* 614 */,
-/* 615 */,
-/* 616 */,
-/* 617 */,
-/* 618 */,
-/* 619 */,
-/* 620 */,
-/* 621 */
-/*!*********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-popup/props.js ***!
-  \*********************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _default = {
-  props: {
-    // 是否展示弹窗
-    show: {
-      type: Boolean,
-      default: uni.$u.props.popup.show
-    },
-    // 是否显示遮罩
-    overlay: {
-      type: Boolean,
-      default: uni.$u.props.popup.overlay
-    },
-    // 弹出的方向，可选值为 top bottom right left center
-    mode: {
-      type: String,
-      default: uni.$u.props.popup.mode
-    },
-    // 动画时长，单位ms
-    duration: {
-      type: [String, Number],
-      default: uni.$u.props.popup.duration
-    },
-    // 是否显示关闭图标
-    closeable: {
-      type: Boolean,
-      default: uni.$u.props.popup.closeable
-    },
-    // 自定义遮罩的样式
-    overlayStyle: {
-      type: [Object, String],
-      default: uni.$u.props.popup.overlayStyle
-    },
-    // 点击遮罩是否关闭弹窗
-    closeOnClickOverlay: {
-      type: Boolean,
-      default: uni.$u.props.popup.closeOnClickOverlay
-    },
-    // 层级
-    zIndex: {
-      type: [String, Number],
-      default: uni.$u.props.popup.zIndex
-    },
-    // 是否为iPhoneX留出底部安全距离
-    safeAreaInsetBottom: {
-      type: Boolean,
-      default: uni.$u.props.popup.safeAreaInsetBottom
-    },
-    // 是否留出顶部安全距离（状态栏高度）
-    safeAreaInsetTop: {
-      type: Boolean,
-      default: uni.$u.props.popup.safeAreaInsetTop
-    },
-    // 自定义关闭图标位置，top-left为左上角，top-right为右上角，bottom-left为左下角，bottom-right为右下角
-    closeIconPos: {
-      type: String,
-      default: uni.$u.props.popup.closeIconPos
-    },
-    // 是否显示圆角
-    round: {
-      type: [Boolean, String, Number],
-      default: uni.$u.props.popup.round
-    },
-    // mode=center，也即中部弹出时，是否使用缩放模式
-    zoom: {
-      type: Boolean,
-      default: uni.$u.props.popup.zoom
-    },
-    // 弹窗背景色，设置为transparent可去除白色背景
-    bgColor: {
-      type: String,
-      default: uni.$u.props.popup.bgColor
-    },
-    // 遮罩的透明度，0-1之间
-    overlayOpacity: {
-      type: [Number, String],
-      default: uni.$u.props.popup.overlayOpacity
-    }
-  }
-};
-exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
-
-/***/ }),
-/* 622 */,
-/* 623 */,
-/* 624 */,
-/* 625 */,
-/* 626 */,
-/* 627 */,
-/* 628 */,
-/* 629 */
-/*!*******************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-gap/props.js ***!
-  \*******************************************************************************/
+/* 591 */
+/*!************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/components/u-gap/props.js ***!
+  \************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -34000,17 +33943,98 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
+/* 592 */,
+/* 593 */,
+/* 594 */,
+/* 595 */,
+/* 596 */,
+/* 597 */,
+/* 598 */,
+/* 599 */
+/*!*******************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/components/u-status-bar/props.js ***!
+  \*******************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _default = {
+  props: {
+    bgColor: {
+      type: String,
+      default: uni.$u.props.statusBar.bgColor
+    }
+  }
+};
+exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
+
+/***/ }),
+/* 600 */,
+/* 601 */,
+/* 602 */,
+/* 603 */,
+/* 604 */,
+/* 605 */,
+/* 606 */,
+/* 607 */
+/*!********************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/components/u-safe-bottom/props.js ***!
+  \********************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _default = {
+  props: {}
+};
+exports.default = _default;
+
+/***/ }),
+/* 608 */,
+/* 609 */,
+/* 610 */,
+/* 611 */,
+/* 612 */,
+/* 613 */,
+/* 614 */,
+/* 615 */,
+/* 616 */,
+/* 617 */,
+/* 618 */,
+/* 619 */,
+/* 620 */,
+/* 621 */,
+/* 622 */,
+/* 623 */,
+/* 624 */,
+/* 625 */,
+/* 626 */,
+/* 627 */,
+/* 628 */,
+/* 629 */,
 /* 630 */,
 /* 631 */,
 /* 632 */,
 /* 633 */,
 /* 634 */,
 /* 635 */,
-/* 636 */,
-/* 637 */
-/*!********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-text/value.js ***!
-  \********************************************************************************/
+/* 636 */
+/*!*************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/components/u-text/value.js ***!
+  \*************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -34115,50 +34139,17 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
+/* 637 */,
 /* 638 */,
 /* 639 */,
 /* 640 */,
 /* 641 */,
 /* 642 */,
 /* 643 */,
-/* 644 */,
-/* 645 */
-/*!**************************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-status-bar/props.js ***!
-  \**************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _default = {
-  props: {
-    bgColor: {
-      type: String,
-      default: uni.$u.props.statusBar.bgColor
-    }
-  }
-};
-exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
-
-/***/ }),
-/* 646 */,
-/* 647 */,
-/* 648 */,
-/* 649 */,
-/* 650 */,
-/* 651 */,
-/* 652 */,
-/* 653 */
-/*!********************************************************************************!*\
-  !*** F:/uniappProjects/uniapp/uni_modules/uview-ui/components/u-link/props.js ***!
-  \********************************************************************************/
+/* 644 */
+/*!*************************************************************************************************!*\
+  !*** /Users/guoyiyang/uniappProjects/photocall/uni_modules/uview-ui/components/u-link/props.js ***!
+  \*************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
