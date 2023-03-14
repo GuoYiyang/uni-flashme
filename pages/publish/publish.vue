@@ -178,17 +178,19 @@
 					imgNameList: this.imageNameList,
 				}).then((res) => {
 					let [error, success] = res;
-					if (success.data == true) {
-						uni.showToast({
-							title: '发布成功'
-						})
-					} else {
-						uni.showToast({
-							title: '发布失败'
-						})
-					}
-					this.overlayShow = false;
-					uni.navigateBack();
+					setTimeout(function () {
+						if (success.data == true) {
+							uni.showToast({
+								title: '发布成功'
+							})
+						} else {
+							uni.showToast({
+								title: '发布失败'
+							})
+						}
+						this.overlayShow = false;
+						uni.navigateBack();
+					}, 2000);
 				})
 			},
 			submit() {
