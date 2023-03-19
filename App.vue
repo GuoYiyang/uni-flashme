@@ -44,7 +44,7 @@
 
 	// 设置整个项目的背景色
 	page {
-		background-color: #f5f5f5;
+		background-color: #F8F8F8;
 	}
 
 	/* #endif */

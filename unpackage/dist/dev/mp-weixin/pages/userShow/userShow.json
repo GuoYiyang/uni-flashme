@@ -16,7 +16,6 @@
     "custom-waterfalls-flow": "/uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow",
     "u-action-sheet": "/uni_modules/uview-ui/components/u-action-sheet/u-action-sheet",
     "u-popup": "/uni_modules/uview-ui/components/u-popup/u-popup",
-    "uni-section": "/uni_modules/uni-section/components/uni-section/uni-section",
-    "uni-group": "/uni_modules/uni-group/components/uni-group/uni-group"
+    "u-scroll-list": "/uni_modules/uview-ui/components/u-scroll-list/u-scroll-list"
   }
 }

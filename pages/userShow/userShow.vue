@@ -1,10 +1,10 @@
 <template>
 	<view>
 		<view style="background-color: #FFFFFF; padding-bottom: 10px; border-radius:0 0 15px 15px;">
-			
+
 			<view class="topright">
-				<u-button :plain="true" :hairline="true" color="#000000" @click="follow" 
-				:text="isFollow ? '已关注': '关注'" customStyle="border-radius:10px; width: 80px;height: 30px;"></u-button>
+				<u-button :plain="true" :hairline="true" color="#000000" @click="follow" :text="isFollow ? '已关注': '关注'"
+					customStyle="border-radius:10px; width: 80px;height: 30px;"></u-button>
 			</view>
 
 			<view class="center">
@@ -20,7 +20,7 @@
 						<text style="font-size: 20px; font-weight: bolder;">{{username}}</text>
 					</u-col>
 				</u-row>
-			
+
 				<u-row gutter="10" customStyle="padding-top: 10px;">
 					<u-col span="6">
 						<u-icon name="map" :label="city"></u-icon>
@@ -30,29 +30,30 @@
 						<!-- <text style="font-size: 12px; color: #4E4E4E;">已验证</text> -->
 					</u-col>
 				</u-row>
-				
+
 				<u-row customStyle="padding-top: 10px; padding-bottom: 10px;">
 					<u-col span="12">
 						<text style="font-size: 14px; color: #4E4E4E;">{{desc}}</text>
 					</u-col>
 				</u-row>
 			</view>
-			
+
 
 			<u-line></u-line>
 
 			<view style="padding: 10px;">
 				<u-grid :border="false" col="3">
 					<u-grid-item v-for="(listItem,listIndex) in fastList" :key="listIndex">
-						<u-icon :name="listItem.name" :size="22" customStyle="padding:10px" @click="clickFastList(listIndex)"></u-icon>
+						<u-icon :name="listItem.name" :size="22" customStyle="padding:10px"
+							@click="clickFastList(listIndex)"></u-icon>
 						<text class="grid-text">{{listItem.title}}</text>
 					</u-grid-item>
 				</u-grid>
 			</view>
 		</view>
-		
+
 		<view style="padding: 10px;">
-		
+
 		</view>
 
 		<view style="background-color: #F7F9FB; padding-top: 0px; border-radius:15px 15px 0 0;">
@@ -79,25 +80,83 @@
 				</custom-waterfalls-flow>
 			</view>
 		</view>
-		
+
 		<view>
-			<u-action-sheet :actions="popList" @select="selectClick" :show="popShow" cancelText="取消"
-				@close="this.popShow=false" :closeOnClickOverlay="true" :closeOnClickAction="true"
+
+			<u-action-sheet :actions="popContactList" @select="selectClick" :show="popContactShow" cancelText="取消"
+				@close="this.popContactShow=false" :closeOnClickOverlay="true" :closeOnClickAction="true"
 				:safeAreaInsetBottom="true"></u-action-sheet>
+
 			<u-popup :show="popPlanShow" :round="20" @close="this.popPlanShow = false" mode="bottom">
-		
-				<uni-section title="基本信息" type="line" titleFontSize="30rpx">
-					<uni-group>
-						<view>拍摄人数:1</view>
-						<view>拍摄张数:15</view>
-						<view>拍摄时长:1h</view>
-					</uni-group>
-				</uni-section>
-				<uni-section title="拍摄须知" type="line" titleFontSize="30rpx">
-					<uni-group>
-						<view>拍摄需要提前化妆。。。</view>
-					</uni-group>
-				</uni-section>
+				<view>
+					<view style="font-weight: bold; font-size: 16px; padding: 10px;">拍摄方案</view>
+
+					<u-scroll-list :indicator="false">
+						<view v-for="(item, index) in planCardList" :key="index" style="padding: 10px;">
+							<view style="width: 220px; height: 330px; padding: 20px;border: 1px solid #D3D3D3;border-radius: 12px;">
+								<view style="font-weight: bold;font-size: 14px; text-align: center;">{{item.name}}
+								</view>
+								<view style="font-weight: bold;font-size: 22px; text-align: center;">{{item.price}}
+								</view>
+								<u-line></u-line>
+								<view style="font-size: 14px; padding: 10px;">
+									<u-row customStyle="padding-bottom:18px">
+										<u-col span="4">拍摄人数</u-col>
+										<u-col span="8">拍摄人数</u-col>
+									</u-row>
+									<u-row customStyle="padding-bottom:18px">
+										<u-col span="4">服装套数</u-col>
+										<u-col span="8">服装套数</u-col>
+									</u-row>
+									<u-row customStyle="padding-bottom:18px">
+										<u-col span="4">精修张数</u-col>
+										<u-col span="8">精修张数</u-col>
+									</u-row>
+									<u-row customStyle="padding-bottom:18px">
+										<u-col span="4">底片张数</u-col>
+										<u-col span="8">底片张数</u-col>
+									</u-row>
+									<u-row customStyle="padding-bottom:18px">
+										<u-col span="4">设备型号</u-col>
+										<u-col span="8">设备型号</u-col>
+									</u-row>
+									<u-row customStyle="padding-bottom:18px">
+										<u-col span="4">服装造型</u-col>
+										<u-col span="8">服装造型</u-col>
+									</u-row>
+									<u-row customStyle="padding-bottom:18px">
+										<u-col span="4">其他说明</u-col>
+										<u-col span="8">其他说明</u-col>
+									</u-row>
+								</view>
+							</view>
+						</view>
+					</u-scroll-list>
+
+
+					<view style="font-weight: bold;font-size: 16px; padding: 10px;">拍摄须知</view>
+					
+					<view style="background: #F6F7F9;border-radius: 6px;padding: 16px">
+						<u-row>
+							1.提供部分尺码的服装可供选择
+						</u-row>
+						<u-row>
+							2.周未及节假日取片时间会有延迟，具体取片时间可联系摄影师沟通
+						</u-row>
+						<u-row>
+							3.可以在拍摄或看片时提出您对照片的要求，若修图最终效果不满意，可以除定金外推款处理
+						</u-row>
+						<u-row>
+							4.如有其他疑问可通过我的主页【联系摄影师】咨询我，或者在【留言&咨询】处进行留言
+						</u-row>
+					</view>
+
+
+					<view style="padding: 10px;">
+						<u-button color="#000000" @click="this.popShow=true">在线预约</u-button>
+					</view>
+
+				</view>
 			</u-popup>
 		</view>
 
@@ -148,22 +207,43 @@
 						title: '联系方式'
 					},
 				],
-				popShow: false,
-				popPlanShow:false,
-				popList: [{
+				popContactShow: false,
+				popPlanShow: false,
+				popContactList: [{
 					name: '电话'
 				}, {
 					name: '微信'
 				}],
+				planCardList: [{
+						name: '12123',
+						price: 111
+					},
+					{
+						name: '657567',
+						price: 111
+					},
+					{
+						name: '907567',
+						price: 111
+					},
+					{
+						name: '907567',
+						price: 111
+					},
+					{
+						name: '907567',
+						price: 111
+					}
+				]
 			}
 		},
 		methods: {
-			clickFastList(item){
+			clickFastList(item) {
 				if (item == 1) {
 					this.popPlanShow = true;
 				}
 				if (item == 2) {
-					this.popShow = true;
+					this.popContactShow = true;
 				}
 			},
 			selectClick(item) {
@@ -266,14 +346,13 @@
 </script>
 
 <style lang="scss" scoped>
-	
 	.topright {
-	  position: absolute;
-	  top: 8px;
-	  right: 16px;
-	  font-size: 15px;
+		position: absolute;
+		top: 8px;
+		right: 16px;
+		font-size: 15px;
 	}
-	
+
 	.center {
 		height: 100%;
 		flex: auto;

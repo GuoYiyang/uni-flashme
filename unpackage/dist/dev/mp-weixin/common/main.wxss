@@ -2585,7 +2585,7 @@
   border-color: #e9e9eb;
 }
 page {
-  background-color: #f5f5f5;
+  background-color: #F8F8F8;
 }
 .example-info {
   font-size: 14px;

@@ -38,20 +38,30 @@
 		<view style="padding: 5px;"></view>
 
 		<view style="background-color: #FFFFFF; border-radius:15px 15px 15px 15px; padding-bottom: 40px;">
+			
+			<u-row>
+				<u-col span="10">
+					<view style="font-weight:bold; font-size: 16px; padding: 14px;">
+						{{cameramanName}}的其他作品
+					</view>
+				</u-col>
+				<u-col span="2">
+					<view style="font-size: 12px; color: #808080;" @click="clickCard">
+						查看更多
+					</view>
+				</u-col>
+			</u-row>
 
-			<view style="font-weight:bold; font-size: 16px; padding: 18px;">{{cameramanName}}的其他作品</view>
 
-			<u-swiper :list="other.list" keyName="image" circular imgMode="aspectFill" @click="clickSwiper" height="300"
-				previousMargin="100" nextMargin="100" :autoplay="false" bgColor="#ffffff"></u-swiper>
-			<!-- 			<view class="content-item">
-			    <u-scroll-list :indicator="false">
-			        <view class="pic-wrap">
-			            <view v-for="(item, index) in other.list" :key="index" class="pic-item">
-			              <u--image :src="item.image" :lazy-load="true" mode="heightFix" height="200"></u--image>
-			            </view>
-			        </view>
-			    </u-scroll-list>
-			</view> -->
+
+			<!-- 			<u-swiper :list="other.list" keyName="image" circular imgMode="aspectFill" @click="clickSwiper" height="300"
+				previousMargin="100" nextMargin="100" :autoplay="false" bgColor="#ffffff"></u-swiper> -->
+			<u-scroll-list indicatorActiveColor="#000000">
+				<view v-for="(item, index) in other.list" :key="index" style="padding: 6px;">
+					<image :src="item.image" mode="aspectFill" style="height: 240px; width: 180px;border-radius: 10px;"
+						@click="clickSwiper(item)"></image>
+				</view>
+			</u-scroll-list>
 		</view>
 
 		<view>
@@ -213,7 +223,7 @@
 				}
 			},
 			clickSwiper(item) {
-				let productId = this.other.list[item].id;
+				let productId = item.id;
 				uni.navigateTo({
 					url: '../product/product?id=' + productId
 				})
