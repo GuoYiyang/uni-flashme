@@ -47,10 +47,10 @@
 			</view>
 
 		</view>
-		
-		
+
+
 		<u-overlay :show="overlayShow"></u-overlay>
-		
+
 	</view>
 </template>
 
@@ -63,7 +63,7 @@
 	export default {
 		data() {
 			return {
-				overlayShow:false,
+				overlayShow: false,
 				imagePath: '',
 				imageName: '',
 				imagePathList: [],
@@ -199,7 +199,6 @@
 				});
 				this.overlayShow = true;
 				this.publish();
-
 			}
 		}
 	}
