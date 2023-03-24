@@ -102,26 +102,20 @@ __webpack_require__.r(__webpack_exports__);
 var components
 try {
   components = {
+    uButton: function () {
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-button/u-button.vue */ 438))
+    },
+    uPicker: function () {
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-picker/u-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-picker/u-picker")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-picker/u-picker.vue */ 715))
+    },
+    uScrollList: function () {
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-scroll-list/u-scroll-list */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-scroll-list/u-scroll-list")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-scroll-list/u-scroll-list.vue */ 388))
+    },
     uRow: function () {
       return Promise.all(/*! import() | uni_modules/uview-ui/components/u-row/u-row */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-row/u-row")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-row/u-row.vue */ 276))
     },
     uCol: function () {
       return Promise.all(/*! import() | uni_modules/uview-ui/components/u-col/u-col */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-col/u-col")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-col/u-col.vue */ 284))
-    },
-    uniDataPicker: function () {
-      return Promise.all(/*! import() | uni_modules/uni-data-picker/components/uni-data-picker/uni-data-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-data-picker/components/uni-data-picker/uni-data-picker")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-data-picker/components/uni-data-picker/uni-data-picker.vue */ 292))
-    },
-    uSearch: function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-search/u-search */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-search/u-search")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-search/u-search.vue */ 309))
-    },
-    uGrid: function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-grid/u-grid */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-grid/u-grid")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-grid/u-grid.vue */ 317))
-    },
-    uGridItem: function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-grid-item/u-grid-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-grid-item/u-grid-item")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-grid-item/u-grid-item.vue */ 325))
-    },
-    uIcon: function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-icon/u-icon */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-icon/u-icon")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-icon/u-icon.vue */ 333))
     },
     customWaterfallsFlow: function () {
       return Promise.all(/*! import() | uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow")]).then(__webpack_require__.bind(null, /*! @/uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow.vue */ 342))
@@ -151,6 +145,14 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  if (!_vm._isMounted) {
+    _vm.e0 = function ($event) {
+      _vm.cityPickerShow = true
+    }
+    _vm.e1 = function ($event) {
+      _vm.cityPickerShow = false
+    }
+  }
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -196,6 +198,43 @@ var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/r
 var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ 5));
 var _product = __webpack_require__(/*! @/api/product.js */ 168);
 var _user = __webpack_require__(/*! @/api/user.js */ 33);
+var _method = __webpack_require__(/*! @/common/method.js */ 185);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -261,6 +300,26 @@ var _user = __webpack_require__(/*! @/api/user.js */ 33);
 var _default = {
   data: function data() {
     return {
+      cityPickerShow: false,
+      tagList: [{
+        image: "https://img.500px.me/photo/a1f7f283342049b8e766f0bcab8931544/4da039ce2bfc4a3ea7147ff663e1e725.jpg!p5"
+      }, {
+        image: "https://img.500px.me/photo/a1f7f283342049b8e766f0bcab8931544/4da039ce2bfc4a3ea7147ff663e1e725.jpg!p5"
+      }, {
+        image: "https://img.500px.me/photo/a1f7f283342049b8e766f0bcab8931544/4da039ce2bfc4a3ea7147ff663e1e725.jpg!p5"
+      }, {
+        image: "https://img.500px.me/photo/a1f7f283342049b8e766f0bcab8931544/4da039ce2bfc4a3ea7147ff663e1e725.jpg!p5"
+      }, {
+        image: "https://img.500px.me/photo/a1f7f283342049b8e766f0bcab8931544/4da039ce2bfc4a3ea7147ff663e1e725.jpg!p5"
+      }, {
+        image: "https://img.500px.me/photo/a1f7f283342049b8e766f0bcab8931544/4da039ce2bfc4a3ea7147ff663e1e725.jpg!p5"
+      }, {
+        image: "https://img.500px.me/photo/a1f7f283342049b8e766f0bcab8931544/4da039ce2bfc4a3ea7147ff663e1e725.jpg!p5"
+      }, {
+        image: "https://img.500px.me/photo/a1f7f283342049b8e766f0bcab8931544/4da039ce2bfc4a3ea7147ff663e1e725.jpg!p5"
+      }, {
+        image: "https://img.500px.me/photo/a1f7f283342049b8e766f0bcab8931544/4da039ce2bfc4a3ea7147ff663e1e725.jpg!p5"
+      }],
       nvConfig: {
         title: 'PhotoCall',
         bgColor: '#ffffff',
@@ -281,7 +340,21 @@ var _default = {
         // }
       },
 
+      cityPickerList: [[{
+        value: "0",
+        text: "深圳"
+      }, {
+        value: "1",
+        text: "北京"
+      }, {
+        value: "2",
+        text: "上海"
+      }, {
+        value: "3",
+        text: "广州"
+      }]],
       city: '0',
+      cityName: '',
       cityList: [{
         value: "0",
         text: "深圳"
@@ -339,6 +412,23 @@ var _default = {
         _this2.product.list = success.data;
         _this2.$refs.waterfallsFlowRef.refresh();
       });
+      this.cityName = (0, _method.changeCity)(this.city);
+    },
+    confirmCityPicker: function confirmCityPicker(item) {
+      var _this3 = this;
+      this.city = item.value[0].value;
+      (0, _product.productRandom)({
+        city: item.value[0].value
+      }).then(function (res) {
+        var _res2 = (0, _slicedToArray2.default)(res, 2),
+          error = _res2[0],
+          success = _res2[1];
+        _this3.product.list = success.data;
+        _this3.$refs.waterfallsFlowRef.refresh();
+      });
+      this.cityPickerShow = false;
+      console.log();
+      this.cityName = (0, _method.changeCity)(this.city);
     },
     wapperClick: function wapperClick(item) {
       uni.navigateTo({
@@ -371,20 +461,20 @@ var _default = {
     }
   },
   onTabItemTap: function onTabItemTap() {
-    var _this3 = this;
+    var _this4 = this;
     this.tabClickCnt++;
     setTimeout(function () {
-      if (_this3.tabClickCnt >= 2) {
+      if (_this4.tabClickCnt >= 2) {
         uni.pageScrollTo({
           scrollTop: 0,
           duration: 200
         });
       }
-      _this3.tabClickCnt = 0;
+      _this4.tabClickCnt = 0;
     }, 250);
   },
   onLoad: function onLoad(param) {
-    var _this4 = this;
+    var _this5 = this;
     return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
       var _this, city;
       return _regenerator.default.wrap(function _callee$(_context) {
@@ -392,28 +482,30 @@ var _default = {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return _this4.$onLaunched;
+              return _this5.$onLaunched;
             case 2:
-              _this = _this4;
-              city = _this4.city;
+              _this = _this5;
+              city = _this5.city;
               if (param.city != null) {
-                _this4.city = param.city;
+                _this5.city = param.city;
                 city = param.city;
               }
+              _this5.cityName = (0, _method.changeCity)(_this5.city);
               (0, _product.productRandom)({
                 city: city
               }).then(function (res) {
-                var _res2 = (0, _slicedToArray2.default)(res, 2),
-                  error = _res2[0],
-                  success = _res2[1];
+                var _res3 = (0, _slicedToArray2.default)(res, 2),
+                  error = _res3[0],
+                  success = _res3[1];
                 _this.product.list = success.data;
               });
               uni.showShareMenu({
                 withShareTicket: true,
                 menus: ["shareAppMessage", "shareTimeline"]
               });
+
               // })
-            case 7:
+            case 8:
             case "end":
               return _context.stop();
           }
@@ -422,21 +514,6 @@ var _default = {
     }))();
   },
   onPullDownRefresh: function onPullDownRefresh() {
-    var _this5 = this;
-    (0, _product.productRandom)({
-      city: this.city
-    }).then(function (res) {
-      var _res3 = (0, _slicedToArray2.default)(res, 2),
-        error = _res3[0],
-        success = _res3[1];
-      _this5.product.list = success.data;
-      _this5.$refs.waterfallsFlowRef.refresh();
-    });
-    setTimeout(function () {
-      uni.stopPullDownRefresh();
-    }, 500);
-  },
-  onReachBottom: function onReachBottom() {
     var _this6 = this;
     (0, _product.productRandom)({
       city: this.city
@@ -444,7 +521,22 @@ var _default = {
       var _res4 = (0, _slicedToArray2.default)(res, 2),
         error = _res4[0],
         success = _res4[1];
-      _this6.product.list = _this6.product.list.concat(success.data);
+      _this6.product.list = success.data;
+      _this6.$refs.waterfallsFlowRef.refresh();
+    });
+    setTimeout(function () {
+      uni.stopPullDownRefresh();
+    }, 500);
+  },
+  onReachBottom: function onReachBottom() {
+    var _this7 = this;
+    (0, _product.productRandom)({
+      city: this.city
+    }).then(function (res) {
+      var _res5 = (0, _slicedToArray2.default)(res, 2),
+        error = _res5[0],
+        success = _res5[1];
+      _this7.product.list = _this7.product.list.concat(success.data);
     });
   }
 };

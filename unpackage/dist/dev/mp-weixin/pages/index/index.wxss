@@ -13,17 +13,4 @@ page {
   justify-content: flex-start;
   display: flex;
 }
-.item.data-v-57280228 {
-  padding: 10rpx 10rpx 20rpx;
-}
-.item .title.data-v-57280228 {
-  font-weight: bold;
-  line-height: 48rpx;
-  font-size: 30rpx;
-  color: #222;
-}
-.item .desc.data-v-57280228 {
-  font-size: 24rpx;
-  color: #666;
-}
 

@@ -9,8 +9,14 @@ export function changeProductStatus(index) {
 }
 
 export function changeCity(index) {
-	if (index == 0) {
+	if (index == '0') {
 		return "深圳"
+	} if (index == '1') {
+		return "北京"
+	} if (index == '2') {
+		return "上海"
+	} if (index == '3') {
+		return "广州"
 	} else {
 		return "未知城市"
 	}

@@ -3,13 +3,34 @@
 
 		<!-- <nv :config="nvConfig"></nv> -->
 
-		<view style="padding: 40rpx; font-weight: bold;">
+		<!-- 		<view style="padding: 40rpx; font-weight: bold;">
 			<view style="font-size: 35rpx; padding-left: 20rpx;">HI 爱拍照的你</view>
 			<view style="padding-left: 20rpx;">在PhotoCall，探索自我</view>
-		</view>
+		</view> -->
+		<view style="margin-bottom: -25px; height: 190px; background-color: #437691">
 
+		</view>
+		<view >
+			<view>
+				<u-button icon="map" iconColor="#191919" @click="cityPickerShow = true" 
+				customStyle="width: 300px;height: 50px;font-weight: 500;font-size: 16px;line-height: 21px;background: #FFFFFF;border: 1px solid #EEEEEE;box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);border-radius: 100px">
+				<view style="color: #191919;font-family: 'PingFang SC';font-style: normal;font-weight: 500;font-size: 16px;line-height: 21px;">{{cityName}}</view>
+				
+				</u-button>
+			</view>
+			<view style="padding-top: 18px;">
+				<u-button icon="search" iconColor="#FFFFFF" @click="searchClick"
+				customStyle="width: 300px;height: 50px;background: #3D6EC2;border: 1px solid #EEEEEE;box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);border-radius: 100px">
+					<view style="color: #FFFFFF;font-family: 'PingFang SC';font-style: normal;font-weight: 500;font-size: 16px;line-height: 21px;">搜索作品或摄影师</view>
+				</u-button>
+			</view>
+		</view>
+		
+		<u-picker :show="cityPickerShow" :columns="cityPickerList" @confirm="confirmCityPicker"
+		keyName="text" @cancel="cityPickerShow = false"></u-picker>
+		
 		<!-- 搜索 -->
-		<u-row gutter="0" customStyle="padding: 20rpx; mar">
+<!-- 		<u-row gutter="0" customStyle="padding: 20rpx; mar">
 			<u-col span="3">
 				<uni-data-picker popup-title="请选择城市" :localdata="cityList" v-model="city" :clear-icon="false"
 					@change="cityChange">
@@ -20,31 +41,46 @@
 					placeholder="摄影师或者主题" bgColor="#FFFFFF">
 				</u-search>
 			</u-col>
-		</u-row>
+		</u-row> -->
 
 
 		<!-- 快捷入口 -->
-		<view style="padding-top: 20rpx; padding-bottom: 20px;">
-			<u-grid :border="false" col="4" @click="clickFastEnter">
+		<view style="padding: 28px 10px 10px 10px">
+			<u-scroll-list :indicator="false">
+				<view v-for="(item, index) in tagList" :key="index" style="padding: 4px;">
+					<image :src="item.image" mode="aspectFill" style="width: 90px;height: 110px;border-radius: 10px;">
+						</image>
+				</view>
+			</u-scroll-list>
+			
+			
+<!-- 			<u-grid :border="false" col="4" @click="clickFastEnter">
 				<u-grid-item v-for="(listItem,listIndex) in fastList" :key="listIndex">
 					<u-icon :customStyle="{paddingTop:'20rpx'}" :name="listItem.name" :size="22" bold></u-icon>
 					<text class="grid-text">{{listItem.title}}</text>
 				</u-grid-item>
-			</u-grid>
+			</u-grid> -->
 		</view>
 
 		<!-- 返回顶部 -->
 		<!-- 		<template>
 			<u-back-top :scroll-top="scrollTop" icon="arrow-up" top="1000"></u-back-top>
 		</template> -->
+		
+		<view style="padding: 0px 0px 0px 20px">
+			<u-row>
+				<u-col span="10.5"><text style="font-size: 16px;color: #191919;font-weight: 600;">精选作品</text></u-col>
+				<u-col span="1.5"><text style="font-size: 11px;color: #808080;font-weight: 400;">更多</text></u-col>
+			</u-row>
+		</view>
 
 		<!--  瀑布流  -->
-		<view style="padding: 10rpx;">
+		<view style="padding: 18px 6px 0 6px;">
 			<custom-waterfalls-flow :value="product.list" :column="2" :columnSpace="1" @imageClick="imageClick"
 				@wapperClick="wapperClick" ref="waterfallsFlowRef">
-				<view class="item" v-for="(item,index) in product.list" :key="index" slot="slot{{index}}">
-					<view class="title">{{item.title}}</view>
-					<view>
+				<view style="padding: 5px;" v-for="(item,index) in product.list" :key="index" slot="slot{{index}}">
+					<view style="font-weight: 600;font-size: 16px;line-height: 20px;padding: 6px 6px 6px 6px">{{item.title}}</view>
+					<view style="padding: 0px 6px 6px 6px">
 						<u-row>
 							<u-col span="1.5" align="center">
 								<u-avatar :src="item.userInfo.avatar" size='18'></u-avatar>
@@ -68,9 +104,42 @@
 	import {
 		getUserInfo
 	} from '@/api/user.js'
+	import {
+		changeCity
+	} from '@/common/method.js'
 	export default {
 		data() {
 			return {
+				cityPickerShow:false,
+				tagList:[
+					{
+						image:"https://img.500px.me/photo/a1f7f283342049b8e766f0bcab8931544/4da039ce2bfc4a3ea7147ff663e1e725.jpg!p5"
+					},
+					{
+						image:"https://img.500px.me/photo/a1f7f283342049b8e766f0bcab8931544/4da039ce2bfc4a3ea7147ff663e1e725.jpg!p5"
+					},
+					{
+						image:"https://img.500px.me/photo/a1f7f283342049b8e766f0bcab8931544/4da039ce2bfc4a3ea7147ff663e1e725.jpg!p5"
+					},
+					{
+						image:"https://img.500px.me/photo/a1f7f283342049b8e766f0bcab8931544/4da039ce2bfc4a3ea7147ff663e1e725.jpg!p5"
+					},
+					{
+						image:"https://img.500px.me/photo/a1f7f283342049b8e766f0bcab8931544/4da039ce2bfc4a3ea7147ff663e1e725.jpg!p5"
+					},
+					{
+						image:"https://img.500px.me/photo/a1f7f283342049b8e766f0bcab8931544/4da039ce2bfc4a3ea7147ff663e1e725.jpg!p5"
+					},
+					{
+						image:"https://img.500px.me/photo/a1f7f283342049b8e766f0bcab8931544/4da039ce2bfc4a3ea7147ff663e1e725.jpg!p5"
+					},
+					{
+						image:"https://img.500px.me/photo/a1f7f283342049b8e766f0bcab8931544/4da039ce2bfc4a3ea7147ff663e1e725.jpg!p5"
+					},
+					{
+						image:"https://img.500px.me/photo/a1f7f283342049b8e766f0bcab8931544/4da039ce2bfc4a3ea7147ff663e1e725.jpg!p5"
+					}
+				],
 				nvConfig: {
 					title: 'PhotoCall',
 					bgColor: '#ffffff',
@@ -90,7 +159,26 @@
 
 					// }
 				},
+				cityPickerList:[[
+					{
+							value: "0",
+							text: "深圳"
+						},
+						{
+							value: "1",
+							text: "北京"
+						},
+						{
+							value: "2",
+							text: "上海"
+						},
+						{
+							value: "3",
+							text: "广州"
+						}
+				]],
 				city: '0',
+				cityName: '',
 				cityList: [{
 						value: "0",
 						text: "深圳"
@@ -157,6 +245,20 @@
 					this.product.list = success.data;
 					this.$refs.waterfallsFlowRef.refresh();
 				})
+				this.cityName = changeCity(this.city);
+			},
+			confirmCityPicker(item){
+				this.city = item.value[0].value;
+				productRandom({
+					city: item.value[0].value
+				}).then((res) => {
+					let [error, success] = res;
+					this.product.list = success.data;
+					this.$refs.waterfallsFlowRef.refresh();
+				})
+				this.cityPickerShow = false;
+				console.log()
+				this.cityName = changeCity(this.city);
 			},
 			wapperClick(item) {
 				uni.navigateTo({
@@ -186,8 +288,7 @@
 				uni.navigateTo({
 					url: '/pages/search/search?city=' + this.city
 				});
-			},
-
+			}
 		},
 		onTabItemTap() {
 			this.tabClickCnt++;
@@ -209,6 +310,7 @@
 				this.city = param.city;
 				city = param.city;
 			}
+			this.cityName = changeCity(this.city);
 			productRandom({
 				city: city
 			}).then((res) => {
@@ -219,6 +321,7 @@
 				withShareTicket: true,
 				menus: ["shareAppMessage", "shareTimeline"]
 			});
+			
 			// })
 		},
 		onPullDownRefresh() {
@@ -258,20 +361,4 @@
 	}
 
 	$nav-height: 30px;
-
-	.item {
-		padding: 10rpx 10rpx 20rpx;
-
-		.title {
-			font-weight: bold;
-			line-height: 48rpx;
-			font-size: 30rpx;
-			color: #222;
-		}
-
-		.desc {
-			font-size: 24rpx;
-			color: #666;
-		}
-	}
 </style>
