@@ -45,9 +45,9 @@
 
 
 		<!-- 快捷入口 -->
-		<view style="padding: 28px 10px 10px 10px">
+		<view style="padding: 28px 6px 10px 6px">
 			<u-scroll-list :indicator="false">
-				<view v-for="(item, index) in tagList" :key="index" style="padding: 4px;">
+				<view v-for="(item, index) in tagList" :key="index" style="padding: 0 8px 0 0;">
 					<image :src="item.image" mode="aspectFill" style="width: 90px;height: 110px;border-radius: 10px;">
 						</image>
 				</view>
