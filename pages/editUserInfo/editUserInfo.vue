@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<view>
+		<view style="margin: 10px; padding: 10px; border-radius: 10px; background-color: #FFFFFF;">
 			<!-- 注意，如果需要兼容微信小程序，最好通过setRules方法设置rules规则 -->
 			<u-avatar :src="avatar" shape="square" @click="chooseAvatar"></u-avatar>
 			<u--form labelPosition="top" :rules="rules" ref="baseForm">
@@ -8,11 +8,11 @@
 					<u--input v-model="userInfo.name" border="none"></u--input>
 				</u-form-item>
 				<u-form-item label="性别" prop="userInfo.sex" borderBottom @click="showSex = true;">
-					<u--input v-model="userInfo.sexText" placeholder="请选择性别" border="none"></u--input>
+					<u--input readonly v-model="userInfo.sexText" placeholder="请选择性别" border="none"></u--input>
 					<u-icon slot="right" name="arrow-right"></u-icon>
 				</u-form-item>
 				<u-form-item label="城市" prop="userInfo.city" borderBottom @click="showCity = true;">
-					<u--input v-model="userInfo.cityText" placeholder="请选择城市" border="none"></u--input>
+					<u--input readonly v-model="userInfo.cityText" placeholder="请选择城市" border="none"></u--input>
 					<u-icon slot="right" name="arrow-right"></u-icon>
 				</u-form-item>
 				<u-form-item label="手机" prop="userInfo.phone" borderBottom>
