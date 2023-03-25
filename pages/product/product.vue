@@ -14,7 +14,7 @@
 				<view style="font-size: 25px; font-weight: bold; padding: 5px;">{{title}}</view>
 				<u-row>
 					<view v-for="(item,index) in tags" :key="index">
-						<view style="padding: 5px;">
+						<view style="padding: 4px;">
 							<u-tag :text="item" bgColor="#F3F4F5" color="#191919" borderColor="#F3F4F5"></u-tag>
 						</view>
 					</view>

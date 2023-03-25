@@ -7,7 +7,7 @@
 					</u-avatar>
 				</u-col>
 				<u-col span="7">
-					<text style="font-weight: 600;font-size: 18px;line-height: 25px;color: #191919;">
+					<text style="font-weight: 600;font-size: 20px;line-height: 25px;color: #191919;">
 						{{userInfo.username}}
 					</text>
 				</u-col>
@@ -38,7 +38,7 @@
 			</u-col>
 		</u-row> -->
 
-		<view style="margin: 12px;background-color:#FFFFFF;border-radius: 10px" v-if="isPher">
+		<view style="margin: 16px;background-color:#FFFFFF;border-radius: 10px" v-if="isPher">
 			<view style="padding: 14px 18px 20px 18px">
 				<u-row>
 					<u-col span="9.5"><text style="font-size: 13px;color: #808080;font-weight: 400;">摄影师专区</text>
@@ -59,7 +59,7 @@
 			</view>
 		</view>
 
-		<view style="margin: 12px;background-color:#FFFFFF;border-radius: 10px" v-if="isUser">
+		<view style="margin: 16px;background-color:#FFFFFF;border-radius: 10px" v-if="isUser">
 			<view style="padding: 14px 18px 20px 18px">
 				<text style="font-size: 13px;color: #808080;font-weight: 400;">用户专区</text>
 			</view>
@@ -75,29 +75,32 @@
 			</view>
 		</view>
 
-		<view style="margin: 12px;background-color:#FFFFFF;border-radius: 10px">
+		<view style="margin: 16px;background-color:#FFFFFF;border-radius: 10px;">
 			<u-list height="130px">
 				<u-list-item>
+					<u-cell title="PhotoCall预定保障" url="../policyDoc/policyDoc"
+						customStyle="font-weight: 400;font-size: 14px;line-height: 24px;">
+						<u-icon slot="icon" name="/static/price.png" customStyle="margin: -3px 5px -3px 0"></u-icon>
+						<!-- 				<u-avatar slot="icon" shape="square" size="35"
+							src="https://pic-common-1258999491.cos.ap-nanjing.myqcloud.com/index_background.jpg"
+							customStyle="margin: -3px 5px -3px 0"></u-avatar> -->
+					</u-cell>
+					<u-cell title="问题反馈" url="../feedback/feedback"
+						customStyle="font-weight: 400;font-size: 14px;line-height: 24px;">
+						<u-icon slot="icon" name="/static/price.png" customStyle="margin: -3px 5px -3px 0"></u-icon>
+						<!-- 						<u-avatar slot="icon" shape="square" size="35"
+							src="https://pic-common-1258999491.cos.ap-nanjing.myqcloud.com/index_background.jpg"
+							customStyle="margin: -3px 5px -3px 0"></u-avatar> -->
+					</u-cell>
 					<view v-if="isAdmin">
-						<u-cell title="待审核" url="../audit/audit" customStyle="font-weight: 400;font-size: 14px;line-height: 24px;">
+						<u-cell title="待审核" url="../audit/audit"
+							customStyle="font-weight: 400;font-size: 14px;line-height: 24px;" :border="false">
 							<u-icon slot="icon" name="/static/price.png" customStyle="margin: -3px 5px -3px 0"></u-icon>
-<!-- 							<u-avatar slot="icon" shape="square" size="35"
+							<!-- 							<u-avatar slot="icon" shape="square" size="35"
 								src="https://pic-common-1258999491.cos.ap-nanjing.myqcloud.com/index_background.jpg"
 								customStyle="margin: -3px 5px -3px 0"></u-avatar> -->
 						</u-cell>
 					</view>
-					<u-cell title="PhotoCall预定保障" url="../policyDoc/policyDoc" customStyle="font-weight: 400;font-size: 14px;line-height: 24px;">
-						<u-icon slot="icon" name="/static/price.png" customStyle="margin: -3px 5px -3px 0"></u-icon>
-		<!-- 				<u-avatar slot="icon" shape="square" size="35"
-							src="https://pic-common-1258999491.cos.ap-nanjing.myqcloud.com/index_background.jpg"
-							customStyle="margin: -3px 5px -3px 0"></u-avatar> -->
-					</u-cell>
-					<u-cell title="问题反馈" url="../feedback/feedback" customStyle="font-weight: 400;font-size: 14px;line-height: 24px;" :border="false">
-						<u-icon slot="icon" name="/static/price.png" customStyle="margin: -3px 5px -3px 0"></u-icon>
-<!-- 						<u-avatar slot="icon" shape="square" size="35"
-							src="https://pic-common-1258999491.cos.ap-nanjing.myqcloud.com/index_background.jpg"
-							customStyle="margin: -3px 5px -3px 0"></u-avatar> -->
-					</u-cell>
 				</u-list-item>
 			</u-list>
 		</view>

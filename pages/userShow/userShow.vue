@@ -22,13 +22,7 @@
 				</u-row>
 
 				<u-row gutter="10" customStyle="padding-top: 10px;">
-					<u-col span="6">
-						<u-icon name="map" :label="city"></u-icon>
-					</u-col>
-					<u-col span="10">
-						<u-icon name="checkmark-circle" label="已验证"></u-icon>
-						<!-- <text style="font-size: 12px; color: #4E4E4E;">已验证</text> -->
-					</u-col>
+					<u-icon name="map" :label="city"></u-icon>
 				</u-row>
 
 				<u-row customStyle="padding-top: 10px; padding-bottom: 10px;">
@@ -87,13 +81,14 @@
 				@close="this.popContactShow=false" :closeOnClickOverlay="true" :closeOnClickAction="true"
 				:safeAreaInsetBottom="true"></u-action-sheet>
 
-			<u-popup :show="popPlanShow" :round="10" @close="this.popPlanShow = false" mode="bottom" >
+			<u-popup :show="popPlanShow" :round="10" @close="this.popPlanShow = false" mode="bottom">
 				<scroll-view scroll-y="true" style="height: 500px;">
 					<view style="font-weight: bold; font-size: 16px; padding: 10px;">拍摄方案</view>
 
 					<u-scroll-list :indicator="false">
 						<view v-for="(item, index) in planCardList" :key="index" style="padding: 10px;">
-							<view style="width: 220px; height: 330px; padding: 20px;border: 1px solid #D3D3D3;border-radius: 12px;">
+							<view
+								style="width: 220px; height: 330px; padding: 20px;border: 1px solid #D3D3D3;border-radius: 12px;">
 								<view style="font-weight: bold;font-size: 14px; text-align: center;">{{item.name}}
 								</view>
 								<view style="font-weight: bold;font-size: 22px; text-align: center;">{{item.price}}
@@ -135,7 +130,7 @@
 
 
 					<view style="font-weight: bold;font-size: 16px; padding: 10px;">拍摄须知</view>
-					
+
 					<view style="background: #F6F7F9;border-radius: 6px;padding: 16px">
 						<u-row>
 							1.提供部分尺码的服装可供选择
@@ -194,8 +189,7 @@
 					name: '全部'
 				}],
 				isFollow: false,
-				fastList: [
-					{
+				fastList: [{
 						name: '/static/price.png',
 						title: '拍摄方案'
 					},
