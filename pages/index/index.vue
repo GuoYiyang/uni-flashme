@@ -7,9 +7,12 @@
 			<view style="font-size: 35rpx; padding-left: 20rpx;">HI 爱拍照的你</view>
 			<view style="padding-left: 20rpx;">在PhotoCall，探索自我</view>
 		</view> -->
-		<view style="margin-bottom: -25px; height: 190px; background-color: #437691">
-
-		</view>
+<!-- 		<view style="margin-bottom: -25px; height: 190px; background-color: #437691">
+			
+		</view> -->
+		
+		<image src="https://pic-common-1258999491.cos.ap-nanjing.myqcloud.com/index_background.jpg"
+		style="margin-bottom: -25px; height: 240px; width: 100%;"></image>
 		<view >
 			<view>
 				<u-button icon="map" iconColor="#191919" @click="cityPickerShow = true" 
@@ -45,10 +48,10 @@
 
 
 		<!-- 快捷入口 -->
-		<view style="padding: 28px 6px 10px 6px">
+		<view style="padding: 28px 10px 10px 10px">
 			<u-scroll-list :indicator="false">
 				<view v-for="(item, index) in tagList" :key="index" style="padding: 0 8px 0 0;">
-					<image :src="item.image" mode="aspectFill" style="width: 90px;height: 110px;border-radius: 10px;">
+					<image :src="item.image" mode="aspectFill" style="width: 90px;height: 110px;border-radius: 10px;" @click="clickFastEnter(index)">
 						</image>
 				</view>
 			</u-scroll-list>
@@ -70,16 +73,16 @@
 		<view style="padding: 0px 0px 0px 20px">
 			<u-row>
 				<u-col span="10.5"><text style="font-size: 16px;color: #191919;font-weight: 600;">精选作品</text></u-col>
-				<u-col span="1.5"><text style="font-size: 11px;color: #808080;font-weight: 400;">更多</text></u-col>
+				<u-col span="1.5"><text style="font-size: 13px;color: #808080;font-weight: 400;">更多</text></u-col>
 			</u-row>
 		</view>
 
 		<!--  瀑布流  -->
-		<view style="padding: 18px 6px 0 6px;">
+		<view style="padding: 18px 10px 0 10px;">
 			<custom-waterfalls-flow :value="product.list" :column="2" :columnSpace="1" @imageClick="imageClick"
 				@wapperClick="wapperClick" ref="waterfallsFlowRef">
 				<view style="padding: 5px;" v-for="(item,index) in product.list" :key="index" slot="slot{{index}}">
-					<view style="font-weight: 600;font-size: 16px;line-height: 20px;padding: 6px 6px 6px 6px">{{item.title}}</view>
+					<view style="font-weight: 600;font-size: 15px;line-height: 20px;padding: 6px 6px 6px 6px">{{item.title}}</view>
 					<view style="padding: 0px 6px 6px 6px">
 						<u-row>
 							<u-col span="1.5" align="center">
@@ -113,31 +116,25 @@
 				cityPickerShow:false,
 				tagList:[
 					{
-						image:"https://img.500px.me/photo/a1f7f283342049b8e766f0bcab8931544/4da039ce2bfc4a3ea7147ff663e1e725.jpg!p5"
+						image:"https://pic-common-1258999491.cos.ap-nanjing.myqcloud.com/%E5%A9%9A%E7%A4%BC.png"
 					},
 					{
-						image:"https://img.500px.me/photo/a1f7f283342049b8e766f0bcab8931544/4da039ce2bfc4a3ea7147ff663e1e725.jpg!p5"
+						image:"https://pic-common-1258999491.cos.ap-nanjing.myqcloud.com/%E5%A9%9A%E7%A4%BC.png"
 					},
 					{
-						image:"https://img.500px.me/photo/a1f7f283342049b8e766f0bcab8931544/4da039ce2bfc4a3ea7147ff663e1e725.jpg!p5"
+						image:"https://pic-common-1258999491.cos.ap-nanjing.myqcloud.com/%E5%A9%9A%E7%A4%BC.png"
 					},
 					{
-						image:"https://img.500px.me/photo/a1f7f283342049b8e766f0bcab8931544/4da039ce2bfc4a3ea7147ff663e1e725.jpg!p5"
+						image:"https://pic-common-1258999491.cos.ap-nanjing.myqcloud.com/%E5%A9%9A%E7%A4%BC.png"
 					},
 					{
-						image:"https://img.500px.me/photo/a1f7f283342049b8e766f0bcab8931544/4da039ce2bfc4a3ea7147ff663e1e725.jpg!p5"
+						image:"https://pic-common-1258999491.cos.ap-nanjing.myqcloud.com/%E5%A9%9A%E7%A4%BC.png"
 					},
 					{
-						image:"https://img.500px.me/photo/a1f7f283342049b8e766f0bcab8931544/4da039ce2bfc4a3ea7147ff663e1e725.jpg!p5"
+						image:"https://pic-common-1258999491.cos.ap-nanjing.myqcloud.com/%E5%A9%9A%E7%A4%BC.png"
 					},
 					{
-						image:"https://img.500px.me/photo/a1f7f283342049b8e766f0bcab8931544/4da039ce2bfc4a3ea7147ff663e1e725.jpg!p5"
-					},
-					{
-						image:"https://img.500px.me/photo/a1f7f283342049b8e766f0bcab8931544/4da039ce2bfc4a3ea7147ff663e1e725.jpg!p5"
-					},
-					{
-						image:"https://img.500px.me/photo/a1f7f283342049b8e766f0bcab8931544/4da039ce2bfc4a3ea7147ff663e1e725.jpg!p5"
+						image:"https://pic-common-1258999491.cos.ap-nanjing.myqcloud.com/%E5%A9%9A%E7%A4%BC.png"
 					}
 				],
 				nvConfig: {
@@ -269,9 +266,6 @@
 				uni.navigateTo({
 					url: '../product/product?id=' + item.id
 				})
-			},
-			selectedBanner(item, index) {
-				console.log(item, index)
 			},
 			clickFastEnter(index) {
 				uni.navigateTo({

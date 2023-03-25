@@ -2587,9 +2587,7 @@
 page {
   background-color: #F8F8F8;
 }
-.example-info {
-  font-size: 14px;
-  color: #333;
-  padding: 10px;
+::-webkit-scrollbar {
+  display: none;
 }
 

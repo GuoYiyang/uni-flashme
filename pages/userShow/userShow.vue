@@ -87,8 +87,8 @@
 				@close="this.popContactShow=false" :closeOnClickOverlay="true" :closeOnClickAction="true"
 				:safeAreaInsetBottom="true"></u-action-sheet>
 
-			<u-popup :show="popPlanShow" :round="20" @close="this.popPlanShow = false" mode="bottom">
-				<view>
+			<u-popup :show="popPlanShow" :round="10" @close="this.popPlanShow = false" mode="bottom" >
+				<scroll-view scroll-y="true" style="height: 500px;">
 					<view style="font-weight: bold; font-size: 16px; padding: 10px;">拍摄方案</view>
 
 					<u-scroll-list :indicator="false">
@@ -156,7 +156,7 @@
 						<u-button color="#000000" @click="this.popShow=true">在线预约</u-button>
 					</view>
 
-				</view>
+				</scroll-view>
 			</u-popup>
 		</view>
 

@@ -8,8 +8,7 @@
 			USER_NAME: '',
 			AVATAR: ''
 		},
-		methods: {
-		},
+		methods: {},
 		onLaunch() {
 			let _this = this;
 			uni.login({
@@ -26,7 +25,7 @@
 					})
 				}
 			});
-			
+
 		},
 		async onLoad() {
 			await this.$onLaunched;
@@ -48,9 +47,7 @@
 	}
 
 	/* #endif */
-	.example-info {
-		font-size: 14px;
-		color: #333;
-		padding: 10px;
+	::-webkit-scrollbar {
+		display: none;
 	}
 </style>

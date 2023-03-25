@@ -320,6 +320,7 @@
 					userId: this.cameramanId,
 					page: 1,
 					pageSize: 5,
+					status:'SUCCESS',
 					excludeProductId: param.id
 				}).then((res) => {
 					let [error, success] = res;
