@@ -42,7 +42,7 @@
 			<u-line></u-line>
 
 			<view style="padding: 10px;">
-				<u-grid :border="false" col="3">
+				<u-grid :border="false" col="2">
 					<u-grid-item v-for="(listItem,listIndex) in fastList" :key="listIndex">
 						<u-icon :name="listItem.name" :size="22" customStyle="padding:10px"
 							@click="clickFastList(listIndex)"></u-icon>
@@ -194,13 +194,10 @@
 					name: '全部'
 				}],
 				isFollow: false,
-				fastList: [{
-						name: '/static/message.png',
-						title: '留言'
-					},
+				fastList: [
 					{
 						name: '/static/price.png',
-						title: '套餐价格'
+						title: '拍摄方案'
 					},
 					{
 						name: '/static/phone.png',

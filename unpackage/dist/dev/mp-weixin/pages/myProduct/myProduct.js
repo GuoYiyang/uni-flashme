@@ -287,10 +287,7 @@ var _default = {
     };
   },
   methods: {
-    loaded: function loaded() {
-      uni.hideLoading();
-      this.overlayShow = false;
-    },
+    loaded: function loaded() {},
     selectClick: function selectClick(item) {
       console.log(item.name);
       if ("删除" == item.name) {
@@ -335,10 +332,6 @@ var _default = {
     }
   },
   onLoad: function onLoad(param) {
-    uni.showLoading({
-      title: "加载中"
-    });
-    this.overlayShow = true;
     this.page = 1;
     var _this = this;
     (0, _product.getProductPage)({

@@ -9,7 +9,8 @@
     "u-grid": "/uni_modules/uview-ui/components/u-grid/u-grid",
     "u-grid-item": "/uni_modules/uview-ui/components/u-grid-item/u-grid-item",
     "u-icon": "/uni_modules/uview-ui/components/u-icon/u-icon",
-    "uni-list": "/uni_modules/uni-list/components/uni-list/uni-list",
-    "uni-list-item": "/uni_modules/uni-list/components/uni-list-item/uni-list-item"
+    "u-list": "/uni_modules/uview-ui/components/u-list/u-list",
+    "u-list-item": "/uni_modules/uview-ui/components/u-list-item/u-list-item",
+    "u-cell": "/uni_modules/uview-ui/components/u-cell/u-cell"
   }
 }

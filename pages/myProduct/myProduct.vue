@@ -94,8 +94,6 @@
 		},
 		methods: {
 			loaded() {
-				uni.hideLoading()
-				this.overlayShow = false;
 			},
 			selectClick(item) {
 				console.log(item.name)
@@ -139,10 +137,6 @@
 			}
 		},
 		onLoad: function(param) {
-			uni.showLoading({
-				title: "加载中"
-			});
-			this.overlayShow = true;
 			this.page = 1;
 			let _this = this;
 			getProductPage({

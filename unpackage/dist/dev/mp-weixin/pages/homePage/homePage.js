@@ -113,19 +113,22 @@ try {
       return Promise.all(/*! import() | uni_modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-button/u-button.vue */ 276))
     },
     uGrid: function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-grid/u-grid */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-grid/u-grid")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-grid/u-grid.vue */ 530))
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-grid/u-grid */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-grid/u-grid")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-grid/u-grid.vue */ 500))
     },
     uGridItem: function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-grid-item/u-grid-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-grid-item/u-grid-item")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-grid-item/u-grid-item.vue */ 538))
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-grid-item/u-grid-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-grid-item/u-grid-item")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-grid-item/u-grid-item.vue */ 508))
     },
     uIcon: function () {
       return Promise.all(/*! import() | uni_modules/uview-ui/components/u-icon/u-icon */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-icon/u-icon")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-icon/u-icon.vue */ 404))
     },
-    uniList: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-list/components/uni-list/uni-list */ "uni_modules/uni-list/components/uni-list/uni-list").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-list/components/uni-list/uni-list.vue */ 500))
+    uList: function () {
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-list/u-list */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-list/u-list")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-list/u-list.vue */ 741))
     },
-    uniListItem: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-list/components/uni-list-item/uni-list-item */ "uni_modules/uni-list/components/uni-list-item/uni-list-item").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-list/components/uni-list-item/uni-list-item.vue */ 507))
+    uListItem: function () {
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-list-item/u-list-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-list-item/u-list-item")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-list-item/u-list-item.vue */ 749))
+    },
+    uCell: function () {
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-cell/u-cell */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-cell/u-cell")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-cell/u-cell.vue */ 757))
     },
   }
 } catch (e) {
@@ -266,32 +269,88 @@ var _user = __webpack_require__(/*! @/api/user.js */ 33);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default = {
   data: function data() {
     return {
       pherList: [{
-        name: '/static/message.png',
-        title: '留言'
+        name: '/static/price.png',
+        title: '我的作品'
       }, {
         name: '/static/price.png',
-        title: '套餐价格'
+        title: '拍摄方案'
       }, {
-        name: '/static/phone.png',
-        title: '联系方式'
+        name: '/static/price.png',
+        title: '查看预约'
+      }],
+      userList: [{
+        name: '/static/price.png',
+        title: '我的预约'
+      }, {
+        name: '/static/price.png',
+        title: '新人专享'
+      }, {
+        name: '/static/price.png',
+        title: '成为摄影师'
       }],
       userInfo: {
-        userId: '',
         username: '',
         avatar: '',
         desc: ''
       },
-      isAdmin: false
+      isAdmin: false,
+      isUser: false,
+      isPher: false
     };
   },
   methods: {
+    clickPherList: function clickPherList(item) {
+      if (item == 0) {
+        uni.navigateTo({
+          url: '/pages/myProduct/myProduct'
+        });
+      }
+    },
+    clickUserList: function clickUserList(item) {},
     editClick: function editClick() {
       uni.navigateTo({
         url: '../editUserInfo/editUserInfo'
+      });
+    },
+    toUserShow: function toUserShow() {
+      uni.navigateTo({
+        url: '../userShow/userShow?userId=' + this.userId
       });
     }
   },
@@ -314,6 +373,13 @@ var _default = {
       _this.userInfo.phone = success.data.phone;
       if (success.data.role == 0) {
         _this.isAdmin = true;
+        _this.isPher = true;
+        _this.isUser = true;
+      } else if (success.data.role == 1) {
+        _this.isUser = true;
+      } else if (success.data.role == 2) {
+        _this.isUser = true;
+        _this.isPher = true;
       }
     });
   }

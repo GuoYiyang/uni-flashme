@@ -12,10 +12,10 @@
 					</text>
 				</u-col>
 				<u-col span="2">
-					<u-button  color="#E0E0E0;" @click="editClick" 
+					<u-button color="#E0E0E0;" @click="editClick"
 						customStyle="border-radius:6px; width: 50px;height: 24px;">
 						<text style="color: #191919; font-weight: 400;font-size: 12px;line-height: 16px;">编辑</text>
-						</u-button>
+					</u-button>
 				</u-col>
 			</u-row>
 		</view>
@@ -37,37 +37,69 @@
 				</u-button>
 			</u-col>
 		</u-row> -->
-		
-		<view style="background-color: #FFFFFF; border-radius: 14px; padding: 12px;">
-			<view style="padding: 0px 18px 20px 18px">
+
+		<view style="margin: 12px;background-color:#FFFFFF;border-radius: 10px" v-if="isPher">
+			<view style="padding: 14px 18px 20px 18px">
 				<u-row>
-					<u-col span="9.5"><text style="font-size: 13px;color: #808080;font-weight: 400;">摄影师专区</text></u-col>
-					<u-col span="2.5"><text style="font-size: 13px;color: #191919;font-weight: 400;">进入主页></text></u-col>
+					<u-col span="9.5"><text style="font-size: 13px;color: #808080;font-weight: 400;">摄影师专区</text>
+					</u-col>
+					<u-col span="2.5"><text @click="toUserShow"
+							style="font-size: 13px;color: #808080;font-weight: 400;">进入主页></text></u-col>
 				</u-row>
 			</view>
-			<view style="padding: 0px 18px 20px 18px">
+			<view>
 				<u-grid :border="false" col="3">
 					<u-grid-item v-for="(listItem,listIndex) in pherList" :key="listIndex">
 						<u-icon :name="listItem.name" :size="22" customStyle="padding: 0px 4px 10px 4px"
-							@click="clickFastList(listIndex)"></u-icon>
-						<text style="font-weight: 500;font-size: 13px;color: #191919;line-height: 16px;padding-bottom: 10px;">{{listItem.title}}</text>
+							@click="clickPherList(listIndex)"></u-icon>
+						<text
+							style="font-weight: 400;font-size: 13px;color: #191919;line-height: 16px;padding-bottom: 24px;">{{listItem.title}}</text>
 					</u-grid-item>
 				</u-grid>
 			</view>
 		</view>
 
-		<view style="padding: 12px;">
+		<view style="margin: 12px;background-color:#FFFFFF;border-radius: 10px" v-if="isUser">
+			<view style="padding: 14px 18px 20px 18px">
+				<text style="font-size: 13px;color: #808080;font-weight: 400;">用户专区</text>
+			</view>
+			<view>
+				<u-grid :border="false" col="3">
+					<u-grid-item v-for="(listItem,listIndex) in userList" :key="listIndex">
+						<u-icon :name="listItem.name" :size="22" customStyle="padding: 0px 4px 10px 4px"
+							@click="clickUserList(listIndex)"></u-icon>
+						<text
+							style="font-weight: 400;font-size: 13px;color: #191919;line-height: 16px;padding-bottom: 24px;">{{listItem.title}}</text>
+					</u-grid-item>
+				</u-grid>
+			</view>
+		</view>
 
-			<uni-list>
-				<!-- <uni-list-item title="发布产品" showArrow link="navigateTo" to="../publish/publish"/> -->
-				<uni-list-item title="我的作品" showArrow link="navigateTo" to="../myProduct/myProduct" />
-				<view v-if="isAdmin">
-					<uni-list-item title="待审核" showArrow link="navigateTo" to="../audit/audit" />
-				</view>
-				<uni-list-item title="成为摄影师" showArrow link="navigateTo" to="../becomePher/becomePher" />
-				<uni-list-item title="PhotoCall预定保障" showArrow link="navigateTo" to="../policyDoc/policyDoc" />
-				<uni-list-item title="问题反馈" showArrow link="navigateTo" to="../feedback/feedback" />
-			</uni-list>
+		<view style="margin: 12px;background-color:#FFFFFF;border-radius: 10px">
+			<u-list height="130px">
+				<u-list-item>
+					<view v-if="isAdmin">
+						<u-cell title="待审核" url="../audit/audit" customStyle="font-weight: 400;font-size: 14px;line-height: 24px;">
+							<u-icon slot="icon" name="/static/price.png" customStyle="margin: -3px 5px -3px 0"></u-icon>
+<!-- 							<u-avatar slot="icon" shape="square" size="35"
+								src="https://pic-common-1258999491.cos.ap-nanjing.myqcloud.com/index_background.jpg"
+								customStyle="margin: -3px 5px -3px 0"></u-avatar> -->
+						</u-cell>
+					</view>
+					<u-cell title="PhotoCall预定保障" url="../policyDoc/policyDoc" customStyle="font-weight: 400;font-size: 14px;line-height: 24px;">
+						<u-icon slot="icon" name="/static/price.png" customStyle="margin: -3px 5px -3px 0"></u-icon>
+		<!-- 				<u-avatar slot="icon" shape="square" size="35"
+							src="https://pic-common-1258999491.cos.ap-nanjing.myqcloud.com/index_background.jpg"
+							customStyle="margin: -3px 5px -3px 0"></u-avatar> -->
+					</u-cell>
+					<u-cell title="问题反馈" url="../feedback/feedback" customStyle="font-weight: 400;font-size: 14px;line-height: 24px;" :border="false">
+						<u-icon slot="icon" name="/static/price.png" customStyle="margin: -3px 5px -3px 0"></u-icon>
+<!-- 						<u-avatar slot="icon" shape="square" size="35"
+							src="https://pic-common-1258999491.cos.ap-nanjing.myqcloud.com/index_background.jpg"
+							customStyle="margin: -3px 5px -3px 0"></u-avatar> -->
+					</u-cell>
+				</u-list-item>
+			</u-list>
 		</view>
 	</view>
 </template>
@@ -84,33 +116,62 @@
 		data() {
 			return {
 				pherList: [{
-						name: '/static/message.png',
-						title: '留言'
+						name: '/static/price.png',
+						title: '我的作品'
 					},
 					{
 						name: '/static/price.png',
-						title: '套餐价格'
+						title: '拍摄方案'
 					},
 					{
-						name: '/static/phone.png',
-						title: '联系方式'
+						name: '/static/price.png',
+						title: '查看预约'
 					},
 				],
+				userList: [{
+						name: '/static/price.png',
+						title: '我的预约'
+					},
+					{
+						name: '/static/price.png',
+						title: '新人专享'
+					},
+					{
+						name: '/static/price.png',
+						title: '成为摄影师'
+					}
+				],
 				userInfo: {
-					userId: '',
 					username: '',
 					avatar: '',
 					desc: ''
 				},
 				isAdmin: false,
+				isUser: false,
+				isPher: false,
 			}
 		},
 		methods: {
+			clickPherList(item) {
+				if (item == 0) {
+					uni.navigateTo({
+						url: '/pages/myProduct/myProduct'
+					})
+				}
+			},
+			clickUserList(item) {
+
+			},
 			editClick() {
 				uni.navigateTo({
 					url: '../editUserInfo/editUserInfo'
 				})
-			}
+			},
+			toUserShow() {
+				uni.navigateTo({
+					url: '../userShow/userShow?userId=' + this.userId
+				})
+			},
 		},
 		onShow() {
 			this.userId = getApp().globalData.USER_ID;
@@ -129,6 +190,13 @@
 				_this.userInfo.phone = success.data.phone;
 				if (success.data.role == 0) {
 					_this.isAdmin = true;
+					_this.isPher = true;
+					_this.isUser = true;
+				} else if (success.data.role == 1) {
+					_this.isUser = true;
+				} else if (success.data.role == 2) {
+					_this.isUser = true;
+					_this.isPher = true;
 				}
 			})
 
