@@ -353,6 +353,4 @@
 		justify-content: flex-start;
 		display: flex;
 	}
-
-	$nav-height: 30px;
 </style>

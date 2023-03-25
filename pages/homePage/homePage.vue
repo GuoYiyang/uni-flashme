@@ -1,18 +1,21 @@
 <template>
 	<view>
-		<view class="center">
-			<u-row gutter="10" customStyle="padding: 10rpx;">
-				<u-col span="12">
-					<view @click="avatarClick">
-						<u-avatar :src="userInfo.avatar" size="80">
-						</u-avatar>
-					</view>
-
+		<view style="padding: 20px 36px 20px 36px;">
+			<u-row>
+				<u-col span="3">
+					<u-avatar :src="userInfo.avatar" size="60">
+					</u-avatar>
 				</u-col>
-			</u-row>
-			<u-row gutter="0" customStyle="padding: 10rpx;">
-				<u-col span="12">
-					<text>{{userInfo.username}}</text>
+				<u-col span="7">
+					<text style="font-weight: 600;font-size: 18px;line-height: 25px;color: #191919;">
+						{{userInfo.username}}
+					</text>
+				</u-col>
+				<u-col span="2">
+					<u-button  color="#E0E0E0;" @click="editClick" 
+						customStyle="border-radius:6px; width: 50px;height: 24px;">
+						<text style="color: #191919; font-weight: 400;font-size: 12px;line-height: 16px;">编辑</text>
+						</u-button>
 				</u-col>
 			</u-row>
 		</view>
@@ -34,8 +37,26 @@
 				</u-button>
 			</u-col>
 		</u-row> -->
+		
+		<view style="background-color: #FFFFFF; border-radius: 14px; padding: 12px;">
+			<view style="padding: 0px 18px 20px 18px">
+				<u-row>
+					<u-col span="9.5"><text style="font-size: 13px;color: #808080;font-weight: 400;">摄影师专区</text></u-col>
+					<u-col span="2.5"><text style="font-size: 13px;color: #191919;font-weight: 400;">进入主页></text></u-col>
+				</u-row>
+			</view>
+			<view style="padding: 0px 18px 20px 18px">
+				<u-grid :border="false" col="3">
+					<u-grid-item v-for="(listItem,listIndex) in pherList" :key="listIndex">
+						<u-icon :name="listItem.name" :size="22" customStyle="padding: 0px 4px 10px 4px"
+							@click="clickFastList(listIndex)"></u-icon>
+						<text style="font-weight: 500;font-size: 13px;color: #191919;line-height: 16px;padding-bottom: 10px;">{{listItem.title}}</text>
+					</u-grid-item>
+				</u-grid>
+			</view>
+		</view>
 
-		<view style="padding: 20rpx;">
+		<view style="padding: 12px;">
 
 			<uni-list>
 				<!-- <uni-list-item title="发布产品" showArrow link="navigateTo" to="../publish/publish"/> -->
@@ -62,6 +83,19 @@
 	export default {
 		data() {
 			return {
+				pherList: [{
+						name: '/static/message.png',
+						title: '留言'
+					},
+					{
+						name: '/static/price.png',
+						title: '套餐价格'
+					},
+					{
+						name: '/static/phone.png',
+						title: '联系方式'
+					},
+				],
 				userInfo: {
 					userId: '',
 					username: '',
@@ -72,7 +106,7 @@
 			}
 		},
 		methods: {
-			avatarClick() {
+			editClick() {
 				uni.navigateTo({
 					url: '../editUserInfo/editUserInfo'
 				})
@@ -125,15 +159,6 @@
 		.desc {
 			font-size: 24rpx;
 			color: #666;
-		}
-
-		.grid-text {
-			font-size: 14px;
-			color: #909399;
-			padding: 10rpx 0 20rpx 0rpx;
-			/* #ifndef APP-PLUS */
-			box-sizing: border-box;
-			/* #endif */
 		}
 	}
 </style>
