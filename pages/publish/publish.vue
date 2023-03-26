@@ -1,49 +1,37 @@
 <template>
 	<view>
-		<view class="container">
-			<uni-card :is-shadow="false" is-full>
-				<text class="uni-h6">三步即可轻松发布产品</text>
-			</uni-card>
-			<uni-section title="第一步:选择封面" type="line">
-				<view class="example-body">
-					<uni-file-picker limit="1" title="最多选择1张图片" mode="grid" file-mediatype="image" ref="images"
-						:auto-upload="false" :sizeType='["compressed"]' :sourceType='["album"]'
-						:imageStyles="imageStyles" :autoUpload='false' @select="selectMainImg" @delete="deleteMainImg">
+		<view>
+			<view style="background-color: #FFFFFF;border-radius: 10px">
+				<view style="padding: 18px 16px 18px 16px; color: #808080;">上传作品，最多选择9张照片</view>
+				<view style="padding: 0px 16px 16px 16px; margin-bottom: 12px;">
+					<uni-file-picker limit="9" mode="grid" file-mediatype="image" :sizeType='["compressed"]'
+						:sourceType='["album"]' :imageStyles="imageStyles" @select="seleteImage" @delete="deleteImage">
 					</uni-file-picker>
 				</view>
-			</uni-section>
-			<uni-section title="第二步:选择图片" type="line">
-				<view class="example-body">
-					<uni-file-picker limit="9" title="最多选择9张图片" mode="grid" file-mediatype="image" ref="images"
-						:auto-upload="false" :sizeType='["compressed"]' :sourceType='["album"]'
-						:imageStyles="imageStyles" :autoUpload='false' @select="seleteImage" @delete="deleteImage">
-					</uni-file-picker>
-				</view>
-			</uni-section>
-			<uni-section title="第三步:填充信息" type="line">
-				<view class="example-body">
-					<!-- 基础用法，不包含校验规则 -->
-					<uni-forms ref="baseForm" :modelValue="baseFormData" label-position="top">
-						<uni-forms-item label="标题" required>
-							<uni-easyinput v-model="baseFormData.title" />
-						</uni-forms-item>
-						<uni-forms-item label="价格" required>
-							<uni-easyinput v-model="baseFormData.price" type="digit" />
-						</uni-forms-item>
-						<uni-forms-item label="主题" required>
-							<uni-data-checkbox v-model="baseFormData.tag" multiple :localdata="tags" />
-						</uni-forms-item>
-						<uni-forms-item label="基本信息" required>
-							<uni-easyinput type="textarea" v-model="baseFormData.info" />
-						</uni-forms-item>
-						<uni-forms-item label="拍摄须知" required>
-							<uni-easyinput type="textarea" v-model="baseFormData.introduction" />
-						</uni-forms-item>
-					</uni-forms>
-				</view>
-			</uni-section>
-			<view style="padding: 20rpx;">
-				<u-button @click="submit">发布</u-button>
+			</view>
+
+			<view style="padding: 6px 26px 6px 26px; border-radius: 10px; background-color: #FFFFFF;">
+				<u--form labelPosition="top" :rules="rules" ref="Form" :model="form"
+					:labelStyle="{'font-weight':300,'font-size':'14px','line-height':'16px','color':'#808080'}">
+					<u-form-item labelWidth="100px" label="作品名称" prop="title" borderBottom>
+						<u--input v-model="form.title" border="none"></u--input>
+					</u-form-item>
+					<u-form-item labelWidth="100px" label="作品类型" prop="tag" borderBottom @click="showCate = true;">
+						<u--input readonly v-model="form.tag" placeholder="请选择作品类型" border="none">
+						</u--input>
+						<u-icon slot="right" name="arrow-right"></u-icon>
+					</u-form-item>
+				</u--form>
+				<u-picker :show="showCate" :columns="cateList" @confirm="cateSelect" keyName="text"
+					@cancel="showCate = false">
+				</u-picker>
+			</view>
+
+			<view style="padding:16px 0px 50px 0">
+				<u-button @click="submit" color="#000000"
+					customStyle="border:0.5px solid #1E1E1E;border-radius:10px;width:100px;height:42px;font-weight:500;font-size:16px;line-height:16px;color:#FFFFFF;">
+					发布
+				</u-button>
 			</view>
 
 		</view>
@@ -64,121 +52,98 @@
 		data() {
 			return {
 				overlayShow: false,
-				imagePath: '',
-				imageName: '',
-				imagePathList: [],
-				imageNameList: [],
+				tempFiles: [],
+				form: {
+					title: '',
+					tag: '',
+					price: '',
+					content: {}
+				},
 				imageStyles: {
-					"height": 100, // 边框高度
-					"width": 100, // 边框宽度
+					"height": 110, // 边框高度
+					"width": 110, // 边框宽度
 					"border": { // 如果为 Boolean 值，可以控制边框显示与否
-						"color": "#eee", // 边框颜色
+						"color": "#E6E6E6", // 边框颜色
 						"width": "1px", // 边框宽度
 						"style": "solid", // 边框样式
-						"radius": "10%" // 边框圆角，支持百分比
+						"radius": "8px" // 边框圆角，支持百分比
 					}
 				},
-				baseFormData: {
-					title: '',
-					price: '',
-					introduction: '',
-					tag: [],
-					info: '',
-					notice: ''
+				showCate: false,
+				cateList: [
+					[{
+						text: '写真',
+						value: 0
+					}, {
+						text: '证件照',
+						value: 1
+					}, {
+						text: '婚纱',
+						value: 2
+					}, {
+						text: '情侣',
+						value: 3
+					}, {
+						text: '亲子',
+						value: 4
+					}, {
+						text: '宠物',
+						value: 5
+					}, {
+						text: '旅拍',
+						value: 6
+					}, {
+						text: '其他',
+						value: 7
+					}]
+				],
+				rules: {
+					'title': {
+						type: 'string',
+						required: true,
+						min: 2,
+						max: 20,
+						message: '长度为2-20个字符',
+						trigger: ['blur', 'change']
+					},
 				},
-				sexs: [{
-					text: '男',
-					value: 0
-				}, {
-					text: '女',
-					value: 1
-				}],
-				tags: [{
-					text: '写真',
-					value: 0
-				}, {
-					text: '证件照',
-					value: 1
-				}, {
-					text: '婚纱',
-					value: 2
-				}, {
-					text: '情侣',
-					value: 3
-				}, {
-					text: '亲子',
-					value: 4
-				}, {
-					text: '宠物',
-					value: 5
-				}, {
-					text: '旅拍',
-					value: 6
-				}, {
-					text: '其他',
-					value: 7
-				}]
 			}
 		},
 		methods: {
-			selectMainImg(e) {
-				console.log(e)
-				this.imagePath = e.tempFilePaths[0];
-				this.imageName = e.tempFiles[0].name;
-			},
-			deleteMainImg(e) {
-				this.imagePath = "";
-				this.imageName = "";
-			},
 			seleteImage(e) {
 				console.log(e)
-				e.tempFilePaths.map(item => {
-					this.imagePathList.push(item)
-				});
 				e.tempFiles.map(item => {
-					this.imageNameList.push(item.name)
+					this.tempFiles.push(item)
 				});
 			},
 			deleteImage(e) {
-				this.imagePathList.map((item, i) => {
-					if (item == e.tempFilePath) {
-						this.imagePathList.splice(i, 1)
-					}
-				});
-				this.imageNameList.map((item, i) => {
-					if (item == e.tempFile.name) {
-						this.imageNameList.splice(i, 1)
+				console.log(e)
+				this.tempFiles.map((item, i) => {
+					if (item.path == e.tempFile.path) {
+						this.tempFiles.splice(i, 1)
 					}
 				});
 			},
 			publish() {
-				if (this.imagePath != "") {
-					uploadImages({
-						filePath: this.imagePath
-					})
-				}
-				if (this.imagePathList.length > 0) {
-					this.imagePathList.forEach(item => {
+				// 先上传图片
+				if (this.tempFiles.length > 0) {
+					this.tempFiles.forEach(item => {
 						uploadImages({
-							filePath: item
+							filePath: item.path
 						})
 					})
 				}
-				let content = {
-					'info': this.baseFormData.info,
-					'introduction': this.baseFormData.introduction
-				}
+				// 在上传图片
 				publishProduct({
 					userId: getApp().globalData.USER_ID,
-					title: this.baseFormData.title,
-					content: JSON.stringify(content),
-					tags: this.baseFormData.tag.toString(),
-					price: this.baseFormData.price,
-					imgName: this.imageName,
-					imgNameList: this.imageNameList,
+					title: this.form.title,
+					content: JSON.stringify(this.form.content),
+					tags: this.form.tag.toString(),
+					price: this.form.price,
+					imageJson: JSON.stringify(this.tempFiles)
 				}).then((res) => {
 					let [error, success] = res;
-					setTimeout(function () {
+					setTimeout(function() {
 						if (success.data == true) {
 							uni.showToast({
 								title: '发布成功'
@@ -205,8 +170,5 @@
 </script>
 
 <style>
-	.example-body {
-		padding: 10px;
-		padding-top: 0;
-	}
+
 </style>

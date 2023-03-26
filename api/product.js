@@ -146,8 +146,7 @@ export function publishProduct(req) {
 			content: req.content,
 			tags: req.tags,
 			price: req.price,
-			imgName: req.imgName,
-			imgNameList: req.imgNameList
+			imageJson: req.imageJson
 		}
 	});
 }

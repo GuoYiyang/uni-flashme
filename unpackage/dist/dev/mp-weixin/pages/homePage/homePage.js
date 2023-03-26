@@ -309,6 +309,9 @@ var _default = {
     return {
       pherList: [{
         name: '/static/price.png',
+        title: '发布作品'
+      }, {
+        name: '/static/price.png',
         title: '我的作品'
       }, {
         name: '/static/price.png',
@@ -340,6 +343,11 @@ var _default = {
   methods: {
     clickPherList: function clickPherList(item) {
       if (item == 0) {
+        uni.navigateTo({
+          url: '/pages/publish/publish'
+        });
+      }
+      if (item == 1) {
         uni.navigateTo({
           url: '/pages/myProduct/myProduct'
         });

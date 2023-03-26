@@ -48,7 +48,7 @@
 				</u-row>
 			</view>
 			<view>
-				<u-grid :border="false" col="3">
+				<u-grid :border="false" col="4">
 					<u-grid-item v-for="(listItem,listIndex) in pherList" :key="listIndex">
 						<u-icon :name="listItem.name" :size="22" customStyle="padding: 0px 4px 10px 4px"
 							@click="clickPherList(listIndex)"></u-icon>
@@ -120,6 +120,9 @@
 			return {
 				pherList: [{
 						name: '/static/price.png',
+						title: '发布作品'
+					}, {
+						name: '/static/price.png',
 						title: '我的作品'
 					},
 					{
@@ -157,6 +160,11 @@
 		methods: {
 			clickPherList(item) {
 				if (item == 0) {
+					uni.navigateTo({
+						url: '/pages/publish/publish'
+					})
+				}
+				if (item == 1) {
 					uni.navigateTo({
 						url: '/pages/myProduct/myProduct'
 					})
