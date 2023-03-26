@@ -3,7 +3,7 @@
 		<view style="background-color: #FFFFFF; padding-bottom: 10px; border-radius:0 0 15px 15px;">
 
 			<view class="topright">
-				<u-button :plain="true" :hairline="true" color="#000000" @click="follow" :text="isFollow ? '已关注': '关注'"
+				<u-button  color="#3D6EC2" @click="follow" :text="isFollow ? '已关注': '关注'"
 					customStyle="border-radius:10px; width: 80px;height: 30px;"></u-button>
 			</view>
 

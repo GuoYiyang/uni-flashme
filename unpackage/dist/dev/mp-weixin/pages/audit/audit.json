@@ -5,9 +5,6 @@
     "u-sticky": "/uni_modules/uview-ui/components/u-sticky/u-sticky",
     "u-tabs": "/uni_modules/uview-ui/components/u-tabs/u-tabs",
     "custom-waterfalls-flow": "/uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow",
-    "u-row": "/uni_modules/uview-ui/components/u-row/u-row",
-    "u-col": "/uni_modules/uview-ui/components/u-col/u-col",
-    "uni-icons": "/uni_modules/uni-icons/components/uni-icons/uni-icons",
     "u-action-sheet": "/uni_modules/uview-ui/components/u-action-sheet/u-action-sheet"
   }
 }

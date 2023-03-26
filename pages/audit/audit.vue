@@ -1,34 +1,22 @@
 <template>
 	<view>
-		<view>
-			<u-sticky bgColor="#f5f5f5">
-				<u-tabs :list="tabsList" lineWidth="30" lineHeight="3" lineColor="#000000" :activeStyle="{
-				        color: '#303133',
-				        fontWeight: 'bold',
-				        transform: 'scale(1.1)'
-				    }" :inactiveStyle="{
-				        color: '#606266',
-				        transform: 'scale(1)'
-				    }" itemStyle="padding-left: 15px; padding-right: 15px; height: 34px;" @change="tabsChange" :duration="100">
+		<u-sticky bgColor="#F8F8F8">
+			<view style="box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05)">
+				<u-tabs :list="tabsList" lineWidth="40" lineHeight="3" lineColor="#191919"
+					:activeStyle="{color: '#191919',fontWeight: 'bold', transform: 'scale(1)'}"
+					:inactiveStyle="{color: '#808080',transform: 'scale(1)'}" :current="tabsCurrent" :scrollable='false'
+					:duration="100" @change="tabsChange">
 				</u-tabs>
-			</u-sticky>
-		</view>
+			</view>
+		</u-sticky>
 
-		<view style="padding: 10rpx;">
+
+		<view style="padding: 14px 10px 0 10px;">
 			<custom-waterfalls-flow :value="product.list" :column="2" :columnSpace="1" @imageClick="imageClick"
 				@wapperClick="wapperClick" ref="waterfallsFlowRef">
-				<view class="item" v-for="(item,index) in product.list" :key="index" slot="slot{{index}}">
-					<u-row>
-						<view class="title">{{item.title}}</view>
-					</u-row>
-					<u-row>
-						<u-col span="10" justify="flex-start">
-							<view class="desc">￥{{item.price}}</view>
-						</u-col>
-						<u-col span="2" justify="flex-end">
-							<uni-icons type="more-filled" size="20" color="#1f1f1f"></uni-icons>
-						</u-col>
-					</u-row>
+				<view style="padding: 5px;" v-for="(item,index) in product.list" :key="index" slot="slot{{index}}">
+					<view style="font-weight: 600;font-size: 15px;line-height: 20px;padding: 6px 6px 6px 6px">
+						{{item.title}}</view>
 				</view>
 			</custom-waterfalls-flow>
 		</view>
@@ -89,7 +77,6 @@
 				this.page = 1;
 				let _this = this;
 				getProductPage({
-					userId: getApp().globalData.USER_ID,
 					page: this.page,
 					pageSize: this.pageSize,
 					status: this.status
@@ -185,34 +172,5 @@
 </script>
 
 <style lang="scss" scoped>
-	.item {
-		padding: 10rpx 10rpx 20rpx;
 
-		.title {
-			font-weight: bold;
-			line-height: 48rpx;
-			font-size: 30rpx;
-			color: #222;
-		}
-
-		.desc {
-			font-size: 24rpx;
-			color: #666;
-		}
-	}
-
-	.collect-tabbar {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		flex-direction: column;
-		position: fixed;
-		left: 50rpx;
-		right: 50rpx;
-		/* #ifdef H5 */
-		left: var(--window-left);
-		right: var(--window-right);
-		/* #endif */
-		bottom: 40rpx;
-	}
 </style>

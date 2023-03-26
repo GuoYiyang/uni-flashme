@@ -56,8 +56,8 @@
 			*个人资料将展示在你的摄影师主页</view>
 
 		<view style="padding:16px 0px 50px 0">
-			<u-button @click="submit" color="#000000"
-				customStyle="border:0.5px solid #1E1E1E;border-radius:10px;width:100px;height:42px;font-weight:500;font-size:16px;line-height:16px;color:#FFFFFF;">
+			<u-button @click="submit" color="#3D6EC2"
+				customStyle="border-radius:10px;width:100px;height:42px;font-weight:500;font-size:16px;line-height:16px;color:#FFFFFF;">
 				保存
 			</u-button>
 		</view>
