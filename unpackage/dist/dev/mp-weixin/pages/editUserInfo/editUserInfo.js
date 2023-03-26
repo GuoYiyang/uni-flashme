@@ -98,26 +98,29 @@ __webpack_require__.r(__webpack_exports__);
 var components
 try {
   components = {
-    uAvatar: function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-avatar/u-avatar */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-avatar/u-avatar")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-avatar/u-avatar.vue */ 327))
-    },
     "u-Form": function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u--form/u--form */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u--form/u--form")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u--form/u--form.vue */ 516))
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u--form/u--form */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u--form/u--form")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u--form/u--form.vue */ 411))
+    },
+    uAvatar: function () {
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-avatar/u-avatar */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-avatar/u-avatar")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-avatar/u-avatar.vue */ 325))
     },
     uFormItem: function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-form-item/u-form-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-form-item/u-form-item")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-form-item/u-form-item.vue */ 522))
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-form-item/u-form-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-form-item/u-form-item")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-form-item/u-form-item.vue */ 417))
     },
     "u-Input": function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u--input/u--input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u--input/u--input")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u--input/u--input.vue */ 657))
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u--input/u--input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u--input/u--input")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u--input/u--input.vue */ 425))
     },
     uIcon: function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-icon/u-icon */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-icon/u-icon")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-icon/u-icon.vue */ 404))
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-icon/u-icon */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-icon/u-icon")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-icon/u-icon.vue */ 402))
     },
-    uActionSheet: function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-action-sheet/u-action-sheet */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-action-sheet/u-action-sheet")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-action-sheet/u-action-sheet.vue */ 366))
+    "u-Textarea": function () {
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u--textarea/u--textarea */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u--textarea/u--textarea")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u--textarea/u--textarea.vue */ 761))
+    },
+    uPicker: function () {
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-picker/u-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-picker/u-picker")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-picker/u-picker.vue */ 284))
     },
     uButton: function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-button/u-button.vue */ 276))
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-button/u-button.vue */ 274))
     },
   }
 } catch (e) {
@@ -245,62 +248,31 @@ var _method = __webpack_require__(/*! @/common/method.js */ 169);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 var _default = {
   data: function data() {
+    var _this2 = this;
     return {
+      userId: '',
+      avatar: '',
       selectedAvatarPath: '',
-      cityList: [{
+      userInfo: {
+        id: '',
+        name: '',
+        avatar: '',
+        xiaohongshu: '',
+        douyin: '',
+        whatsup: '',
+        intro: '',
+        desc: {},
+        phone: '',
+        sex: '',
+        sexText: '请选择性别',
+        city: '',
+        cityText: '请选择城市'
+      },
+      showSex: false,
+      showCity: false,
+      cityList: [[{
         name: "深圳",
         value: 0
       }, {
@@ -312,46 +284,67 @@ var _default = {
       }, {
         value: 3,
         name: "广州"
-      }],
-      userId: '',
-      showSex: false,
-      showCity: false,
-      avatar: '',
-      userInfo: {
-        id: '',
-        name: '',
-        avatar: '',
-        desc: '',
-        phone: '',
-        sex: '',
-        sexText: '请选择性别',
-        city: '',
-        cityText: '请选择城市'
-      },
-      sexList: [{
+      }]],
+      sexList: [[{
         name: '男',
         value: 1
       }, {
         name: '女',
         value: 2
-      }],
+      }]],
       rules: {
-        name: {
+        'name': {
           type: 'string',
           required: true,
-          message: '请填写姓名',
+          min: 4,
+          max: 10,
+          message: '请填写姓名,长度为4-10个字符',
           trigger: ['blur', 'change']
         },
-        city: {
+        'phone': {
+          required: false,
+          // 自定义验证函数
+          validator: function validator(rule, value, callback) {
+            // 返回true表示校验通过，返回false表示不通过
+            // 过滤第一层，先判断输入为不为空，因为required: false，不是必填项，所以为空应该返回true
+            if (value) {
+              return _this2.$u.test.mobile(value);
+            } else {
+              return true;
+            }
+          },
+          message: '手机号格式不正确',
+          // 触发器可以同时用blur和change
+          trigger: ['change', 'blur']
+        },
+        'xiaohongshu': {
           type: 'string',
-          required: true,
-          message: '请选择城市',
+          required: false,
+          min: 6,
+          max: 15,
+          message: '小红书号长度为4-15个字符',
           trigger: ['blur', 'change']
         },
-        sex: {
-          type: 'number',
-          required: true,
-          message: '请选择男或女',
+        'douyin': {
+          type: 'string',
+          required: false,
+          min: 6,
+          max: 15,
+          message: '抖音号长度为4-10个字符',
+          trigger: ['blur', 'change']
+        },
+        'whatsup': {
+          type: 'string',
+          required: false,
+          max: 20,
+          message: '个性签名最长20个字符',
+          trigger: ['blur', 'change']
+        },
+        'intro': {
+          type: 'string',
+          required: false,
+          max: 200,
+          message: '个性简介最长200个字符',
           trigger: ['blur', 'change']
         }
       }
@@ -365,36 +358,47 @@ var _default = {
         sizeType: ['compressed'],
         success: function success(res) {
           _this.selectedAvatarPath = res.tempFilePaths[0];
-          _this.userInfo.avatar = _this.selectedAvatarPath;
           _this.avatar = _this.selectedAvatarPath;
         }
       });
     },
-    cityChange: function cityChange(item) {
-      this.userInfo.city = item.detail.value[0].value;
-    },
     sexSelect: function sexSelect(e) {
-      this.userInfo.sex = e.value;
-      this.userInfo.sexText = e.name;
+      this.userInfo.sex = e.value[0].value;
+      this.userInfo.sexText = e.value[0].name;
+      this.showSex = false;
     },
     citySelect: function citySelect(e) {
-      this.userInfo.city = e.value;
-      this.userInfo.cityText = e.name;
-    },
-    changeAvatar: function changeAvatar(info) {
-      this.userInfo.avatar = info.detail.avatarUrl;
+      this.userInfo.city = e.value[0].value;
+      this.userInfo.cityText = e.value[0].name;
+      this.showCity = false;
     },
     submit: function submit() {
-      var _this2 = this;
-      if (this.selectedAvatarPath != "") {
-        (0, _product.uploadImages)({
-          filePath: this.selectedAvatarPath
-        }).then(function (res) {
-          var _res = (0, _slicedToArray2.default)(res, 2),
-            error = _res[0],
-            success = _res[1];
-          _this2.userInfo.avatar = success.data;
-          (0, _user.updateUserInfo)(_this2.userInfo).then(function (res) {
+      var _this3 = this;
+      this.$refs.Form.validate().then(function (res) {
+        if (_this3.selectedAvatarPath != '') {
+          (0, _product.uploadImages)({
+            filePath: _this3.selectedAvatarPath
+          }).then(function (res) {
+            var _res = (0, _slicedToArray2.default)(res, 2),
+              error = _res[0],
+              success = _res[1];
+            _this3.userInfo.avatar = success.data;
+            (0, _user.updateUserInfo)(_this3.userInfo).then(function (res) {
+              if (res[1].data == true) {
+                uni.showToast({
+                  title: "修改成功"
+                });
+              } else {
+                uni.showToast({
+                  title: "修改失败，请检查必填项"
+                });
+              }
+            });
+          });
+        } else {
+          // 将avatar设置为null，防止被修改
+          _this3.userInfo.avatar = null;
+          (0, _user.updateUserInfo)(_this3.userInfo).then(function (res) {
             if (res[1].data == true) {
               uni.showToast({
                 title: "修改成功"
@@ -405,14 +409,17 @@ var _default = {
               });
             }
           });
+        }
+        setTimeout(function () {
+          uni.navigateBack();
+        }, 500);
+      }).catch(function (errors) {
+        uni.showToast({
+          title: "请检查所填内容是否正确"
         });
-      }
-      setTimeout(function () {
-        uni.navigateBack();
-      }, 500);
+      });
     }
   },
-  onShow: function onShow() {},
   onLoad: function onLoad() {
     this.userInfo.id = getApp().globalData.USER_ID;
     var _this = this;
@@ -439,7 +446,7 @@ var _default = {
   },
   onReady: function onReady() {
     //如果需要兼容微信小程序，并且校验规则中含有方法等，只能通过setRules方法设置规则。
-    this.$refs.baseForm.setRules(this.rules);
+    this.$refs.Form.setRules(this.rules);
   }
 };
 exports.default = _default;
