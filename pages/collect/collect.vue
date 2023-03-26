@@ -1,29 +1,35 @@
 <template>
 	<view>
-		<view class="center">
-			<u-tabs :list="tabsList" lineWidth="60" lineHeight="3" lineColor="#000000" :activeStyle="{
-			        color: '#303133',
-			        fontWeight: 'bold',
-			        transform: 'scale(1.05)'
-			    }" :inactiveStyle="{
-			        color: '#606266',
-			        transform: 'scale(1)'
-			    }" itemStyle="padding: 15rpx; padding-bottom: 10rpx; height: 60rpx;" :current="tabsCurrent" :scrollable='false'
-				:duration="100" @change="tabsChange">
-			</u-tabs>
-		</view>
+		<u-sticky bgColor="#F8F8F8">
+			<view style="box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05)">
+				<u-tabs :list="tabsList" lineWidth="40" lineHeight="3" lineColor="#191919"
+					:activeStyle="{color: '#191919',fontWeight: 'bold', transform: 'scale(1)'}"
+					:inactiveStyle="{color: '#808080',transform: 'scale(1)'}" :current="tabsCurrent" :scrollable='false'
+					:duration="100" @change="tabsChange">
+				</u-tabs>
+			</view>
+		</u-sticky>
 		<view v-if="collectProductShow">
-			<view style="padding:10rpx;">
-				<custom-waterfalls-flow ref="waterfallsFlowRef" :value="product.list" :column="2" :columnSpace="1"
-					:seat="2" @imageClick="imageClick" @wapperClick="wapperClick">
-					<view class="item" v-for="(item,index) in product.list" :key="index" slot="slot{{index}}">
-						<view class="title">{{item.title}}</view>
+			<view style="padding: 14px 10px 0 10px;">
+			<custom-waterfalls-flow :value="product.list" :column="2" :columnSpace="1" @imageClick="imageClick"
+				@wapperClick="wapperClick" ref="waterfallsFlowRef">
+				<view style="padding: 5px;" v-for="(item,index) in product.list" :key="index" slot="slot{{index}}">
+					<view style="font-weight: 600;font-size: 15px;line-height: 20px;padding: 6px 6px 6px 6px">{{item.title}}</view>
+					<view style="padding: 0px 6px 6px 6px">
+						<u-row>
+							<u-col span="1.5" align="center">
+								<u-avatar :src="item.userInfo.avatar" size='18'></u-avatar>
+							</u-col>
+							<u-col span="10.5" align="center">
+								<text style="font-size: 12px; color: #4e4e4e;">{{item.userInfo.nickname}}</text>
+							</u-col>
+						</u-row>
 					</view>
-				</custom-waterfalls-flow>
+				</view>
+			</custom-waterfalls-flow>
 			</view>
 		</view>
 		<view v-if="collectPhotographerShow" style="padding-top: 10rpx;">
-
 			<div v-for="item in pher.list" :key="item.id">
 				<view style="background-color: #FFFFFF; border-radius:15px 15px 15px 15px;">
 					<view style="padding: 5px;"></view>
@@ -54,10 +60,10 @@
 		data() {
 			return {
 				tabsList: [{
-						name: '我的收藏'
+						name: '作品'
 					},
 					{
-						name: '我的关注'
+						name: '摄影师'
 					}
 				],
 				tabsCurrent: 0,
@@ -161,15 +167,6 @@
 </script>
 
 <style lang="scss" scoped>
-	.center {
-		height: 100%;
-		flex: auto;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-	}
-
 	.item {
 		padding: 10rpx 10rpx 20rpx;
 

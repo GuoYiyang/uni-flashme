@@ -230,10 +230,10 @@
 		},
 		methods: {
 			clickFastList(item) {
-				if (item == 1) {
+				if (item == 0) {
 					this.popPlanShow = true;
 				}
-				if (item == 2) {
+				if (item == 1) {
 					this.popContactShow = true;
 				}
 			},

@@ -29948,7 +29948,7 @@ var _default = {
   }, {
     "path": "pages/collect/collect",
     "style": {
-      "navigationBarTitleText": "收藏",
+      "navigationBarTitleText": "我的收藏",
       "enablePullDownRefresh": true
     }
   }, {
