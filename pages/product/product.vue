@@ -26,12 +26,26 @@
 		<view style="padding: 5px;"></view>
 
 		<view style="background-color: #FFFFFF; border-radius:15px 15px 15px 15px;">
-			<view style="padding: 5px;"></view>
-			<uni-card :title="cameramanName" :subTitle="cameramanCity" :thumbnail="cameramanAvatar" @click="clickCard"
-				is-full :is-shadow="false" :border="false">
-				<text>{{cameramanDesc.whatsup}}</text>
-			</uni-card>
-			<view style="padding: 5px;"></view>
+			<view @click="clickCard"
+				style="background: #FFFFFF;border-radius: 8px;margin: 7px 12px 7px 12px; padding: 20px 18px 20px 18px;">
+				<u-row>
+					<u-col span="3">
+						<u-avatar :src="cameramanAvatar" size='60'></u-avatar>
+					</u-col>
+					<u-col span="8">
+						<u-row>
+							<text style="font-weight: 600;font-size: 16px;color: #191919;">{{cameramanName}}</text>
+						</u-row>
+						<view style="margin: 8px;"></view>
+						<u-row>
+							<text style="font-weight: 300;font-size: 12px;color: #808080;">{{cameramanDesc.whatsup}}</text>
+						</u-row>
+					</u-col>
+					<u-col span="1">
+						<u-icon name="arrow-right"></u-icon>
+					</u-col>
+				</u-row>
+			</view>
 		</view>
 
 
@@ -301,10 +315,9 @@
 				});
 
 				let content = JSON.parse(success.data.userId);
-
 				this.info = content.info;
 				this.introduction = content.introduction;
-
+				
 				getUserInfo({
 					userId: this.cameramanId
 				}).then((res) => {
@@ -315,7 +328,7 @@
 					this.cameramanPhone = success.data.phone;
 					this.cameramanCity = changeCity(success.data.city);
 				})
-
+				
 				getProductPage({
 					userId: this.cameramanId,
 					page: 1,
@@ -327,6 +340,7 @@
 					this.other.list = success.data;
 				});
 			});
+			
 			getProductCollectStatus({
 				userId: getApp().globalData.USER_ID,
 				productId: this.productId,

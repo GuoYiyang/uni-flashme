@@ -159,9 +159,9 @@
 					'xiaohongshu': {
 						type: 'string',
 						required: false,
-						min: 4,
-						max: 10,
-						message: '小红书号长度为4-10个字符',
+						min: 6,
+						max: 15,
+						message: '小红书号长度为6-15个字符',
 						trigger: ['blur', 'change']
 					},
 					'douyin': {

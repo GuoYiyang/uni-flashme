@@ -444,10 +444,9 @@ var _default = {
     selectClick: function selectClick(item) {
       if ("电话" == item.name) {
         uni.makePhoneCall({
-          phoneNumber: "18188606406" //电话号码
+          phoneNumber: this.phone
         });
       }
-
       if ("微信" == item.name) {
         uni.setClipboardData({
           data: 'Slimshadys_'

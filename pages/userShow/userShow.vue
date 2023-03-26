@@ -82,7 +82,7 @@
 				:safeAreaInsetBottom="true"></u-action-sheet>
 
 			<u-popup :show="popPlanShow" :round="10" @close="this.popPlanShow = false" mode="bottom">
-				<scroll-view scroll-y="true" style="height: 500px;">
+				<scroll-view scroll-y="true" style="height: 700px;">
 					<view style="font-weight: bold; font-size: 16px; padding: 10px;">拍摄方案</view>
 
 					<u-scroll-list :indicator="false">
@@ -240,7 +240,7 @@
 			selectClick(item) {
 				if ("电话" == item.name) {
 					uni.makePhoneCall({
-						phoneNumber: "18188606406" //电话号码
+						phoneNumber: this.phone
 					})
 				}
 				if ("微信" == item.name) {
