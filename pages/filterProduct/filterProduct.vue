@@ -24,6 +24,7 @@
 				<view style="padding: 5px;" v-for="(item,index) in product.list" :key="index" slot="slot{{index}}">
 					<view style="font-weight: 600;font-size: 15px;line-height: 20px;padding: 6px 6px 6px 6px">
 						{{item.title}}
+						
 					</view>
 					<view style="padding: 0px 6px 6px 6px">
 						<u-row>

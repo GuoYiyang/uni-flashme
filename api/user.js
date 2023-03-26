@@ -93,3 +93,17 @@ export function getPherCollectStatus(req) {
 		}
 	});
 }
+
+// 获取用户作品数、粉丝数
+export function getUserFansCnt(req) {
+	return uni.request({
+		url: baseUrl + '/user/fans/cnt',
+		method: "GET",
+		header:{
+			"X-USER-ID": getApp().globalData.USER_ID
+		},
+		data: {
+			userId: req.userId
+		}
+	});
+}

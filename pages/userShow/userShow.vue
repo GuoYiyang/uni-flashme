@@ -1,19 +1,18 @@
 <template>
 	<view>
-		<view style="background-color: #FFFFFF; padding-bottom: 10px; border-radius:0 0 15px 15px;">
-
-			<view class="topright">
-				<u-button  color="#3D6EC2" @click="follow" :text="isFollow ? '已关注': '关注'"
-					customStyle="border-radius:10px; width: 80px;height: 30px;"></u-button>
-			</view>
+		<image src="https://pic-common-1258999491.cos.ap-nanjing.myqcloud.com/index_background.jpg"
+			style="margin-bottom: -40px; height: 160px; width: 100%;"></image>
+		<view class="topright">
+			<u-button color="#3D6EC2" @click="follow" :text="isFollow ? '已关注': '关注'"
+				customStyle="border-radius:10px; width: 80px;height: 30px;"></u-button>
+		</view>
+		<view style="background-color: #FFFFFF; padding-bottom: 10px; border-radius:15px">
 
 			<view class="center">
-				<u-row gutter="0" customStyle="padding: 10px;">
-					<u-col span="12">
-						<view @click="avatarClick">
-							<u-avatar :src="avatar" size="80"></u-avatar>
-						</view>
-					</u-col>
+				<u-row>
+					<view @click="avatarClick">
+						<u-avatar :src="avatar" size="80"></u-avatar>
+					</view>
 				</u-row>
 				<u-row customStyle="padding-top: 10px;">
 					<u-col span="12">
@@ -21,14 +20,15 @@
 					</u-col>
 				</u-row>
 
-				<u-row gutter="10" customStyle="padding-top: 10px;">
+				<u-row customStyle="padding-top: 10px;">
 					<u-icon name="map" :label="city"></u-icon>
 				</u-row>
 
 				<u-row customStyle="padding-top: 10px; padding-bottom: 10px;">
-					<u-col span="12">
-						<text style="font-size: 14px; color: #4E4E4E;">{{desc.whatsup}}</text>
-					</u-col>
+					<view style="flex-flow: row;">
+						<text style="font-size: 14px; color: #4E4E4E;padding-right: 20px;">作品数 {{productCnt}}</text>
+						<text style="font-size: 14px; color: #4E4E4E;">粉丝数 {{fansCnt}}</text>
+					</view>
 				</u-row>
 			</view>
 
@@ -165,7 +165,8 @@
 	import {
 		getUserInfo,
 		pherCollect,
-		getPherCollectStatus
+		getPherCollectStatus,
+		getUserFansCnt
 	} from '@/api/user.js';
 	import {
 		changeCity
@@ -180,6 +181,8 @@
 				gender: '',
 				desc: {},
 				phone: '',
+				productCnt: 0,
+				fansCnt: 0,
 				page: 1,
 				pageSize: 10,
 				product: {
@@ -292,7 +295,7 @@
 					title: this.username + "的主页"
 				});
 
-			})
+			});
 			getProductPage({
 				userId: this.userId,
 				page: this.page,
@@ -300,14 +303,22 @@
 			}).then((res) => {
 				let [error, success] = res;
 				_this.product.list = success.data;
-			})
+			});
 			getPherCollectStatus({
 				userId: getApp().globalData.USER_ID,
 				pherId: this.userId
 			}).then((res) => {
 				let [error, success] = res;
 				_this.isFollow = success.data;
-			})
+			});
+			getUserFansCnt({
+				userId: this.userId
+			}).then((res) => {
+				let [error, success] = res;
+				console.log(success.data)
+				_this.productCnt = success.data[0];
+				_this.fansCnt = success.data[1];
+			});
 			uni.showShareMenu({
 				withShareTicket: true,
 				menus: ["shareAppMessage", "shareTimeline"]
@@ -339,7 +350,7 @@
 <style lang="scss" scoped>
 	.topright {
 		position: absolute;
-		top: 8px;
+		top: 170px;
 		right: 16px;
 		font-size: 15px;
 	}

@@ -106,11 +106,11 @@ try {
     uRow: function () {
       return Promise.all(/*! import() | uni_modules/uview-ui/components/u-row/u-row */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-row/u-row")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-row/u-row.vue */ 292))
     },
-    uCol: function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-col/u-col */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-col/u-col")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-col/u-col.vue */ 300))
-    },
     uAvatar: function () {
       return Promise.all(/*! import() | uni_modules/uview-ui/components/u-avatar/u-avatar */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-avatar/u-avatar")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-avatar/u-avatar.vue */ 315))
+    },
+    uCol: function () {
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-col/u-col */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-col/u-col")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-col/u-col.vue */ 300))
     },
     uIcon: function () {
       return Promise.all(/*! import() | uni_modules/uview-ui/components/u-icon/u-icon */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-icon/u-icon")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-icon/u-icon.vue */ 339))
@@ -391,6 +391,8 @@ var _default = {
       gender: '',
       desc: {},
       phone: '',
+      productCnt: 0,
+      fansCnt: 0,
       page: 1,
       pageSize: 10,
       product: {
@@ -526,11 +528,21 @@ var _default = {
                   success = _res3[1];
                 _this.isFollow = success.data;
               });
+              (0, _user.getUserFansCnt)({
+                userId: _this2.userId
+              }).then(function (res) {
+                var _res4 = (0, _slicedToArray2.default)(res, 2),
+                  error = _res4[0],
+                  success = _res4[1];
+                console.log(success.data);
+                _this.productCnt = success.data[0];
+                _this.fansCnt = success.data[1];
+              });
               uni.showShareMenu({
                 withShareTicket: true,
                 menus: ["shareAppMessage", "shareTimeline"]
               });
-            case 8:
+            case 9:
             case "end":
               return _context.stop();
           }
@@ -546,9 +558,9 @@ var _default = {
       page: this.page,
       pageSize: this.pageSize
     }).then(function (res) {
-      var _res4 = (0, _slicedToArray2.default)(res, 2),
-        error = _res4[0],
-        success = _res4[1];
+      var _res5 = (0, _slicedToArray2.default)(res, 2),
+        error = _res5[0],
+        success = _res5[1];
       if (success.data.length == 0) {}
       _this3.product.list = _this3.product.list.concat(success.data);
     });
