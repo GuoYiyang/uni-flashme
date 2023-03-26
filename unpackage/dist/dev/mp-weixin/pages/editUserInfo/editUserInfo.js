@@ -98,11 +98,17 @@ __webpack_require__.r(__webpack_exports__);
 var components
 try {
   components = {
-    "u-Form": function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u--form/u--form */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u--form/u--form")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u--form/u--form.vue */ 411))
+    uRow: function () {
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-row/u-row */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-row/u-row")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-row/u-row.vue */ 302))
+    },
+    uCol: function () {
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-col/u-col */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-col/u-col")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-col/u-col.vue */ 310))
     },
     uAvatar: function () {
       return Promise.all(/*! import() | uni_modules/uview-ui/components/u-avatar/u-avatar */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-avatar/u-avatar")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-avatar/u-avatar.vue */ 325))
+    },
+    "u-Form": function () {
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u--form/u--form */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u--form/u--form")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u--form/u--form.vue */ 411))
     },
     uFormItem: function () {
       return Promise.all(/*! import() | uni_modules/uview-ui/components/u-form-item/u-form-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-form-item/u-form-item")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-form-item/u-form-item.vue */ 417))
@@ -144,6 +150,12 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  var a0 = {
+    "font-weight": 300,
+    "font-size": "14px",
+    "line-height": "16px",
+    color: "#808080",
+  }
   if (!_vm._isMounted) {
     _vm.e0 = function ($event) {
       _vm.showSex = true
@@ -158,6 +170,14 @@ var render = function () {
       _vm.showCity = false
     }
   }
+  _vm.$mp.data = Object.assign(
+    {},
+    {
+      $root: {
+        a0: a0,
+      },
+    }
+  )
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -248,6 +268,28 @@ var _method = __webpack_require__(/*! @/common/method.js */ 169);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default = {
   data: function data() {
     var _this2 = this;
@@ -270,6 +312,9 @@ var _default = {
         city: '',
         cityText: '请选择城市'
       },
+      isAdmin: false,
+      isUser: false,
+      isPher: false,
       showSex: false,
       showCity: false,
       cityList: [[{
@@ -296,9 +341,9 @@ var _default = {
         'name': {
           type: 'string',
           required: true,
-          min: 4,
+          min: 2,
           max: 10,
-          message: '请填写姓名,长度为4-10个字符',
+          message: '姓名长度为2-10个字符',
           trigger: ['blur', 'change']
         },
         'phone': {
@@ -320,17 +365,17 @@ var _default = {
         'xiaohongshu': {
           type: 'string',
           required: false,
-          min: 6,
-          max: 15,
-          message: '小红书号长度为4-15个字符',
+          min: 4,
+          max: 10,
+          message: '小红书号长度为4-10个字符',
           trigger: ['blur', 'change']
         },
         'douyin': {
           type: 'string',
           required: false,
           min: 6,
-          max: 15,
-          message: '抖音号长度为4-10个字符',
+          max: 9,
+          message: '抖音号长度为6-9个字符',
           trigger: ['blur', 'change']
         },
         'whatsup': {
@@ -375,6 +420,12 @@ var _default = {
     submit: function submit() {
       var _this3 = this;
       this.$refs.Form.validate().then(function (res) {
+        _this3.userInfo.desc = JSON.stringify({
+          "xiaohongshu": _this3.userInfo.xiaohongshu,
+          "douyin": _this3.userInfo.douyin,
+          "whatsup": _this3.userInfo.whatsup,
+          "intro": _this3.userInfo.intro
+        });
         if (_this3.selectedAvatarPath != '') {
           (0, _product.uploadImages)({
             filePath: _this3.selectedAvatarPath
@@ -415,6 +466,7 @@ var _default = {
         }, 500);
       }).catch(function (errors) {
         uni.showToast({
+          icon: 'error',
           title: "请检查所填内容是否正确"
         });
       });
@@ -434,7 +486,6 @@ var _default = {
       _this.userInfo.sex = success.data.gender;
       _this.userInfo.avatar = success.data.avatar;
       _this.avatar = success.data.avatar;
-      _this.userInfo.desc = success.data.desc;
       _this.userInfo.phone = success.data.phone;
       if (success.data.gender == 1) {
         _this.userInfo.sexText = "男";
@@ -442,6 +493,22 @@ var _default = {
         _this.userInfo.sexText = "女";
       }
       _this.userInfo.cityText = (0, _method.changeCity)(success.data.city);
+      _this.userInfo.desc = success.data.desc;
+      var userDesc = JSON.parse(success.data.desc);
+      _this.userInfo.xiaohongshu = userDesc.xiaohongshu;
+      _this.userInfo.douyin = userDesc.douyin;
+      _this.userInfo.whatsup = userDesc.whatsup;
+      _this.userInfo.intro = userDesc.intro;
+      if (success.data.role == 0) {
+        _this.isAdmin = true;
+        _this.isPher = true;
+        _this.isUser = true;
+      } else if (success.data.role == 1) {
+        _this.isUser = true;
+      } else if (success.data.role == 2) {
+        _this.isUser = true;
+        _this.isPher = true;
+      }
     });
   },
   onReady: function onReady() {

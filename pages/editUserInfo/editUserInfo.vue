@@ -1,8 +1,19 @@
 <template>
 	<view>
-		<u--form labelPosition="top" :rules="rules" ref="Form" :model="userInfo">
-			<view style="padding: 10px; border-radius: 10px; background-color: #FFFFFF;">
-				<u-avatar :src="avatar" shape="square" @click="chooseAvatar"></u-avatar>
+		<view style="margin-bottom: 12px; padding: 16px 26px 16px 26px; border-radius: 10px; background-color: #FFFFFF">
+			<u-row>
+				<u-col span="10">
+					<view style="font-weight: 300;font-size: 14px;line-height: 16px;color: #808080;">头像</view>
+				</u-col>
+				<u-col span="2">
+					<u-avatar :src="avatar" @click="chooseAvatar" size="60px"></u-avatar>
+				</u-col>
+			</u-row>
+
+		</view>
+
+		<u--form labelPosition="top" :rules="rules" ref="Form" :model="userInfo" :labelStyle="{'font-weight':300,'font-size':'14px','line-height':'16px','color':'#808080'}">
+			<view style="padding: 6px 26px 6px 26px; border-radius: 10px; background-color: #FFFFFF;">
 				<u-form-item label="名字" prop="name" borderBottom>
 					<u--input v-model="userInfo.name" border="none" showWordLimit></u--input>
 				</u-form-item>
@@ -14,11 +25,13 @@
 					<u--input readonly v-model="userInfo.cityText" placeholder="请选择城市" border="none"></u--input>
 					<u-icon slot="right" name="arrow-right"></u-icon>
 				</u-form-item>
-				<u-form-item labelWidth="100px" label="手机号" prop="phone" borderBottom>
+				<u-form-item labelWidth="100px" 
+				label="手机号" prop="phone" borderBottom>
 					<u--input type="number" v-model="userInfo.phone" border="none"></u--input>
 				</u-form-item>
 			</view>
-			<view style="margin-top: 12px; padding: 10px; border-radius: 10px; background-color: #FFFFFF;">
+			<view style="margin-bottom: 12px;"></view>
+			<view v-if="isPher" style="padding: 6px 26px 6px 26px; border-radius: 10px; background-color: #FFFFFF;">
 				<u-form-item labelWidth="100px" label="小红书号" prop="xiaohongshu" borderBottom>
 					<u--input v-model="userInfo.xiaohongshu" border="none"></u--input>
 				</u-form-item>
@@ -30,7 +43,7 @@
 					</u--input>
 				</u-form-item>
 				<u-form-item labelWidth="100px" label="个人简介" prop="intro">
-					<u--textarea v-model="userInfo.intro" count autoHeight maxlength=200></u--textarea>
+					<u--textarea v-model="userInfo.intro" count maxlength=200></u--textarea>
 				</u-form-item>
 			</view>
 			<u-picker :show="showSex" :columns="sexList" @confirm="sexSelect" keyName="name" @cancel="showSex = false">
@@ -39,7 +52,16 @@
 				@cancel="showCity = false"></u-picker>
 		</u--form>
 
-		<u-button @click="submit">保存</u-button>
+		<view v-if="isPher" style="padding: 12px 26px 0 26px; font-weight: 300;font-size: 14px;line-height: 16px;color: #808080">
+			*个人资料将展示在你的摄影师主页</view>
+
+		<view style="padding:16px 0px 50px 0">
+			<u-button @click="submit" color="#000000"
+				customStyle="border:0.5px solid #1E1E1E;border-radius:10px;width:100px;height:42px;font-weight:500;font-size:16px;line-height:16px;color:#FFFFFF;">
+				保存
+			</u-button>
+		</view>
+
 
 	</view>
 </template>
@@ -76,6 +98,9 @@
 					city: '',
 					cityText: '请选择城市'
 				},
+				isAdmin: false,
+				isUser: false,
+				isPher: false,
 				showSex: false,
 				showCity: false,
 				cityList: [
@@ -110,9 +135,9 @@
 					'name': {
 						type: 'string',
 						required: true,
-						min: 4,
+						min: 2,
 						max: 10,
-						message: '请填写姓名,长度为4-10个字符',
+						message: '姓名长度为2-10个字符',
 						trigger: ['blur', 'change']
 					},
 					'phone': {
@@ -134,17 +159,17 @@
 					'xiaohongshu': {
 						type: 'string',
 						required: false,
-						min: 6,
-						max: 15,
-						message: '小红书号长度为4-15个字符',
+						min: 4,
+						max: 10,
+						message: '小红书号长度为4-10个字符',
 						trigger: ['blur', 'change']
 					},
 					'douyin': {
 						type: 'string',
 						required: false,
 						min: 6,
-						max: 15,
-						message: '抖音号长度为4-10个字符',
+						max: 9,
+						message: '抖音号长度为6-9个字符',
 						trigger: ['blur', 'change']
 					},
 					'whatsup': {
@@ -189,6 +214,12 @@
 			},
 			submit() {
 				this.$refs.Form.validate().then(res => {
+					this.userInfo.desc = JSON.stringify({
+						"xiaohongshu": this.userInfo.xiaohongshu,
+						"douyin": this.userInfo.douyin,
+						"whatsup": this.userInfo.whatsup,
+						"intro": this.userInfo.intro,
+					})
 					if (this.selectedAvatarPath != '') {
 						uploadImages({
 							filePath: this.selectedAvatarPath
@@ -227,6 +258,7 @@
 					}, 500)
 				}).catch(errors => {
 					uni.showToast({
+						icon: 'error',
 						title: "请检查所填内容是否正确"
 					})
 				})
@@ -244,7 +276,6 @@
 				_this.userInfo.sex = success.data.gender;
 				_this.userInfo.avatar = success.data.avatar;
 				_this.avatar = success.data.avatar;
-				_this.userInfo.desc = success.data.desc;
 				_this.userInfo.phone = success.data.phone;
 				if (success.data.gender == 1) {
 					_this.userInfo.sexText = "男"
@@ -252,6 +283,25 @@
 					_this.userInfo.sexText = "女"
 				}
 				_this.userInfo.cityText = changeCity(success.data.city);
+
+				_this.userInfo.desc = success.data.desc;
+				let userDesc = JSON.parse(success.data.desc);
+				_this.userInfo.xiaohongshu = userDesc.xiaohongshu;
+				_this.userInfo.douyin = userDesc.douyin;
+				_this.userInfo.whatsup = userDesc.whatsup;
+				_this.userInfo.intro = userDesc.intro;
+				
+				if (success.data.role == 0) {
+					_this.isAdmin = true;
+					_this.isPher = true;
+					_this.isUser = true;
+				} else if (success.data.role == 1) {
+					_this.isUser = true;
+				} else if (success.data.role == 2) {
+					_this.isUser = true;
+					_this.isPher = true;
+				}
+
 			})
 		},
 		onReady() {
