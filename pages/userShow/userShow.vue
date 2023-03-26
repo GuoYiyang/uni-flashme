@@ -27,7 +27,7 @@
 
 				<u-row customStyle="padding-top: 10px; padding-bottom: 10px;">
 					<u-col span="12">
-						<text style="font-size: 14px; color: #4E4E4E;">{{desc}}</text>
+						<text style="font-size: 14px; color: #4E4E4E;">{{desc.whatsup}}</text>
 					</u-col>
 				</u-row>
 			</view>
@@ -178,7 +178,7 @@
 				avatar: '',
 				city: '',
 				gender: '',
-				desc: '',
+				desc: {},
 				phone: '',
 				page: 1,
 				pageSize: 10,
@@ -286,7 +286,7 @@
 				_this.city = changeCity(success.data.city);
 				_this.gender = success.data.gender;
 				_this.avatar = success.data.avatar;
-				_this.desc = success.data.desc;
+				_this.desc = JSON.parse(success.data.desc);
 				_this.phone = success.data.phone;
 				uni.setNavigationBarTitle({
 					title: this.username + "的主页"

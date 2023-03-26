@@ -29,7 +29,7 @@
 			<view style="padding: 5px;"></view>
 			<uni-card :title="cameramanName" :subTitle="cameramanCity" :thumbnail="cameramanAvatar" @click="clickCard"
 				is-full :is-shadow="false" :border="false">
-				<text>{{cameramanDesc}}</text>
+				<text>{{cameramanDesc.whatsup}}</text>
 			</uni-card>
 			<view style="padding: 5px;"></view>
 		</view>
@@ -177,7 +177,7 @@
 				cameramanId: '',
 				cameramanAvatar: '',
 				cameramanName: '',
-				cameramanDesc: '',
+				cameramanDesc: {},
 				cameramanPhone: '',
 				cameramanCity: '',
 				imgUrlList: [],
@@ -311,7 +311,7 @@
 					let [error, success] = res;
 					this.cameramanAvatar = success.data.avatar;
 					this.cameramanName = success.data.nickname;
-					this.cameramanDesc = success.data.desc;
+					this.cameramanDesc = JSON.parse(success.data.desc);
 					this.cameramanPhone = success.data.phone;
 					this.cameramanCity = changeCity(success.data.city);
 				})

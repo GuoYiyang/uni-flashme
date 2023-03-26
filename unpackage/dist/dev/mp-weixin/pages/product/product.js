@@ -385,7 +385,7 @@ var _default = {
       cameramanId: '',
       cameramanAvatar: '',
       cameramanName: '',
-      cameramanDesc: '',
+      cameramanDesc: {},
       cameramanPhone: '',
       cameramanCity: '',
       imgUrlList: [],
@@ -526,7 +526,7 @@ var _default = {
                     success = _res2[1];
                   _this.cameramanAvatar = success.data.avatar;
                   _this.cameramanName = success.data.nickname;
-                  _this.cameramanDesc = success.data.desc;
+                  _this.cameramanDesc = JSON.parse(success.data.desc);
                   _this.cameramanPhone = success.data.phone;
                   _this.cameramanCity = (0, _method.changeCity)(success.data.city);
                 });

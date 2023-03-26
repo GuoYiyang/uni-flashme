@@ -389,7 +389,7 @@ var _default = {
       avatar: '',
       city: '',
       gender: '',
-      desc: '',
+      desc: {},
       phone: '',
       page: 1,
       pageSize: 10,
@@ -502,7 +502,7 @@ var _default = {
                 _this.city = (0, _method.changeCity)(success.data.city);
                 _this.gender = success.data.gender;
                 _this.avatar = success.data.avatar;
-                _this.desc = success.data.desc;
+                _this.desc = JSON.parse(success.data.desc);
                 _this.phone = success.data.phone;
                 uni.setNavigationBarTitle({
                   title: _this2.username + "的主页"
