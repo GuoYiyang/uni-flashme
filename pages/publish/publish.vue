@@ -16,8 +16,8 @@
 					<u-form-item labelWidth="100px" label="作品名称" prop="title" borderBottom>
 						<u--input v-model="form.title" border="none"></u--input>
 					</u-form-item>
-					<u-form-item labelWidth="100px" label="作品类型" prop="tag" borderBottom @click="showCate = true;">
-						<u--input readonly v-model="form.tag" placeholder="请选择作品类型" border="none">
+					<u-form-item labelWidth="100px" label="作品类型" prop="tag" @click="showCate = true;">
+						<u--input readonly v-model="form.tagText" placeholder="请选择作品类型" border="none">
 						</u--input>
 						<u-icon slot="right" name="arrow-right"></u-icon>
 					</u-form-item>
@@ -56,6 +56,7 @@
 				form: {
 					title: '',
 					tag: '',
+					tagText: '',
 					price: '',
 					content: {}
 				},
@@ -110,6 +111,11 @@
 			}
 		},
 		methods: {
+			cateSelect(e) {
+				this.form.tag = e.value[0].value
+				this.form.tagText = e.value[0].text
+				this.showCate = false;
+			},
 			seleteImage(e) {
 				console.log(e)
 				e.tempFiles.map(item => {
@@ -125,15 +131,19 @@
 				});
 			},
 			publish() {
-				// 先上传图片
-				if (this.tempFiles.length > 0) {
-					this.tempFiles.forEach(item => {
-						uploadImages({
-							filePath: item.path
-						})
+				if (this.tempFiles.length == 0 || this.form.title.length == 0 || this.form.title.tag == 0) {
+					uni.showToast({
+						icon: 'error',
+						title: '内容未填写'
 					})
+					this.overlayShow = false;
 				}
-				// 在上传图片
+				return;
+				this.tempFiles.forEach(item => {
+					uploadImages({
+						filePath: item.path
+					})
+				})
 				publishProduct({
 					userId: getApp().globalData.USER_ID,
 					title: this.form.title,
@@ -150,6 +160,7 @@
 							})
 						} else {
 							uni.showToast({
+								icon: 'error',
 								title: '发布失败'
 							})
 						}

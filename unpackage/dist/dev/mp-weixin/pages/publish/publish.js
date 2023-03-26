@@ -261,6 +261,7 @@ var _default = {
       form: {
         title: '',
         tag: '',
+        tagText: '',
         price: '',
         content: {}
       },
@@ -320,6 +321,11 @@ var _default = {
     };
   },
   methods: {
+    cateSelect: function cateSelect(e) {
+      this.form.tag = e.value[0].value;
+      this.form.tagText = e.value[0].text;
+      this.showCate = false;
+    },
     seleteImage: function seleteImage(e) {
       var _this = this;
       console.log(e);
@@ -337,15 +343,19 @@ var _default = {
       });
     },
     publish: function publish() {
-      // 先上传图片
-      if (this.tempFiles.length > 0) {
-        this.tempFiles.forEach(function (item) {
-          (0, _product.uploadImages)({
-            filePath: item.path
-          });
+      if (this.tempFiles.length == 0 || this.form.title.length == 0 || this.form.title.tag == 0) {
+        uni.showToast({
+          icon: 'error',
+          title: '内容未填写'
         });
+        this.overlayShow = false;
       }
-      // 在上传图片
+      return;
+      this.tempFiles.forEach(function (item) {
+        (0, _product.uploadImages)({
+          filePath: item.path
+        });
+      });
       (0, _product.publishProduct)({
         userId: getApp().globalData.USER_ID,
         title: this.form.title,
@@ -364,6 +374,7 @@ var _default = {
             });
           } else {
             uni.showToast({
+              icon: 'error',
               title: '发布失败'
             });
           }

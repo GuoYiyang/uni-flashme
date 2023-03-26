@@ -1,37 +1,33 @@
 <template>
 	<view>
 		<view>
-			<u-sticky bgColor="#f5f5f5">
-				<u-tabs :list="tabsList" lineWidth="30" lineHeight="3" lineColor="#000000" :activeStyle="{
-				        color: '#303133',
-				        fontWeight: 'bold',
-				        transform: 'scale(1.1)'
-				    }" :inactiveStyle="{
-				        color: '#606266',
-				        transform: 'scale(1)'
-				    }" itemStyle="padding-left: 15px; padding-right: 15px; height: 34px;" @change="tabsChange" :duration="100">
-				</u-tabs>
+			<u-sticky bgColor="#F8F8F8">
+				<view style="box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05)">
+					<u-tabs :list="tabsList" lineWidth="40" lineHeight="3" lineColor="#191919"
+						:activeStyle="{color: '#191919',fontWeight: 'bold', transform: 'scale(1)'}"
+						:inactiveStyle="{color: '#808080',transform: 'scale(1)'}" :current="tabsCurrent" :scrollable='false'
+						:duration="100" @change="tabsChange">
+					</u-tabs>
+				</view>
 			</u-sticky>
 		</view>
 
-		<view style="padding: 10rpx;">
+		<view style="padding: 14px 10px 0 10px;">
 			<custom-waterfalls-flow :value="product.list" :column="2" :columnSpace="1" @imageClick="imageClick"
-				@wapperClick="wapperClick" ref="waterfallsFlowRef" @loaded="loaded">
-				<view class="item" v-for="(item,index) in product.list" :key="index" slot="slot{{index}}">
-					<u-row>
-						<view class="title">{{item.title}}</view>
-					</u-row>
-					<u-row>
-						<u-col span="6">
-							<u-tag :text="item.status" bgColor="#F3F4F5" color="#191919" borderColor="#F3F4F5"></u-tag>
-							<!-- <view class="desc">￥{{item.price}}</view> -->
-						</u-col>
-						<u-col span="4">
-						</u-col>
-						<u-col span="2">
-							<uni-icons type="more-filled" size="20" color="#1f1f1f"></uni-icons>
-						</u-col>
-					</u-row>
+				@wapperClick="wapperClick" ref="waterfallsFlowRef">
+				<view style="padding: 5px;" v-for="(item,index) in product.list" :key="index" slot="slot{{index}}">
+					<view style="font-weight: 600;font-size: 15px;line-height: 20px;padding: 6px 6px 6px 6px">
+						{{item.title}}</view>
+					<view style="padding: 0px 6px 6px 6px">
+						<u-row>
+							<u-col span="1.5" align="center">
+								<u-avatar :src="item.userInfo.avatar" size='18'></u-avatar>
+							</u-col>
+							<u-col span="10.5" align="center">
+								<text style="font-size: 12px; color: #4e4e4e;">{{item.userInfo.nickname}}</text>
+							</u-col>
+						</u-row>
+					</view>
 				</view>
 			</custom-waterfalls-flow>
 		</view>
@@ -49,10 +45,6 @@
 		</view>
 
 		<uni-fab horizontal="right" :popMenu="false" @fabClick="buttonClick" :pattern="{buttonColor: '#000000'}" />
-
-		<!-- 		<view class="collect-tabbar">
-			<u-button @click="buttonClick">发布新作品</u-button>
-		</view> -->
 		
 		<u-overlay :show="overlayShow"></u-overlay>
 
@@ -83,17 +75,40 @@
 					list: []
 				},
 				tabsList: [{
-					name: '全部'
+					name: '已发布'
+				},{
+					name: '审核中'
+				},{
+					name: '已驳回'
 				}],
-				tabbarGroup: [{
-					text: '发布新产品',
-					backgroundColor: '#000000',
-					color: '#fff'
-				}],
+				tabsCurrent:0,
+				publishStatus: 'SUCCESS'
 			}
 		},
 		methods: {
-			loaded() {
+			tabsChange(index) {
+				let _this = this;
+				this.tabsCurrent = index.index;
+				if (index.index == 0) {
+					this.publishStatus = 'SUCCESS'
+				}
+				if (index.index == 1) {
+					this.publishStatus = 'REVIEW'
+				}
+				if (index.index == 2) {
+					this.publishStatus = 'REJECT'
+				}
+				getProductPage({
+					userId: getApp().globalData.USER_ID,
+					status: this.publishStatus,
+					page: 1,
+					pageSize: this.pageSize,
+				}).then((res) => {
+					let [error, success] = res;
+					if (success.data.length == 0) {}
+					_this.product.list = success.data;
+					_this.$refs.waterfallsFlowRef.refresh();
+				})
 			},
 			selectClick(item) {
 				console.log(item.name)
@@ -121,9 +136,6 @@
 			wapperClick(item) {
 				this.selectedProductId = item.id;
 				this.popShow = true;
-				// uni.navigateTo({
-				// 	url: '../product/product?id=' + item.id
-				// })
 			},
 			imageClick(item) {
 				uni.navigateTo({
@@ -141,6 +153,7 @@
 			let _this = this;
 			getProductPage({
 				userId: getApp().globalData.USER_ID,
+				status: this.publishStatus,
 				page: this.page,
 				pageSize: this.pageSize,
 			}).then((res) => {
@@ -153,6 +166,7 @@
 			let _this = this;
 			getProductPage({
 				userId: getApp().globalData.USER_ID,
+				status: this.publishStatus,
 				page: _this.page,
 				pageSize: _this.pageSize,
 			}).then((res) => {
@@ -166,6 +180,7 @@
 			let _this = this;
 			getProductPage({
 				userId: getApp().globalData.USER_ID,
+				status: this.publishStatus,
 				page: this.page,
 				pageSize: this.pageSize,
 			}).then((res) => {
@@ -182,34 +197,5 @@
 </script>
 
 <style lang="scss" scoped>
-	.item {
-		padding: 10rpx 10rpx 20rpx;
 
-		.title {
-			font-weight: bold;
-			line-height: 48rpx;
-			font-size: 30rpx;
-			color: #222;
-		}
-
-		.desc {
-			font-size: 24rpx;
-			color: #666;
-		}
-	}
-
-	.collect-tabbar {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		flex-direction: column;
-		position: fixed;
-		left: 50rpx;
-		right: 50rpx;
-		/* #ifdef H5 */
-		left: var(--window-left);
-		right: var(--window-right);
-		/* #endif */
-		bottom: 40rpx;
-	}
 </style>
