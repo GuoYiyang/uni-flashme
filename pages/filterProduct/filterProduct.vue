@@ -1,6 +1,6 @@
 <template>
 	<view>
-<!-- 		<u-row justify="center" gutter="10">
+		<!-- 		<u-row justify="center" gutter="10">
 			<u-col span="4">
 				<uni-data-picker popup-title="城市" :localdata="cityList" v-model="city" :clear-icon="false"
 					@change="cityChange" placeholder="城市">
@@ -18,11 +18,23 @@
 			</u-col>
 		</u-row> -->
 		<!-- <u-line></u-line> -->
-		<view style="padding: 10rpx;">
+		<view style="padding: 14px 10px 0 10px;">
 			<custom-waterfalls-flow :value="product.list" :column="2" :columnSpace="1" @imageClick="imageClick"
 				@wapperClick="wapperClick" ref="waterfallsFlowRef">
-				<view class="item" v-for="(item,index) in product.list" :key="index" slot="slot{{index}}">
-					<view class="title">{{item.title}}</view>
+				<view style="padding: 5px;" v-for="(item,index) in product.list" :key="index" slot="slot{{index}}">
+					<view style="font-weight: 600;font-size: 15px;line-height: 20px;padding: 6px 6px 6px 6px">
+						{{item.title}}
+					</view>
+					<view style="padding: 0px 6px 6px 6px">
+						<u-row>
+							<u-col span="1.5" align="center">
+								<u-avatar :src="item.userInfo.avatar" size='18'></u-avatar>
+							</u-col>
+							<u-col span="10.5" align="center">
+								<text style="font-size: 12px; color: #4e4e4e;">{{item.userInfo.nickname}}</text>
+							</u-col>
+						</u-row>
+					</view>
 				</view>
 			</custom-waterfalls-flow>
 		</view>
@@ -93,7 +105,6 @@
 			}).then((res) => {
 				let [error, success] = res;
 				_this.product.list = success.data;
-				// this.$refs.waterfallsFlowRef.refresh();
 			})
 
 		},
@@ -108,29 +119,13 @@
 			}).then((res) => {
 				let [error, success] = res;
 				if (success.data.length == 0) {
-
 				}
 				this.product.list = this.product.list.concat(success.data);
-				// this.$refs.waterfallsFlowRef.refresh();
 			})
 		}
 	}
 </script>
 
 <style lang="scss" scoped>
-	.item {
-		padding: 10rpx 10rpx 20rpx;
 
-		.title {
-			font-weight: bold;
-			line-height: 48rpx;
-			font-size: 30rpx;
-			color: #222;
-		}
-
-		.desc {
-			font-size: 24rpx;
-			color: #666;
-		}
-	}
 </style>

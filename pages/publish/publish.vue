@@ -137,8 +137,8 @@
 						title: '内容未填写'
 					})
 					this.overlayShow = false;
+					return;
 				}
-				return;
 				this.tempFiles.forEach(item => {
 					uploadImages({
 						filePath: item.path
