@@ -27,12 +27,12 @@
 
 		<view style="background-color: #FFFFFF; border-radius:15px 15px 15px 15px;">
 			<view @click="clickCard"
-				style="background: #FFFFFF;border-radius: 8px;margin: 7px 12px 7px 12px; padding: 20px 18px 20px 18px;">
+				style="background: #FFFFFF;border-radius: 8px;padding: 20px 18px 20px 18px;">
 				<u-row>
-					<u-col span="3">
+					<u-col span="2.5">
 						<u-avatar :src="cameramanAvatar" size='60'></u-avatar>
 					</u-col>
-					<u-col span="8">
+					<u-col span="8.5">
 						<u-row>
 							<text style="font-weight: 600;font-size: 16px;color: #191919;">{{cameramanName}}</text>
 						</u-row>
