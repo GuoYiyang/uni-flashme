@@ -5,8 +5,8 @@
 				<view style="box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05)">
 					<u-tabs :list="tabsList" lineWidth="40" lineHeight="3" lineColor="#191919"
 						:activeStyle="{color: '#191919',fontWeight: 'bold', transform: 'scale(1)'}"
-						:inactiveStyle="{color: '#808080',transform: 'scale(1)'}" :current="tabsCurrent" :scrollable='false'
-						:duration="100" @change="tabsChange">
+						:inactiveStyle="{color: '#808080',transform: 'scale(1)'}" :current="tabsCurrent"
+						:scrollable='false' :duration="100" @change="tabsChange">
 					</u-tabs>
 				</view>
 			</u-sticky>
@@ -14,10 +14,14 @@
 
 		<view style="padding: 14px 10px 0 10px;">
 			<custom-waterfalls-flow :value="product.list" :column="2" :columnSpace="1" @imageClick="imageClick"
-				@wapperClick="wapperClick" ref="waterfallsFlowRef">
+				@wapperClick="wapperClick" ref="waterfallsFlowRef" @loaded="waterfallsLoaded">
 				<view style="padding: 5px;" v-for="(item,index) in product.list" :key="index" slot="slot{{index}}">
 					<view style="font-weight: 600;font-size: 15px;line-height: 20px;padding: 6px 6px 6px 6px">
-						{{item.title}}</view>
+						{{item.title}}
+					</view>
+					<view style="flex-flow: row; float: right;padding: 0 5px 5px;">
+						<uni-icons type="more-filled" size="20" color="#1f1f1f"></uni-icons>
+					</view>
 				</view>
 			</custom-waterfalls-flow>
 		</view>
@@ -35,7 +39,7 @@
 		</view>
 
 		<uni-fab horizontal="right" :popMenu="false" @fabClick="buttonClick" :pattern="{buttonColor: '#000000'}" />
-		
+
 		<u-overlay :show="overlayShow"></u-overlay>
 
 	</view>
@@ -52,7 +56,7 @@
 	export default {
 		data() {
 			return {
-				overlayShow:false,
+				overlayShow: false,
 				productStatus: '',
 				selectedProductId: '',
 				popShow: false,
@@ -66,17 +70,21 @@
 				},
 				tabsList: [{
 					name: '已发布'
-				},{
+				}, {
 					name: '审核中'
-				},{
+				}, {
 					name: '已驳回'
 				}],
-				tabsCurrent:0,
+				tabsCurrent: 0,
 				publishStatus: 'SUCCESS'
 			}
 		},
 		methods: {
+			waterfallsLoaded() {
+				uni.hideNavigationBarLoading()
+			},
 			tabsChange(index) {
+				uni.showNavigationBarLoading()
 				let _this = this;
 				this.tabsCurrent = index.index;
 				if (index.index == 0) {
@@ -97,6 +105,9 @@
 					let [error, success] = res;
 					if (success.data.length == 0) {}
 					_this.product.list = success.data;
+					if (_this.product.list.length == 0) {
+						uni.hideNavigationBarLoading()
+					}
 					_this.$refs.waterfallsFlowRef.refresh();
 				})
 			},
@@ -139,6 +150,7 @@
 			}
 		},
 		onLoad: function(param) {
+			uni.showNavigationBarLoading()
 			this.page = 1;
 			let _this = this;
 			getProductPage({

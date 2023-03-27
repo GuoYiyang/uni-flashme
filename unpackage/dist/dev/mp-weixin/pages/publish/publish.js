@@ -372,14 +372,16 @@ var _default = {
             uni.showToast({
               title: '发布成功'
             });
+            uni.navigateTo({
+              url: '/pages/publishSuccess/publishSuccess'
+            });
           } else {
             uni.showToast({
               icon: 'error',
               title: '发布失败'
             });
+            this.overlayShow = false;
           }
-          this.overlayShow = false;
-          uni.navigateBack();
         }, 2000);
       });
     },

@@ -111,6 +111,13 @@
 			"enablePullDownRefresh": true
 		}
 
+	}, {
+		"path": "pages/publishSuccess/publishSuccess",
+		"style": {
+			"navigationBarTitleText": "",
+			"enablePullDownRefresh": false
+		}
+
 	}],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

@@ -247,6 +247,8 @@ var _method = __webpack_require__(/*! @/common/method.js */ 169);
 //
 //
 //
+//
+//
 var _default = {
   data: function data() {
     return {
@@ -268,6 +270,9 @@ var _default = {
     };
   },
   methods: {
+    waterfallsLoaded: function waterfallsLoaded() {
+      uni.hideNavigationBarLoading();
+    },
     clickPherCard: function clickPherCard(userId) {
       uni.navigateTo({
         url: '../userShow/userShow?userId=' + userId
@@ -309,6 +314,8 @@ var _default = {
     }, 250);
   },
   onLoad: function onLoad() {
+    var _this3 = this;
+    uni.showNavigationBarLoading();
     var _this = this;
     (0, _product.getProductCollect)({
       userId: getApp().globalData.USER_ID
@@ -317,6 +324,7 @@ var _default = {
         error = _res[0],
         success = _res[1];
       _this.product.list = success.data;
+      _this3.$refs.waterfallsFlowRef.refresh();
     });
     (0, _user.getPherCollect)({
       userId: getApp().globalData.USER_ID

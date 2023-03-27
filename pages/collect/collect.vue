@@ -12,10 +12,11 @@
 		<view v-if="collectProductShow">
 			<view style="padding: 14px 10px 0 10px;">
 				<custom-waterfalls-flow :value="product.list" :column="2" :columnSpace="1" @imageClick="imageClick"
-					@wapperClick="wapperClick" ref="waterfallsFlowRef">
+					@wapperClick="wapperClick" ref="waterfallsFlowRef" @loaded="waterfallsLoaded">
 					<view style="padding: 5px;" v-for="(item,index) in product.list" :key="index" slot="slot{{index}}">
 						<view style="font-weight: 600;font-size: 15px;line-height: 20px;padding: 6px 6px 6px 6px">
-							{{item.title}}</view>
+							{{item.title}}
+						</view>
 						<view style="padding: 0px 6px 6px 6px">
 							<u-row>
 								<u-col span="1.5" align="center">
@@ -45,7 +46,8 @@
 							</u-row>
 							<view style="margin: 8px;"></view>
 							<u-row>
-								<text style="font-weight: 300;font-size: 12px;color: #808080;">{{item.desc.whatsup}}</text>
+								<text
+									style="font-weight: 300;font-size: 12px;color: #808080;">{{item.desc.whatsup}}</text>
 							</u-row>
 						</u-col>
 						<u-col span="1">
@@ -93,6 +95,9 @@
 			}
 		},
 		methods: {
+			waterfallsLoaded() {
+				uni.hideNavigationBarLoading()
+			},
 			clickPherCard(userId) {
 				uni.navigateTo({
 					url: '../userShow/userShow?userId=' + userId
@@ -133,12 +138,14 @@
 			}, 250)
 		},
 		onLoad() {
+			uni.showNavigationBarLoading()
 			let _this = this;
 			getProductCollect({
 				userId: getApp().globalData.USER_ID
 			}).then((res) => {
 				let [error, success] = res;
 				_this.product.list = success.data;
+				this.$refs.waterfallsFlowRef.refresh();
 			});
 			getPherCollect({
 				userId: getApp().globalData.USER_ID

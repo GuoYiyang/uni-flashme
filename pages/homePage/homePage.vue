@@ -1,5 +1,6 @@
 <template>
 	<view>
+
 		<view style="padding: 20px 36px 20px 36px;">
 			<u-row>
 				<u-col span="3">
@@ -37,6 +38,7 @@
 				</u-button>
 			</u-col>
 		</u-row> -->
+		
 
 		<view style="margin: 16px;background-color:#FFFFFF;border-radius: 10px" v-if="isPher">
 			<view style="padding: 14px 18px 20px 18px">
@@ -171,6 +173,11 @@
 				}
 			},
 			clickUserList(item) {
+				if(item == 0) {
+					uni.navigateTo({
+						url:'/pages/publishSuccess/publishSuccess'
+					})
+				}
 
 			},
 			editClick() {

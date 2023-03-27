@@ -281,10 +281,9 @@
 			this.userId = param.userId;
 			let _this = this;
 			getUserInfo({
-				userId: this.userId
+				userId: param.userId
 			}).then((res) => {
 				let [error, success] = res;
-				console.log(success)
 				_this.username = success.data.nickname;
 				_this.city = changeCity(success.data.city);
 				_this.gender = success.data.gender;
@@ -298,6 +297,7 @@
 			});
 			getProductPage({
 				userId: this.userId,
+				status:'SUCCESS',
 				page: this.page,
 				pageSize: this.pageSize
 			}).then((res) => {
