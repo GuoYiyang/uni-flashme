@@ -3,7 +3,7 @@
 		<view class="center" style="background: #FFFFFF;border-radius: 14px;margin: 10px 16px 0 16px;">
 
 			<view style="margin: 60px 0 30px 0; font-weight: 600;font-size: 24px;line-height: 34px;color: #191919;">
-				发布成功！
+				发布成功!
 			</view>
 
 			<view style="margin-bottom: 30px;">

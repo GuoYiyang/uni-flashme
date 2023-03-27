@@ -534,7 +534,6 @@ var _default = {
                 var _res4 = (0, _slicedToArray2.default)(res, 2),
                   error = _res4[0],
                   success = _res4[1];
-                console.log(success.data);
                 _this.productCnt = success.data[0];
                 _this.fansCnt = success.data[1];
               });

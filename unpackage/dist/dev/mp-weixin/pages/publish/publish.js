@@ -372,7 +372,7 @@ var _default = {
             uni.showToast({
               title: '发布成功'
             });
-            uni.navigateTo({
+            uni.redirectTo({
               url: '/pages/publishSuccess/publishSuccess'
             });
           } else {

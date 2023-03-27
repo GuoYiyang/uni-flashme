@@ -315,7 +315,6 @@
 				userId: this.userId
 			}).then((res) => {
 				let [error, success] = res;
-				console.log(success.data)
 				_this.productCnt = success.data[0];
 				_this.fansCnt = success.data[1];
 			});
