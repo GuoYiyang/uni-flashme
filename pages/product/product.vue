@@ -26,8 +26,7 @@
 		<view style="padding: 5px;"></view>
 
 		<view style="background-color: #FFFFFF; border-radius:15px 15px 15px 15px;">
-			<view @click="clickCard"
-				style="background: #FFFFFF;border-radius: 8px;padding: 20px 18px 20px 18px;">
+			<view @click="clickCard" style="background: #FFFFFF;border-radius: 8px;padding: 20px 18px 20px 18px;">
 				<u-row>
 					<u-col span="2.5">
 						<u-avatar :src="cameramanAvatar" size='60'></u-avatar>
@@ -38,7 +37,8 @@
 						</u-row>
 						<view style="margin: 8px;"></view>
 						<u-row>
-							<text style="font-weight: 300;font-size: 12px;color: #808080;">{{cameramanDesc.whatsup}}</text>
+							<text
+								style="font-weight: 300;font-size: 12px;color: #808080;">{{cameramanDesc.whatsup}}</text>
 						</u-row>
 					</u-col>
 					<u-col span="1">
@@ -52,7 +52,7 @@
 		<view style="padding: 5px;"></view>
 
 		<view style="background-color: #FFFFFF; border-radius:15px 15px 15px 15px; padding-bottom: 40px;">
-			
+
 			<u-row>
 				<u-col span="10">
 					<view style="font-weight:bold; font-size: 16px; padding: 14px;">
@@ -78,25 +78,79 @@
 			</u-scroll-list>
 		</view>
 
+		<view @touchmove.stop.prevent="">
+			<u-popup :show="popPlanShow" :round="10" @close="this.popPlanShow = false" mode="bottom" closeable>
+				<scroll-view :scroll-y="true" style="height: 600px;">
+					<view style="font-weight: bold; font-size: 16px; padding: 20px;">拍摄方案</view>
+
+					<u-scroll-list :indicator="false">
+						<view v-for="(item, index) in planCardList" :key="index" style="padding: 10px;">
+							<view
+								style="width: 220px; height: 330px; padding: 20px;border: 1px solid #D3D3D3;border-radius: 12px;">
+								<view style="font-weight: bold;font-size: 14px; text-align: center;">{{item.name}}
+								</view>
+								<view style="font-weight: bold;font-size: 22px; text-align: center;">{{item.price}}
+								</view>
+								<u-line></u-line>
+								<view style="font-size: 14px; padding: 10px;">
+									<u-row customStyle="padding-bottom:18px">
+										<u-col span="4">拍摄人数</u-col>
+										<u-col span="8">拍摄人数</u-col>
+									</u-row>
+									<u-row customStyle="padding-bottom:18px">
+										<u-col span="4">服装套数</u-col>
+										<u-col span="8">服装套数</u-col>
+									</u-row>
+									<u-row customStyle="padding-bottom:18px">
+										<u-col span="4">精修张数</u-col>
+										<u-col span="8">精修张数</u-col>
+									</u-row>
+									<u-row customStyle="padding-bottom:18px">
+										<u-col span="4">底片张数</u-col>
+										<u-col span="8">底片张数</u-col>
+									</u-row>
+									<u-row customStyle="padding-bottom:18px">
+										<u-col span="4">设备型号</u-col>
+										<u-col span="8">设备型号</u-col>
+									</u-row>
+									<u-row customStyle="padding-bottom:18px">
+										<u-col span="4">服装造型</u-col>
+										<u-col span="8">服装造型</u-col>
+									</u-row>
+									<u-row customStyle="padding-bottom:18px">
+										<u-col span="4">其他说明</u-col>
+										<u-col span="8">其他说明</u-col>
+									</u-row>
+								</view>
+							</view>
+						</view>
+					</u-scroll-list>
+
+					<view style="font-weight: bold;font-size: 16px; padding: 20px;">拍摄须知</view>
+					<view style="background: #F6F7F9;border-radius: 6px;padding: 16px">
+						<u-row>
+							1.提供部分尺码的服装可供选择
+						</u-row>
+						<u-row>
+							2.周未及节假日取片时间会有延迟，具体取片时间可联系摄影师沟通
+						</u-row>
+						<u-row>
+							3.可以在拍摄或看片时提出您对照片的要求，若修图最终效果不满意，可以除定金外推款处理
+						</u-row>
+						<u-row>
+							4.如有其他疑问可通过我的主页【联系摄影师】咨询我，或者在【留言&咨询】处进行留言
+						</u-row>
+					</view>
+
+				</scroll-view>
+			</u-popup>
+		</view>
+		
+		
 		<view>
 			<u-action-sheet :actions="popList" @select="selectClick" :show="popShow" cancelText="取消"
 				@close="this.popShow=false" :closeOnClickOverlay="true" :closeOnClickAction="true"
 				:safeAreaInsetBottom="true"></u-action-sheet>
-			<u-popup :show="popPlanShow" :round="20" @close="this.popPlanShow = false" mode="bottom">
-
-				<uni-section title="基本信息" type="line" titleFontSize="30rpx">
-					<uni-group>
-						<view>拍摄人数:1</view>
-						<view>拍摄张数:15</view>
-						<view>拍摄时长:1h</view>
-					</uni-group>
-				</uni-section>
-				<uni-section title="拍摄须知" type="line" titleFontSize="30rpx">
-					<uni-group>
-						<view>拍摄需要提前化妆。。。</view>
-					</uni-group>
-				</uni-section>
-			</u-popup>
 		</view>
 
 
@@ -115,7 +169,7 @@
 			</u-col>
 			<u-col span="5">
 				<view style="padding: 10px;">
-					<u-button color="#000000" @click="this.popShow=true">咨询预约</u-button>
+					<u-button color="#191919" @click="this.popShow=true">咨询预约</u-button>
 				</view>
 			</u-col>
 
@@ -221,6 +275,27 @@
 					name: '微信'
 				}],
 				collectCnt: 0,
+				planCardList: [{
+						name: '12123',
+						price: 111
+					},
+					{
+						name: '657567',
+						price: 111
+					},
+					{
+						name: '907567',
+						price: 111
+					},
+					{
+						name: '907567',
+						price: 111
+					},
+					{
+						name: '907567',
+						price: 111
+					}
+				],
 			}
 		},
 		methods: {
@@ -317,7 +392,7 @@
 				let content = JSON.parse(success.data.userId);
 				this.info = content.info;
 				this.introduction = content.introduction;
-				
+
 				getUserInfo({
 					userId: this.cameramanId
 				}).then((res) => {
@@ -328,19 +403,19 @@
 					this.cameramanPhone = success.data.phone;
 					this.cameramanCity = changeCity(success.data.city);
 				})
-				
+
 				getProductPage({
 					userId: this.cameramanId,
 					page: 1,
 					pageSize: 5,
-					status:'SUCCESS',
+					status: 'SUCCESS',
 					excludeProductId: param.id
 				}).then((res) => {
 					let [error, success] = res;
 					this.other.list = success.data;
 				});
 			});
-			
+
 			getProductCollectStatus({
 				userId: getApp().globalData.USER_ID,
 				productId: this.productId,

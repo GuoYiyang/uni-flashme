@@ -10,7 +10,7 @@
 
 			<view class="center">
 				<u-row>
-					<view @click="avatarClick">
+					<view @click="this.popDescShow = true">
 						<u-avatar :src="avatar" size="80"></u-avatar>
 					</view>
 				</u-row>
@@ -30,8 +30,8 @@
 						<text style="font-size: 14px; color: #4E4E4E;">粉丝数 {{fansCnt}}</text>
 					</view>
 				</u-row>
-			</view>
 
+			</view>
 
 			<u-line></u-line>
 
@@ -40,19 +40,16 @@
 					<u-grid-item v-for="(listItem,listIndex) in fastList" :key="listIndex">
 						<u-icon :name="listItem.name" :size="22" customStyle="padding:10px"
 							@click="clickFastList(listIndex)"></u-icon>
-						<text class="grid-text">{{listItem.title}}</text>
+						<text>{{listItem.title}}</text>
 					</u-grid-item>
 				</u-grid>
 			</view>
 		</view>
 
-		<view style="padding: 10px;">
 
-		</view>
-
-		<view style="background-color: #F7F9FB; padding-top: 0px; border-radius:15px 15px 0 0;">
-			<view style="background-color: #FFFFFF; padding: 6px;">
-				<u-sticky bgColor="FFFFFF">
+		<view style="background-color: #F7F9FB; margin-top: 20px; border-radius:15px 15px 0 0;">
+			<u-sticky bgColor="FFFFFF">
+				<view style="background-color: #FFFFFF; padding: 6px;">
 					<u-tabs :list="tabsList" lineWidth="30" lineHeight="3" lineColor="#000000" :activeStyle="{
 					        color: '#303133',
 					        fontWeight: 'bold',
@@ -62,8 +59,8 @@
 					        transform: 'scale(1)'
 					    }" itemStyle="padding-left: 15px; padding-right: 15px; height: 34px;" @change="tabsChange" :duration="100">
 					</u-tabs>
-				</u-sticky>
-			</view>
+				</view>
+			</u-sticky>
 
 			<view style="padding: 10rpx;">
 				<custom-waterfalls-flow :value="product.list" :column="2" :columnSpace="1" @imageClick="imageClick"
@@ -75,15 +72,41 @@
 			</view>
 		</view>
 
-		<view>
+		<view @touchmove.stop.prevent="">
 
-			<u-action-sheet :actions="popContactList" @select="selectClick" :show="popContactShow" cancelText="取消"
-				@close="this.popContactShow=false" :closeOnClickOverlay="true" :closeOnClickAction="true"
-				:safeAreaInsetBottom="true"></u-action-sheet>
+			<u-popup :show="popDescShow" :round="10" @close="this.popDescShow = false" mode="bottom" closeable>
 
-			<u-popup :show="popPlanShow" :round="10" @close="this.popPlanShow = false" mode="bottom">
-				<scroll-view scroll-y="true" style="height: 700px;">
-					<view style="font-weight: bold; font-size: 16px; padding: 10px;">拍摄方案</view>
+				<view
+					style="font-weight: 700;font-size: 22px;line-height: 100%;text-align: center;color: #191919; margin-top: 50px;">
+					{{username}}
+				</view>
+
+				<view style="font-style: normal;font-size: 12px;text-align: center;color: #4E4E4E; margin-top: 20px;">
+					{{desc.whatsup}}
+				</view>
+
+				<view style="font-style: normal;font-size: 12px;text-align: center;color: #4E4E4E; margin-top: 10px;">
+					{{city}}
+				</view>
+
+				<view style="margin: 26px 24px 100px 24px;background: #F6F7F9;border-radius: 6px;">
+					<view
+						style="font-weight: 300;font-size: 14px;line-height: 150%;text-align: center;color: #191919;margin: 36px 15px 36px 15px;">
+						{{desc.intro}}
+					</view>
+				</view>
+
+			</u-popup>
+		</view>
+
+		<u-action-sheet :actions="popContactList" @select="selectClick" :show="popContactShow" cancelText="取消"
+			@close="this.popContactShow=false" :closeOnClickOverlay="true" :closeOnClickAction="true"
+			:safeAreaInsetBottom="true"></u-action-sheet>
+
+		<view @touchmove.stop.prevent="">
+			<u-popup :show="popPlanShow" :round="10" @close="this.popPlanShow = false" mode="bottom" closeable>
+				<scroll-view :scroll-y="true" style="height: 600px;">
+					<view style="font-weight: bold; font-size: 16px; padding: 20px;">拍摄方案</view>
 
 					<u-scroll-list :indicator="false">
 						<view v-for="(item, index) in planCardList" :key="index" style="padding: 10px;">
@@ -128,9 +151,7 @@
 						</view>
 					</u-scroll-list>
 
-
-					<view style="font-weight: bold;font-size: 16px; padding: 10px;">拍摄须知</view>
-
+					<view style="font-weight: bold;font-size: 16px; padding: 20px;">拍摄须知</view>
 					<view style="background: #F6F7F9;border-radius: 6px;padding: 16px">
 						<u-row>
 							1.提供部分尺码的服装可供选择
@@ -146,10 +167,6 @@
 						</u-row>
 					</view>
 
-
-					<view style="padding: 10px;">
-						<u-button color="#000000" @click="this.popShow=true">在线预约</u-button>
-					</view>
 
 				</scroll-view>
 			</u-popup>
@@ -228,7 +245,8 @@
 						name: '907567',
 						price: 111
 					}
-				]
+				],
+				popDescShow: false
 			}
 		},
 		methods: {
@@ -297,7 +315,7 @@
 			});
 			getProductPage({
 				userId: this.userId,
-				status:'SUCCESS',
+				status: 'SUCCESS',
 				page: this.page,
 				pageSize: this.pageSize
 			}).then((res) => {
@@ -327,6 +345,7 @@
 			this.page = this.page + 1;
 			getProductPage({
 				userId: this.userId,
+				status: 'SUCCESS',
 				page: this.page,
 				pageSize: this.pageSize
 			}).then((res) => {
