@@ -137,8 +137,9 @@
 				this.tabClickCnt = 0
 			}, 250)
 		},
-		onLoad() {
+		async onLoad() {
 			uni.showNavigationBarLoading()
+			await this.$onLaunched;
 			let _this = this;
 			getProductCollect({
 				userId: getApp().globalData.USER_ID

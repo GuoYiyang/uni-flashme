@@ -355,7 +355,6 @@
 			})
 		},
 		onShareAppMessage(res) {
-			console.log(res)
 			return {
 				title: this.username,
 				//如果有参数的情况可以写path

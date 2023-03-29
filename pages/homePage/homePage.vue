@@ -38,7 +38,7 @@
 				</u-button>
 			</u-col>
 		</u-row> -->
-		
+
 
 		<view style="margin: 16px;background-color:#FFFFFF;border-radius: 10px" v-if="isPher">
 			<view style="padding: 14px 18px 20px 18px">
@@ -77,35 +77,41 @@
 			</view>
 		</view>
 
-		<view style="margin: 16px;background-color:#FFFFFF;border-radius: 10px;">
+		<!-- <view style="margin: 16px;background-color:#FFFFFF;border-radius: 10px;">
 			<u-list height="130px">
 				<u-list-item>
 					<u-cell title="PhotoCall预定保障" url="../policyDoc/policyDoc"
 						customStyle="font-weight: 400;font-size: 14px;line-height: 24px;">
 						<u-icon slot="icon" name="/static/price.png" customStyle="margin: -3px 5px -3px 0"></u-icon>
-						<!-- 				<u-avatar slot="icon" shape="square" size="35"
+										<u-avatar slot="icon" shape="square" size="35"
 							src="https://pic-common-1258999491.cos.ap-nanjing.myqcloud.com/index_background.jpg"
-							customStyle="margin: -3px 5px -3px 0"></u-avatar> -->
+							customStyle="margin: -3px 5px -3px 0"></u-avatar>
 					</u-cell>
 					<u-cell title="问题反馈" url="../feedback/feedback"
 						customStyle="font-weight: 400;font-size: 14px;line-height: 24px;">
 						<u-icon slot="icon" name="/static/price.png" customStyle="margin: -3px 5px -3px 0"></u-icon>
-						<!-- 						<u-avatar slot="icon" shape="square" size="35"
+												<u-avatar slot="icon" shape="square" size="35"
 							src="https://pic-common-1258999491.cos.ap-nanjing.myqcloud.com/index_background.jpg"
-							customStyle="margin: -3px 5px -3px 0"></u-avatar> -->
+							customStyle="margin: -3px 5px -3px 0"></u-avatar>
 					</u-cell>
 					<view v-if="isAdmin">
 						<u-cell title="待审核" url="../audit/audit"
 							customStyle="font-weight: 400;font-size: 14px;line-height: 24px;" :border="false">
 							<u-icon slot="icon" name="/static/price.png" customStyle="margin: -3px 5px -3px 0"></u-icon>
-							<!-- 							<u-avatar slot="icon" shape="square" size="35"
+														<u-avatar slot="icon" shape="square" size="35"
 								src="https://pic-common-1258999491.cos.ap-nanjing.myqcloud.com/index_background.jpg"
-								customStyle="margin: -3px 5px -3px 0"></u-avatar> -->
+								customStyle="margin: -3px 5px -3px 0"></u-avatar>
 						</u-cell>
 					</view>
 				</u-list-item>
 			</u-list>
+		</view> -->
+		<view v-if="isAdmin">
+			<u-button color="#3D6EC2"
+				customStyle="border-radius:10px;width:100px;height:42px;font-weight:500;font-size:16px;line-height:16px;color:#FFFFFF;"
+				@click="toAudit">待审核</u-button>
 		</view>
+
 	</view>
 </template>
 
@@ -129,12 +135,17 @@
 					},
 					{
 						name: '/static/price.png',
-						title: '拍摄方案'
+						title: '发布拍摄方案'
 					},
 					{
 						name: '/static/price.png',
-						title: '查看预约'
-					},
+						title: '编辑拍摄方案'
+					}
+					// ,
+					// {
+					// 	name: '/static/price.png',
+					// 	title: '查看预约'
+					// },
 				],
 				userList: [{
 						name: '/static/price.png',
@@ -142,12 +153,13 @@
 					},
 					{
 						name: '/static/price.png',
-						title: '新人专享'
+						title: '成为摄影师'
 					},
 					{
 						name: '/static/price.png',
-						title: '成为摄影师'
-					}
+						title: '关于PhotoCall'
+					},
+
 				],
 				userInfo: {
 					username: '',
@@ -160,6 +172,11 @@
 			}
 		},
 		methods: {
+			toAudit() {
+				uni.navigateTo({
+					url: '/pages/audit/audit'
+				})
+			},
 			clickPherList(item) {
 				if (item == 0) {
 					uni.navigateTo({
@@ -171,11 +188,21 @@
 						url: '/pages/myProduct/myProduct'
 					})
 				}
+				if (item == 2) {
+					uni.navigateTo({
+						url: '/pages/plan/addPlan'
+					})
+				}
+				if (item == 3) {
+					uni.navigateTo({
+						url: '/pages/plan/editPlan'
+					})
+				}
 			},
 			clickUserList(item) {
-				if(item == 0) {
+				if (item == 0) {
 					uni.navigateTo({
-						url:'/pages/publishSuccess/publishSuccess'
+						url: '/pages/publishSuccess/publishSuccess'
 					})
 				}
 
@@ -190,6 +217,9 @@
 					url: '../userShow/userShow?userId=' + this.userId
 				})
 			},
+		},
+		async onLoad() {
+			await this.$onLaunched;
 		},
 		onShow() {
 			this.userId = getApp().globalData.USER_ID;

@@ -181,7 +181,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 30));
 var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ 5));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 32));
 var _product = __webpack_require__(/*! @/api/product.js */ 168);
 var _user = __webpack_require__(/*! @/api/user.js */ 33);
 var _method = __webpack_require__(/*! @/common/method.js */ 169);
@@ -315,28 +317,44 @@ var _default = {
   },
   onLoad: function onLoad() {
     var _this3 = this;
-    uni.showNavigationBarLoading();
-    var _this = this;
-    (0, _product.getProductCollect)({
-      userId: getApp().globalData.USER_ID
-    }).then(function (res) {
-      var _res = (0, _slicedToArray2.default)(res, 2),
-        error = _res[0],
-        success = _res[1];
-      _this.product.list = success.data;
-      _this3.$refs.waterfallsFlowRef.refresh();
-    });
-    (0, _user.getPherCollect)({
-      userId: getApp().globalData.USER_ID
-    }).then(function (res) {
-      var _res2 = (0, _slicedToArray2.default)(res, 2),
-        error = _res2[0],
-        success = _res2[1];
-      _this.pher.list = success.data;
-      _this.pher.list.forEach(function (item) {
-        item.city = (0, _method.changeCity)(item.city);
-      });
-    });
+    return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
+      var _this;
+      return _regenerator.default.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              uni.showNavigationBarLoading();
+              _context.next = 3;
+              return _this3.$onLaunched;
+            case 3:
+              _this = _this3;
+              (0, _product.getProductCollect)({
+                userId: getApp().globalData.USER_ID
+              }).then(function (res) {
+                var _res = (0, _slicedToArray2.default)(res, 2),
+                  error = _res[0],
+                  success = _res[1];
+                _this.product.list = success.data;
+                _this3.$refs.waterfallsFlowRef.refresh();
+              });
+              (0, _user.getPherCollect)({
+                userId: getApp().globalData.USER_ID
+              }).then(function (res) {
+                var _res2 = (0, _slicedToArray2.default)(res, 2),
+                  error = _res2[0],
+                  success = _res2[1];
+                _this.pher.list = success.data;
+                _this.pher.list.forEach(function (item) {
+                  item.city = (0, _method.changeCity)(item.city);
+                });
+              });
+            case 6:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
   },
   onShow: function onShow() {
     // this.tabsCurrent = 0;

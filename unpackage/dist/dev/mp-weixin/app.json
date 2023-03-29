@@ -15,7 +15,9 @@
     "pages/search/search",
     "pages/userShow/userShow",
     "pages/audit/audit",
-    "pages/publishSuccess/publishSuccess"
+    "pages/publishSuccess/publishSuccess",
+    "pages/plan/addPlan",
+    "pages/plan/editPlan"
   ],
   "subPackages": [],
   "window": {

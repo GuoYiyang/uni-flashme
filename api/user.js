@@ -107,3 +107,72 @@ export function getUserFansCnt(req) {
 		}
 	});
 }
+
+
+// 获取拍摄方案列表
+export function getUserPlanList() {
+	return uni.request({
+		url: baseUrl + '/user/plan/list',
+		method: "GET",
+		header:{
+			"X-USER-ID": getApp().globalData.USER_ID
+		}
+	});
+}
+
+// 获取拍摄方案详情
+export function getUserPlanDetail(req) {
+	return uni.request({
+		url: baseUrl + '/user/plan/detail',
+		method: "GET",
+		header:{
+			"X-USER-ID": getApp().globalData.USER_ID
+		},
+		data: {
+			planId: req.planId
+		}
+	});
+}
+
+// 新增拍摄方案
+export function addUserPlan(req) {
+	return uni.request({
+		url: baseUrl + '/user/plan/add',
+		method: "POST",
+		header:{
+			"X-USER-ID": getApp().globalData.USER_ID
+		},
+		data: {
+			content: req.content
+		}
+	});
+}
+
+// 更新拍摄方案
+export function updateUserPlan(req) {
+	return uni.request({
+		url: baseUrl + '/user/plan/update',
+		method: "POST",
+		header:{
+			"X-USER-ID": getApp().globalData.USER_ID
+		},
+		data: {
+			planId: req.planId,
+			content: req.content
+		}
+	});
+}
+
+// 删除拍摄方案
+export function deleteUserPlan(req) {
+	return uni.request({
+		url: baseUrl + '/user/plan/delete',
+		method: "POST",
+		header:{
+			"X-USER-ID": getApp().globalData.USER_ID
+		},
+		data: {
+			planId: req.planId
+		}
+	});
+}

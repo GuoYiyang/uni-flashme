@@ -113,22 +113,13 @@ try {
       return Promise.all(/*! import() | uni_modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-button/u-button.vue */ 272))
     },
     uGrid: function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-grid/u-grid */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-grid/u-grid")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-grid/u-grid.vue */ 477))
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-grid/u-grid */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-grid/u-grid")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-grid/u-grid.vue */ 471))
     },
     uGridItem: function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-grid-item/u-grid-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-grid-item/u-grid-item")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-grid-item/u-grid-item.vue */ 485))
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-grid-item/u-grid-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-grid-item/u-grid-item")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-grid-item/u-grid-item.vue */ 479))
     },
     uIcon: function () {
       return Promise.all(/*! import() | uni_modules/uview-ui/components/u-icon/u-icon */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-icon/u-icon")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-icon/u-icon.vue */ 347))
-    },
-    uList: function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-list/u-list */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-list/u-list")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-list/u-list.vue */ 493))
-    },
-    uListItem: function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-list-item/u-list-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-list-item/u-list-item")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-list-item/u-list-item.vue */ 501))
-    },
-    uCell: function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-cell/u-cell */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-cell/u-cell")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-cell/u-cell.vue */ 509))
     },
   }
 } catch (e) {
@@ -192,9 +183,17 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 30));
 var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ 5));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 32));
 var _product = __webpack_require__(/*! @/api/product.js */ 168);
 var _user = __webpack_require__(/*! @/api/user.js */ 33);
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -317,20 +316,27 @@ var _default = {
         title: '我的作品'
       }, {
         name: '/static/price.png',
-        title: '拍摄方案'
+        title: '发布拍摄方案'
       }, {
         name: '/static/price.png',
-        title: '查看预约'
-      }],
+        title: '编辑拍摄方案'
+      }
+      // ,
+      // {
+      // 	name: '/static/price.png',
+      // 	title: '查看预约'
+      // },
+      ],
+
       userList: [{
         name: '/static/price.png',
         title: '我的预约'
       }, {
         name: '/static/price.png',
-        title: '新人专享'
+        title: '成为摄影师'
       }, {
         name: '/static/price.png',
-        title: '成为摄影师'
+        title: '关于PhotoCall'
       }],
       userInfo: {
         username: '',
@@ -343,6 +349,11 @@ var _default = {
     };
   },
   methods: {
+    toAudit: function toAudit() {
+      uni.navigateTo({
+        url: '/pages/audit/audit'
+      });
+    },
     clickPherList: function clickPherList(item) {
       if (item == 0) {
         uni.navigateTo({
@@ -352,6 +363,16 @@ var _default = {
       if (item == 1) {
         uni.navigateTo({
           url: '/pages/myProduct/myProduct'
+        });
+      }
+      if (item == 2) {
+        uni.navigateTo({
+          url: '/pages/plan/addPlan'
+        });
+      }
+      if (item == 3) {
+        uni.navigateTo({
+          url: '/pages/plan/editPlan'
         });
       }
     },
@@ -372,6 +393,23 @@ var _default = {
         url: '../userShow/userShow?userId=' + this.userId
       });
     }
+  },
+  onLoad: function onLoad() {
+    var _this2 = this;
+    return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
+      return _regenerator.default.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return _this2.$onLaunched;
+            case 2:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
   },
   onShow: function onShow() {
     this.userId = getApp().globalData.USER_ID;

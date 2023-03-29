@@ -1,0 +1,14 @@
+{
+  "navigationBarTitleText": "创建拍摄方案",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "u--form": "/uni_modules/uview-ui/components/u--form/u--form",
+    "u-form-item": "/uni_modules/uview-ui/components/u-form-item/u-form-item",
+    "u--input": "/uni_modules/uview-ui/components/u--input/u--input",
+    "uni-segmented-control": "/uni_modules/uni-segmented-control/components/uni-segmented-control/uni-segmented-control",
+    "u-col": "/uni_modules/uview-ui/components/u-col/u-col",
+    "u-number-box": "/uni_modules/uview-ui/components/u-number-box/u-number-box",
+    "u-switch": "/uni_modules/uview-ui/components/u-switch/u-switch",
+    "u-button": "/uni_modules/uview-ui/components/u-button/u-button"
+  }
+}

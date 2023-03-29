@@ -118,7 +118,25 @@
 			"enablePullDownRefresh": false
 		}
 
-	}],
+	}    ,{
+            "path" : "pages/plan/addPlan",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "创建拍摄方案",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/plan/editPlan",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "编辑拍摄方案",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "",

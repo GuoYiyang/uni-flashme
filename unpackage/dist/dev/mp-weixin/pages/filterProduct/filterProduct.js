@@ -270,6 +270,7 @@ var _default = {
       city: this.city,
       tag: this.tag,
       query: this.query,
+      status: 'SUCCESS',
       page: this.page,
       pageSize: this.pageSize
     }).then(function (res) {
@@ -286,6 +287,7 @@ var _default = {
       city: this.city,
       tag: this.tag,
       query: this.query,
+      status: 'SUCCESS',
       page: this.page,
       pageSize: this.pageSize
     }).then(function (res) {
