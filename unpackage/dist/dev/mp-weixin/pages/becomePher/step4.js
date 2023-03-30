@@ -213,6 +213,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ 5));
+var _product = __webpack_require__(/*! @/api/product.js */ 168);
 //
 //
 //
@@ -368,11 +369,11 @@ var _default = {
         return;
       }
       this.tempFiles.forEach(function (item) {
-        uploadImages({
+        (0, _product.uploadImages)({
           filePath: item.path
         });
       });
-      publishProduct({
+      (0, _product.publishProduct)({
         userId: getApp().globalData.USER_ID,
         title: this.form.title,
         content: JSON.stringify(this.form.content),

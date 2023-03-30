@@ -28,7 +28,7 @@
 		
 			<view style="margin: 20px 0 20px 0;">
 				<view @click="addNotice"
-					style="height: 200px;width: 350px;background: #FFFFFF;box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);border-radius: 12px;">
+					style="height: 200px;background: #FFFFFF;box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);border-radius: 12px;">
 					<view
 						style="height: 100%;flex: auto;display:flex;flex-direction:column;justify-content:center;align-items: center;">
 						<u-icon name="plus" size="50px"></u-icon>

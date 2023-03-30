@@ -55,6 +55,10 @@
 </template>
 
 <script>
+	import {
+		uploadImages,
+		publishProduct
+	} from '@/api/product.js'
 	export default {
 		data() {
 			return {
