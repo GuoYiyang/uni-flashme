@@ -1,6 +1,6 @@
 <template>
 	<view>
-		成为摄影师
+		
 	</view>
 </template>
 

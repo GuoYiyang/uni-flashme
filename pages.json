@@ -62,13 +62,6 @@
 		}
 
 	}, {
-		"path": "pages/becomePher/becomePher",
-		"style": {
-			"navigationBarTitleText": "成为摄影师",
-			"enablePullDownRefresh": false
-		}
-
-	}, {
 		"path": "pages/policyDoc/policyDoc",
 		"style": {
 			"navigationBarTitleText": "使用须知",
@@ -112,26 +105,72 @@
 		}
 
 	}, {
-		"path": "pages/publishSuccess/publishSuccess",
+		"path": "pages/publish/publishSuccess",
 		"style": {
 			"navigationBarTitleText": "",
 			"enablePullDownRefresh": false
 		}
 
+	}, {
+		"path": "pages/plan/addPlan",
+		"style": {
+			"navigationBarTitleText": "创建拍摄方案",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/plan/editPlan",
+		"style": {
+			"navigationBarTitleText": "编辑拍摄方案",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/plan/plan",
+		"style": {
+			"navigationBarTitleText": "我的方案",
+			"enablePullDownRefresh": false
+		}
+
+	},{
+		"path": "pages/becomePher/step1",
+		"style": {
+			"navigationBarTitleText": "入驻为摄影师",
+			"enablePullDownRefresh": false
+		}
+
 	}    ,{
-            "path" : "pages/plan/addPlan",
+            "path" : "pages/becomePher/step2",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "创建拍摄方案",
+                "navigationBarTitleText": "入驻为摄影师",
                 "enablePullDownRefresh": false
             }
             
         }
         ,{
-            "path" : "pages/plan/editPlan",
+            "path" : "pages/becomePher/step3",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "编辑拍摄方案",
+                "navigationBarTitleText": "入驻为摄影师",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/becomePher/step4",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "入驻为摄影师",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/becomePher/step5",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "入驻为摄影师",
                 "enablePullDownRefresh": false
             }
             

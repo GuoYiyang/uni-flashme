@@ -159,7 +159,7 @@
 								title: '发布成功'
 							})
 							uni.redirectTo({
-								url: '/pages/publishSuccess/publishSuccess'
+								url: '/pages/publish/publishSuccess'
 							})
 						} else {
 							uni.showToast({

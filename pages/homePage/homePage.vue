@@ -201,8 +201,10 @@
 			},
 			clickUserList(item) {
 				if (item == 0) {
+				}
+				if (item == 1) {
 					uni.navigateTo({
-						url: '/pages/publishSuccess/publishSuccess'
+						url: '/pages/becomePher/step1'
 					})
 				}
 
