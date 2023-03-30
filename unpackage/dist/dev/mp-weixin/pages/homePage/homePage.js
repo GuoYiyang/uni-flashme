@@ -316,10 +316,7 @@ var _default = {
         title: '我的作品'
       }, {
         name: '/static/price.png',
-        title: '发布拍摄方案'
-      }, {
-        name: '/static/price.png',
-        title: '编辑拍摄方案'
+        title: '拍摄方案'
       }
       // ,
       // {
@@ -367,12 +364,7 @@ var _default = {
       }
       if (item == 2) {
         uni.navigateTo({
-          url: '/pages/plan/addPlan'
-        });
-      }
-      if (item == 3) {
-        uni.navigateTo({
-          url: '/pages/plan/editPlan'
+          url: '/pages/plan/plan'
         });
       }
     },

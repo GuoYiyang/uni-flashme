@@ -50,7 +50,7 @@
 				</u-row>
 			</view>
 			<view>
-				<u-grid :border="false" col="4">
+				<u-grid :border="false" col="3">
 					<u-grid-item v-for="(listItem,listIndex) in pherList" :key="listIndex">
 						<u-icon :name="listItem.name" :size="22" customStyle="padding: 0px 4px 10px 4px"
 							@click="clickPherList(listIndex)"></u-icon>
@@ -129,17 +129,14 @@
 				pherList: [{
 						name: '/static/price.png',
 						title: '发布作品'
-					}, {
+					}, 
+					{
 						name: '/static/price.png',
 						title: '我的作品'
 					},
 					{
 						name: '/static/price.png',
-						title: '发布拍摄方案'
-					},
-					{
-						name: '/static/price.png',
-						title: '编辑拍摄方案'
+						title: '拍摄方案'
 					}
 					// ,
 					// {
@@ -190,12 +187,7 @@
 				}
 				if (item == 2) {
 					uni.navigateTo({
-						url: '/pages/plan/addPlan'
-					})
-				}
-				if (item == 3) {
-					uni.navigateTo({
-						url: '/pages/plan/editPlan'
+						url: '/pages/plan/plan'
 					})
 				}
 			},
