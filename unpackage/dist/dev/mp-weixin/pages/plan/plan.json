@@ -2,8 +2,11 @@
   "navigationBarTitleText": "我的方案",
   "enablePullDownRefresh": false,
   "usingComponents": {
-    "u-scroll-list": "/uni_modules/uview-ui/components/u-scroll-list/u-scroll-list",
     "u-icon": "/uni_modules/uview-ui/components/u-icon/u-icon",
+    "u-scroll-list": "/uni_modules/uview-ui/components/u-scroll-list/u-scroll-list",
+    "u-row": "/uni_modules/uview-ui/components/u-row/u-row",
+    "u-col": "/uni_modules/uview-ui/components/u-col/u-col",
+    "u-line": "/uni_modules/uview-ui/components/u-line/u-line",
     "u-button": "/uni_modules/uview-ui/components/u-button/u-button"
   }
 }

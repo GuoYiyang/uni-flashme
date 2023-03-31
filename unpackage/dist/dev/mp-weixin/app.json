@@ -22,7 +22,8 @@
     "pages/becomePher/step2",
     "pages/becomePher/step3",
     "pages/becomePher/step4",
-    "pages/becomePher/step5"
+    "pages/becomePher/step5",
+    "pages/plan/editNotice"
   ],
   "subPackages": [],
   "window": {

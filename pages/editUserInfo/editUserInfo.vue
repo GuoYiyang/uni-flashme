@@ -43,7 +43,7 @@
 					</u--input>
 				</u-form-item>
 				<u-form-item labelWidth="100px" label="个人简介" prop="intro">
-					<u--textarea height="100" v-model="userInfo.intro" count maxlength=200 border="bottom"></u--textarea>
+					<u--textarea cursorSpacing="20px" :showConfirmBar="false" height="150" v-model="userInfo.intro" count maxlength=200 border="bottom"></u--textarea>
 				</u-form-item>
 			</view>
 			<u-picker :show="showSex" :columns="sexList" @confirm="sexSelect" keyName="name" @cancel="showSex = false">

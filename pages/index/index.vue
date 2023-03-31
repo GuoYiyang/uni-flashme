@@ -183,7 +183,7 @@
 					]
 				],
 				city: '0',
-				cityName: '',
+				cityName: '深圳',
 				cityList: [{
 						value: "0",
 						text: "深圳"

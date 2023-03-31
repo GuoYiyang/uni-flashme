@@ -80,6 +80,7 @@
 
 		<view @touchmove.stop.prevent="">
 			<u-popup :show="popPlanShow" :round="10" @close="this.popPlanShow = false" mode="bottom" closeable>
+				<view style="padding: 30px 0 0 0;"></view>
 				<scroll-view :scroll-y="true" style="height: 600px;">
 					<view style="font-weight: bold; font-size: 16px; padding: 20px;">拍摄方案</view>
 
@@ -169,7 +170,7 @@
 			</u-col>
 			<u-col span="5">
 				<view style="padding: 10px;">
-					<u-button color="#191919" @click="this.popShow=true">咨询预约</u-button>
+					<u-button color="#3D6EC2" @click="this.popShow=true">咨询预约</u-button>
 				</view>
 			</u-col>
 

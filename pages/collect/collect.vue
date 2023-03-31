@@ -154,6 +154,7 @@
 				let [error, success] = res;
 				_this.pher.list = success.data;
 				_this.pher.list.forEach(item => {
+					item.desc = JSON.parse(item.desc);
 					item.city = changeCity(item.city)
 				})
 			});

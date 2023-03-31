@@ -4,7 +4,7 @@
 		<view style="padding: 20px 36px 20px 36px;">
 			<u-row>
 				<u-col span="3">
-					<u-avatar :src="userInfo.avatar" size="60">
+					<u-avatar :src="userInfo.avatar" size="60" @click="toUserShow">
 					</u-avatar>
 				</u-col>
 				<u-col span="7">

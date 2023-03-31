@@ -4,7 +4,10 @@
 			<u--form labelPosition="top" :rules="rules" ref="Form" :model="userInfo"
 				:labelStyle="{'font-weight':300,'font-size':'14px','line-height':'16px','color':'#808080'}">
 				<u-form-item labelWidth="100px" label="方案名称" prop="name" borderBottom>
-					<u--input v-model="plan.name" border="none" showWordLimit></u--input>
+					<u--input v-model="plan.name" border="none" showWordLimit maxlength=10></u--input>
+				</u-form-item>
+				<u-form-item labelWidth="100px" label="价格" prop="name" borderBottom>
+					<u--input v-model="plan.price" border="none" showWordLimit type="number" maxlength=10></u--input>
 				</u-form-item>
 				<u-form-item labelWidth="100px" label="拍摄人数" prop="name">
 					<uni-segmented-control :current="plan.peopleNum" :values="['单人','双人','多人']" active-color="#3D6EC2"
@@ -47,10 +50,10 @@
 					</view>
 				</u-form-item>
 				<u-form-item labelWidth="100px" label="设备型号" prop="name" borderBottom>
-					<u--input v-model="plan.equipment" border="none" showWordLimit></u--input>
+					<u--input v-model="plan.equipment" border="none" showWordLimit maxlength=10></u--input>
 				</u-form-item>
 				<u-form-item labelWidth="100px" label="其他说明" prop="name" borderBottom>
-					<u--input v-model="plan.other" border="none" showWordLimit></u--input>
+					<u--input v-model="plan.other" border="none" showWordLimit maxlength=10></u--input>
 				</u-form-item>
 			</u--form>
 		</view>
@@ -75,6 +78,7 @@
 			return {
 				planId: '',
 				plan: {
+					price:'',
 					name: '',
 					peopleNum: 0,
 					photoCnt: 0,

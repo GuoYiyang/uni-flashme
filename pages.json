@@ -175,6 +175,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/plan/editNotice",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "拍摄须知",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

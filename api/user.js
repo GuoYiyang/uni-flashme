@@ -29,6 +29,7 @@ export function updateUserInfo(userInfo) {
 			desc: userInfo.desc,
 			gender: userInfo.sex,
 			city: userInfo.city,
+			notice:userInfo.notice
 		}
 	});
 }
