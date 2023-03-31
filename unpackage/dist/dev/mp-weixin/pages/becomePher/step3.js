@@ -247,7 +247,11 @@ var _default = {
         url: '/pages/plan/addPlan'
       });
     },
-    addNotice: function addNotice() {},
+    addNotice: function addNotice() {
+      uni.navigateTo({
+        url: '/pages/plan/editNotice'
+      });
+    },
     toStep4: function toStep4() {
       uni.navigateTo({
         url: '/pages/becomePher/step4'

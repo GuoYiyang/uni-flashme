@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<view>
+		<view >
 			<u--textarea :showConfirmBar="false" cursorSpacing="20px" count focus maxlength=600 border="none" v-model="value" :placeholder="placeholder"  height="500"></u--textarea>
 		</view>
 		<view style="padding:40px 24px 40px 24px">
@@ -16,6 +16,7 @@
 
 <script>
 	import {
+		getUserInfo,
 		updateUserInfo
 	} from '@/api/user.js'
 	export default {
@@ -46,6 +47,14 @@
 				})
 				
 			}
+		},
+		onLoad() {
+			getUserInfo({
+				userId: getApp().globalData.USER_ID
+			}).then(res=>{
+				let [error, success] = res;
+				this.value = success.data.notice;
+			})
 		}
 	}
 </script>

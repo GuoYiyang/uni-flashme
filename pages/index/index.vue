@@ -13,8 +13,8 @@
 
 		
 
-		<image src="https://pic-common-1258999491.cos.ap-nanjing.myqcloud.com/index_background.jpg"
-			style="margin-bottom: -25px; height: 240px; width: 100%;"></image>
+		<image src="https://pic-common-1258999491.cos.ap-nanjing.myqcloud.com/69c44bef87cfecfa8b59140d1a5368b.jpg"
+			style="margin-bottom: -25px; height: 280px; width: 100%;"></image>
 		<view>
 			<view>
 				<u-button icon="map" iconColor="#191919" @click="cityPickerShow = true"
@@ -123,25 +123,25 @@
 			return {
 				cityPickerShow: false,
 				tagList: [{
-						image: "https://pic-common-1258999491.cos.ap-nanjing.myqcloud.com/%E5%A9%9A%E7%A4%BC.png"
+						image: "https://pic-common-1258999491.cos.ap-nanjing.myqcloud.com/5d98d52b4d04febe9a110003be5d56d.png"
 					},
 					{
-						image: "https://pic-common-1258999491.cos.ap-nanjing.myqcloud.com/%E5%A9%9A%E7%A4%BC.png"
+						image: "https://pic-common-1258999491.cos.ap-nanjing.myqcloud.com/29480bf599738a5f778127ce53d46ac.png"
 					},
 					{
-						image: "https://pic-common-1258999491.cos.ap-nanjing.myqcloud.com/%E5%A9%9A%E7%A4%BC.png"
+						image: "https://pic-common-1258999491.cos.ap-nanjing.myqcloud.com/5868bad3e95549438bc4abd4bb7ee9e.png"
 					},
 					{
-						image: "https://pic-common-1258999491.cos.ap-nanjing.myqcloud.com/%E5%A9%9A%E7%A4%BC.png"
+						image: "https://pic-common-1258999491.cos.ap-nanjing.myqcloud.com/7b755d2a1cda553cdda2faf4f4578e1.png"
 					},
 					{
-						image: "https://pic-common-1258999491.cos.ap-nanjing.myqcloud.com/%E5%A9%9A%E7%A4%BC.png"
+						image: "https://pic-common-1258999491.cos.ap-nanjing.myqcloud.com/9a19f4373d495f7fa50697fefbb1152.png"
 					},
 					{
-						image: "https://pic-common-1258999491.cos.ap-nanjing.myqcloud.com/%E5%A9%9A%E7%A4%BC.png"
+						image: "https://pic-common-1258999491.cos.ap-nanjing.myqcloud.com/c67df47ba65a30aa5027166b5ae9585.png"
 					},
 					{
-						image: "https://pic-common-1258999491.cos.ap-nanjing.myqcloud.com/%E5%A9%9A%E7%A4%BC.png"
+						image: "https://pic-common-1258999491.cos.ap-nanjing.myqcloud.com/24fa061b3cb4cd0f45edb9bde7fc26f.png"
 					}
 				],
 				nvConfig: {

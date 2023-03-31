@@ -158,6 +158,8 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  var g0 = _vm.planList == [] || _vm.planList.length == 0
+  var g1 = _vm.planList.length
   if (!_vm._isMounted) {
     _vm.e0 = function ($event) {
       this.popPlanShow = false
@@ -172,6 +174,15 @@ var render = function () {
       this.popShow = true
     }
   }
+  _vm.$mp.data = Object.assign(
+    {},
+    {
+      $root: {
+        g0: g0,
+        g1: g1,
+      },
+    }
+  )
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -218,6 +229,15 @@ var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/r
 var _product = __webpack_require__(/*! @/api/product.js */ 168);
 var _user = __webpack_require__(/*! @/api/user.js */ 33);
 var _method = __webpack_require__(/*! @/common/method.js */ 169);
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -494,7 +514,9 @@ var _default = {
       }, {
         name: '907567',
         price: 111
-      }]
+      }],
+      notice: '',
+      planList: []
     };
   },
   methods: {
@@ -611,6 +633,7 @@ var _default = {
                   _this.cameramanDesc = JSON.parse(success.data.desc);
                   _this.cameramanPhone = success.data.phone;
                   _this.cameramanCity = (0, _method.changeCity)(success.data.city);
+                  _this.notice = success.data.notice;
                 });
                 (0, _product.getProductPage)({
                   userId: _this.cameramanId,
@@ -624,14 +647,30 @@ var _default = {
                     success = _res3[1];
                   _this.other.list = success.data;
                 });
+                (0, _user.getUserPlanList)({
+                  userId: _this.cameramanId
+                }).then(function (res) {
+                  var _res4 = (0, _slicedToArray2.default)(res, 2),
+                    error = _res4[0],
+                    success = _res4[1];
+                  _this.planList = success.data;
+                  _this.planList.map(function (item) {
+                    item.content = JSON.parse(item.content);
+                    item.content.peopleNum = (0, _method.changePeopleNum)(item.content.peopleNum);
+                    item.content.scene = (0, _method.changeScene)(item.content.scene);
+                    item.content.sceneNum = (0, _method.changeSceneNum)(item.content.sceneNum);
+                    item.content.isDress = item.content.isDress ? '是' : '否';
+                    item.content.isMakeup = item.content.isMakeup ? '是' : '否';
+                  });
+                });
               });
               (0, _product.getProductCollectStatus)({
                 userId: getApp().globalData.USER_ID,
                 productId: _this.productId
               }).then(function (res) {
-                var _res4 = (0, _slicedToArray2.default)(res, 2),
-                  error = _res4[0],
-                  success = _res4[1];
+                var _res5 = (0, _slicedToArray2.default)(res, 2),
+                  error = _res5[0],
+                  success = _res5[1];
                 _this.isCollect = success.data;
                 if (_this.isCollect) {
                   _this.icon.collectIcon = '/static/heart-fill.png';
@@ -642,9 +681,9 @@ var _default = {
               (0, _product.getProductCollectCnt)({
                 productId: _this.productId
               }).then(function (res) {
-                var _res5 = (0, _slicedToArray2.default)(res, 2),
-                  error = _res5[0],
-                  success = _res5[1];
+                var _res6 = (0, _slicedToArray2.default)(res, 2),
+                  error = _res6[0],
+                  success = _res6[1];
                 _this.collectCnt = success.data;
               });
               uni.showShareMenu({

@@ -111,12 +111,15 @@ export function getUserFansCnt(req) {
 
 
 // 获取拍摄方案列表
-export function getUserPlanList() {
+export function getUserPlanList(req) {
 	return uni.request({
 		url: baseUrl + '/user/plan/list',
 		method: "GET",
 		header:{
 			"X-USER-ID": getApp().globalData.USER_ID
+		},
+		data: {
+			userId: req.userId
 		}
 	});
 }

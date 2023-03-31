@@ -9938,12 +9938,15 @@ function getUserFansCnt(req) {
 }
 
 // 获取拍摄方案列表
-function getUserPlanList() {
+function getUserPlanList(req) {
   return uni.request({
     url: _settingConfig.baseUrl + '/user/plan/list',
     method: "GET",
     header: {
       "X-USER-ID": getApp().globalData.USER_ID
+    },
+    data: {
+      userId: req.userId
     }
   });
 }
@@ -20851,7 +20854,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.changeCity = changeCity;
+exports.changePeopleNum = changePeopleNum;
 exports.changeProductStatus = changeProductStatus;
+exports.changeScene = changeScene;
+exports.changeSceneNum = changeSceneNum;
 exports.changeTag = changeTag;
 function changeProductStatus(index) {
   if (index == 'REVIEW') {
@@ -20901,6 +20907,42 @@ function changeTag(tagstr) {
     }
   });
   return res;
+}
+function changePeopleNum(index) {
+  if (index === 0) {
+    return '单人';
+  }
+  if (index === 1) {
+    return '双人';
+  }
+  if (index === 2) {
+    return '多人';
+  }
+}
+function changeScene(index) {
+  if (index === 0) {
+    return '室内';
+  }
+  if (index === 1) {
+    return '室外';
+  }
+  if (index === 2) {
+    return '室内+室外';
+  }
+}
+function changeSceneNum(index) {
+  if (index === 0) {
+    return '一个';
+  }
+  if (index === 1) {
+    return '两个';
+  }
+  if (index === 2) {
+    return '三个';
+  }
+  if (index === 3) {
+    return '四个及以上';
+  }
 }
 
 /***/ }),

@@ -105,69 +105,114 @@
 
 		<view @touchmove.stop.prevent="">
 			<u-popup :show="popPlanShow" :round="10" @close="this.popPlanShow = false" mode="bottom" closeable>
+				<view style="padding: 30px 0 0 0;"></view>
 				<scroll-view :scroll-y="true" style="height: 600px;">
-					<view style="font-weight: bold; font-size: 16px; padding: 20px;">拍摄方案</view>
+					<view style="padding: 0px 24px 28px 24px;background: #FFFFFF;border-radius: 12px;">
 
-					<u-scroll-list :indicator="false">
-						<view v-for="(item, index) in planCardList" :key="index" style="padding: 10px;">
-							<view
-								style="width: 220px; height: 330px; padding: 20px;border: 1px solid #D3D3D3;border-radius: 12px;">
-								<view style="font-weight: bold;font-size: 14px; text-align: center;">{{item.name}}
+						<view style="font-weight: 600;font-size: 16px;line-height: 16px;color: #191919;flex-flow: row;">
+							拍摄方案
+						</view>
+
+						<view style="margin: 20px 0 20px 0;">
+							<u-scroll-list :indicator="false">
+								<view v-if="planList== [] || planList.length == 0" @click="addPlan"
+									style="margin: 5px; height: 360px;width:240px;background: #F8F9FA;box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);border-radius: 12px;">
+									<view
+										style="height: 100%;flex: auto;display:flex;flex-direction:column;justify-content:center;align-items: center;">
+										<u-icon name="info-circle" size="50px"></u-icon>
+										<view
+											style="font-weight: 400;font-size: 13px;line-height: 18px;text-align: center;color:#808080;">
+											暂无拍摄方案</view>
+									</view>
 								</view>
-								<view style="font-weight: bold;font-size: 22px; text-align: center;">{{item.price}}
+
+								<view v-if="planList.length > 0" v-for="(item, index) in planList" :key="index"
+									style="margin: 5px;">
+									<view @click="clickPlan(item.planId)"
+										style="padding: 20px 20px 20px 20px; margin: 5px;width: 240px;height: 360px;background: #F8F9FA;box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);border-radius: 12px;">
+
+										<view style="font-size: 14px;color: #191919;">
+											<u-row customStyle="padding-bottom:10px">
+												<u-col span="4">拍摄人数</u-col>
+												<u-col span="8">{{item.content.peopleNum}}</u-col>
+											</u-row>
+											<u-row customStyle="padding-bottom:10px">
+												<u-col span="4">拍摄张数</u-col>
+												<u-col span="8">{{item.content.photoCnt}}</u-col>
+											</u-row>
+											<u-row customStyle="padding-bottom:10px">
+												<u-col span="4">精修张数</u-col>
+												<u-col span="8">{{item.content.jingxiuPhotoCnt}}</u-col>
+											</u-row>
+											<u-row customStyle="padding-bottom:10px">
+												<u-col span="4">底片赠送</u-col>
+												<u-col span="8">{{item.content.zengsongPhotoCnt}}</u-col>
+											</u-row>
+											<u-row customStyle="padding-bottom:10px">
+												<u-col span="4">拍摄场景</u-col>
+												<u-col span="8">{{item.content.scene}}</u-col>
+											</u-row>
+											<u-row customStyle="padding-bottom:10px">
+												<u-col span="4">场景数量</u-col>
+												<u-col span="8">{{item.content.sceneNum}}</u-col>
+											</u-row>
+											<u-row customStyle="padding-bottom:10px">
+												<u-col span="4">设备型号</u-col>
+												<u-col span="8">{{item.content.equipment}}</u-col>
+											</u-row>
+											<u-row customStyle="padding-bottom:10px">
+												<u-col span="4">提供化妆</u-col>
+												<u-col span="8">{{item.content.isMakeup}}</u-col>
+											</u-row>
+											<u-row customStyle="padding-bottom:10px">
+												<u-col span="4">提供服装</u-col>
+												<u-col span="8">{{item.content.isDress}}</u-col>
+											</u-row>
+											<u-row customStyle="padding-bottom:10px">
+												<u-col span="4">其他说明</u-col>
+												<u-col span="8">{{item.content.other}}</u-col>
+											</u-row>
+										</view>
+
+										<u-line></u-line>
+
+										<view
+											style="font-weight: 550;font-size: 24px;line-height: 24px;color: #191919;margin: 15px 0 10px 0;">
+											{{item.content.name}}
+										</view>
+
+										<view
+											style="font-weight: 500;font-size: 20px;line-height: 24px;color: #191919;">
+											￥{{item.content.price}}
+										</view>
+
+									</view>
 								</view>
-								<u-line></u-line>
-								<view style="font-size: 14px; padding: 10px;">
-									<u-row customStyle="padding-bottom:18px">
-										<u-col span="4">拍摄人数</u-col>
-										<u-col span="8">拍摄人数</u-col>
-									</u-row>
-									<u-row customStyle="padding-bottom:18px">
-										<u-col span="4">服装套数</u-col>
-										<u-col span="8">服装套数</u-col>
-									</u-row>
-									<u-row customStyle="padding-bottom:18px">
-										<u-col span="4">精修张数</u-col>
-										<u-col span="8">精修张数</u-col>
-									</u-row>
-									<u-row customStyle="padding-bottom:18px">
-										<u-col span="4">底片张数</u-col>
-										<u-col span="8">底片张数</u-col>
-									</u-row>
-									<u-row customStyle="padding-bottom:18px">
-										<u-col span="4">设备型号</u-col>
-										<u-col span="8">设备型号</u-col>
-									</u-row>
-									<u-row customStyle="padding-bottom:18px">
-										<u-col span="4">服装造型</u-col>
-										<u-col span="8">服装造型</u-col>
-									</u-row>
-									<u-row customStyle="padding-bottom:18px">
-										<u-col span="4">其他说明</u-col>
-										<u-col span="8">其他说明</u-col>
-									</u-row>
+							</u-scroll-list>
+						</view>
+
+						<view style="font-weight: 600;font-size: 16px;line-height: 16px;color: #191919;">
+							拍摄须知
+						</view>
+
+						<view style="margin: 20px 0 20px 0;">
+							<view v-if="notice==null || notice == ''" @click="addNotice"
+								style="height: 200px;background: #F8F9FA;box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);border-radius: 12px;">
+								<view
+									style="height: 100%;flex: auto;display:flex;flex-direction:column;justify-content:center;align-items: center;">
+									<u-icon name="info-circle" size="50px"></u-icon>
+									<view
+										style="font-weight: 400;font-size: 13px;line-height: 18px;text-align: center;color:#808080;">
+										暂无拍摄须知</view>
 								</view>
 							</view>
+							<view v-if="notice != null" @click="addNotice"
+								style="padding: 20px;background: #F8F9FA height: 200px;box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);border-radius: 12px;height: 400px;">
+								{{notice}}
+							</view>
 						</view>
-					</u-scroll-list>
 
-					<view style="font-weight: bold;font-size: 16px; padding: 20px;">拍摄须知</view>
-					<view style="background: #F6F7F9;border-radius: 6px;padding: 16px">
-						<u-row>
-							1.提供部分尺码的服装可供选择
-						</u-row>
-						<u-row>
-							2.周未及节假日取片时间会有延迟，具体取片时间可联系摄影师沟通
-						</u-row>
-						<u-row>
-							3.可以在拍摄或看片时提出您对照片的要求，若修图最终效果不满意，可以除定金外推款处理
-						</u-row>
-						<u-row>
-							4.如有其他疑问可通过我的主页【联系摄影师】咨询我，或者在【留言&咨询】处进行留言
-						</u-row>
 					</view>
-
-
 				</scroll-view>
 			</u-popup>
 		</view>
@@ -183,10 +228,14 @@
 		getUserInfo,
 		pherCollect,
 		getPherCollectStatus,
-		getUserFansCnt
+		getUserFansCnt,
+		getUserPlanList
 	} from '@/api/user.js';
 	import {
-		changeCity
+		changeCity,
+		changePeopleNum,
+		changeScene,
+		changeSceneNum
 	} from '@/common/method.js'
 	export default {
 		data() {
@@ -246,7 +295,9 @@
 						price: 111
 					}
 				],
-				popDescShow: false
+				popDescShow: false,
+				notice: '',
+				planList: [],
 			}
 		},
 		methods: {
@@ -299,20 +350,35 @@
 			this.userId = param.userId;
 			let _this = this;
 			getUserInfo({
-				userId: param.userId
+				userId: this.userId
 			}).then((res) => {
 				let [error, success] = res;
-				_this.username = success.data.nickname;
-				_this.city = changeCity(success.data.city);
-				_this.gender = success.data.gender;
-				_this.avatar = success.data.avatar;
-				_this.desc = JSON.parse(success.data.desc);
-				_this.phone = success.data.phone;
+				this.username = success.data.nickname;
+				this.city = changeCity(success.data.city);
+				this.gender = success.data.gender;
+				this.avatar = success.data.avatar;
+				this.desc = JSON.parse(success.data.desc);
+				this.phone = success.data.phone;
+				this.notice = success.data.notice;
 				uni.setNavigationBarTitle({
 					title: this.username + "的主页"
 				});
 
 			});
+			getUserPlanList({
+				userId: this.userId
+			}).then(res => {
+				let [error, success] = res;
+				this.planList = success.data
+				this.planList.map(item => {
+					item.content = JSON.parse(item.content);
+					item.content.peopleNum = changePeopleNum(item.content.peopleNum);
+					item.content.scene = changeScene(item.content.scene);
+					item.content.sceneNum = changeSceneNum(item.content.sceneNum);
+					item.content.isDress = item.content.isDress ? '是' : '否'
+					item.content.isMakeup = item.content.isMakeup ? '是' : '否'
+				})
+			})
 			getProductPage({
 				userId: this.userId,
 				status: 'SUCCESS',

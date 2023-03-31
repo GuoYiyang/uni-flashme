@@ -11,11 +11,14 @@ export function changeProductStatus(index) {
 export function changeCity(index) {
 	if (index == '0') {
 		return "深圳"
-	} if (index == '1') {
+	}
+	if (index == '1') {
 		return "北京"
-	} if (index == '2') {
+	}
+	if (index == '2') {
 		return "上海"
-	} if (index == '3') {
+	}
+	if (index == '3') {
 		return "广州"
 	} else {
 		return "未知城市"
@@ -46,6 +49,43 @@ export function changeTag(tagstr) {
 	})
 
 	return res;
+}
 
+export function changePeopleNum(index) {
+	if (index === 0) {
+		return '单人'
+	}
+	if (index === 1) {
+		return '双人'
+	}
+	if (index === 2) {
+		return '多人'
+	}
+}
 
+export function changeScene(index) {
+	if (index === 0) {
+		return '室内'
+	}
+	if (index === 1) {
+		return '室外'
+	}
+	if (index === 2) {
+		return '室内+室外'
+	}
+}
+
+export function changeSceneNum(index) {
+	if (index === 0) {
+		return '一个'
+	}
+	if (index === 1) {
+		return '两个'
+	}
+	if (index === 2) {
+		return '三个'
+	}
+	if (index === 3) {
+		return '四个及以上'
+	}
 }

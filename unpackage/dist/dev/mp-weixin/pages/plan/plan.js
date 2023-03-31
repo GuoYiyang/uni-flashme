@@ -141,7 +141,6 @@ var render = function () {
   var g0 = _vm.planList.length
   var g1 = _vm.planList.length
   var g2 = _vm.notice.length
-  var g3 = _vm.notice.length
   _vm.$mp.data = Object.assign(
     {},
     {
@@ -149,7 +148,6 @@ var render = function () {
         g0: g0,
         g1: g1,
         g2: g2,
-        g3: g3,
       },
     }
   )
@@ -195,10 +193,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ 5));
 var _user = __webpack_require__(/*! @/api/user.js */ 33);
-//
-//
-//
-//
+var _method = __webpack_require__(/*! @/common/method.js */ 169);
 //
 //
 //
@@ -349,73 +344,22 @@ var _default = {
     },
     done: function done() {
       uni.navigateBack();
-    },
-    changePeopleNum: function changePeopleNum(index) {
-      if (index === 0) {
-        return '单人';
-      }
-      if (index === 1) {
-        return '双人';
-      }
-      if (index === 2) {
-        return '多人';
-      }
-    },
-    changeScene: function changeScene(index) {
-      if (index === 0) {
-        return '室内';
-      }
-      if (index === 1) {
-        return '室外';
-      }
-      if (index === 2) {
-        return '室内+室外';
-      }
-    },
-    changeSceneNum: function changeSceneNum(index) {
-      if (index === 0) {
-        return '一个';
-      }
-      if (index === 1) {
-        return '两个';
-      }
-      if (index === 2) {
-        return '三个';
-      }
-      if (index === 3) {
-        return '四个及以上';
-      }
     }
   },
   onShow: function onShow() {
     var _this = this;
-    (0, _user.getUserPlanList)().then(function (res) {
+    (0, _user.getUserPlanList)({
+      userId: getApp().globalData.USER_ID
+    }).then(function (res) {
       var _res = (0, _slicedToArray2.default)(res, 2),
         error = _res[0],
         success = _res[1];
       _this.planList = success.data;
       _this.planList.map(function (item) {
         item.content = JSON.parse(item.content);
-        item.content.peopleNum = _this.changePeopleNum(item.content.peopleNum);
-        item.content.scene = _this.changeScene(item.content.scene);
-        item.content.sceneNum = _this.changeSceneNum(item.content.sceneNum);
-        item.content.isDress = item.content.isDress ? '是' : '否';
-        item.content.isMakeup = item.content.isMakeup ? '是' : '否';
-      });
-    });
-  },
-  onLoad: function onLoad() {
-    var _this2 = this;
-    (0, _user.getUserPlanList)().then(function (res) {
-      var _res2 = (0, _slicedToArray2.default)(res, 2),
-        error = _res2[0],
-        success = _res2[1];
-      _this2.planList = success.data;
-      _this2.planList.map(function (item) {
-        item.content = JSON.parse(item.content);
-        item.content.peopleNum = _this2.changePeopleNum(item.content.peopleNum);
-        item.content.scene = _this2.changeScene(item.content.scene);
-        item.content.sceneNum = _this2.changeSceneNum(item.content.sceneNum);
+        item.content.peopleNum = (0, _method.changePeopleNum)(item.content.peopleNum);
+        item.content.scene = (0, _method.changeScene)(item.content.scene);
+        item.content.sceneNum = (0, _method.changeSceneNum)(item.content.sceneNum);
         item.content.isDress = item.content.isDress ? '是' : '否';
         item.content.isMakeup = item.content.isMakeup ? '是' : '否';
       });
@@ -423,9 +367,36 @@ var _default = {
     (0, _user.getUserInfo)({
       userId: getApp().globalData.USER_ID
     }).then(function (res) {
+      var _res2 = (0, _slicedToArray2.default)(res, 2),
+        error = _res2[0],
+        success = _res2[1];
+      _this.notice = success.data.notice;
+    });
+  },
+  onLoad: function onLoad() {
+    var _this2 = this;
+    (0, _user.getUserPlanList)({
+      userId: getApp().globalData.USER_ID
+    }).then(function (res) {
       var _res3 = (0, _slicedToArray2.default)(res, 2),
         error = _res3[0],
         success = _res3[1];
+      _this2.planList = success.data;
+      _this2.planList.map(function (item) {
+        item.content = JSON.parse(item.content);
+        item.content.peopleNum = (0, _method.changePeopleNum)(item.content.peopleNum);
+        item.content.scene = (0, _method.changeScene)(item.content.scene);
+        item.content.sceneNum = (0, _method.changeSceneNum)(item.content.sceneNum);
+        item.content.isDress = item.content.isDress ? '是' : '否';
+        item.content.isMakeup = item.content.isMakeup ? '是' : '否';
+      });
+    });
+    (0, _user.getUserInfo)({
+      userId: getApp().globalData.USER_ID
+    }).then(function (res) {
+      var _res4 = (0, _slicedToArray2.default)(res, 2),
+        error = _res4[0],
+        success = _res4[1];
       _this2.notice = success.data.notice;
     });
   }

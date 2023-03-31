@@ -10,8 +10,6 @@
 				</view>
 			</view>
 			
-
-
 			<view style="margin: 20px 0 20px 0;">
 				<u-scroll-list :indicator="false">
 					<view v-if="planList.length == 0" @click="addPlan"
@@ -103,11 +101,9 @@
 							点击编辑您的拍摄须知</view>
 					</view>
 				</view>
-				<view v-if="notice.length >0" @click="addNotice"
-					style="padding: 20px; height: 200px;background: #F8F9FA;box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);border-radius: 12px;">
-					<view style="font-weight: 300;font-size: 14px;line-height: 150%;">
-						{{notice}}
-					</view>
+				<view v-if="notice != null" @click="addNotice"
+					style="padding: 20px;background: #F8F9FA height: 200px;box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);border-radius: 12px;height: 400px;">
+					{{notice}}
 				</view>
 			</view>
 
@@ -133,6 +129,11 @@
 		getUserInfo,
 		updateUserInfo
 	} from '@/api/user.js'
+	import {
+		changePeopleNum,
+		changeScene,
+		changeSceneNum
+	} from '@/common/method.js'
 	export default {
 		data() {
 			return {
@@ -159,67 +160,40 @@
 			done() {
 				uni.navigateBack()
 			},
-			changePeopleNum(index) {
-				if (index === 0) {
-					return '单人'
-				}
-				if (index === 1) {
-					return '双人'
-				}
-				if (index === 2) {
-					return '多人'
-				}
-			},
-			changeScene(index) {
-				if (index === 0) {
-					return '室内'
-				}
-				if (index === 1) {
-					return '室外'
-				}
-				if (index === 2) {
-					return '室内+室外'
-				}
-			},
-			changeSceneNum(index) {
-				if (index === 0) {
-					return '一个'
-				}
-				if (index === 1) {
-					return '两个'
-				}
-				if (index === 2) {
-					return '三个'
-				}
-				if (index === 3) {
-					return '四个及以上'
-				}
-			},
-
 		},
 		onShow(){
-			getUserPlanList().then(res => {
+			getUserPlanList({
+				userId: getApp().globalData.USER_ID
+			}).then(res => {
 				let [error, success] = res;
 				this.planList = success.data
 				this.planList.map(item => {
 					item.content = JSON.parse(item.content);
-					item.content.peopleNum = this.changePeopleNum(item.content.peopleNum);
-					item.content.scene = this.changeScene(item.content.scene);
-					item.content.sceneNum = this.changeSceneNum(item.content.sceneNum);
+					item.content.peopleNum = changePeopleNum(item.content.peopleNum);
+					item.content.scene = changeScene(item.content.scene);
+					item.content.sceneNum = changeSceneNum(item.content.sceneNum);
 					item.content.isDress = item.content.isDress ? '是' : '否'
 					item.content.isMakeup = item.content.isMakeup ? '是' : '否'
 				})
 			})
+			getUserInfo({
+				userId: getApp().globalData.USER_ID
+			}).then(res=>{
+				let [error, success] = res;
+				this.notice = success.data.notice;
+			})
 		},
 		onLoad() {
-			getUserPlanList().then(res => {
+			getUserPlanList({
+				userId: getApp().globalData.USER_ID
+			}).then(res => {
 				let [error, success] = res;
 				this.planList = success.data
 				this.planList.map(item => {
 					item.content = JSON.parse(item.content);
-					item.content.peopleNum = this.changePeopleNum(item.content.peopleNum);
-					item.content.scene = this.changeScene(item.content.scene);
-					item.content.sceneNum = this.changeSceneNum(item.content.sceneNum);
+					item.content.peopleNum = changePeopleNum(item.content.peopleNum);
+					item.content.scene = changeScene(item.content.scene);
+					item.content.sceneNum = changeSceneNum(item.content.sceneNum);
 					item.content.isDress = item.content.isDress ? '是' : '否'
 					item.content.isMakeup = item.content.isMakeup ? '是' : '否'
 				})

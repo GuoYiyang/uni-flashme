@@ -78,7 +78,9 @@
 				})
 			},
 			addNotice(){
-				
+				uni.navigateTo({
+					url: '/pages/plan/editNotice'
+				})
 			},
 			toStep4() {
 				uni.navigateTo({

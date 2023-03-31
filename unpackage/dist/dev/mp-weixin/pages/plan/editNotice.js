@@ -213,6 +213,17 @@ var _default = {
         }
       });
     }
+  },
+  onLoad: function onLoad() {
+    var _this = this;
+    (0, _user.getUserInfo)({
+      userId: getApp().globalData.USER_ID
+    }).then(function (res) {
+      var _res2 = (0, _slicedToArray2.default)(res, 2),
+        error = _res2[0],
+        success = _res2[1];
+      _this.value = success.data.notice;
+    });
   }
 };
 exports.default = _default;

@@ -164,6 +164,8 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  var g0 = _vm.planList == [] || _vm.planList.length == 0
+  var g1 = _vm.planList.length
   if (!_vm._isMounted) {
     _vm.e0 = function ($event) {
       this.popDescShow = true
@@ -178,6 +180,15 @@ var render = function () {
       this.popPlanShow = false
     }
   }
+  _vm.$mp.data = Object.assign(
+    {},
+    {
+      $root: {
+        g0: g0,
+        g1: g1,
+      },
+    }
+  )
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -224,6 +235,51 @@ var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/r
 var _product = __webpack_require__(/*! @/api/product.js */ 168);
 var _user = __webpack_require__(/*! @/api/user.js */ 33);
 var _method = __webpack_require__(/*! @/common/method.js */ 169);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -452,7 +508,9 @@ var _default = {
         name: '907567',
         price: 111
       }],
-      popDescShow: false
+      popDescShow: false,
+      notice: '',
+      planList: []
     };
   },
   methods: {
@@ -514,19 +572,36 @@ var _default = {
               _this2.userId = param.userId;
               _this = _this2;
               (0, _user.getUserInfo)({
-                userId: param.userId
+                userId: _this2.userId
               }).then(function (res) {
                 var _res = (0, _slicedToArray2.default)(res, 2),
                   error = _res[0],
                   success = _res[1];
-                _this.username = success.data.nickname;
-                _this.city = (0, _method.changeCity)(success.data.city);
-                _this.gender = success.data.gender;
-                _this.avatar = success.data.avatar;
-                _this.desc = JSON.parse(success.data.desc);
-                _this.phone = success.data.phone;
+                _this2.username = success.data.nickname;
+                _this2.city = (0, _method.changeCity)(success.data.city);
+                _this2.gender = success.data.gender;
+                _this2.avatar = success.data.avatar;
+                _this2.desc = JSON.parse(success.data.desc);
+                _this2.phone = success.data.phone;
+                _this2.notice = success.data.notice;
                 uni.setNavigationBarTitle({
                   title: _this2.username + "的主页"
+                });
+              });
+              (0, _user.getUserPlanList)({
+                userId: _this2.userId
+              }).then(function (res) {
+                var _res2 = (0, _slicedToArray2.default)(res, 2),
+                  error = _res2[0],
+                  success = _res2[1];
+                _this2.planList = success.data;
+                _this2.planList.map(function (item) {
+                  item.content = JSON.parse(item.content);
+                  item.content.peopleNum = (0, _method.changePeopleNum)(item.content.peopleNum);
+                  item.content.scene = (0, _method.changeScene)(item.content.scene);
+                  item.content.sceneNum = (0, _method.changeSceneNum)(item.content.sceneNum);
+                  item.content.isDress = item.content.isDress ? '是' : '否';
+                  item.content.isMakeup = item.content.isMakeup ? '是' : '否';
                 });
               });
               (0, _product.getProductPage)({
@@ -535,26 +610,26 @@ var _default = {
                 page: _this2.page,
                 pageSize: _this2.pageSize
               }).then(function (res) {
-                var _res2 = (0, _slicedToArray2.default)(res, 2),
-                  error = _res2[0],
-                  success = _res2[1];
+                var _res3 = (0, _slicedToArray2.default)(res, 2),
+                  error = _res3[0],
+                  success = _res3[1];
                 _this.product.list = success.data;
               });
               (0, _user.getPherCollectStatus)({
                 userId: getApp().globalData.USER_ID,
                 pherId: _this2.userId
               }).then(function (res) {
-                var _res3 = (0, _slicedToArray2.default)(res, 2),
-                  error = _res3[0],
-                  success = _res3[1];
+                var _res4 = (0, _slicedToArray2.default)(res, 2),
+                  error = _res4[0],
+                  success = _res4[1];
                 _this.isFollow = success.data;
               });
               (0, _user.getUserFansCnt)({
                 userId: _this2.userId
               }).then(function (res) {
-                var _res4 = (0, _slicedToArray2.default)(res, 2),
-                  error = _res4[0],
-                  success = _res4[1];
+                var _res5 = (0, _slicedToArray2.default)(res, 2),
+                  error = _res5[0],
+                  success = _res5[1];
                 _this.productCnt = success.data[0];
                 _this.fansCnt = success.data[1];
               });
@@ -562,7 +637,7 @@ var _default = {
                 withShareTicket: true,
                 menus: ["shareAppMessage", "shareTimeline"]
               });
-            case 9:
+            case 10:
             case "end":
               return _context.stop();
           }
@@ -579,9 +654,9 @@ var _default = {
       page: this.page,
       pageSize: this.pageSize
     }).then(function (res) {
-      var _res5 = (0, _slicedToArray2.default)(res, 2),
-        error = _res5[0],
-        success = _res5[1];
+      var _res6 = (0, _slicedToArray2.default)(res, 2),
+        error = _res6[0],
+        success = _res6[1];
       if (success.data.length == 0) {}
       _this3.product.list = _this3.product.list.concat(success.data);
     });
