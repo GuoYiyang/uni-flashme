@@ -17,13 +17,16 @@
 		<view style="margin:40px 36px 20px 36px">
 			<u-button @click="toUserShow" color="#3D6EC2"
 				customStyle="border-radius:10px;height:42px;font-weight:500;font-size:16px;line-height:16px;color:#FFFFFF;">
-				查看主页
+				完成
 			</u-button>
 		</view>
 	</view>
 </template>
 
 <script>
+	import {
+		becomePher
+	} from '@/api/user.js'
 	export default {
 		data() {
 			return {
@@ -32,8 +35,18 @@
 		},
 		methods: {
 			toUserShow(){
-				uni.reLaunch({
-					url: '/pages/userShow/userShow?userId=' + getApp().globalData.USER_ID
+				becomePher().then(res=>{
+					let [error, success] = res;
+						if (success.data == true) {
+							uni.reLaunch({
+								url: '/pages/homePage/homePage'
+							})
+						} else {
+							uni.showToast({
+								icon: 'error',
+								title: '系统异常'
+							})
+						}
 				})
 			}
 		}

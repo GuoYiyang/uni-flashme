@@ -287,8 +287,6 @@
 				image: '',
 				popList: [{
 					name: '电话'
-				}, {
-					name: '微信'
 				}],
 				collectCnt: 0,
 				planCardList: [{
@@ -320,12 +318,12 @@
 			selectClick(item) {
 				if ("电话" == item.name) {
 					uni.makePhoneCall({
-						phoneNumber: "18188606406" //电话号码
+						phoneNumber: this.cameramanPhone
 					})
 				}
 				if ("微信" == item.name) {
 					uni.setClipboardData({
-						data: 'Slimshadys_'
+						data: this.cameramanDesc.wxid
 					})
 				}
 			},
@@ -402,7 +400,6 @@
 				this.cameramanId = success.data.userId;
 				this.content = success.data.content;
 				this.image = success.data.image;
-
 				uni.setNavigationBarTitle({
 					title: this.title
 				});
@@ -421,6 +418,14 @@
 					this.cameramanPhone = success.data.phone;
 					this.cameramanCity = changeCity(success.data.city);
 					this.notice = success.data.notice;
+
+
+					if (this.cameramanDesc.wxid != null) {
+						this.popList.push({
+							name: '微信'
+						})
+					}
+
 				})
 
 				getProductPage({

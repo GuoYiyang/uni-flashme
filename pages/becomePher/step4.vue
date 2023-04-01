@@ -128,13 +128,11 @@
 				this.showCate = false;
 			},
 			seleteImage(e) {
-				console.log(e)
 				e.tempFiles.map(item => {
 					this.tempFiles.push(item)
 				});
 			},
 			deleteImage(e) {
-				console.log(e)
 				this.tempFiles.map((item, i) => {
 					if (item.path == e.tempFile.path) {
 						this.tempFiles.splice(i, 1)

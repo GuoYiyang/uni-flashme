@@ -32,6 +32,9 @@
 			</view>
 			<view style="margin-bottom: 12px;"></view>
 			<view v-if="isPher" style="padding: 6px 26px 6px 26px; border-radius: 10px; background-color: #FFFFFF;">
+				<u-form-item labelWidth="100px" label="微信号" prop="xiaohongshu" borderBottom>
+					<u--input v-model="userInfo.wxid" border="none"></u--input>
+				</u-form-item>
 				<u-form-item labelWidth="100px" label="小红书号" prop="xiaohongshu" borderBottom>
 					<u--input v-model="userInfo.xiaohongshu" border="none"></u--input>
 				</u-form-item>
@@ -87,6 +90,7 @@
 					id: '',
 					name: '',
 					avatar: '',
+					wxid:'',
 					xiaohongshu: '',
 					douyin: '',
 					whatsup: '',
@@ -215,6 +219,7 @@
 			submit() {
 				this.$refs.Form.validate().then(res => {
 					this.userInfo.desc = JSON.stringify({
+						"wxid": this.userInfo.wxid,
 						"xiaohongshu": this.userInfo.xiaohongshu,
 						"douyin": this.userInfo.douyin,
 						"whatsup": this.userInfo.whatsup,
@@ -286,6 +291,7 @@
 
 				_this.userInfo.desc = success.data.desc;
 				let userDesc = JSON.parse(success.data.desc);
+				_this.userInfo.wxid = userDesc.wxid;
 				_this.userInfo.xiaohongshu = userDesc.xiaohongshu;
 				_this.userInfo.douyin = userDesc.douyin;
 				_this.userInfo.whatsup = userDesc.whatsup;

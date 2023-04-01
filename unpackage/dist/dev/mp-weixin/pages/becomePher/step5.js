@@ -101,7 +101,7 @@ var components
 try {
   components = {
     uButton: function () {
-      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-button/u-button.vue */ 316))
+      return Promise.all(/*! import() | uni_modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uview-ui/components/u-button/u-button.vue */ 322))
     },
   }
 } catch (e) {
@@ -160,10 +160,13 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {
 
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ 5));
+var _user = __webpack_require__(/*! @/api/user.js */ 33);
 //
 //
 //
@@ -195,8 +198,20 @@ var _default = {
   },
   methods: {
     toUserShow: function toUserShow() {
-      uni.reLaunch({
-        url: '/pages/userShow/userShow?userId=' + getApp().globalData.USER_ID
+      (0, _user.becomePher)().then(function (res) {
+        var _res = (0, _slicedToArray2.default)(res, 2),
+          error = _res[0],
+          success = _res[1];
+        if (success.data == true) {
+          uni.reLaunch({
+            url: '/pages/homePage/homePage'
+          });
+        } else {
+          uni.showToast({
+            icon: 'error',
+            title: '系统异常'
+          });
+        }
       });
     }
   }

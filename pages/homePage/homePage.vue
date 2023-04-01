@@ -4,7 +4,7 @@
 		<view style="padding: 20px 36px 20px 36px;">
 			<u-row>
 				<u-col span="3">
-					<u-avatar :src="userInfo.avatar" size="60" @click="toUserShow">
+					<u-avatar :src="userInfo.avatar" size="60">
 					</u-avatar>
 				</u-col>
 				<u-col span="7">
@@ -21,32 +21,13 @@
 			</u-row>
 		</view>
 
-		<!-- 		<u-row gutter="0" customStyle="padding: 10rpx;">
-			<u-col span="4">
-				<u-button @click="aboutMe">
-					关于我
-				</u-button>
-			</u-col>
-			<u-col span="4">
-				<u-button @click="contact">
-					联系方式
-				</u-button>
-			</u-col>
-			<u-col span="4">
-				<u-button @click="priceDetail">
-					套餐价格
-				</u-button>
-			</u-col>
-		</u-row> -->
-
-
 		<view style="margin: 16px;background-color:#FFFFFF;border-radius: 10px" v-if="isPher">
 			<view style="padding: 14px 18px 20px 18px">
 				<u-row>
 					<u-col span="9.5"><text style="font-size: 13px;color: #808080;font-weight: 400;">摄影师专区</text>
 					</u-col>
 					<u-col span="2.5"><text @click="toUserShow"
-							style="font-size: 13px;color: #808080;font-weight: 400;">进入主页></text></u-col>
+							style="font-size: 13px;color: #808080;font-weight: 400;">查看主页</text></u-col>
 				</u-row>
 			</view>
 			<view>

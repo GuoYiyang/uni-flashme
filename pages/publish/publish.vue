@@ -76,26 +76,23 @@
 						text: '写真',
 						value: 0
 					}, {
-						text: '证件照',
+						text: '情侣',
 						value: 1
 					}, {
 						text: '婚纱',
 						value: 2
 					}, {
-						text: '情侣',
+						text: '职场',
 						value: 3
 					}, {
-						text: '亲子',
+						text: '孕妇',
 						value: 4
 					}, {
-						text: '宠物',
+						text: '宝宝',
 						value: 5
 					}, {
-						text: '旅拍',
+						text: '家庭',
 						value: 6
-					}, {
-						text: '其他',
-						value: 7
 					}]
 				],
 				rules: {

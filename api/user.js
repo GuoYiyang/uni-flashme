@@ -109,6 +109,16 @@ export function getUserFansCnt(req) {
 	});
 }
 
+export function becomePher(req){
+	return uni.request({
+		url: baseUrl + '/user/becomePher',
+		method: "POST",
+		header:{
+			"X-USER-ID": getApp().globalData.USER_ID
+		}
+	});
+}
+
 
 // 获取拍摄方案列表
 export function getUserPlanList(req) {
