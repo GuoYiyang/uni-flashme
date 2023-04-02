@@ -57,6 +57,8 @@
 				</view>
 			</custom-waterfalls-flow>
 		</view>
+		
+		<view style="padding: 10px;"><u-loadmore :status="loadMoreStatus"/></view>
 
 	</view>
 </template>
@@ -74,6 +76,7 @@
 	export default {
 		data() {
 			return {
+				loadMoreStatus: 'loading',
 				cityPickerShow: false,
 				tagList: [{
 						image: "https://pic-common-1258999491.cos.ap-nanjing.myqcloud.com/5d98d52b4d04febe9a110003be5d56d.png"
@@ -182,7 +185,11 @@
 				this.tabClickCnt = 0
 			}, 250)
 		},
+		onReady() {
+			uni.hideNavigationBarLoading()
+		},
 		async onLoad(param) {
+			uni.showNavigationBarLoading()
 			await this.$onLaunched;
 			let _this = this;
 			let city = this.city;
@@ -217,6 +224,7 @@
 			}, 500);
 		},
 		onReachBottom() {
+			this.loadMoreStatus = 'loading';
 			productRandom({
 				city: this.city
 			}).then((res) => {

@@ -89,23 +89,23 @@
 			<view style="font-weight: 600;font-size: 16px;line-height: 16px;color: #191919;">
 				拍摄须知
 			</view>
-
 			<view style="margin: 20px 0 20px 0;">
-				<view v-if="notice.length ==0" @click="addNotice"
-					style="height: 200px;background: #F8F9FA;box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);border-radius: 12px;">
+				<view v-if="notice==null || notice == ''" @click="addNotice"
+					style="height: 200px;background-color: #F8F9FA;">
 					<view
 						style="height: 100%;flex: auto;display:flex;flex-direction:column;justify-content:center;align-items: center;">
-						<u-icon name="plus" size="50px"></u-icon>
+						<u-icon name="info-circle" size="50px"></u-icon>
 						<view
 							style="font-weight: 400;font-size: 13px;line-height: 18px;text-align: center;color:#808080;">
-							点击编辑您的拍摄须知</view>
+							暂无拍摄须知</view>
 					</view>
 				</view>
 				<view v-if="notice != null" @click="addNotice"
-					style="padding: 20px;background: #F8F9FA height: 200px;box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);border-radius: 12px;height: 400px;">
-					{{notice}}
+					style="padding: 20px;background-color: #F8F9FA;display: flex">
+					<text>{{notice}}</text>
 				</view>
 			</view>
+			
 
 			<view style="font-weight: 300;font-size: 14px;line-height: 16px;color: #808080">
 				*拍摄方案将展示在你的摄影师主页

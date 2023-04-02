@@ -59,6 +59,8 @@
 			</div>
 
 		</view>
+		
+		<view style="padding: 10px;"><u-loadmore :status="loadMoreStatus"/></view>
 	</view>
 </template>
 
@@ -75,6 +77,7 @@
 	export default {
 		data() {
 			return {
+				loadMoreStatus: 'loading',
 				tabsList: [{
 						name: '作品'
 					},
@@ -96,6 +99,7 @@
 		},
 		methods: {
 			waterfallsLoaded() {
+				this.loadMoreStatus = 'nomore';
 				uni.hideNavigationBarLoading()
 			},
 			clickPherCard(userId) {
@@ -138,7 +142,7 @@
 			}, 250)
 		},
 		async onLoad() {
-			uni.showNavigationBarLoading()
+			this.loadMoreStatus = 'loading';
 			await this.$onLaunched;
 			let _this = this;
 			getProductCollect({
@@ -147,6 +151,9 @@
 				let [error, success] = res;
 				_this.product.list = success.data;
 				this.$refs.waterfallsFlowRef.refresh();
+				if (success.data.length === 0) {
+					this.loadMoreStatus = 'nomore';
+				}
 			});
 			getPherCollect({
 				userId: getApp().globalData.USER_ID

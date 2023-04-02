@@ -23,6 +23,7 @@ export function getProductPage(req) {
 	let tag = req.tag == null ? "" : req.tag;
 	let query = req.query == null ? "" : req.query;
 	let status = req.status == null ? "" : req.status;
+	let excludeProductId = req.excludeProductId == null ? '' : req.excludeProductId
 	return uni.request({
 		url: baseUrl + '/product/page',
 		method: "GET",
@@ -37,13 +38,19 @@ export function getProductPage(req) {
 			page: req.page,
 			pageSize: req.pageSize,
 			status: status,
-			excludeProductId: req.excludeProductId == null ? '' : req.excludeProductId
+			excludeProductId: excludeProductId
 		}
 	});
 }
 
 // 随机获取10条产品
 export function productRandom(req) {
+	let userId = req.userId == null ? "" : req.userId;
+	let city = req.city == null ? "" : req.city;
+	let tag = req.tag == null ? "" : req.tag;
+	let query = req.query == null ? "" : req.query;
+	let status = req.status == null ? "" : req.status;
+	let excludeProductId = req.excludeProductId == null ? '' : req.excludeProductId
 	return uni.request({
 		url: baseUrl + '/product/random',
 		method: "GET",
@@ -51,9 +58,12 @@ export function productRandom(req) {
 			"X-USER-ID": getApp().globalData.USER_ID
 		},
 		data: {
-			city: req.city,
-			tag: req.tag,
-			query: req.query
+			userId: userId,
+			city: city,
+			tag: tag,
+			query: query,
+			status: status,
+			excludeProductId: excludeProductId
 		}
 	});
 }

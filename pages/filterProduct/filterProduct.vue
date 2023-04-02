@@ -21,13 +21,16 @@
 				</view>
 			</custom-waterfalls-flow>
 		</view>
+		
+		<view style="padding: 10px;"><u-loadmore :status="loadMoreStatus"/></view>
+		
+		
 	</view>
 </template>
 
 <script>
 	import {
-		getProductPage,
-		productRandom
+		getProductPage
 	} from '@/api/product.js'
 	import {
 		changeTag
@@ -35,6 +38,9 @@
 	export default {
 		data() {
 			return {
+				loadMoreStatus:'loading',
+				page: 1,
+				pageSize: 10,
 				city: '',
 				tag: '',
 				query: '',
@@ -77,19 +83,35 @@
 			this.city = param.city;
 			if (param.tag != null) {
 				this.tag = param.tag;
+				getProductPage({
+					city: this.city,
+					tag: this.tag,
+					query: this.query,
+					status: 'SUCCESS',
+					page: this.page,
+					pageSize: this.pageSize
+				}).then((res) => {
+					let [error, success] = res;
+					_this.product.list = success.data;
+				})
 			}
 			if (param.query != null) {
 				this.query = param.query;
+				getProductPage({
+					city: this.city,
+					tag: this.tag,
+					query: this.query,
+					status: 'SUCCESS',
+					page: this.page,
+					pageSize: this.pageSize
+				}).then((res) => {
+					let [error, success] = res;
+					_this.product.list = success.data;
+					if (success.data.length <= 10){
+						this.loadMoreStatus = 'nomore'
+					}
+				})
 			}
-			productRandom({
-				city: this.city,
-				tag: this.tag,
-				query: this.query,
-				status: 'SUCCESS'
-			}).then((res) => {
-				let [error, success] = res;
-				_this.product.list = success.data;
-			})
 			
 			uni.setNavigationBarTitle({
 				title: changeTag(param.tag) +  '的相关作品'
@@ -97,14 +119,19 @@
 
 		},
 		onReachBottom() {
-			productRandom({
+			this.page = this.page + 1;
+			getProductPage({
 				city: this.city,
 				tag: this.tag,
 				query: this.query,
-				status: 'SUCCESS'
+				status: 'SUCCESS',
+				page: this.page,
+				pageSize: this.pageSize
 			}).then((res) => {
 				let [error, success] = res;
-				if (success.data.length == 0) {}
+				if (success.data.length == 0) {
+					this.loadMoreStatus = 'nomore'
+				}
 				this.product.list = this.product.list.concat(success.data);
 			})
 		}

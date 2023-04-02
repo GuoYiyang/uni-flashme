@@ -10,6 +10,7 @@
     "custom-waterfalls-flow": "/uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow",
     "u-row": "/uni_modules/uview-ui/components/u-row/u-row",
     "u-col": "/uni_modules/uview-ui/components/u-col/u-col",
-    "u-avatar": "/uni_modules/uview-ui/components/u-avatar/u-avatar"
+    "u-avatar": "/uni_modules/uview-ui/components/u-avatar/u-avatar",
+    "u-loadmore": "/uni_modules/uview-ui/components/u-loadmore/u-loadmore"
   }
 }

@@ -62,7 +62,7 @@
 		<view style="padding:16px 26px 50px 26px">
 			<u-button @click="submit" color="#3D6EC2"
 				customStyle="border-radius:10px;height:42px;font-weight:500;font-size:16px;line-height:16px;color:#FFFFFF;">
-				发布
+				保存
 			</u-button>
 		</view>
 	</view>

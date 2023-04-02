@@ -167,8 +167,8 @@
 							url: '/pages/becomePher/step1'
 						})
 					} else {
-						uni.navigateTo({
-							url: '/pages/becomePher/step5'
+						uni.showToast({
+							title:'您已经入驻'
 						})
 					}
 				}
@@ -191,6 +191,10 @@
 		},
 		async onLoad() {
 			await this.$onLaunched;
+			uni.showNavigationBarLoading()
+		},
+		onReady() {
+			uni.hideNavigationBarLoading()
 		},
 		onShow() {
 			this.userId = getApp().globalData.USER_ID;

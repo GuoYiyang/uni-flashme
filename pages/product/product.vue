@@ -52,7 +52,7 @@
 
 		<view style="padding: 5px;"></view>
 
-		<view style="background-color: #FFFFFF; border-radius:15px 15px 15px 15px; padding-bottom: 40px;">
+		<view v-if="other.list.length > 0" style="background-color: #FFFFFF; border-radius:15px 15px 15px 15px; padding-bottom: 40px;">
 
 			<u-row>
 				<u-col span="10">
@@ -66,8 +66,6 @@
 					</view>
 				</u-col>
 			</u-row>
-
-
 
 			<!-- 			<u-swiper :list="other.list" keyName="image" circular imgMode="aspectFill" @click="clickSwiper" height="300"
 				previousMargin="100" nextMargin="100" :autoplay="false" bgColor="#ffffff"></u-swiper> -->
@@ -170,10 +168,9 @@
 						<view style="font-weight: 600;font-size: 16px;line-height: 16px;color: #191919;">
 							拍摄须知
 						</view>
-
 						<view style="margin: 20px 0 20px 0;">
 							<view v-if="notice==null || notice == ''" @click="addNotice"
-								style="height: 200px;background: #F8F9FA;box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);border-radius: 12px;">
+								style="height: 200px;background-color: #F8F9FA;">
 								<view
 									style="height: 100%;flex: auto;display:flex;flex-direction:column;justify-content:center;align-items: center;">
 									<u-icon name="info-circle" size="50px"></u-icon>
@@ -183,8 +180,8 @@
 								</view>
 							</view>
 							<view v-if="notice != null" @click="addNotice"
-								style="padding: 20px;background: #F8F9FA height: 200px;box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);border-radius: 12px;height: 400px;">
-								{{notice}}
+								style="padding: 20px;background-color: #F8F9FA;display: flex">
+								<text>{{notice}}</text>
 							</view>
 						</view>
 
@@ -361,7 +358,11 @@
 				}
 			}
 		},
+		onReady() {
+			uni.hideNavigationBarLoading()
+		},
 		async onLoad(param) {
+			uni.showNavigationBarLoading()
 			await this.$onLaunched;
 			this.productId = param.id;
 			productDetail({

@@ -35,7 +35,7 @@
 			<u-line></u-line>
 
 			<view style="padding: 10px;">
-				<u-grid :border="false" col="2">
+				<u-grid :border="false" :col="fastList.length">
 					<u-grid-item v-for="(listItem,listIndex) in fastList" :key="listIndex">
 						<u-icon :name="listItem.name" :size="22" customStyle="padding:10px"
 							@click="clickFastList(listIndex)"></u-icon>
@@ -211,6 +211,10 @@
 			</u-popup>
 		</view>
 
+		<view style="padding: 10px;">
+			<u-loadmore :status="loadMoreStatus" />
+		</view>
+		
 	</view>
 </template>
 
@@ -234,6 +238,7 @@
 	export default {
 		data() {
 			return {
+				loadMoreStatus: 'loading',
 				userId: '',
 				username: '',
 				avatar: '',
@@ -253,6 +258,9 @@
 				}],
 				isFollow: false,
 				fastList: [{
+						name: '/static/price.png',
+						title: '关于TA'
+					}, {
 						name: '/static/price.png',
 						title: '拍摄方案'
 					},
@@ -297,9 +305,12 @@
 		methods: {
 			clickFastList(item) {
 				if (item == 0) {
-					this.popPlanShow = true;
+					this.popDescShow = true
 				}
 				if (item == 1) {
+					this.popPlanShow = true;
+				}
+				if (item == 2) {
 					this.popContactShow = true;
 				}
 			},
@@ -316,7 +327,6 @@
 				}
 			},
 			follow() {
-				
 				let pherId = this.userId;
 				this.isFollow = !this.isFollow;
 				let deleted = 0;
@@ -343,7 +353,11 @@
 				})
 			}
 		},
+		onReady() {
+			uni.hideNavigationBarLoading()
+		},
 		async onLoad(param) {
+			uni.showNavigationBarLoading()
 			await this.$onLaunched;
 			this.userId = param.userId;
 			let _this = this;
@@ -385,6 +399,9 @@
 			}).then((res) => {
 				let [error, success] = res;
 				_this.product.list = success.data;
+				if (success.data.length === 0) {
+					this.loadMoreStatus = 'nomore';
+				}
 			});
 			getPherCollectStatus({
 				userId: getApp().globalData.USER_ID,
@@ -414,7 +431,9 @@
 				pageSize: this.pageSize
 			}).then((res) => {
 				let [error, success] = res;
-				if (success.data.length == 0) {}
+				if (success.data.length == 0) {
+					this.loadMoreStatus = 'nomore';
+				}
 				this.product.list = this.product.list.concat(success.data);
 			})
 		},

@@ -41,7 +41,9 @@
 		<uni-fab horizontal="right" :popMenu="false" @fabClick="buttonClick" :pattern="{buttonColor: '#000000'}" />
 
 		<u-overlay :show="overlayShow"></u-overlay>
-
+		
+		<view style="padding: 10px;"><u-loadmore :status="loadMoreStatus"/></view>
+		
 	</view>
 </template>
 
@@ -76,15 +78,14 @@
 					name: '已驳回'
 				}],
 				tabsCurrent: 0,
-				publishStatus: 'SUCCESS'
+				publishStatus: 'SUCCESS',
+				loadMoreStatus: 'loading'
 			}
 		},
 		methods: {
 			waterfallsLoaded() {
-				uni.hideNavigationBarLoading()
 			},
 			tabsChange(index) {
-				uni.showNavigationBarLoading()
 				let _this = this;
 				this.tabsCurrent = index.index;
 				if (index.index == 0) {
@@ -149,6 +150,9 @@
 				})
 			}
 		},
+		onReady() {
+			uni.hideNavigationBarLoading()
+		},
 		onLoad: function(param) {
 			uni.showNavigationBarLoading()
 			this.page = 1;
@@ -161,9 +165,13 @@
 			}).then((res) => {
 				let [error, success] = res;
 				_this.product.list = success.data;
+				if (success.data.length === 0) {
+					this.loadMoreStatus = 'nomore';
+				}
 			})
 		},
 		onReachBottom() {
+			this.loadMoreStatus = 'loading';
 			this.page = this.page + 1;
 			let _this = this;
 			getProductPage({
@@ -173,7 +181,9 @@
 				pageSize: _this.pageSize,
 			}).then((res) => {
 				let [error, success] = res;
-				if (success.data.length == 0) {}
+				if (success.data.length == 0) {
+					_this.loadMoreStatus = 'nomore';
+				}
 				_this.product.list = _this.product.list.concat(success.data);
 			})
 		},
@@ -187,7 +197,9 @@
 				pageSize: this.pageSize,
 			}).then((res) => {
 				let [error, success] = res;
-				if (success.data.length == 0) {}
+				if (success.data.length == 0) {
+					
+				}
 				_this.product.list = success.data;
 				_this.$refs.waterfallsFlowRef.refresh();
 			})
