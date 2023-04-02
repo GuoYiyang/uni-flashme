@@ -190,3 +190,23 @@ export function deleteUserPlan(req) {
 		}
 	});
 }
+
+
+export function getPherExploreList(req) {
+	let userId = req.userId ==null ? '': req.userId
+	let query = req.query ==null ? '': req.query
+	let city = req.city ==null ? '': req.city
+	return uni.request({
+		url: baseUrl + '/user/pher/explore/random',
+		method: "GET",
+		header:{
+			"X-USER-ID": getApp().globalData.USER_ID
+		},
+		data: {
+			city: city,
+			query:query,
+			userId: userId,
+			isRandom: req.isRandom
+		}
+	});
+}

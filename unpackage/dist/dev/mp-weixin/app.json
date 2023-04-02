@@ -4,7 +4,7 @@
     "pages/explore/explore",
     "pages/collect/collect",
     "pages/product/product",
-    "pages/filterProduct/filterProduct",
+    "pages/product/filterProduct",
     "pages/editUserInfo/editUserInfo",
     "pages/publish/publish",
     "pages/myProduct/myProduct",
@@ -23,7 +23,8 @@
     "pages/becomePher/step3",
     "pages/becomePher/step4",
     "pages/becomePher/step5",
-    "pages/plan/editNotice"
+    "pages/plan/editNotice",
+    "pages/explore/filterExplore"
   ],
   "subPackages": [],
   "window": {
@@ -44,6 +45,11 @@
         "iconPath": "static/home.png",
         "selectedIconPath": "static/home-fill.png",
         "pagePath": "pages/index/index"
+      },
+      {
+        "iconPath": "static/explore.png",
+        "selectedIconPath": "static/explore-fill.png",
+        "pagePath": "pages/explore/explore"
       },
       {
         "iconPath": "static/heart.png",

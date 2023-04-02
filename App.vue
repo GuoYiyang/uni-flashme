@@ -6,7 +6,8 @@
 		globalData: {
 			USER_ID: '',
 			USER_NAME: '',
-			AVATAR: ''
+			AVATAR: '',
+			CITY:'',
 		},
 		methods: {},
 		onLaunch() {
@@ -21,6 +22,7 @@
 						_this.globalData.USER_ID = success.data.id;
 						_this.globalData.USER_NAME = success.data.nickname;
 						_this.globalData.AVATAR = success.data.avatar;
+						_this.globalData.CITY = success.data.city;
 						this.$isResolve()
 					})
 				}

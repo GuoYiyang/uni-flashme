@@ -37,10 +37,14 @@
 				
 			},
 			search(res) {
-				console.log(this.sectionCurrent)
 				if (this.sectionCurrent == 0) {
 					uni.navigateTo({
-						url: '/pages/filterProduct/filterProduct?query=' + res + '&city=' + this.city
+						url: '/pages/product/filterProduct?query=' + res + '&city=' + this.city
+					});
+				}
+				if (this.sectionCurrent == 1) {
+					uni.navigateTo({
+						url: '/pages/explore/filterExplore?query=' + res + '&city=' + this.city
 					});
 				}
 			},

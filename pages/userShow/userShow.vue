@@ -188,10 +188,9 @@
 						<view style="font-weight: 600;font-size: 16px;line-height: 16px;color: #191919;">
 							拍摄须知
 						</view>
-
 						<view style="margin: 20px 0 20px 0;">
 							<view v-if="notice==null || notice == ''" @click="addNotice"
-								style="height: 200px;background: #F8F9FA;box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);border-radius: 12px;">
+								style="height: 200px;background-color: #F8F9FA;">
 								<view
 									style="height: 100%;flex: auto;display:flex;flex-direction:column;justify-content:center;align-items: center;">
 									<u-icon name="info-circle" size="50px"></u-icon>
@@ -201,8 +200,8 @@
 								</view>
 							</view>
 							<view v-if="notice != null" @click="addNotice"
-								style="padding: 20px;background: #F8F9FA height: 200px;box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);border-radius: 12px;height: 400px;">
-								{{notice}}
+								style="padding: 20px;background-color: #F8F9FA;display: flex;">
+								<text style="font-size: 14px;color: #4E4E4E;line-height: 150%;">{{notice}}</text>
 							</view>
 						</view>
 

@@ -27,6 +27,11 @@
 				"pagePath": "pages/index/index"
 			},
 			{
+				"iconPath": "static/explore.png",
+				"selectedIconPath": "static/explore-fill.png",
+				"pagePath": "pages/explore/explore"
+			},
+			{
 				"iconPath": "static/heart.png",
 				"selectedIconPath": "static/heart-fill.png",
 				"pagePath": "pages/collect/collect"
@@ -69,9 +74,9 @@
 
 		}
 	}, {
-		"path": "pages/filterProduct/filterProduct",
+		"path": "pages/product/filterProduct",
 		"style": {
-			"navigationBarTitleText": "浏览",
+			"navigationBarTitleText": "搜索作品",
 			"enablePullDownRefresh": false
 		}
 
@@ -128,7 +133,7 @@
 		"path": "pages/userShow/userShow",
 		"style": {
 			"navigationBarTitleText": "",
-			"enablePullDownRefresh": false 
+			"enablePullDownRefresh": false
 			// "navigationStyle": "custom",
 			// "navigationBarTextStyle": "white"
 		}
@@ -209,6 +214,15 @@
 			"enablePullDownRefresh": false
 		}
 
-	}]
+	}    ,{
+            "path" : "pages/explore/filterExplore",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "搜索摄影师",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ]
 
 }

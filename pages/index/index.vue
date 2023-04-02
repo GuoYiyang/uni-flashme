@@ -130,6 +130,7 @@
 		methods: {
 			cityChange(item) {
 				this.city = item.detail.value[0].value;
+				getApp().globalData.CITY = this.city
 				productRandom({
 					city: item.detail.value[0].value
 				}).then((res) => {
@@ -164,7 +165,7 @@
 			},
 			clickFastEnter(index) {
 				uni.navigateTo({
-					url: '/pages/filterProduct/filterProduct?tag=' + index + '&city=' + this.city
+					url: '/pages/product/filterProduct?tag=' + index + '&city=' + this.city
 				});
 			},
 			searchClick() {

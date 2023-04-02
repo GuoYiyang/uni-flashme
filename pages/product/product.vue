@@ -52,7 +52,8 @@
 
 		<view style="padding: 5px;"></view>
 
-		<view v-if="other.list.length > 0" style="background-color: #FFFFFF; border-radius:15px 15px 15px 15px; padding-bottom: 40px;">
+		<view v-if="other.list.length > 0"
+			style="background-color: #FFFFFF; border-radius:15px 15px 15px 15px; padding-bottom: 40px;">
 
 			<u-row>
 				<u-col span="10">
@@ -69,12 +70,16 @@
 
 			<!-- 			<u-swiper :list="other.list" keyName="image" circular imgMode="aspectFill" @click="clickSwiper" height="300"
 				previousMargin="100" nextMargin="100" :autoplay="false" bgColor="#ffffff"></u-swiper> -->
+
 			<u-scroll-list indicatorActiveColor="#000000">
-				<view v-for="(item, index) in other.list" :key="index" style="padding: 6px;">
-					<image :src="item.image" mode="aspectFill" style="height: 240px; width: 180px;border-radius: 10px;"
+				<view style="margin-left: 10px;"></view>
+				<view v-for="(item, index) in other.list" :key="index" style="padding: 4px;">
+					<image :src="item.image" mode="aspectFill" style="height: 200px; width: 150px;border-radius: 8px;"
 						@click="clickSwiper(item)"></image>
 				</view>
 			</u-scroll-list>
+
+
 		</view>
 
 		<view @touchmove.stop.prevent="">
@@ -180,11 +185,10 @@
 								</view>
 							</view>
 							<view v-if="notice != null" @click="addNotice"
-								style="padding: 20px;background-color: #F8F9FA;display: flex">
-								<text>{{notice}}</text>
+								style="padding: 10px;background-color: #F8F9FA;display: flex">
+								<text style="font-size: 14px;color: #4E4E4E;line-height: 150%;">{{notice}}</text>
 							</view>
 						</view>
-
 					</view>
 				</scroll-view>
 			</u-popup>

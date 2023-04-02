@@ -102,7 +102,7 @@
 				</view>
 				<view v-if="notice != null" @click="addNotice"
 					style="padding: 20px;background-color: #F8F9FA;display: flex">
-					<text>{{notice}}</text>
+					<text style="font-size: 14px;color: #4E4E4E;line-height: 150%;">{{notice}}</text>
 				</view>
 			</view>
 			
