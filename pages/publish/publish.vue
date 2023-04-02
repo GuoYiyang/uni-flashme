@@ -128,14 +128,6 @@
 				});
 			},
 			publish() {
-				if (this.tempFiles.length == 0 || this.form.title.length == 0 || this.form.title.tag == 0) {
-					uni.showToast({
-						icon: 'error',
-						title: '内容未填写'
-					})
-					this.overlayShow = false;
-					return;
-				}
 				this.tempFiles.forEach(item => {
 					uploadImages({
 						filePath: item.path
@@ -169,12 +161,30 @@
 				})
 			},
 			submit() {
-				uni.showLoading({
-					title: "发布中，请稍等"
-				});
-				this.overlayShow = true;
-				this.publish();
+				if (this.tempFiles.length == 0 || this.form.title.length == 0 || this.form.title.tag == 0) {
+					uni.showToast({
+						icon: 'error',
+						title: '请选择照片'
+					})
+					this.overlayShow = false;
+					return;
+				}
+				this.$refs.Form.validate().then(res => {
+					uni.showLoading({
+						title: "发布中，请稍等"
+					});
+					this.overlayShow = true;
+					this.publish();
+				}).catch(errors => {
+					uni.showToast({
+						icon: 'error',
+						title: "请检查所填内容是否正确"
+					})
+				})
 			}
+		},
+		onLoad() {
+			this.$refs.Form.setRules(this.rules)
 		}
 	}
 </script>

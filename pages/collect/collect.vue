@@ -33,7 +33,6 @@
 		</view>
 		<view v-if="collectPhotographerShow" style="padding-top: 10rpx;">
 			<div v-for="item in pher.list" :key="item.id">
-
 				<view @click="clickPherCard(item.id)"
 					style="background: #FFFFFF;border-radius: 8px;margin: 7px 12px 7px 12px; padding: 20px 18px 20px 18px;">
 					<u-row>

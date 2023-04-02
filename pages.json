@@ -12,7 +12,6 @@
 			"background": "#F8F8F8",
 			"scrollIndicator": "none"
 		}
-
 	},
 	"tabBar": {
 		"fontSize": "20rpx",

@@ -1,22 +1,18 @@
 <template>
 	<view>
-
 		<view style="padding: 20px 36px 20px 36px;">
 			<u-row>
 				<u-col span="3">
 					<u-avatar :src="userInfo.avatar" size="60">
 					</u-avatar>
 				</u-col>
-				<u-col span="7">
+				<u-col span="8">
 					<text style="font-weight: 600;font-size: 20px;line-height: 25px;color: #191919;">
 						{{userInfo.username}}
 					</text>
 				</u-col>
-				<u-col span="2">
-					<u-button color="#E0E0E0;" @click="editClick"
-						customStyle="border-radius:6px; width: 50px;height: 24px;">
-						<text style="color: #191919; font-weight: 400;font-size: 12px;line-height: 16px;">编辑</text>
-					</u-button>
+				<u-col span="1">
+					<uni-icons type="compose" size="25" @click="editClick"></uni-icons>
 				</u-col>
 			</u-row>
 		</view>
@@ -24,17 +20,13 @@
 		<view style="margin: 16px;background-color:#FFFFFF;border-radius: 10px" v-if="isPher">
 			<view style="padding: 14px 18px 20px 18px">
 				<u-row>
-					<!-- <u-col span="9.5"> -->
-						<text style="font-size: 13px;color: #808080;font-weight: 400;">摄影师专区</text>
-					<!-- </u-col> -->
-<!-- 					<u-col span="2.5"><text @click="toUserShow"
-							style="font-size: 13px;color: #808080;font-weight: 400;">查看主页</text></u-col> -->
+					<text style="font-size: 13px;color: #808080;font-weight: 400;">摄影师专区</text>
 				</u-row>
 			</view>
 			<view>
 				<u-grid :border="false" :col="pherList.length">
 					<u-grid-item v-for="(listItem,listIndex) in pherList" :key="listIndex">
-						<u-icon :name="listItem.name" :size="22" customStyle="padding: 0px 4px 10px 4px"
+						<u-icon :name="listItem.name" :size="28" customStyle="padding: 0px 4px 10px 4px"
 							@click="clickPherList(listIndex)"></u-icon>
 						<text
 							style="font-weight: 400;font-size: 13px;color: #191919;line-height: 16px;padding-bottom: 24px;">{{listItem.title}}</text>
@@ -50,7 +42,7 @@
 			<view>
 				<u-grid :border="false" :col="userList.length">
 					<u-grid-item v-for="(listItem,listIndex) in userList" :key="listIndex">
-						<u-icon :name="listItem.name" :size="22" customStyle="padding: 0px 4px 10px 4px"
+						<u-icon :name="listItem.name" :size="28" customStyle="padding: 0px 4px 10px 4px"
 							@click="clickUserList(listIndex)"></u-icon>
 						<text
 							style="font-weight: 400;font-size: 13px;color: #191919;line-height: 16px;padding-bottom: 24px;">{{listItem.title}}</text>
@@ -80,19 +72,19 @@
 		data() {
 			return {
 				pherList: [{
-						name: '/static/price.png',
+						name: '/static/publish.png',
 						title: '发布作品'
-					}, 
+					},
 					{
-						name: '/static/price.png',
+						name: '/static/myproduct.png',
 						title: '我的作品'
 					},
 					{
-						name: '/static/price.png',
+						name: '/static/plan.png',
 						title: '拍摄方案'
 					},
 					{
-						name: '/static/price.png',
+						name: '/static/usershow.png',
 						title: '查看主页'
 					}
 					// ,
@@ -102,19 +94,19 @@
 					// },
 				],
 				userList: [{
-						name: '/static/price.png',
+						name: '/static/book.png',
 						title: '我的预约'
 					},
 					{
-						name: '/static/price.png',
+						name: '/static/becomePher.png',
 						title: '成为摄影师'
 					},
 					{
-						name: '/static/price.png',
+						name: '/static/photocall.png',
 						title: '关于PhotoCall'
 					},
 					{
-						name: '/static/price.png',
+						name: '/static/feedback.png',
 						title: '使用反馈'
 					},
 
@@ -123,7 +115,7 @@
 					username: '',
 					avatar: '',
 					desc: '',
-					role:'',
+					role: '',
 				},
 				isAdmin: false,
 				isUser: false,
@@ -159,8 +151,7 @@
 				}
 			},
 			clickUserList(item) {
-				if (item == 0) {
-				}
+				if (item == 0) {}
 				if (item == 1) {
 					if (this.role === 1) {
 						uni.navigateTo({
@@ -168,7 +159,7 @@
 						})
 					} else {
 						uni.showToast({
-							title:'您已经入驻'
+							title: '您已经入驻'
 						})
 					}
 				}
@@ -220,6 +211,7 @@
 			uni.hideNavigationBarLoading()
 		},
 		onShow() {
+
 		},
 
 	}

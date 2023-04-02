@@ -12,7 +12,8 @@
 
 		</view>
 
-		<u--form labelPosition="top" :rules="rules" ref="Form" :model="userInfo" :labelStyle="{'font-weight':300,'font-size':'14px','line-height':'16px','color':'#808080'}">
+		<u--form labelPosition="top" :rules="rules" ref="Form" :model="userInfo"
+			:labelStyle="{'font-weight':300,'font-size':'14px','line-height':'16px','color':'#808080'}">
 			<view style="padding: 6px 26px 6px 26px; border-radius: 10px; background-color: #FFFFFF;">
 				<u-form-item label="名字" prop="name" borderBottom>
 					<u--input v-model="userInfo.name" border="none" showWordLimit></u--input>
@@ -25,14 +26,13 @@
 					<u--input readonly v-model="userInfo.cityText" placeholder="请选择城市" border="none"></u--input>
 					<u-icon slot="right" name="arrow-right"></u-icon>
 				</u-form-item>
-				<u-form-item labelWidth="100px" 
-				label="手机号" prop="phone" borderBottom>
+				<u-form-item labelWidth="100px" label="手机号" prop="phone" borderBottom>
 					<u--input type="number" v-model="userInfo.phone" border="none"></u--input>
 				</u-form-item>
 			</view>
 			<view style="margin-bottom: 12px;"></view>
 			<view v-if="isPher" style="padding: 6px 26px 6px 26px; border-radius: 10px; background-color: #FFFFFF;">
-				<u-form-item labelWidth="100px" label="微信号" prop="xiaohongshu" borderBottom>
+				<u-form-item labelWidth="100px" label="微信号" prop="wxid" borderBottom>
 					<u--input v-model="userInfo.wxid" border="none"></u--input>
 				</u-form-item>
 				<u-form-item labelWidth="100px" label="小红书号" prop="xiaohongshu" borderBottom>
@@ -46,7 +46,8 @@
 					</u--input>
 				</u-form-item>
 				<u-form-item labelWidth="100px" label="个人简介" prop="intro">
-					<u--textarea cursorSpacing="20px" :showConfirmBar="false" height="150" v-model="userInfo.intro" count maxlength=200 border="bottom"></u--textarea>
+					<u--textarea cursorSpacing="20px" :showConfirmBar="false" height="150" v-model="userInfo.intro"
+						count maxlength=200 border="bottom"></u--textarea>
 				</u-form-item>
 			</view>
 			<u-picker :show="showSex" :columns="sexList" @confirm="sexSelect" keyName="name" @cancel="showSex = false">
@@ -55,7 +56,8 @@
 				@cancel="showCity = false"></u-picker>
 		</u--form>
 
-		<view v-if="isPher" style="padding: 12px 26px 0 26px; font-weight: 300;font-size: 14px;line-height: 16px;color: #808080">
+		<view v-if="isPher"
+			style="padding: 12px 26px 0 26px; font-weight: 300;font-size: 14px;line-height: 16px;color: #808080">
 			*个人资料将展示在你的摄影师主页</view>
 
 		<view style="padding:16px 0px 50px 0">
@@ -90,7 +92,7 @@
 					id: '',
 					name: '',
 					avatar: '',
-					wxid:'',
+					wxid: '',
 					xiaohongshu: '',
 					douyin: '',
 					whatsup: '',
@@ -159,6 +161,14 @@
 						message: '手机号格式不正确',
 						// 触发器可以同时用blur和change
 						trigger: ['change', 'blur'],
+					},
+					'wxid': {
+						type: 'string',
+						required: false,
+						min: 6,
+						max: 20,
+						message: '微信号长度为6-15个字符',
+						trigger: ['blur', 'change']
 					},
 					'xiaohongshu': {
 						type: 'string',
@@ -258,11 +268,10 @@
 							}
 						});
 					}
-					setTimeout(() => {
-						uni.redirectTo({
-							url:'/pages/homePage/homePage'
-						})
-					}, 500)
+
+					uni.redirectTo({
+						url: '/pages/homePage/homePage'
+					})
 				}).catch(errors => {
 					uni.showToast({
 						icon: 'error',
@@ -298,7 +307,7 @@
 				_this.userInfo.douyin = userDesc.douyin;
 				_this.userInfo.whatsup = userDesc.whatsup;
 				_this.userInfo.intro = userDesc.intro;
-				
+
 				if (success.data.role == 0) {
 					_this.isAdmin = true;
 					_this.isPher = true;

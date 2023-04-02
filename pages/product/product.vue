@@ -220,10 +220,7 @@
 					<u-button color="#3D6EC2" @click="this.popShow=true">咨询预约</u-button>
 				</view>
 			</u-col>
-
 		</u-tabbar>
-
-
 	</view>
 </template>
 
@@ -300,6 +297,16 @@
 				if ("微信" == item.name) {
 					uni.setClipboardData({
 						data: this.cameramanDesc.wxid
+					})
+				}
+				if ("小红书" == item.name) {
+					uni.setClipboardData({
+						data: this.cameramanDesc.xiaohongshu
+					})
+				}
+				if ("抖音" == item.name) {
+					uni.setClipboardData({
+						data: this.cameramanDesc.douyin
 					})
 				}
 			},
@@ -401,6 +408,16 @@
 					if (this.cameramanDesc.wxid != null) {
 						this.popList.push({
 							name: '微信'
+						})
+					}
+					if (this.cameramanDesc.xiaohongshu != null) {
+						this.popList.push({
+							name: '小红书'
+						})
+					}
+					if (this.cameramanDesc.douyin != null) {
+						this.popList.push({
+							name: '抖音'
 						})
 					}
 				})

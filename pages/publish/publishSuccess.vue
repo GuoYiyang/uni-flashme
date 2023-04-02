@@ -18,7 +18,6 @@
 					查看主页
 				</u-button>
 			</view>
-			
 		</view>
 	</view>
 </template>

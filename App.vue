@@ -18,7 +18,6 @@
 				success: (res) => {
 					login(res.code).then((res) => {
 						let [err, success] = res;
-						console.log("login success", success)
 						_this.globalData.USER_ID = success.data.id;
 						_this.globalData.USER_NAME = success.data.nickname;
 						_this.globalData.AVATAR = success.data.avatar;
@@ -31,7 +30,7 @@
 		},
 		async onLoad() {
 			await this.$onLaunched;
-		},
+		}
 	}
 </script>
 

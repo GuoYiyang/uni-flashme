@@ -164,7 +164,7 @@
 			}).then((res) => {
 				let [error, success] = res;
 				_this.product.list = success.data;
-				if (success.data.length === 0) {
+				if (success.data.length <= 10) {
 					this.loadMoreStatus = 'nomore';
 				}
 			})
@@ -180,7 +180,7 @@
 				pageSize: _this.pageSize,
 			}).then((res) => {
 				let [error, success] = res;
-				if (success.data.length == 0) {
+				if (success.data.length <= 10) {
 					_this.loadMoreStatus = 'nomore';
 				}
 				_this.product.list = _this.product.list.concat(success.data);
@@ -196,8 +196,8 @@
 				pageSize: this.pageSize,
 			}).then((res) => {
 				let [error, success] = res;
-				if (success.data.length == 0) {
-					
+				if (success.data.length <= 10) {
+					this.loadMoreStatus = 'nomore';
 				}
 				_this.product.list = success.data;
 				_this.$refs.waterfallsFlowRef.refresh();

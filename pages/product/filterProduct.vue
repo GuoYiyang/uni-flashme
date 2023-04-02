@@ -93,6 +93,9 @@
 				}).then((res) => {
 					let [error, success] = res;
 					_this.product.list = success.data;
+					if (success.data.length <= 10){
+						this.loadMoreStatus = 'nomore'
+					}
 				})
 			}
 			if (param.query != null) {

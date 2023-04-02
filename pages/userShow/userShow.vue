@@ -59,7 +59,7 @@
 			</view>
 			<view style="padding: 14px 10px 0 10px;">
 				<custom-waterfalls-flow :value="product.list" :column="2" :columnSpace="1" @imageClick="imageClick"
-					@wapperClick="wapperClick" ref="waterfallsFlowRef" @loaded="waterfallsLoaded">
+					@wapperClick="wapperClick" ref="waterfallsFlowRef">
 					<view style="padding: 5px;" v-for="(item,index) in product.list" :key="index" slot="slot{{index}}">
 						<view style="font-weight: 600;font-size: 15px;line-height: 20px;padding: 6px 6px 6px 6px">
 							{{item.title}}
@@ -232,7 +232,8 @@
 		changeCity,
 		changePeopleNum,
 		changeScene,
-		changeSceneNum
+		changeSceneNum,
+		onFeedTap
 	} from '@/common/method.js'
 	export default {
 		data() {
@@ -272,8 +273,6 @@
 				popPlanShow: false,
 				popContactList: [{
 					name: '电话'
-				}, {
-					name: '微信'
 				}],
 				planCardList: [{
 						name: '12123',
@@ -321,11 +320,22 @@
 				}
 				if ("微信" == item.name) {
 					uni.setClipboardData({
-						data: 'Slimshadys_'
+						data: this.desc.wxid
+					})
+				}
+				if ("小红书" == item.name) {
+					uni.setClipboardData({
+						data: this.desc.xiaohongshu
+					})
+				}
+				if ("抖音" == item.name) {
+					uni.setClipboardData({
+						data: this.desc.douyin
 					})
 				}
 			},
 			follow() {
+				onFeedTap()
 				let pherId = this.userId;
 				this.isFollow = !this.isFollow;
 				let deleted = 0;
@@ -371,10 +381,24 @@
 				this.desc = JSON.parse(success.data.desc);
 				this.phone = success.data.phone;
 				this.notice = success.data.notice;
+				if (this.desc.wxid != null) {
+					this.popContactList.push({
+						name: '微信'
+					})
+				}
+				if (this.desc.xiaohongshu != null) {
+					this.popContactList.push({
+						name: '小红书'
+					})
+				}
+				if (this.desc.douyin != null) {
+					this.popContactList.push({
+						name: '抖音'
+					})
+				}
 				uni.setNavigationBarTitle({
 					title: this.username + "的主页"
 				});
-
 			});
 			getUserPlanList({
 				userId: this.userId
