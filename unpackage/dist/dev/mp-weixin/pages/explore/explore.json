@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "探索",
+  "navigationBarTitleText": "探索摄影师",
   "enablePullDownRefresh": true,
   "usingComponents": {
     "u-row": "/uni_modules/uview-ui/components/u-row/u-row",

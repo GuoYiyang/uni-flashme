@@ -54,7 +54,7 @@
 	}, {
 		"path": "pages/explore/explore",
 		"style": {
-			"navigationBarTitleText": "探索",
+			"navigationBarTitleText": "探索摄影师",
 			"enablePullDownRefresh": true
 		}
 

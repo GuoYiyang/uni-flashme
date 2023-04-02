@@ -5,6 +5,7 @@
     "u-sticky": "/uni_modules/uview-ui/components/u-sticky/u-sticky",
     "u-tabs": "/uni_modules/uview-ui/components/u-tabs/u-tabs",
     "custom-waterfalls-flow": "/uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow",
+    "uni-icons": "/uni_modules/uni-icons/components/uni-icons/uni-icons",
     "u-action-sheet": "/uni_modules/uview-ui/components/u-action-sheet/u-action-sheet"
   }
 }

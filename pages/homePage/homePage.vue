@@ -192,11 +192,6 @@
 		async onLoad() {
 			await this.$onLaunched;
 			uni.showNavigationBarLoading()
-		},
-		onReady() {
-			uni.hideNavigationBarLoading()
-		},
-		onShow() {
 			this.userId = getApp().globalData.USER_ID;
 			this.username = getApp().globalData.USER_NAME;
 			this.avatar = getApp().globalData.AVATAR;
@@ -220,7 +215,11 @@
 					_this.isPher = true;
 				}
 			})
-
+		},
+		onReady() {
+			uni.hideNavigationBarLoading()
+		},
+		onShow() {
 		},
 
 	}

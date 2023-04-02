@@ -25,7 +25,7 @@
 
 					<view v-if="planList.length > 0" v-for="(item, index) in planList" :key="index" style="margin: 5px;">
 						<view @click="clickPlan(item.planId)"
-							style="padding: 20px 20px 20px 20px; margin: 5px;width: 240px;height: 360px;background: #F8F9FA;box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);border-radius: 12px;">
+							style="padding: 20px 20px 20px 20px; margin: 5px;width: 240px;height: 380px;background: #F8F9FA;box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);border-radius: 12px;">
 
 							<view style="font-size: 14px;color: #191919;">
 								<u-row customStyle="padding-bottom:10px">
@@ -120,6 +120,13 @@
 			</view>
 
 		</view>
+		
+		
+		<view>
+			<u-action-sheet :actions="popList" @select="selectClick" :show="popShow" cancelText="取消"
+				@close="this.popShow=false" :closeOnClickOverlay="true" :closeOnClickAction="true"
+				:safeAreaInsetBottom="true"></u-action-sheet>
+		</view>
 	</view>
 </template>
 
@@ -127,7 +134,8 @@
 	import {
 		getUserPlanList,
 		getUserInfo,
-		updateUserInfo
+		updateUserInfo,
+		deleteUserPlan
 	} from '@/api/user.js'
 	import {
 		changePeopleNum,
@@ -137,15 +145,48 @@
 	export default {
 		data() {
 			return {
+				selectedPlanId: '',
 				planList: [],
-				notice:''
+				notice:'',
+				popShow: false,
+				popList: [{
+					name: '编辑'
+				},{
+					name: '删除'
+				}],
 			}
 		},
 		methods: {
+			selectClick(item) {
+				if ("编辑" == item.name) {
+					uni.navigateTo({
+						url: '/pages/plan/editPlan?planId=' + this.selectedPlanId
+					})
+				}
+				if ("删除" == item.name) {
+					deleteUserPlan({
+						planId: this.selectedPlanId
+					}).then(res=>{
+						let [error,success] = res;
+						if (success.data == true) {
+							this.planList.map((item, index)=>{
+								if (item.planId == this.selectedPlanId) {
+									this.planList.splice(index, 1)
+								}
+							})
+						} else {
+							uni.showToast({
+								icon: 'error',
+								title: '删除失败'
+							})
+						}
+					})
+
+				}
+			},
 			clickPlan(planId) {
-				uni.navigateTo({
-					url: '/pages/plan/editPlan?planId=' + planId
-				})
+				this.selectedPlanId = planId;
+				this.popShow = true;
 			},
 			addPlan() {
 				uni.navigateTo({

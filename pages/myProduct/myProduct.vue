@@ -113,7 +113,6 @@
 				})
 			},
 			selectClick(item) {
-				console.log(item.name)
 				if ("删除" == item.name) {
 					this.delete();
 				}

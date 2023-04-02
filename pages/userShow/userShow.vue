@@ -257,14 +257,14 @@
 				}],
 				isFollow: false,
 				fastList: [{
-						name: '/static/price.png',
+						name: '/static/about.png',
 						title: '关于TA'
 					}, {
-						name: '/static/price.png',
+						name: '/static/plan.png',
 						title: '拍摄方案'
 					},
 					{
-						name: '/static/phone.png',
+						name: '/static/contact.png',
 						title: '联系方式'
 					},
 				],

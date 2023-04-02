@@ -18,6 +18,9 @@
 					<view style="font-weight: 600;font-size: 15px;line-height: 20px;padding: 6px 6px 6px 6px">
 						{{item.title}}</view>
 				</view>
+				<view style="flex-flow: row; float: right;padding: 0 5px 5px;">
+					<uni-icons type="more-filled" size="20" color="#1f1f1f"></uni-icons>
+				</view>
 			</custom-waterfalls-flow>
 		</view>
 

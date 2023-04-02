@@ -259,7 +259,9 @@
 						});
 					}
 					setTimeout(() => {
-						uni.navigateBack()
+						uni.redirectTo({
+							url:'/pages/homePage/homePage'
+						})
 					}, 500)
 				}).catch(errors => {
 					uni.showToast({
