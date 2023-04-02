@@ -1,17 +1,18 @@
 <template>
 	<view>
-		<image src="https://pic-common-1258999491.cos.ap-nanjing.myqcloud.com/index_background.jpg"
-			style="margin-bottom: -40px; height: 160px; width: 100%;"></image>
+		<image src="https://pic-common-1258999491.cos.ap-nanjing.myqcloud.com/942e904ffb6ec20dd202b1bee234cfe.png"
+			style="margin-bottom: -40px; height: 130px; width: 100%;"></image>
+
 		<view class="topright">
 			<u-button color="#3D6EC2" @click="follow" :text="isFollow ? '已关注': '关注'"
 				customStyle="border-radius:10px; width: 80px;height: 30px;"></u-button>
 		</view>
-		<view style="background-color: #FFFFFF; padding-bottom: 10px; border-radius:15px">
 
+		<view style="background-color: #FFFFFF; padding-bottom: 10px; border-radius:15px">
 			<view class="center">
 				<u-row>
 					<view @click="this.popDescShow = true">
-						<u-avatar :src="avatar" size="80"></u-avatar>
+						<u-avatar :src="avatar" size="80" customStyle="border: 4px solid #FFFFFF;"></u-avatar>
 					</view>
 				</u-row>
 				<u-row customStyle="padding-top: 10px;">
@@ -19,7 +20,6 @@
 						<text style="font-size: 20px; font-weight: bolder;">{{username}}</text>
 					</u-col>
 				</u-row>
-
 				<u-row customStyle="padding-top: 10px;">
 					<u-icon name="map" :label="city"></u-icon>
 				</u-row>
@@ -30,7 +30,6 @@
 						<text style="font-size: 14px; color: #4E4E4E;">粉丝数 {{fansCnt}}</text>
 					</view>
 				</u-row>
-
 			</view>
 
 			<u-line></u-line>
@@ -46,11 +45,9 @@
 			</view>
 		</view>
 
-
 		<view style="background-color: #F7F9FB; margin-top: 20px; border-radius:15px 15px 0 0;">
-			<u-sticky bgColor="FFFFFF">
-				<view style="background-color: #FFFFFF; padding: 6px;">
-					<u-tabs :list="tabsList" lineWidth="30" lineHeight="3" lineColor="#000000" :activeStyle="{
+			<view style="background-color: #FFFFFF; padding: 6px;">
+				<u-tabs :list="tabsList" lineWidth="30" lineHeight="3" lineColor="#000000" :activeStyle="{
 					        color: '#303133',
 					        fontWeight: 'bold',
 					        transform: 'scale(1)'
@@ -58,24 +55,22 @@
 					        color: '#606266',
 					        transform: 'scale(1)'
 					    }" itemStyle="padding-left: 15px; padding-right: 15px; height: 34px;" @change="tabsChange" :duration="100">
-					</u-tabs>
-				</view>
-			</u-sticky>
-
-			<view style="padding: 10rpx;">
+				</u-tabs>
+			</view>
+			<view style="padding: 14px 10px 0 10px;">
 				<custom-waterfalls-flow :value="product.list" :column="2" :columnSpace="1" @imageClick="imageClick"
-					@wapperClick="wapperClick" ref="waterfallsFlowRef">
-					<view class="item" v-for="(item,index) in product.list" :key="index" slot="slot{{index}}">
-						<view class="title">{{item.title}}</view>
+					@wapperClick="wapperClick" ref="waterfallsFlowRef" @loaded="waterfallsLoaded">
+					<view style="padding: 5px;" v-for="(item,index) in product.list" :key="index" slot="slot{{index}}">
+						<view style="font-weight: 600;font-size: 15px;line-height: 20px;padding: 6px 6px 6px 6px">
+							{{item.title}}
+						</view>
 					</view>
 				</custom-waterfalls-flow>
 			</view>
 		</view>
 
 		<view @touchmove.stop.prevent="">
-
 			<u-popup :show="popDescShow" :round="10" @close="this.popDescShow = false" mode="bottom" closeable>
-
 				<view
 					style="font-weight: 700;font-size: 22px;line-height: 100%;text-align: center;color: #191919; margin-top: 50px;">
 					{{username}}
@@ -95,7 +90,6 @@
 						{{desc.intro}}
 					</view>
 				</view>
-
 			</u-popup>
 		</view>
 
@@ -322,11 +316,15 @@
 				}
 			},
 			follow() {
+				
 				let pherId = this.userId;
 				this.isFollow = !this.isFollow;
 				let deleted = 0;
 				if (!this.isFollow) {
 					deleted = 1;
+					this.fansCnt--;
+				} else {
+					this.fansCnt++;
 				}
 				pherCollect({
 					userId: getApp().globalData.USER_ID,
@@ -433,7 +431,7 @@
 <style lang="scss" scoped>
 	.topright {
 		position: absolute;
-		top: 170px;
+		top: 150px;
 		right: 16px;
 		font-size: 15px;
 	}
@@ -445,21 +443,5 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-	}
-
-	.item {
-		padding: 10rpx 10rpx 20rpx;
-
-		.title {
-			font-weight: bold;
-			line-height: 48rpx;
-			font-size: 30rpx;
-			color: #222;
-		}
-
-		.desc {
-			font-size: 24rpx;
-			color: #666;
-		}
 	}
 </style>

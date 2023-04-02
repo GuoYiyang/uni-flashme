@@ -156,7 +156,7 @@
 			getProductPage({
 				userId: getApp().globalData.USER_ID,
 				status: this.publishStatus,
-				page: this.page,
+				page: 1,
 				pageSize: this.pageSize,
 			}).then((res) => {
 				let [error, success] = res;

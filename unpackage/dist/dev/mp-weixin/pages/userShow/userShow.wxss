@@ -4,7 +4,7 @@
 /* uni.scss */
 .topright.data-v-4189eb86 {
   position: absolute;
-  top: 170px;
+  top: 150px;
   right: 16px;
   font-size: 15px;
 }
@@ -15,18 +15,5 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-.item.data-v-4189eb86 {
-  padding: 10rpx 10rpx 20rpx;
-}
-.item .title.data-v-4189eb86 {
-  font-weight: bold;
-  line-height: 48rpx;
-  font-size: 30rpx;
-  color: #222;
-}
-.item .desc.data-v-4189eb86 {
-  font-size: 24rpx;
-  color: #666;
 }
 

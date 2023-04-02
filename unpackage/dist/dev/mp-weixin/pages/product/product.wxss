@@ -2,62 +2,17 @@
 /* 水平间距 */
 /* 水平间距 */
 /* uni.scss */
-.item.data-v-2fbdbe34 {
-  padding: 10rpx 10rpx 20rpx;
-}
-.item .title.data-v-2fbdbe34 {
-  line-height: 48rpx;
-  font-size: 30rpx;
-  color: #222;
-}
-.item .desc.data-v-2fbdbe34 {
-  font-size: 24rpx;
-  color: #666;
-}
-.item .grid-text.data-v-2fbdbe34 {
-  font-size: 14px;
-  color: #909399;
-  padding: 10rpx 0 20rpx 0rpx;
-  box-sizing: border-box;
-}
-.center.data-v-2fbdbe34 {
-  padding: 10rpx;
-  height: 100%;
-  flex: auto;
+.indicator-num.data-v-2fbdbe34 {
+  padding: 2px 0;
+  background-color: rgba(0, 0, 0, 0.35);
+  border-radius: 100px;
+  width: 35px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
-  align-items: center;
 }
-.desc.data-v-2fbdbe34 {
-  padding: 10px;
-}
-.desc .font.data-v-2fbdbe34 {
-  font-size: 18px;
-  font-weight: bolder;
-}
-.info.data-v-2fbdbe34 {
-  padding: 10px;
-  padding-bottom: 200rpx;
-}
-.info .font.data-v-2fbdbe34 {
-  font-size: 18px;
-  font-weight: bolder;
-}
-.content-item.data-v-2fbdbe34 {
-  margin-bottom: 30rpx;
-}
-.content-item .pic-wrap.data-v-2fbdbe34 {
-  display: flex;
-}
-.content-item .pic-wrap .pic-item.data-v-2fbdbe34 {
-  padding: 10px;
-  border-radius: 10px 10px 10px 10px;
-}
-.grid-text.data-v-2fbdbe34 {
-  font-size: 14px;
-  color: #909399;
-  padding: 10rpx 0 20rpx 0rpx;
-  box-sizing: border-box;
+.indicator-num__text.data-v-2fbdbe34 {
+  color: #FFFFFF;
+  font-size: 12px;
 }
 

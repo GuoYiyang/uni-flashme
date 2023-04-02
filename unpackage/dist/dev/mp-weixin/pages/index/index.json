@@ -7,9 +7,9 @@
     "u-button": "/uni_modules/uview-ui/components/u-button/u-button",
     "u-picker": "/uni_modules/uview-ui/components/u-picker/u-picker",
     "u-scroll-list": "/uni_modules/uview-ui/components/u-scroll-list/u-scroll-list",
+    "custom-waterfalls-flow": "/uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow",
     "u-row": "/uni_modules/uview-ui/components/u-row/u-row",
     "u-col": "/uni_modules/uview-ui/components/u-col/u-col",
-    "custom-waterfalls-flow": "/uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow",
     "u-avatar": "/uni_modules/uview-ui/components/u-avatar/u-avatar"
   }
 }

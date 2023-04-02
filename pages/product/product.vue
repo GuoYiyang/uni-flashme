@@ -1,13 +1,14 @@
 <template>
 	<view>
-
-		<!-- 轮播图 -->
 		<view>
-			<u-swiper :list="imgUrlList" indicator indicatorMode="line" circular imgMode="aspectFit" height="550"
-				@click="previewImg" bgColor="#ffffff"></u-swiper>
+			<u-swiper :list="imgUrlList" indicator imgMode="aspectFit" height="550" :autoplay="false" circular
+				@click="previewImg" bgColor="#ffffff" indicatorStyle="right: 20px"
+				@change="e => currentNum = e.current">
+				<view slot="indicator" class="indicator-num">
+					<text class="indicator-num__text">{{ currentNum + 1 }}/{{ imgUrlList.length }}</text>
+				</view>
+			</u-swiper>
 		</view>
-
-
 
 		<view style="background-color: #FFFFFF; border-radius:0px 0px 15px 15px;">
 			<view style="padding: 10px;">
@@ -231,7 +232,8 @@
 		productCollect,
 		getProductPage,
 		getProductCollectStatus,
-		getProductCollectCnt
+		getProductCollectCnt,
+		productRandom
 	} from '@/api/product.js'
 	import {
 		getUserInfo,
@@ -269,19 +271,13 @@
 				price: '',
 				tags: [],
 				content: '',
-				tabsList: [{
-						name: '拍摄须知'
-					},
-					{
-						name: '客片展示'
-					},
-				],
 				tabsCurrent: 0,
 				productDetailShow: true,
 				productCustomerShow: false,
 				isCollect: false,
 				info: '',
 				introduction: '',
+				currentNum: 0,
 				popShow: false,
 				popPlanShow: false,
 				image: '',
@@ -289,27 +285,6 @@
 					name: '电话'
 				}],
 				collectCnt: 0,
-				planCardList: [{
-						name: '12123',
-						price: 111
-					},
-					{
-						name: '657567',
-						price: 111
-					},
-					{
-						name: '907567',
-						price: 111
-					},
-					{
-						name: '907567',
-						price: 111
-					},
-					{
-						name: '907567',
-						price: 111
-					}
-				],
 				notice: '',
 				planList: [],
 			}
@@ -418,20 +393,15 @@
 					this.cameramanPhone = success.data.phone;
 					this.cameramanCity = changeCity(success.data.city);
 					this.notice = success.data.notice;
-
-
 					if (this.cameramanDesc.wxid != null) {
 						this.popList.push({
 							name: '微信'
 						})
 					}
-
 				})
 
-				getProductPage({
+				productRandom({
 					userId: this.cameramanId,
-					page: 1,
-					pageSize: 5,
 					status: 'SUCCESS',
 					excludeProductId: param.id
 				}).then((res) => {
@@ -495,88 +465,17 @@
 </script>
 
 <style lang="scss" scoped>
-	.item {
-		padding: 10rpx 10rpx 20rpx;
-
-		.title {
-			line-height: 48rpx;
-			font-size: 30rpx;
-			color: #222;
-		}
-
-		.desc {
-			font-size: 24rpx;
-			color: #666;
-		}
-
-		.grid-text {
-			font-size: 14px;
-			color: #909399;
-			padding: 10rpx 0 20rpx 0rpx;
-			/* #ifndef APP-PLUS */
-			box-sizing: border-box;
-			/* #endif */
-		}
-	}
-
-	.center {
-		padding: 10rpx;
-		height: 100%;
-		flex: auto;
-		display: flex;
-		flex-direction: column;
+	.indicator-num {
+		padding: 2px 0;
+		background-color: rgba(0, 0, 0, 0.35);
+		border-radius: 100px;
+		width: 35px;
+		@include flex;
 		justify-content: center;
-		align-items: center;
-	}
 
-	.desc {
-		padding: 10px;
-
-		.font {
-			font-size: 18px;
-			font-weight: bolder;
+		&__text {
+			color: #FFFFFF;
+			font-size: 12px;
 		}
-	}
-
-	.info {
-		padding: 10px;
-		padding-bottom: 200rpx;
-
-		.font {
-			font-size: 18px;
-			font-weight: bolder;
-		}
-	}
-
-
-	.content-item {
-		margin-bottom: 30rpx;
-
-		.pic-wrap {
-			display: flex;
-
-			.pic-item {
-				padding: 10px;
-				// box-sizing: border-box;
-
-				// width: 150px;
-				// height: 300rpx;
-				// margin: 20rpx 20rpx;
-				// position: relative;
-				border-radius: 10px 10px 10px 10px;
-				// overflow: hidden;
-			}
-
-		}
-	}
-
-
-	.grid-text {
-		font-size: 14px;
-		color: #909399;
-		padding: 10rpx 0 20rpx 0rpx;
-		/* #ifndef APP-PLUS */
-		box-sizing: border-box;
-		/* #endif */
 	}
 </style>

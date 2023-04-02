@@ -1,18 +1,5 @@
 <template>
 	<view>
-
-		<!-- <nv :config="nvConfig"></nv> -->
-
-		<!-- 		<view style="padding: 40rpx; font-weight: bold;">
-			<view style="font-size: 35rpx; padding-left: 20rpx;">HI 爱拍照的你</view>
-			<view style="padding-left: 20rpx;">在PhotoCall，探索自我</view>
-		</view> -->
-		<!-- 		<view style="margin-bottom: -25px; height: 190px; background-color: #437691">
-			
-		</view> -->
-
-		
-
 		<image src="https://pic-common-1258999491.cos.ap-nanjing.myqcloud.com/69c44bef87cfecfa8b59140d1a5368b.jpg"
 			style="margin-bottom: -25px; height: 280px; width: 100%;"></image>
 		<view>
@@ -35,25 +22,9 @@
 			</view>
 		</view>
 
-		<u-picker :show="cityPickerShow" :columns="cityPickerList" @confirm="confirmCityPicker" keyName="text"
+		<u-picker confirmColor="#3D6EC2" :show="cityPickerShow" :columns="cityPickerList" @confirm="confirmCityPicker" keyName="text"
 			@cancel="cityPickerShow = false"></u-picker>
 
-		<!-- 搜索 -->
-		<!-- 		<u-row gutter="0" customStyle="padding: 20rpx; mar">
-			<u-col span="3">
-				<uni-data-picker popup-title="请选择城市" :localdata="cityList" v-model="city" :clear-icon="false"
-					@change="cityChange">
-				</uni-data-picker>
-			</u-col>
-			<u-col span="9">
-				<u-search disabled @click="searchClick" :showAction="false" :animation="true" shape="square"
-					placeholder="摄影师或者主题" bgColor="#FFFFFF">
-				</u-search>
-			</u-col>
-		</u-row> -->
-
-
-		<!-- 快捷入口 -->
 		<view style="padding: 28px 10px 10px 10px">
 			<u-scroll-list :indicator="false">
 				<view v-for="(item, index) in tagList" :key="index" style="padding: 0 8px 0 0;">
@@ -62,29 +33,11 @@
 					</image>
 				</view>
 			</u-scroll-list>
-
-
-			<!-- 			<u-grid :border="false" col="4" @click="clickFastEnter">
-				<u-grid-item v-for="(listItem,listIndex) in fastList" :key="listIndex">
-					<u-icon :customStyle="{paddingTop:'20rpx'}" :name="listItem.name" :size="22" bold></u-icon>
-					<text class="grid-text">{{listItem.title}}</text>
-				</u-grid-item>
-			</u-grid> -->
 		</view>
-
-		<!-- 返回顶部 -->
-		<!-- 		<template>
-			<u-back-top :scroll-top="scrollTop" icon="arrow-up" top="1000"></u-back-top>
-		</template> -->
 
 		<view style="padding: 0px 0px 0px 20px">
-			<u-row>
-				<u-col span="10.5"><text style="font-size: 16px;color: #191919;font-weight: 600;">精选作品</text></u-col>
-				<u-col span="1.5"><text style="font-size: 13px;color: #808080;font-weight: 400;">更多</text></u-col>
-			</u-row>
+			<text style="font-size: 16px;color: #191919;font-weight: 600;">精选作品</text>
 		</view>
-
-		<!--  瀑布流  -->
 		<view style="padding: 18px 10px 0 10px;">
 			<custom-waterfalls-flow :value="product.list" :column="2" :columnSpace="1" @imageClick="imageClick"
 				@wapperClick="wapperClick" ref="waterfallsFlowRef">
@@ -144,25 +97,6 @@
 						image: "https://pic-common-1258999491.cos.ap-nanjing.myqcloud.com/24fa061b3cb4cd0f45edb9bde7fc26f.png"
 					}
 				],
-				nvConfig: {
-					title: 'PhotoCall',
-					bgColor: '#ffffff',
-					type: 'search',
-					search: {
-						value: '摄影主题',
-						input: false,
-						url: '/pages/search/search'
-					},
-					back: {
-						hide: true
-					}
-					// transparent:{
-					// 	type: 'content',
-					// },
-					// address:{
-
-					// }
-				},
 				cityPickerList: [
 					[{
 							value: "0",
@@ -184,56 +118,6 @@
 				],
 				city: '0',
 				cityName: '深圳',
-				cityList: [{
-						value: "0",
-						text: "深圳"
-					},
-					{
-						value: "1",
-						text: "北京"
-					},
-					{
-						value: "2",
-						text: "上海"
-					},
-					{
-						value: "3",
-						text: "广州"
-					},
-				],
-				fastList: [{
-						name: 'camera',
-						title: '写真'
-					},
-					{
-						name: 'account',
-						title: '证件照'
-					},
-					{
-						name: 'gift',
-						title: '婚纱'
-					},
-					{
-						name: 'woman',
-						title: '情侣'
-					},
-					{
-						name: 'home',
-						title: '亲子'
-					},
-					{
-						name: 'lock',
-						title: '宠物'
-					},
-					{
-						name: 'photo',
-						title: '旅拍'
-					},
-					{
-						name: 'more-dot-fill',
-						title: '其他'
-					}
-				],
 				product: {
 					list: []
 				},
@@ -279,12 +163,6 @@
 				uni.navigateTo({
 					url: '/pages/filterProduct/filterProduct?tag=' + index + '&city=' + this.city
 				});
-			},
-			changeTab(index) {
-				uni.showToast({
-					title: index.name,
-					icon: 'none'
-				})
 			},
 			searchClick() {
 				uni.navigateTo({

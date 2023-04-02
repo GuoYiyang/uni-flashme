@@ -24,14 +24,15 @@
 		<view style="margin: 16px;background-color:#FFFFFF;border-radius: 10px" v-if="isPher">
 			<view style="padding: 14px 18px 20px 18px">
 				<u-row>
-					<u-col span="9.5"><text style="font-size: 13px;color: #808080;font-weight: 400;">摄影师专区</text>
-					</u-col>
-					<u-col span="2.5"><text @click="toUserShow"
-							style="font-size: 13px;color: #808080;font-weight: 400;">查看主页</text></u-col>
+					<!-- <u-col span="9.5"> -->
+						<text style="font-size: 13px;color: #808080;font-weight: 400;">摄影师专区</text>
+					<!-- </u-col> -->
+<!-- 					<u-col span="2.5"><text @click="toUserShow"
+							style="font-size: 13px;color: #808080;font-weight: 400;">查看主页</text></u-col> -->
 				</u-row>
 			</view>
 			<view>
-				<u-grid :border="false" col="3">
+				<u-grid :border="false" :col="pherList.length">
 					<u-grid-item v-for="(listItem,listIndex) in pherList" :key="listIndex">
 						<u-icon :name="listItem.name" :size="22" customStyle="padding: 0px 4px 10px 4px"
 							@click="clickPherList(listIndex)"></u-icon>
@@ -47,7 +48,7 @@
 				<text style="font-size: 13px;color: #808080;font-weight: 400;">用户专区</text>
 			</view>
 			<view>
-				<u-grid :border="false" col="3">
+				<u-grid :border="false" :col="userList.length">
 					<u-grid-item v-for="(listItem,listIndex) in userList" :key="listIndex">
 						<u-icon :name="listItem.name" :size="22" customStyle="padding: 0px 4px 10px 4px"
 							@click="clickUserList(listIndex)"></u-icon>
@@ -57,36 +58,6 @@
 				</u-grid>
 			</view>
 		</view>
-
-		<!-- <view style="margin: 16px;background-color:#FFFFFF;border-radius: 10px;">
-			<u-list height="130px">
-				<u-list-item>
-					<u-cell title="PhotoCall预定保障" url="../policyDoc/policyDoc"
-						customStyle="font-weight: 400;font-size: 14px;line-height: 24px;">
-						<u-icon slot="icon" name="/static/price.png" customStyle="margin: -3px 5px -3px 0"></u-icon>
-										<u-avatar slot="icon" shape="square" size="35"
-							src="https://pic-common-1258999491.cos.ap-nanjing.myqcloud.com/index_background.jpg"
-							customStyle="margin: -3px 5px -3px 0"></u-avatar>
-					</u-cell>
-					<u-cell title="问题反馈" url="../feedback/feedback"
-						customStyle="font-weight: 400;font-size: 14px;line-height: 24px;">
-						<u-icon slot="icon" name="/static/price.png" customStyle="margin: -3px 5px -3px 0"></u-icon>
-												<u-avatar slot="icon" shape="square" size="35"
-							src="https://pic-common-1258999491.cos.ap-nanjing.myqcloud.com/index_background.jpg"
-							customStyle="margin: -3px 5px -3px 0"></u-avatar>
-					</u-cell>
-					<view v-if="isAdmin">
-						<u-cell title="待审核" url="../audit/audit"
-							customStyle="font-weight: 400;font-size: 14px;line-height: 24px;" :border="false">
-							<u-icon slot="icon" name="/static/price.png" customStyle="margin: -3px 5px -3px 0"></u-icon>
-														<u-avatar slot="icon" shape="square" size="35"
-								src="https://pic-common-1258999491.cos.ap-nanjing.myqcloud.com/index_background.jpg"
-								customStyle="margin: -3px 5px -3px 0"></u-avatar>
-						</u-cell>
-					</view>
-				</u-list-item>
-			</u-list>
-		</view> -->
 		<view v-if="isAdmin">
 			<u-button color="#3D6EC2"
 				customStyle="border-radius:10px;width:100px;height:42px;font-weight:500;font-size:16px;line-height:16px;color:#FFFFFF;"
@@ -104,6 +75,7 @@
 		updateUserInfo,
 		getUserInfo
 	} from '@/api/user.js';
+
 	export default {
 		data() {
 			return {
@@ -118,6 +90,10 @@
 					{
 						name: '/static/price.png',
 						title: '拍摄方案'
+					},
+					{
+						name: '/static/price.png',
+						title: '查看主页'
 					}
 					// ,
 					// {
@@ -137,12 +113,17 @@
 						name: '/static/price.png',
 						title: '关于PhotoCall'
 					},
+					{
+						name: '/static/price.png',
+						title: '使用反馈'
+					},
 
 				],
 				userInfo: {
 					username: '',
 					avatar: '',
-					desc: ''
+					desc: '',
+					role:'',
 				},
 				isAdmin: false,
 				isUser: false,
@@ -171,16 +152,31 @@
 						url: '/pages/plan/plan'
 					})
 				}
+				if (item == 3) {
+					uni.navigateTo({
+						url: '/pages/userShow/userShow?userId=' + this.userId
+					})
+				}
 			},
 			clickUserList(item) {
 				if (item == 0) {
 				}
 				if (item == 1) {
+					if (this.role === 1) {
+						uni.navigateTo({
+							url: '/pages/becomePher/step1'
+						})
+					} else {
+						uni.navigateTo({
+							url: '/pages/becomePher/step5'
+						})
+					}
+				}
+				if (item == 3) {
 					uni.navigateTo({
-						url: '/pages/becomePher/step1'
+						url: '/pages/feedback/feedback'
 					})
 				}
-
 			},
 			editClick() {
 				uni.navigateTo({
@@ -207,10 +203,8 @@
 				let [error, success] = res;
 				_this.userInfo.username = success.data.nickname;
 				_this.userInfo.city = success.data.city;
-				_this.userInfo.gender = success.data.gender;
 				_this.userInfo.avatar = success.data.avatar;
-				_this.userInfo.desc = success.data.desc;
-				_this.userInfo.phone = success.data.phone;
+				_this.userInfo.role = success.data.role;
 				if (success.data.role == 0) {
 					_this.isAdmin = true;
 					_this.isPher = true;
@@ -229,27 +223,5 @@
 </script>
 
 <style lang="scss" scoped>
-	.center {
-		height: 100%;
-		flex: auto;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-	}
 
-	.item {
-		padding: 10rpx 10rpx 20rpx;
-
-		.title {
-			line-height: 48rpx;
-			font-size: 30rpx;
-			color: #222;
-		}
-
-		.desc {
-			font-size: 24rpx;
-			color: #666;
-		}
-	}
 </style>

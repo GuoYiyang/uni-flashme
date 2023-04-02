@@ -1,6 +1,7 @@
 <template>
 	<view>
-		使用反馈
+		
+		<button open-type="contact">联系客服</button>
 	</view>
 </template>
 

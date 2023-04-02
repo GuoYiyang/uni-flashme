@@ -3,6 +3,41 @@
 		"^u-(.*)": "@/uni_modules/uview-ui/components/u-$1/u-$1.vue",
 		"nv": "@/uni_modules/pyh-nv/components/pyh-nv/pyh-nv.vue"
 	},
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8",
+		"app-plus": {
+			"background": "#F8F8F8",
+			"scrollIndicator": "none"
+		}
+
+	},
+	"tabBar": {
+		"fontSize": "20rpx",
+		"height": "100rpx",
+		"color": "#7A7E83",
+		"selectedColor": "#000000",
+		"borderStyle": "white",
+		"backgroundColor": "#ffffff",
+		"list": [{
+				"iconPath": "static/home.png",
+				"selectedIconPath": "static/home-fill.png",
+				"pagePath": "pages/index/index"
+			},
+			{
+				"iconPath": "static/heart.png",
+				"selectedIconPath": "static/heart-fill.png",
+				"pagePath": "pages/collect/collect"
+			},
+			{
+				"iconPath": "static/user.png",
+				"selectedIconPath": "static/user-fill.png",
+				"pagePath": "pages/homePage/homePage"
+			}
+		]
+	},
 	"pages": [{
 		"path": "pages/index/index",
 		"style": {
@@ -71,7 +106,7 @@
 	}, {
 		"path": "pages/feedback/feedback",
 		"style": {
-			"navigationBarTitleText": "反馈",
+			"navigationBarTitleText": "使用反馈",
 			"enablePullDownRefresh": false
 		}
 
@@ -93,10 +128,10 @@
 		"path": "pages/userShow/userShow",
 		"style": {
 			"navigationBarTitleText": "",
-			"enablePullDownRefresh": false,
-			"navigationBarBackgroundColor": "#FFFFFF"
+			"enablePullDownRefresh": false 
+			// "navigationStyle": "custom",
+			// "navigationBarTextStyle": "white"
 		}
-
 	}, {
 		"path": "pages/audit/audit",
 		"style": {
@@ -132,92 +167,48 @@
 			"enablePullDownRefresh": false
 		}
 
-	},{
+	}, {
 		"path": "pages/becomePher/step1",
 		"style": {
 			"navigationBarTitleText": "入驻为摄影师",
 			"enablePullDownRefresh": false
 		}
 
-	}    ,{
-            "path" : "pages/becomePher/step2",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "入驻为摄影师",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/becomePher/step3",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "入驻为摄影师",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/becomePher/step4",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "入驻为摄影师",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/becomePher/step5",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "入驻为摄影师",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/plan/editNotice",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "拍摄须知",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-    ],
-	"globalStyle": {
-		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "",
-		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8",
-		"app-plus": {
-			"background": "#F8F8F8",
-			"scrollIndicator": "none"
+	}, {
+		"path": "pages/becomePher/step2",
+		"style": {
+			"navigationBarTitleText": "入驻为摄影师",
+			"enablePullDownRefresh": false
 		}
 
-	},
-	"tabBar": {
-		"fontSize": "20rpx",
-		"height": "100rpx",
-		"color": "#7A7E83",
-		"selectedColor": "#000000",
-		"borderStyle": "white",
-		"backgroundColor": "#ffffff",
-		"list": [{
-				"iconPath": "static/home.png",
-				"selectedIconPath": "static/home-fill.png",
-				"pagePath": "pages/index/index"
-			},
-			{
-				"iconPath": "static/heart.png",
-				"selectedIconPath": "static/heart-fill.png",
-				"pagePath": "pages/collect/collect"
-			},
-			{
-				"iconPath": "static/user.png",
-				"selectedIconPath": "static/user-fill.png",
-				"pagePath": "pages/homePage/homePage"
-			}
-		]
-	}
+	}, {
+		"path": "pages/becomePher/step3",
+		"style": {
+			"navigationBarTitleText": "入驻为摄影师",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/becomePher/step4",
+		"style": {
+			"navigationBarTitleText": "入驻为摄影师",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/becomePher/step5",
+		"style": {
+			"navigationBarTitleText": "入驻为摄影师",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/plan/editNotice",
+		"style": {
+			"navigationBarTitleText": "拍摄须知",
+			"enablePullDownRefresh": false
+		}
+
+	}]
+
 }

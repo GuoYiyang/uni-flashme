@@ -1,23 +1,5 @@
 <template>
 	<view>
-		<!-- 		<u-row justify="center" gutter="10">
-			<u-col span="4">
-				<uni-data-picker popup-title="城市" :localdata="cityList" v-model="city" :clear-icon="false"
-					@change="cityChange" placeholder="城市">
-				</uni-data-picker>
-			</u-col>
-			<u-col span="4">
-				<uni-data-picker popup-title="主题" :localdata="tagList" v-model="tag" :clear-icon="false"
-					@change="cityChange" placeholder="主题">
-				</uni-data-picker>
-			</u-col>
-			<u-col span="4">
-				<uni-data-picker popup-title="价格" :localdata="cityList" v-model="city" :clear-icon="false"
-					@change="cityChange" placeholder="价格">
-				</uni-data-picker>
-			</u-col>
-		</u-row> -->
-		<!-- <u-line></u-line> -->
 		<view style="padding: 14px 10px 0 10px;">
 			<custom-waterfalls-flow :value="product.list" :column="2" :columnSpace="1" @imageClick="imageClick"
 				@wapperClick="wapperClick" ref="waterfallsFlowRef">
@@ -44,13 +26,15 @@
 
 <script>
 	import {
-		getProductPage
+		getProductPage,
+		productRandom
 	} from '@/api/product.js'
+	import {
+		changeTag
+	} from '@/common/method.js'
 	export default {
 		data() {
 			return {
-				page: 1,
-				pageSize: 10,
 				city: '',
 				tag: '',
 				query: '',
@@ -88,7 +72,7 @@
 				})
 			},
 		},
-		onLoad: function(param) { //option为object类型，会序列化上个页面传递的参数
+		onLoad: function(param) {
 			let _this = this;
 			this.city = param.city;
 			if (param.tag != null) {
@@ -97,28 +81,27 @@
 			if (param.query != null) {
 				this.query = param.query;
 			}
-			getProductPage({
+			productRandom({
 				city: this.city,
 				tag: this.tag,
 				query: this.query,
-				status: 'SUCCESS',
-				page: this.page,
-				pageSize: this.pageSize
+				status: 'SUCCESS'
 			}).then((res) => {
 				let [error, success] = res;
 				_this.product.list = success.data;
 			})
+			
+			uni.setNavigationBarTitle({
+				title: changeTag(param.tag) +  '的相关作品'
+			});
 
 		},
 		onReachBottom() {
-			this.page = this.page + 1;
-			getProductPage({
+			productRandom({
 				city: this.city,
 				tag: this.tag,
 				query: this.query,
-				status: 'SUCCESS',
-				page: this.page,
-				pageSize: this.pageSize
+				status: 'SUCCESS'
 			}).then((res) => {
 				let [error, success] = res;
 				if (success.data.length == 0) {}
