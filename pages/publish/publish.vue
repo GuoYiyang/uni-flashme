@@ -27,9 +27,9 @@
 				</u-picker>
 			</view>
 
-			<view style="padding:16px 0px 50px 0">
+			<view style="padding:40px 36px 40px 36px">
 				<u-button @click="submit" color="#3D6EC2"
-					customStyle="border-radius:10px;width:100px;height:42px;font-weight:500;font-size:16px;line-height:16px;color:#FFFFFF;">
+					customStyle="border-radius:10px;height:42px;font-weight:500;font-size:16px;line-height:16px;color:#FFFFFF;">
 					发布
 				</u-button>
 			</view>

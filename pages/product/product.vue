@@ -217,7 +217,7 @@
 			</u-col>
 			<u-col span="5">
 				<view style="padding: 10px;">
-					<u-button color="#3D6EC2" @click="this.popShow=true">咨询预约</u-button>
+					<u-button color="#191919" @click="this.popShow=true">咨询预约</u-button>
 				</view>
 			</u-col>
 		</u-tabbar>

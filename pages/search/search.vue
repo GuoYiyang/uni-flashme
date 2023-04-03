@@ -19,7 +19,6 @@
 		data() {
 			return {
 				searchText:'搜索作品',
-				city: '',
 				sectionCurrent: 0,
 				sectionList: [
 					"作品", "摄影师"
@@ -39,18 +38,15 @@
 			search(res) {
 				if (this.sectionCurrent == 0) {
 					uni.navigateTo({
-						url: '/pages/product/filterProduct?query=' + res + '&city=' + this.city
+						url: '/pages/product/filterProduct?query=' + res
 					});
 				}
 				if (this.sectionCurrent == 1) {
 					uni.navigateTo({
-						url: '/pages/explore/filterExplore?query=' + res + '&city=' + this.city
+						url: '/pages/explore/filterExplore?query=' + res 
 					});
 				}
 			},
-		},
-		onLoad: function(param) {
-			this.city = param.city
 		}
 	}
 </script>

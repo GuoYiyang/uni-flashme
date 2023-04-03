@@ -7,7 +7,7 @@
 				<u-button icon="map" iconColor="#191919" @click="cityPickerShow = true"
 					customStyle="width: 300px;height: 50px;font-weight: 500;font-size: 16px;line-height: 21px;background: #FFFFFF;border: 1px solid #EEEEEE;box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);border-radius: 100px">
 					<view
-						style="color: #191919;font-family: 'PingFang SC';font-style: normal;font-weight: 500;font-size: 16px;line-height: 21px;">
+						style="color: #191919;font-style: normal;font-weight: 500;font-size: 16px;line-height: 21px;">
 						{{cityName}}</view>
 
 				</u-button>
@@ -128,30 +128,21 @@
 			}
 		},
 		methods: {
-			cityChange(item) {
-				this.city = item.detail.value[0].value;
-				getApp().globalData.CITY = this.city
-				productRandom({
-					city: item.detail.value[0].value
-				}).then((res) => {
-					let [error, success] = res;
-					this.product.list = success.data;
-					this.$refs.waterfallsFlowRef.refresh();
-				})
-				this.cityName = changeCity(this.city);
-			},
 			confirmCityPicker(item) {
 				this.city = item.value[0].value;
+				getApp().globalData.CITY = this.city
+				this.cityName = changeCity(this.city);
+				this.cityPickerShow = false;
 				productRandom({
-					city: item.value[0].value
+					city: this.city
 				}).then((res) => {
 					let [error, success] = res;
 					this.product.list = success.data;
+					if (success.data.length < 10) {
+						this.loadMoreStatus='nomore';
+					}
 					this.$refs.waterfallsFlowRef.refresh();
 				})
-				this.cityPickerShow = false;
-				console.log()
-				this.cityName = changeCity(this.city);
 			},
 			wapperClick(item) {
 				uni.navigateTo({
@@ -165,12 +156,12 @@
 			},
 			clickFastEnter(index) {
 				uni.navigateTo({
-					url: '/pages/product/filterProduct?tag=' + index + '&city=' + this.city
+					url: '/pages/product/filterProduct?tag=' + index
 				});
 			},
 			searchClick() {
 				uni.navigateTo({
-					url: '/pages/search/search?city=' + this.city
+					url: '/pages/search/search'
 				});
 			}
 		},
@@ -189,28 +180,24 @@
 		onReady() {
 			uni.hideNavigationBarLoading()
 		},
-		async onLoad(param) {
+		async onLoad() {
 			uni.showNavigationBarLoading()
 			await this.$onLaunched;
-			let _this = this;
-			let city = this.city;
-			if (param.city != null) {
-				this.city = param.city;
-				city = param.city;
-			}
+			this.city = getApp().globalData.CITY;
 			this.cityName = changeCity(this.city);
 			productRandom({
-				city: city
+				city: this.city
 			}).then((res) => {
 				let [error, success] = res;
-				_this.product.list = success.data;
+				this.product.list = success.data;
+				if (success.data.length < 10) {
+					this.loadMoreStatus = 'nomore';
+				}
 			})
 			uni.showShareMenu({
 				withShareTicket: true,
 				menus: ["shareAppMessage", "shareTimeline"]
 			});
-
-			// })
 		},
 		onPullDownRefresh() {
 			productRandom({

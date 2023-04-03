@@ -1,6 +1,6 @@
 <template>
-	<view>
-		<view style="padding: 20px 36px 20px 36px;">
+	<view v-if="userInfo.role != ''">
+		<view  style="padding: 20px 36px 20px 36px;">
 			<u-row>
 				<u-col span="3">
 					<u-avatar :src="userInfo.avatar" size="60">
@@ -52,7 +52,7 @@
 		</view>
 		<view v-if="isAdmin">
 			<u-button color="#3D6EC2"
-				customStyle="border-radius:10px;width:100px;height:42px;font-weight:500;font-size:16px;line-height:16px;color:#FFFFFF;"
+				customStyle="border-radius:10px;width:300px;height:42px;font-weight:500;font-size:16px;line-height:16px;color:#FFFFFF;"
 				@click="toAudit">待审核</u-button>
 		</view>
 
@@ -87,11 +87,6 @@
 						name: '/static/usershow.png',
 						title: '查看主页'
 					}
-					// ,
-					// {
-					// 	name: '/static/price.png',
-					// 	title: '查看预约'
-					// },
 				],
 				userList: [{
 						name: '/static/book.png',
@@ -151,7 +146,11 @@
 				}
 			},
 			clickUserList(item) {
-				if (item == 0) {}
+				if (item == 0) {
+					uni.navigateTo({
+						url: '/pages/publish/publishSuccess'
+					})
+				}
 				if (item == 1) {
 					if (this.role === 1) {
 						uni.navigateTo({
@@ -206,6 +205,9 @@
 					_this.isPher = true;
 				}
 			})
+			if (getApp().globalData.USER_ID == '1628712434095104002') {
+				_this.isAdmin = true;
+			}
 		},
 		onReady() {
 			uni.hideNavigationBarLoading()

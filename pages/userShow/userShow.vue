@@ -1,7 +1,6 @@
 <template>
 	<view>
-		<image src="https://pic-common-1258999491.cos.ap-nanjing.myqcloud.com/942e904ffb6ec20dd202b1bee234cfe.png"
-			style="margin-bottom: -40px; height: 130px; width: 100%;"></image>
+		<image :src="bgImg" style="margin-bottom: -40px; height: 130px; width: 100%;"></image>
 
 		<view class="topright">
 			<u-button color="#3D6EC2" @click="follow" :text="isFollow ? '已关注': '关注'"
@@ -10,26 +9,20 @@
 
 		<view style="background-color: #FFFFFF; padding-bottom: 10px; border-radius:15px">
 			<view class="center">
-				<u-row>
-					<view @click="this.popDescShow = true">
-						<u-avatar :src="avatar" size="80" customStyle="border: 4px solid #FFFFFF;"></u-avatar>
-					</view>
-				</u-row>
-				<u-row customStyle="padding-top: 10px;">
-					<u-col span="12">
-						<text style="font-size: 20px; font-weight: bolder;">{{username}}</text>
-					</u-col>
-				</u-row>
-				<u-row customStyle="padding-top: 10px;">
+				<view @click="this.popDescShow = true">
+					<u-avatar :src="avatar" size="80" customStyle="border: 4px solid #FFFFFF;"></u-avatar>
+				</view>
+				<view style="padding-top: 10px;">
+					<text style="font-size: 20px; font-weight: bolder;">{{username}}</text>
+				</view>
+				<view style="padding-top: 10px;">
 					<u-icon name="map" :label="city"></u-icon>
-				</u-row>
+				</view>
 
-				<u-row customStyle="padding-top: 10px; padding-bottom: 10px;">
-					<view style="flex-flow: row;">
-						<text style="font-size: 14px; color: #4E4E4E;padding-right: 20px;">作品数 {{productCnt}}</text>
-						<text style="font-size: 14px; color: #4E4E4E;">粉丝数 {{fansCnt}}</text>
-					</view>
-				</u-row>
+				<view style="padding-top: 10px; padding-bottom: 10px;flex-flow: row;">
+					<text style="font-size: 14px; color: #4E4E4E;padding-right: 20px;">作品数 {{productCnt}}</text>
+					<text style="font-size: 14px; color: #4E4E4E;">粉丝数 {{fansCnt}}</text>
+				</view>
 			</view>
 
 			<u-line></u-line>
@@ -46,7 +39,7 @@
 		</view>
 
 		<view style="background-color: #F7F9FB; margin-top: 20px; border-radius:15px 15px 0 0;">
-			<view style="background-color: #FFFFFF; padding: 6px;">
+			<!-- 			<view style="background-color: #FFFFFF; padding: 6px;">
 				<u-tabs :list="tabsList" lineWidth="30" lineHeight="3" lineColor="#000000" :activeStyle="{
 					        color: '#303133',
 					        fontWeight: 'bold',
@@ -56,8 +49,8 @@
 					        transform: 'scale(1)'
 					    }" itemStyle="padding-left: 15px; padding-right: 15px; height: 34px;" @change="tabsChange" :duration="100">
 				</u-tabs>
-			</view>
-			<view style="padding: 14px 10px 0 10px;">
+			</view> -->
+			<view style="padding: 0px 10px 0 10px;">
 				<custom-waterfalls-flow :value="product.list" :column="2" :columnSpace="1" @imageClick="imageClick"
 					@wapperClick="wapperClick" ref="waterfallsFlowRef">
 					<view style="padding: 5px;" v-for="(item,index) in product.list" :key="index" slot="slot{{index}}">
@@ -84,10 +77,10 @@
 					{{city}}
 				</view>
 
-				<view style="margin: 26px 24px 100px 24px;background: #F6F7F9;border-radius: 6px;">
+				<view style="margin: 26px 24px 100px 24px;background: #F6F7F9;border-radius: 6px;display: flex;">
 					<view
 						style="font-weight: 300;font-size: 14px;line-height: 150%;text-align: center;color: #191919;margin: 36px 15px 36px 15px;">
-						{{desc.intro}}
+						<text>{{desc.intro}}</text>
 					</view>
 				</view>
 			</u-popup>
@@ -213,7 +206,7 @@
 		<view style="padding: 10px;">
 			<u-loadmore :status="loadMoreStatus" />
 		</view>
-		
+
 	</view>
 </template>
 
@@ -238,6 +231,8 @@
 	export default {
 		data() {
 			return {
+				bgImg:'https://pic-common-1258999491.cos.ap-nanjing.myqcloud.com/942e904ffb6ec20dd202b1bee234cfe.png',
+				selectedbgImgPath:'',
 				loadMoreStatus: 'loading',
 				userId: '',
 				username: '',
@@ -422,7 +417,7 @@
 			}).then((res) => {
 				let [error, success] = res;
 				_this.product.list = success.data;
-				if (success.data.length === 0) {
+				if (success.data.length < 10) {
 					this.loadMoreStatus = 'nomore';
 				}
 			});
@@ -454,7 +449,7 @@
 				pageSize: this.pageSize
 			}).then((res) => {
 				let [error, success] = res;
-				if (success.data.length == 0) {
+				if (success.data.length === 0) {
 					this.loadMoreStatus = 'nomore';
 				}
 				this.product.list = this.product.list.concat(success.data);
@@ -463,7 +458,6 @@
 		onShareAppMessage(res) {
 			return {
 				title: this.username,
-				//如果有参数的情况可以写path
 				path: "/pages/userShow/userShow?userId=" + this.userId,
 			};
 		}

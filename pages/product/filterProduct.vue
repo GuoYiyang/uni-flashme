@@ -80,7 +80,7 @@
 		},
 		onLoad: function(param) {
 			let _this = this;
-			this.city = param.city;
+			this.city = getApp().globalData.CITY;
 			if (param.tag != null) {
 				this.tag = param.tag;
 				getProductPage({
@@ -93,7 +93,7 @@
 				}).then((res) => {
 					let [error, success] = res;
 					_this.product.list = success.data;
-					if (success.data.length <= 10){
+					if (success.data.length < 10){
 						this.loadMoreStatus = 'nomore'
 					}
 				})
@@ -110,7 +110,7 @@
 				}).then((res) => {
 					let [error, success] = res;
 					_this.product.list = success.data;
-					if (success.data.length <= 10){
+					if (success.data.length < 10){
 						this.loadMoreStatus = 'nomore'
 					}
 				})

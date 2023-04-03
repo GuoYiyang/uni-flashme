@@ -10,4 +10,20 @@
   justify-content: center;
   align-items: center;
 }
+.u-content.data-v-4bff36ad {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.u-content__circle.data-v-4bff36ad {
+  background-color: #3D6EC2;
+  display: flex;
+  flex-direction: row;
+  border-radius: 100px;
+  width: 80px;
+  height: 80px;
+  align-items: center;
+  justify-content: center;
+}
 

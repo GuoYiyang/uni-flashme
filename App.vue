@@ -7,7 +7,7 @@
 			USER_ID: '',
 			USER_NAME: '',
 			AVATAR: '',
-			CITY:'',
+			CITY:'0',
 		},
 		methods: {},
 		onLaunch() {
@@ -21,7 +21,9 @@
 						_this.globalData.USER_ID = success.data.id;
 						_this.globalData.USER_NAME = success.data.nickname;
 						_this.globalData.AVATAR = success.data.avatar;
-						_this.globalData.CITY = success.data.city;
+						if (success.data.city != null && success.data.city != '') {
+							_this.globalData.CITY = success.data.city;
+						}
 						this.$isResolve()
 					})
 				}

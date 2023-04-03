@@ -1,16 +1,14 @@
 <template>
 	<view>
-		<view>
-			<u-sticky bgColor="#F8F8F8">
-				<view style="box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05)">
-					<u-tabs :list="tabsList" lineWidth="40" lineHeight="3" lineColor="#191919"
-						:activeStyle="{color: '#191919',fontWeight: 'bold', transform: 'scale(1)'}"
-						:inactiveStyle="{color: '#808080',transform: 'scale(1)'}" :current="tabsCurrent"
-						:scrollable='false' :duration="100" @change="tabsChange">
-					</u-tabs>
-				</view>
-			</u-sticky>
-		</view>
+		<u-sticky bgColor="#F8F8F8">
+			<view style="box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05)">
+				<u-tabs :list="tabsList" lineWidth="40" lineHeight="3" lineColor="#191919"
+					:activeStyle="{color: '#191919',fontWeight: 'bold', transform: 'scale(1)'}"
+					:inactiveStyle="{color: '#808080',transform: 'scale(1)'}" :current="tabsCurrent" :scrollable='false'
+					:duration="100" @change="tabsChange">
+				</u-tabs>
+			</view>
+		</u-sticky>
 
 		<view style="padding: 14px 10px 0 10px;">
 			<custom-waterfalls-flow :value="product.list" :column="2" :columnSpace="1" @imageClick="imageClick"
@@ -38,12 +36,14 @@
 				:safeAreaInsetBottom="true"></u-action-sheet>
 		</view>
 
-		<uni-fab horizontal="right" :popMenu="false" @fabClick="buttonClick" :pattern="{buttonColor: '#000000'}" />
+		<!-- <uni-fab horizontal="right" :popMenu="false" @fabClick="buttonClick" :pattern="{buttonColor: '#000000'}" /> -->
 
 		<u-overlay :show="overlayShow"></u-overlay>
-		
-		<view style="padding: 10px;"><u-loadmore :status="loadMoreStatus"/></view>
-		
+
+		<view style="padding: 10px;">
+			<u-loadmore :status="loadMoreStatus" />
+		</view>
+
 	</view>
 </template>
 
@@ -83,8 +83,7 @@
 			}
 		},
 		methods: {
-			waterfallsLoaded() {
-			},
+			waterfallsLoaded() {},
 			tabsChange(index) {
 				let _this = this;
 				this.tabsCurrent = index.index;

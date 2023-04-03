@@ -67,13 +67,13 @@
 		},
 		onLoad(param) {
 			getPherExploreList({
-				city: param.city,
+				city: getApp().globalData.CITY,
 				query: param.query,
 				isRandom: true
 			}).then(res => {
 				let [error, success] = res;
 				this.pherList = success.data
-				if (success.data.length <= 10){
+				if (success.data.length < 10){
 					this.loadMoreStatus = 'nomore'
 				}
 				this.pherList.forEach(item => {

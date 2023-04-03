@@ -1,7 +1,13 @@
 <template>
 	<view>
 		
-		<button open-type="contact">联系客服</button>
+		<view style="padding:40px 36px 40px 36px">
+			<u-button open-type="contact" color="#3D6EC2"
+				customStyle="border-radius:10px;height:42px;font-weight:500;font-size:16px;line-height:16px;color:#FFFFFF;">
+				联系客服
+			</u-button>
+		</view>
+
 	</view>
 </template>
 

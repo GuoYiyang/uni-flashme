@@ -78,6 +78,9 @@
 			}).then(res => {
 				let [error, success] = res;
 				this.pherList = success.data
+				if (success.data.length < 2) {
+					this.loadMoreStatus='nomore';
+				}
 				this.pherList.forEach(item => {
 					item.userVo.desc = JSON.parse(item.userVo.desc);
 					item.userVo.city = changeCity(item.userVo.city)
@@ -91,6 +94,9 @@
 			}).then(res => {
 				let [error, success] = res;
 				this.pherList = success.data
+				if (success.data.length < 2) {
+					this.loadMoreStatus='nomore';
+				}
 				this.pherList.forEach(item => {
 					item.userVo.desc = JSON.parse(item.userVo.desc);
 					item.userVo.city = changeCity(item.userVo.city)
@@ -106,6 +112,9 @@
 				isRandom: true
 			}).then(res => {
 				let [error, success] = res;
+				if (success.data.length === 0) {
+					this.loadMoreStatus='nomore';
+				}
 				success.data.forEach(item => {
 					item.userVo.desc = JSON.parse(item.userVo.desc);
 					item.userVo.city = changeCity(item.userVo.city)
