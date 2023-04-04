@@ -33,7 +33,7 @@
 			{
 				"iconPath": "static/heart.png",
 				"selectedIconPath": "static/heart-fill.png",
-				"pagePath": "pages/collect/collect"
+				"pagePath": "pages/product/collect"
 			},
 			{
 				"iconPath": "static/user.png",
@@ -58,7 +58,7 @@
 		}
 
 	}, {
-		"path": "pages/collect/collect",
+		"path": "pages/product/collect",
 		"style": {
 			"navigationBarTitleText": "我的收藏",
 			"enablePullDownRefresh": true
@@ -80,7 +80,7 @@
 		}
 
 	}, {
-		"path": "pages/editUserInfo/editUserInfo",
+		"path": "pages/homePage/editUserInfo",
 		"style": {
 			"navigationBarTitleText": "编辑信息",
 			"enablePullDownRefresh": false
@@ -94,21 +94,21 @@
 		}
 
 	}, {
-		"path": "pages/myProduct/myProduct",
+		"path": "pages/product/myProduct",
 		"style": {
 			"navigationBarTitleText": "我的作品",
 			"enablePullDownRefresh": true
 		}
 
 	}, {
-		"path": "pages/policyDoc/policyDoc",
-		"style": {
+		"path": "pages/homePage/policyDoc",
+		"style": { 
 			"navigationBarTitleText": "使用须知",
 			"enablePullDownRefresh": false
 		}
 
 	}, {
-		"path": "pages/feedback/feedback",
+		"path": "pages/homePage/feedback",
 		"style": {
 			"navigationBarTitleText": "使用反馈",
 			"enablePullDownRefresh": false
@@ -212,16 +212,12 @@
 			"navigationBarTitleText": "拍摄须知",
 			"enablePullDownRefresh": false
 		}
-
-	}    ,{
-            "path" : "pages/explore/filterExplore",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "搜索摄影师",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-    ]
+	}, {
+		"path": "pages/explore/filterExplore",
+		"style": {
+			"navigationBarTitleText": "搜索摄影师",
+			"enablePullDownRefresh": false
+		}
+	}]
 
 }

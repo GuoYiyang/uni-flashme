@@ -2,10 +2,19 @@
 	<view>
 		<image :src="bgImg" style="margin-bottom: -40px; height: 130px; width: 100%;"></image>
 
-		<view class="topright">
-			<u-button color="#3D6EC2" @click="follow" :text="isFollow ? '已关注': '关注'"
-				customStyle="border-radius:10px; width: 80px;height: 30px;"></u-button>
+		<view class="topleft">
+			<u-button color="#FFFFFF" @click="follow" :text="isFollow ? '已关注': '+ 关注'"
+				customStyle="border-color:#191919;color:#191919; border-radius:6px; width: 70px;height: 28px;">
+			</u-button>
 		</view>
+
+		<view class="topright">
+			<u-button color="#FFFFFF" openType="share"
+				customStyle="color:#191919;border-radius:6px; width: 40px;height: 30px;">
+				<uni-icons type="paperplane-filled" size="25"></uni-icons>
+			</u-button>
+		</view>
+
 
 		<view style="background-color: #FFFFFF; padding-bottom: 10px; border-radius:15px">
 			<view class="center">
@@ -231,8 +240,8 @@
 	export default {
 		data() {
 			return {
-				bgImg:'https://pic-common-1258999491.cos.ap-nanjing.myqcloud.com/942e904ffb6ec20dd202b1bee234cfe.png',
-				selectedbgImgPath:'',
+				bgImg: 'https://pic-common-1258999491.cos.ap-nanjing.myqcloud.com/942e904ffb6ec20dd202b1bee234cfe.png',
+				selectedbgImgPath: '',
 				loadMoreStatus: 'loading',
 				userId: '',
 				username: '',
@@ -330,7 +339,6 @@
 				}
 			},
 			follow() {
-				onFeedTap()
 				let pherId = this.userId;
 				this.isFollow = !this.isFollow;
 				let deleted = 0;
@@ -465,10 +473,16 @@
 </script>
 
 <style lang="scss" scoped>
+	.topleft {
+		position: absolute;
+		top: 145px;
+		left: 20px;
+		font-size: 15px;
+	}
 	.topright {
 		position: absolute;
-		top: 150px;
-		right: 16px;
+		top: 145px;
+		right: 20px;
 		font-size: 15px;
 	}
 

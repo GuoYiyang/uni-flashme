@@ -2,10 +2,16 @@
 /* 水平间距 */
 /* 水平间距 */
 /* uni.scss */
+.topleft.data-v-4189eb86 {
+  position: absolute;
+  top: 145px;
+  left: 20px;
+  font-size: 15px;
+}
 .topright.data-v-4189eb86 {
   position: absolute;
-  top: 150px;
-  right: 16px;
+  top: 145px;
+  right: 20px;
   font-size: 15px;
 }
 .center.data-v-4189eb86 {

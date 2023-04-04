@@ -2,14 +2,14 @@
   "pages": [
     "pages/index/index",
     "pages/explore/explore",
-    "pages/collect/collect",
+    "pages/product/collect",
     "pages/product/product",
     "pages/product/filterProduct",
-    "pages/editUserInfo/editUserInfo",
+    "pages/homePage/editUserInfo",
     "pages/publish/publish",
-    "pages/myProduct/myProduct",
-    "pages/policyDoc/policyDoc",
-    "pages/feedback/feedback",
+    "pages/product/myProduct",
+    "pages/homePage/policyDoc",
+    "pages/homePage/feedback",
     "pages/homePage/homePage",
     "pages/search/search",
     "pages/userShow/userShow",
@@ -54,7 +54,7 @@
       {
         "iconPath": "static/heart.png",
         "selectedIconPath": "static/heart-fill.png",
-        "pagePath": "pages/collect/collect"
+        "pagePath": "pages/product/collect"
       },
       {
         "iconPath": "static/user.png",

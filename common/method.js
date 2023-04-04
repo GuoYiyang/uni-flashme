@@ -1,22 +1,3 @@
-export function onFeedTap() {
-	
-	let platform=uni.getSystemInfoSync().platform
-	// #ifdef APP-PLUS
-	if (platform == "ios") {
-		let UIImpactFeedbackGenerator = plus.ios.importClass('UIImpactFeedbackGenerator');
-		let impact = new UIImpactFeedbackGenerator();
-		impact.prepare();
-		impact.init(1);
-		impact.impactOccurred();
-		console.log('feedTap ios')
-	}
-	if (platform == "android") {
-		uni.vibrateShort();
-		console.log('feedTap android')
-	}
-	// #endif
-}
-
 export function changeProductStatus(index) {
 	if (index == 'REVIEW') {
 		return "审核中"

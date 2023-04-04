@@ -1,9 +1,9 @@
 <template>
 	<view v-if="userInfo.role != ''">
-		<view  style="padding: 20px 36px 20px 36px;">
+		<view style="padding: 20px 36px 20px 36px;">
 			<u-row>
 				<u-col span="3">
-					<u-avatar :src="userInfo.avatar" size="60">
+					<u-avatar :src="userInfo.avatar" size="60" @click="clickAvatar">
 					</u-avatar>
 				</u-col>
 				<u-col span="8">
@@ -118,6 +118,13 @@
 			}
 		},
 		methods: {
+			clickAvatar(){
+				if (this.isPher) {
+					uni.navigateTo({
+						url: '/pages/userShow/userShow?userId=' + this.userId
+					})
+				}
+			},
 			toAudit() {
 				uni.navigateTo({
 					url: '/pages/audit/audit'
@@ -131,7 +138,7 @@
 				}
 				if (item == 1) {
 					uni.navigateTo({
-						url: '/pages/myProduct/myProduct'
+						url: '/pages/product/myProduct'
 					})
 				}
 				if (item == 2) {
@@ -164,23 +171,31 @@
 				}
 				if (item == 3) {
 					uni.navigateTo({
-						url: '/pages/feedback/feedback'
+						url: '/pages/homePage/feedback'
 					})
 				}
 			},
 			editClick() {
 				uni.navigateTo({
-					url: '../editUserInfo/editUserInfo'
+					url: '/pages/homePage/editUserInfo'
 				})
 			},
 			toUserShow() {
 				uni.navigateTo({
-					url: '../userShow/userShow?userId=' + this.userId
+					url: '/pages/userShow/userShow?userId=' + this.userId
 				})
 			},
 		},
 		async onLoad() {
 			await this.$onLaunched;
+			uni.authorize({
+				scope: 'scope.userInfo',
+				success() {
+					uni.getUserInfo({
+
+					})
+				}
+			})
 			uni.showNavigationBarLoading()
 			this.userId = getApp().globalData.USER_ID;
 			this.username = getApp().globalData.USER_NAME;

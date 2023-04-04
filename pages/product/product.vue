@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view v-if = "this.cameramanAvatar != ''">
 		<view>
 			<u-swiper :list="imgUrlList" indicator imgMode="aspectFit" height="550" :autoplay="false" circular
 				@click="previewImg" bgColor="#ffffff" indicatorStyle="right: 20px"
@@ -336,17 +336,6 @@
 				uni.navigateTo({
 					url: '../userShow/userShow?userId=' + this.cameramanId
 				})
-			},
-			tabsChange(index) {
-				this.tabsCurrent = index.index;
-				if (index.index == 0) {
-					this.productDetailShow = true;
-					this.productCustomerShow = false;
-				}
-				if (index.index == 1) {
-					this.productDetailShow = false;
-					this.productCustomerShow = true;
-				}
 			},
 			collectClick() {
 				this.isCollect = !this.isCollect;
