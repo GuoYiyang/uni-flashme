@@ -63,6 +63,8 @@
 				selectedProductId: '',
 				popShow: false,
 				popList: [{
+					name: '编辑'
+				}, {
 					name: '删除'
 				}],
 				page: 1,
@@ -89,12 +91,19 @@
 				this.tabsCurrent = index.index;
 				if (index.index == 0) {
 					this.publishStatus = 'SUCCESS'
+					if (this.popList.length == 1) {
+						this.popList.splice(0, 0, {name: '编辑'})
+					}
 				}
 				if (index.index == 1) {
 					this.publishStatus = 'REVIEW'
+					if (this.popList.length == 1) {
+						this.popList.splice(0, 0, {name: '编辑'})
+					}
 				}
 				if (index.index == 2) {
 					this.publishStatus = 'REJECT'
+					this.popList.shift();
 				}
 				getProductPage({
 					userId: getApp().globalData.USER_ID,
@@ -115,6 +124,11 @@
 				if ("删除" == item.name) {
 					this.delete();
 				}
+				if ("编辑" == item.name) {
+					uni.navigateTo({
+						url: '/pages/product/editProduct?id=' + this.selectedProductId
+					})
+				}
 			},
 			delete() {
 				deleteProduct({
@@ -132,6 +146,12 @@
 						})
 					}
 				})
+				this.product.list.map((item, i)=>{
+					if (item.id == this.selectedProductId) {
+						this.product.list.splice(i, 1)
+					}
+				})
+				this.$refs.waterfallsFlowRef.refresh();
 			},
 			wapperClick(item) {
 				this.selectedProductId = item.id;
@@ -167,6 +187,9 @@
 					this.loadMoreStatus = 'nomore';
 				}
 			})
+			if (this.publishStatus == 'REJECT') {
+				this.popList.shift();
+			}
 		},
 		onReachBottom() {
 			this.loadMoreStatus = 'loading';

@@ -143,7 +143,7 @@ export function uploadImages(req) {
 
 
 // 发布产品
-export function publishProduct(req) {
+export function publishProduct(req) { 
 	return uni.request({
 		url: baseUrl + '/product/publish',
 		method: "POST",
@@ -151,6 +151,7 @@ export function publishProduct(req) {
 			"X-USER-ID": getApp().globalData.USER_ID
 		},
 		data: {
+			id: req.id == null ? null : req.id,
 			userId: req.userId,
 			title: req.title,
 			content: req.content,

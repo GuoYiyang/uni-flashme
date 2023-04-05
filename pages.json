@@ -218,6 +218,15 @@
 			"navigationBarTitleText": "搜索摄影师",
 			"enablePullDownRefresh": false
 		}
-	}]
+	}    ,{
+            "path" : "pages/product/editProduct",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "编辑作品",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ]
 
 }

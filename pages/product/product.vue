@@ -379,7 +379,14 @@
 				uni.setNavigationBarTitle({
 					title: this.title
 				});
-
+				if (success.data.status != "SUCCESS") {
+					uni.hideShareMenu()
+				} else {
+					uni.showShareMenu({
+						withShareTicket: true,
+						menus: ["shareAppMessage", "shareTimeline"]
+					});
+				}
 				let content = JSON.parse(success.data.userId);
 				this.info = content.info;
 				this.introduction = content.introduction;
@@ -455,10 +462,7 @@
 				let [error, success] = res;
 				this.collectCnt = success.data;
 			})
-			uni.showShareMenu({
-				withShareTicket: true,
-				menus: ["shareAppMessage", "shareTimeline"]
-			});
+
 		},
 		onShow() {
 			this.tabsCurrent = 0;
@@ -467,7 +471,7 @@
 		},
 		onShareAppMessage(res) {
 			return {
-				title: this.title,
+				title: "我分享了一个作品,快来看看吧",
 				path: '/pages/product/product?id=' + this.productId
 			};
 		}
