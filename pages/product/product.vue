@@ -94,7 +94,7 @@
 
 						<view style="margin: 20px 0 20px 0;">
 							<u-scroll-list :indicator="false">
-								<view v-if="planList== [] || planList.length == 0" @click="addPlan"
+								<view v-if="planList== [] || planList.length == 0"
 									style="margin: 5px; height: 360px;width:240px;background: #F8F9FA;box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);border-radius: 12px;">
 									<view
 										style="height: 100%;flex: auto;display:flex;flex-direction:column;justify-content:center;align-items: center;">
@@ -107,7 +107,7 @@
 
 								<view v-if="planList.length > 0" v-for="(item, index) in planList" :key="index"
 									style="margin: 5px;">
-									<view @click="clickPlan(item.planId)"
+									<view
 										style="padding: 20px 20px 20px 20px; margin: 5px;width: 240px;height: 360px;background: #F8F9FA;box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);border-radius: 12px;">
 
 										<view style="font-size: 14px;color: #191919;">
@@ -174,7 +174,7 @@
 							拍摄须知
 						</view>
 						<view style="margin: 20px 0 20px 0;">
-							<view v-if="notice==null || notice == ''" @click="addNotice"
+							<view v-if="notice==null || notice == ''"
 								style="height: 200px;background-color: #F8F9FA;">
 								<view
 									style="height: 100%;flex: auto;display:flex;flex-direction:column;justify-content:center;align-items: center;">

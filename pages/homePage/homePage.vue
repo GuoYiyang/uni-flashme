@@ -1,6 +1,6 @@
 <template>
 	<view v-if="userInfo.role != ''">
-		<view style="padding: 20px 36px 20px 36px;">
+		<view style="margin: 20px 36px 20px 36px;">
 			<u-row>
 				<u-col span="3">
 					<u-avatar :src="userInfo.avatar" size="60" @click="clickAvatar">
@@ -50,9 +50,9 @@
 				</u-grid>
 			</view>
 		</view>
-		<view v-if="isAdmin">
+		<view style="margin: 16px;background-color:#FFFFFF;border-radius: 10px" v-if="isAdmin">
 			<u-button color="#3D6EC2"
-				customStyle="border-radius:10px;width:300px;height:42px;font-weight:500;font-size:16px;line-height:16px;color:#FFFFFF;"
+				customStyle="border-radius:10px;height:42px;font-weight:500;font-size:16px;line-height:16px;color:#FFFFFF;"
 				@click="toAudit">待审核</u-button>
 		</view>
 

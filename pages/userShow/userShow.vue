@@ -2,16 +2,15 @@
 	<view>
 		<image :src="bgImg" style="margin-bottom: -40px; height: 130px; width: 100%;"></image>
 
-		<view class="topleft">
-			<u-button color="#FFFFFF" @click="follow" :text="isFollow ? '已关注': '+ 关注'"
-				customStyle="border-color:#191919;color:#191919; border-radius:6px; width: 70px;height: 28px;">
-			</u-button>
-		</view>
-
 		<view class="topright">
+			
+			<u-button color="#FFFFFF" @click="follow"
+				customStyle="color:#191919;border-radius:6px; width: 40px;height: 30px;">
+				<uni-icons :type="isFollow ? 'auth': 'personadd'" size="30" :color="isFollow ? '#808080': '#191919'"></uni-icons>
+			</u-button>
 			<u-button color="#FFFFFF" openType="share"
 				customStyle="color:#191919;border-radius:6px; width: 40px;height: 30px;">
-				<uni-icons type="paperplane-filled" size="25"></uni-icons>
+				<uni-icons type="paperplane-filled" size="30"></uni-icons>
 			</u-button>
 		</view>
 
@@ -473,13 +472,9 @@
 </script>
 
 <style lang="scss" scoped>
-	.topleft {
-		position: absolute;
-		top: 145px;
-		left: 20px;
-		font-size: 15px;
-	}
 	.topright {
+		display: flex;
+		flex-direction: row;
 		position: absolute;
 		top: 145px;
 		right: 20px;
