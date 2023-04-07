@@ -227,6 +227,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/product/set",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "作品集",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ]
 
 }

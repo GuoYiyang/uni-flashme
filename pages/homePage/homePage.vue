@@ -10,6 +10,10 @@
 					<text style="font-weight: 600;font-size: 20px;line-height: 25px;color: #191919;">
 						{{userInfo.username}}
 					</text>
+					<view style="margin: 8px;"></view>
+					<u-row>
+						<text style="font-weight: 400;font-size: 12px;color: #3D6EC2;;" @click="toUserShow">查看个人主页></text>
+					</u-row>
 				</u-col>
 				<u-col span="1">
 					<uni-icons type="compose" size="25" @click="editClick"></uni-icons>
@@ -85,7 +89,7 @@
 					},
 					{
 						name: '/static/usershow.png',
-						title: '查看主页'
+						title: '作品集'
 					}
 				],
 				userList: [{
@@ -148,7 +152,7 @@
 				}
 				if (item == 3) {
 					uni.navigateTo({
-						url: '/pages/userShow/userShow?userId=' + this.userId
+						url: '/pages/product/set'
 					})
 				}
 			},

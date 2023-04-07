@@ -23,7 +23,8 @@ export function getProductPage(req) {
 	let tag = req.tag == null ? "" : req.tag;
 	let query = req.query == null ? "" : req.query;
 	let status = req.status == null ? "" : req.status;
-	let excludeProductId = req.excludeProductId == null ? '' : req.excludeProductId
+	let excludeProductId = req.excludeProductId == null ? '' : req.excludeProductId;
+	let setId = req.setId == null ? '' : req.setId;
 	return uni.request({
 		url: baseUrl + '/product/page',
 		method: "GET",
@@ -38,7 +39,8 @@ export function getProductPage(req) {
 			page: req.page,
 			pageSize: req.pageSize,
 			status: status,
-			excludeProductId: excludeProductId
+			excludeProductId: excludeProductId,
+			setId: setId
 		}
 	});
 }
@@ -157,7 +159,8 @@ export function publishProduct(req) {
 			content: req.content,
 			tags: req.tags,
 			price: req.price,
-			imageJson: req.imageJson
+			imageJson: req.imageJson,
+			setId:req.setId
 		}
 	});
 }

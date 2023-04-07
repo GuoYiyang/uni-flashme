@@ -9,10 +9,18 @@
 				</u-tabs>
 			</view>
 		</u-sticky>
+		
+		<view style="margin: 0 10px 0 10px;">
+			<u-tabs :list="setList" lineWidth="40" lineHeight="0" lineColor="#191919"
+				:activeStyle="{color: '#191919',fontWeight: 'bold', transform: 'scale(1)'}"
+				:inactiveStyle="{color: '#808080',transform: 'scale(1)'}" :current="setCurrent"
+				:duration="100" @change="setChange">
+			</u-tabs>
+		</view>
 
 		<view style="padding: 14px 10px 0 10px;">
 			<custom-waterfalls-flow :value="product.list" :column="2" :columnSpace="1" @imageClick="imageClick"
-				@wapperClick="wapperClick" ref="waterfallsFlowRef" @loaded="waterfallsLoaded">
+				@wapperClick="wapperClick" ref="waterfallsFlowRef">
 				<view style="padding: 5px;" v-for="(item,index) in product.list" :key="index" slot="slot{{index}}">
 					<view style="font-weight: 600;font-size: 15px;line-height: 20px;padding: 6px 6px 6px 6px">
 						{{item.title}}
@@ -24,19 +32,17 @@
 			</custom-waterfalls-flow>
 		</view>
 
-		<!-- 		<u-popup :show="popShow" @close="this.popShow=false" :round="10">
-			<view>
-				<u-button @click="deleteProduct">删除</u-button>
-			</view>
-		</u-popup> -->
 
 		<view>
 			<u-action-sheet :actions="popList" @select="selectClick" :show="popShow" cancelText="取消"
 				@close="this.popShow=false" :closeOnClickOverlay="true" :closeOnClickAction="true"
 				:safeAreaInsetBottom="true"></u-action-sheet>
 		</view>
+		
+		<uni-fab horizontal="right"  @fabClick="fabClick" :pattern="fabStyle" :popMenu="false">
+			作品集
+		</uni-fab>
 
-		<!-- <uni-fab horizontal="right" :popMenu="false" @fabClick="buttonClick" :pattern="{buttonColor: '#000000'}" /> -->
 
 		<u-overlay :show="overlayShow"></u-overlay>
 
@@ -55,6 +61,11 @@
 	import {
 		changeProductStatus
 	} from '@/common/method.js'
+	import {
+		createSet,
+		deleteSet,
+		getSetList
+	} from '@/api/set.js'
 	export default {
 		data() {
 			return {
@@ -62,6 +73,7 @@
 				productStatus: '',
 				selectedProductId: '',
 				popShow: false,
+				showSet:false,
 				popList: [{
 					name: '编辑'
 				}, {
@@ -81,24 +93,54 @@
 				}],
 				tabsCurrent: 0,
 				publishStatus: 'SUCCESS',
-				loadMoreStatus: 'loading'
+				loadMoreStatus: 'loading',
+				fabStyle: {
+					buttonColor: '#191919',
+					icon: 'more-filled'
+				},
+				setCurrent:0,
+				setId:'',
+				setList:[{
+					id:"",
+					name:"全部"
+				}]
 			}
 		},
 		methods: {
-			waterfallsLoaded() {},
+			setChange(index){
+				this.setCurrent = index.index
+				this.setId = index.id
+				let _this = this;
+				getProductPage({
+					userId: getApp().globalData.USER_ID,
+					status: this.publishStatus,
+					setId: index.id,
+					page: 1,
+					pageSize: this.pageSize,
+				}).then((res) => {
+					let [error, success] = res;
+					if (success.data.length == 0) {}
+					_this.product.list = success.data;
+					_this.$refs.waterfallsFlowRef.refresh();
+				})
+			},
 			tabsChange(index) {
 				let _this = this;
 				this.tabsCurrent = index.index;
 				if (index.index == 0) {
 					this.publishStatus = 'SUCCESS'
 					if (this.popList.length == 1) {
-						this.popList.splice(0, 0, {name: '编辑'})
+						this.popList.splice(0, 0, {
+							name: '编辑'
+						})
 					}
 				}
 				if (index.index == 1) {
 					this.publishStatus = 'REVIEW'
 					if (this.popList.length == 1) {
-						this.popList.splice(0, 0, {name: '编辑'})
+						this.popList.splice(0, 0, {
+							name: '编辑'
+						})
 					}
 				}
 				if (index.index == 2) {
@@ -108,6 +150,7 @@
 				getProductPage({
 					userId: getApp().globalData.USER_ID,
 					status: this.publishStatus,
+					setId: this.setId,
 					page: 1,
 					pageSize: this.pageSize,
 				}).then((res) => {
@@ -146,7 +189,7 @@
 						})
 					}
 				})
-				this.product.list.map((item, i)=>{
+				this.product.list.map((item, i) => {
 					if (item.id == this.selectedProductId) {
 						this.product.list.splice(i, 1)
 					}
@@ -173,6 +216,10 @@
 		},
 		onLoad: function(param) {
 			uni.showNavigationBarLoading()
+			getSetList().then(res=>{
+				let [error, success] = res;
+				this.setList = this.setList.concat(success.data)
+			})
 			this.page = 1;
 			let _this = this;
 			getProductPage({
@@ -187,9 +234,7 @@
 					this.loadMoreStatus = 'nomore';
 				}
 			})
-			if (this.publishStatus == 'REJECT') {
-				this.popList.shift();
-			}
+			
 		},
 		onReachBottom() {
 			this.loadMoreStatus = 'loading';

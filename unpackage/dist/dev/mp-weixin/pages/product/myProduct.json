@@ -7,6 +7,7 @@
     "custom-waterfalls-flow": "/uni_modules/custom-waterfalls-flow/components/custom-waterfalls-flow/custom-waterfalls-flow",
     "uni-icons": "/uni_modules/uni-icons/components/uni-icons/uni-icons",
     "u-action-sheet": "/uni_modules/uview-ui/components/u-action-sheet/u-action-sheet",
+    "uni-fab": "/uni_modules/uni-fab/components/uni-fab/uni-fab",
     "u-overlay": "/uni_modules/uview-ui/components/u-overlay/u-overlay",
     "u-loadmore": "/uni_modules/uview-ui/components/u-loadmore/u-loadmore"
   }

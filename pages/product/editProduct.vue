@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view>
-<!-- 			<view style="background-color: #FFFFFF;border-radius: 10px">
+			<!-- 			<view style="background-color: #FFFFFF;border-radius: 10px">
 				<view style="padding: 18px 16px 18px 16px; color: #808080;">上传作品，最多选择9张照片</view>
 				<view style="padding: 0px 16px 16px 16px; margin-bottom: 12px;">
 					<uni-file-picker :value="imageValue" limit="9" mode="grid" file-mediatype="image" :sizeType='["compressed"]'
@@ -9,7 +9,7 @@
 					</uni-file-picker>
 				</view>
 			</view> -->
-		
+
 			<view style="padding: 6px 26px 6px 26px; border-radius: 10px; background-color: #FFFFFF;">
 				<u--form labelPosition="top" :rules="rules" ref="Form" :model="form"
 					:labelStyle="{'font-weight':300,'font-size':'14px','line-height':'16px','color':'#808080'}">
@@ -21,12 +21,20 @@
 						</u--input>
 						<u-icon slot="right" name="arrow-right"></u-icon>
 					</u-form-item>
+					<u-form-item labelWidth="100px" label="作品集" prop="set" @click="showSet = true;">
+						<u--input readonly v-model="form.setText" placeholder="请选择作品集" border="none">
+						</u--input>
+						<u-icon slot="right" name="arrow-right"></u-icon>
+					</u-form-item>
 				</u--form>
 				<u-picker :show="showCate" :columns="cateList" @confirm="cateSelect" keyName="text"
 					@cancel="showCate = false">
 				</u-picker>
+				<u-picker :show="showSet" :columns="setList" @confirm="setSelect" keyName="name"
+					@cancel="showSet = false">
+				</u-picker>
 			</view>
-		
+
 			<view style="padding:40px 36px 40px 36px">
 				<u-button @click="submit" color="#3D6EC2"
 					customStyle="border-radius:10px;height:42px;font-weight:500;font-size:16px;line-height:16px;color:#FFFFFF;">
@@ -45,17 +53,25 @@
 	import {
 		changeTag
 	} from '@/common/method.js'
+	import {
+		createSet,
+		deleteSet,
+		getSetList
+	} from '@/api/set.js'
 	export default {
 		data() {
 			return {
-				productId:'',
+				productId: '',
 				overlayShow: false,
 				tempFiles: [],
-				imageValue:[],
+				imageValue: [],
+				showSet: false,
 				form: {
 					title: '',
 					tag: '',
 					tagText: '',
+					set:'',
+					setText:'',
 					price: '',
 					content: {}
 				},
@@ -70,6 +86,9 @@
 					}
 				},
 				showCate: false,
+				setList: [
+					[]
+				],
 				cateList: [
 					[{
 						text: '写真',
@@ -112,6 +131,11 @@
 				this.form.tagText = e.value[0].text
 				this.showCate = false;
 			},
+			setSelect(e) {
+				this.form.set = e.value[0].id
+				this.form.setText = e.value[0].name
+				this.showSet = false;
+			},
 			seleteImage(e) {
 				e.tempFiles.map(item => {
 					this.tempFiles.push(item)
@@ -130,7 +154,8 @@
 					userId: getApp().globalData.USER_ID,
 					title: this.form.title,
 					content: JSON.stringify(this.form.content),
-					tags: this.form.tag.toString()
+					tags: this.form.tag.toString(),
+					setId: this.form.set
 				}).then((res) => {
 					let [error, success] = res;
 					if (success.data == true) {
@@ -163,7 +188,7 @@
 					})
 				})
 			}
-			
+
 		},
 		onLoad(param) {
 			this.productId = param.id;
@@ -175,16 +200,21 @@
 				this.form.title = success.data.title;
 				this.form.tag = success.data.tags;
 				this.form.tagText = changeTag(success.data.tags);
-				success.data.imgUrlList.map(item=>{
+				this.form.set = success.data.setId;
+				this.form.setText = success.data.setText;
+				success.data.imgUrlList.map(item => {
 					var ext = item.split(".");
 					let image = {
-						"name":item,
-						"extname":ext[ext.length - 1],
-						"url":item
+						"name": item,
+						"extname": ext[ext.length - 1],
+						"url": item
 					}
 					this.imageValue.push(image);
 				})
-				 
+			})
+			getSetList().then(res => {
+				let [error, success] = res;
+				this.setList[0] = success.data
 			})
 		}
 	}

@@ -21,9 +21,17 @@
 						</u--input>
 						<u-icon slot="right" name="arrow-right"></u-icon>
 					</u-form-item>
+					<u-form-item labelWidth="100px" label="作品集" prop="set" @click="showSet = true;">
+						<u--input readonly v-model="form.setText" placeholder="请选择作品集" border="none">
+						</u--input>
+						<u-icon slot="right" name="arrow-right"></u-icon>
+					</u-form-item>
 				</u--form>
 				<u-picker :show="showCate" :columns="cateList" @confirm="cateSelect" keyName="text"
 					@cancel="showCate = false">
+				</u-picker>
+				<u-picker :show="showSet" :columns="setList" @confirm="setSelect" keyName="name"
+					@cancel="showSet = false">
 				</u-picker>
 			</view>
 
@@ -47,16 +55,24 @@
 		uploadImages,
 		publishProduct
 	} from '@/api/product.js'
+	import {
+		createSet,
+		deleteSet,
+		getSetList
+	} from '@/api/set.js'
 	import upload from '../../uni_modules/uview-ui/libs/config/props/upload';
 	export default {
 		data() {
 			return {
 				overlayShow: false,
 				tempFiles: [],
+				showSet: false,
 				form: {
 					title: '',
 					tag: '',
 					tagText: '',
+					set: '',
+					setText: '',
 					price: '',
 					content: {}
 				},
@@ -71,6 +87,9 @@
 					}
 				},
 				showCate: false,
+				setList: [
+					[]
+				],
 				cateList: [
 					[{
 						text: '写真',
@@ -108,6 +127,11 @@
 			}
 		},
 		methods: {
+			setSelect(e) {
+				this.form.set = e.value[0].id
+				this.form.setText = e.value[0].name
+				this.showSet = false;
+			},
 			cateSelect(e) {
 				this.form.tag = e.value[0].value
 				this.form.tagText = e.value[0].text
@@ -137,7 +161,8 @@
 					content: JSON.stringify(this.form.content),
 					tags: this.form.tag.toString(),
 					price: this.form.price,
-					imageJson: JSON.stringify(this.tempFiles)
+					imageJson: JSON.stringify(this.tempFiles),
+					set: this.form.set
 				}).then((res) => {
 					let [error, success] = res;
 					setTimeout(function() {
@@ -183,6 +208,10 @@
 		},
 		onLoad() {
 			this.$refs.Form.setRules(this.rules)
+			getSetList().then(res => {
+				let [error, success] = res;
+				this.setList[0] = success.data
+			})
 		}
 	}
 </script>

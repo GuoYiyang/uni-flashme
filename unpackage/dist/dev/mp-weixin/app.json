@@ -25,7 +25,8 @@
     "pages/becomePher/step5",
     "pages/plan/editNotice",
     "pages/explore/filterExplore",
-    "pages/product/editProduct"
+    "pages/product/editProduct",
+    "pages/product/set"
   ],
   "subPackages": [],
   "window": {
