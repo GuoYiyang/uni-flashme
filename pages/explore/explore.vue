@@ -5,13 +5,13 @@
 				<view @click="clickPherCard(item.userVo.id)"
 					style="background: #FFFFFF;border-radius: 8px; padding: 20px 18px 10px 18px;">
 					<u-row>
-						<u-col span="2.5">
-							<u-avatar :src="item.userVo.avatar" size='60'></u-avatar>
+						<u-col span="2">
+							<u-avatar :src="item.userVo.avatar" size='46'></u-avatar>
 						</u-col>
-						<u-col span="8.5">
+						<u-col span="9.5">
 							<u-row>
 								<text
-									style="font-weight: 600;font-size: 16px;color: #191919;">{{item.userVo.nickname}}</text>
+									style="font-weight: 550;font-size: 14px;color: #191919;">{{item.userVo.nickname}}</text>
 							</u-row>
 							<view style="margin: 8px;"></view>
 							<u-row>
@@ -19,7 +19,7 @@
 									style="font-weight: 300;font-size: 12px;color: #808080;">{{item.userVo.desc.whatsup}}</text>
 							</u-row>
 						</u-col>
-						<u-col span="1">
+						<u-col span="0.5">
 							<u-icon name="arrow-right"></u-icon>
 						</u-col>
 					</u-row>
@@ -28,7 +28,7 @@
 					<u-scroll-list :indicator="false">
 						<view style="margin-left: 10px;"></view>
 						<view v-for="(product, index) in item.productVOS" :key="product.id" style="padding: 4px;">
-							<image :src="product.image" mode="aspectFill" style="height: 200px; width: 150px;border-radius: 8px;"
+							<image :src="product.image" mode="aspectFill" style="height: 168px; width: 126px;border-radius: 4px;"
 								@click="clickSwiper(product)"></image>
 						</view>
 					</u-scroll-list>

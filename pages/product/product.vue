@@ -74,7 +74,7 @@
 			<u-scroll-list indicatorActiveColor="#000000">
 				<view style="margin-left: 10px;"></view>
 				<view v-for="(item, index) in other.list" :key="index" style="padding: 4px;">
-					<image :src="item.image" mode="aspectFill" style="height: 200px; width: 150px;border-radius: 8px;"
+					<image :src="item.image" mode="aspectFill" style="height: 168px; width: 126px;border-radius: 4px;"
 						@click="clickSwiper(item)"></image>
 				</view>
 			</u-scroll-list>

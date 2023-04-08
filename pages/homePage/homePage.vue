@@ -102,7 +102,7 @@
 					},
 					{
 						name: '/static/photocall.png',
-						title: '关于PhotoCall'
+						title: '关于FlashMe'
 					},
 					{
 						name: '/static/feedback.png',

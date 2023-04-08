@@ -5,12 +5,13 @@
 		<view class="topright">
 			
 			<u-button color="#FFFFFF" @click="follow"
-				customStyle="color:#191919;border-radius:6px; width: 40px;height: 30px;">
-				<uni-icons :type="isFollow ? 'auth': 'personadd'" size="30" :color="isFollow ? '#808080': '#191919'"></uni-icons>
+				customStyle="width: 45px;height: 30px;background: #FFFFFF;border: 1px solid #E6E6E6;border-radius: 30px;">
+				<uni-icons :type="isFollow ? 'auth': 'personadd'" size="25" :color="isFollow ? '#808080': '#191919'"></uni-icons>
 			</u-button>
+			<view style="margin: 0 5px 0 0;"></view>
 			<u-button color="#FFFFFF" openType="share"
-				customStyle="color:#191919;border-radius:6px; width: 40px;height: 30px;">
-				<uni-icons type="paperplane-filled" size="30"></uni-icons>
+				customStyle="width: 45px;height: 30px;background: #FFFFFF;border: 1px solid #E6E6E6;border-radius: 30px;">
+				<uni-icons type="paperplane-filled" size="25"></uni-icons>
 			</u-button>
 		</view>
 
@@ -46,18 +47,14 @@
 			</view>
 		</view>
 
-		<view style="background-color: #F7F9FB; margin-top: 20px; border-radius:15px 15px 0 0;">
-			<!-- 			<view style="background-color: #FFFFFF; padding: 6px;">
-				<u-tabs :list="tabsList" lineWidth="30" lineHeight="3" lineColor="#000000" :activeStyle="{
-					        color: '#303133',
-					        fontWeight: 'bold',
-					        transform: 'scale(1)'
-					    }" :inactiveStyle="{
-					        color: '#606266',
-					        transform: 'scale(1)'
-					    }" itemStyle="padding-left: 15px; padding-right: 15px; height: 34px;" @change="tabsChange" :duration="100">
+		<view style="background-color: #F7F9FB; margin-top: 10px; border-radius:15px 15px 0 0;">
+			<view style="margin: 0 10px 0 10px;">
+				<u-tabs :list="setList" lineWidth="40" lineHeight="0" lineColor="#191919"
+					:activeStyle="{color: '#191919',fontWeight: 'bold', transform: 'scale(1)'}"
+					:inactiveStyle="{color: '#808080',transform: 'scale(1)'}" :current="setCurrent"
+					:duration="100" @change="setChange">
 				</u-tabs>
-			</view> -->
+			</view>
 			<view style="padding: 0px 10px 0 10px;">
 				<custom-waterfalls-flow :value="product.list" :column="2" :columnSpace="1" @imageClick="imageClick"
 					@wapperClick="wapperClick" ref="waterfallsFlowRef">
@@ -236,6 +233,9 @@
 		changeSceneNum,
 		onFeedTap
 	} from '@/common/method.js'
+	import {
+		getSetList
+	} from '@/api/set.js'
 	export default {
 		data() {
 			return {
@@ -301,9 +301,36 @@
 				popDescShow: false,
 				notice: '',
 				planList: [],
+				setCurrent:0,
+				setId:'',
+				setList:[{
+					id:"",
+					name:"全部"
+				}]
 			}
 		},
 		methods: {
+			setChange(index){
+				this.loadMoreStatus = 'loading';
+				this.setCurrent = index.index
+				this.setId = index.id
+				let _this = this;
+				getProductPage({
+					userId: getApp().globalData.USER_ID,
+					status: "SUCCESS",
+					setId: index.id,
+					page: 1,
+					pageSize: this.pageSize,
+				}).then((res) => {
+					let [error, success] = res;
+					if (success.data.length == 0) {}
+					_this.product.list = success.data;
+					_this.$refs.waterfallsFlowRef.refresh();
+					if (success.data.length < 10) {
+						this.loadMoreStatus = 'nomore';
+					}
+				})
+			},
 			clickFastList(item) {
 				if (item == 0) {
 					this.popDescShow = true
@@ -402,6 +429,10 @@
 					title: this.username + "的主页"
 				});
 			});
+			getSetList().then(res=>{
+				let [error, success] = res;
+				this.setList = this.setList.concat(success.data)
+			})
 			getUserPlanList({
 				userId: this.userId
 			}).then(res => {

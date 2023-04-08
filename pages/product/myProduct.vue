@@ -39,9 +39,9 @@
 				:safeAreaInsetBottom="true"></u-action-sheet>
 		</view>
 		
-		<uni-fab horizontal="right"  @fabClick="fabClick" :pattern="fabStyle" :popMenu="false">
+<!-- 		<uni-fab horizontal="right"  @fabClick="fabClick" :pattern="fabStyle" :popMenu="false">
 			作品集
-		</uni-fab>
+		</uni-fab> -->
 
 
 		<u-overlay :show="overlayShow"></u-overlay>
