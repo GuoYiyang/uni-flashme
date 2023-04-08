@@ -25,7 +25,7 @@
 			<view>
 				<view style="margin: 40px 40px 20px 40px;">
 					<u--input placeholder="请输入作品集名称" inputAlign="center" shape="circle" v-model="setText"
-						maxlength=6 cursorSpacing="50px"></u--input>
+						maxlength=20 cursorSpacing="50px"></u--input>
 				</view>
 				<view style="font-size: 12px;line-height: 16px;text-align: center;color: #808080;">
 					已发布的作品将按照作品集进行分类展示

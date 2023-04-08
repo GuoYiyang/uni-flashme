@@ -255,6 +255,7 @@
 		},
 		onPullDownRefresh() {
 			this.page = 1;
+			this.setCurrent =0;
 			let _this = this;
 			getProductPage({
 				userId: getApp().globalData.USER_ID,
