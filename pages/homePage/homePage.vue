@@ -11,8 +11,9 @@
 						{{userInfo.username}}
 					</text>
 					<view style="margin: 8px;"></view>
-					<u-row>
-						<text style="font-weight: 400;font-size: 12px;color: #3D6EC2;;" @click="toUserShow">查看个人主页></text>
+					<u-row v-if="isPher">
+						<text style="font-weight: 400;font-size: 12px;color: #3D6EC2;;"
+							@click="toUserShow">查看个人主页></text>
 					</u-row>
 				</u-col>
 				<u-col span="1">
@@ -122,7 +123,7 @@
 			}
 		},
 		methods: {
-			clickAvatar(){
+			clickAvatar() {
 				if (this.isPher) {
 					uni.navigateTo({
 						url: '/pages/userShow/userShow?userId=' + this.userId
@@ -163,7 +164,7 @@
 					})
 				}
 				if (item == 1) {
-					if (this.role === 1) {
+					if (this.userInfo.role == 1) {
 						uni.navigateTo({
 							url: '/pages/becomePher/step1'
 						})
@@ -180,9 +181,21 @@
 				}
 			},
 			editClick() {
-				uni.navigateTo({
-					url: '/pages/homePage/editUserInfo'
+				uni.authorize({
+					scope: "scope.userInfo",
+					success() {
+						uni.navigateTo({
+							url: '/pages/homePage/editUserInfo'
+						})
+					},
+					fail() {
+						uni.showToast({
+							title:"请先授权",
+							icon: "error"
+						})
+					}
 				})
+
 			},
 			toUserShow() {
 				uni.navigateTo({
@@ -192,14 +205,6 @@
 		},
 		async onLoad() {
 			await this.$onLaunched;
-			uni.authorize({
-				scope: 'scope.userInfo',
-				success() {
-					uni.getUserInfo({
-
-					})
-				}
-			})
 			uni.showNavigationBarLoading()
 			this.userId = getApp().globalData.USER_ID;
 			this.username = getApp().globalData.USER_NAME;

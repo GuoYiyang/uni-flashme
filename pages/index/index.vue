@@ -1,5 +1,42 @@
 <template>
 	<view>
+		
+		<view @touchmove.stop.prevent="">
+			<u-popup :show="firstLogin" @close="this.firstLogin=false" round="10" :closeOnClickOverlay="false">
+				<view>
+					<view style="font-weight: 500;line-height: 20px;color: #191919; margin: 30px 0 30px 0;text-align: center;">
+						尊敬的FlashMe小程序用户
+					</view>
+					<view style="font-weight: 300;font-size: 12px;line-height: 17px;margin: 0 30px 0 30px;">
+						<text>
+							为了给你提供更好的服务，允许我们在必要场景下，合理使用你的个人信息，并充分保障你的合法权利。小程序将获取以下信息，用于相关功能：
+			
+							1. 获取手机号信息的用途：
+								· 用于帮助作品创作者和访客建立联系
+								· 用于系统判断用户是否为已认证创作者
+			
+							2. 获取头像昵称信息的用途：
+								· 用于注册和登录您的账号
+								· 用于在个人中心进行展示
+			
+							3. 获取照片或视频信息的用途：
+								· 用于创作者约拍时可以上传作品和发布作品
+								· 用于展示创作者的作品信息
+						</text>
+					</view>
+			
+					<view style="padding:40px 36px 20px 36px">
+						<u-button @click="agree" color="#3D6EC2"
+							customStyle="border-radius:10px;height:42px;font-weight:500;font-size:16px;line-height:16px;color:#FFFFFF;">
+							同意
+						</u-button>
+					</view>
+				</view>
+			
+			</u-popup>
+		</view>
+
+		
 		<image src="https://pic-common-1258999491.cos.ap-nanjing.myqcloud.com/69c44bef87cfecfa8b59140d1a5368b.jpg"
 			style="margin-bottom: -25px; height: 280px; width: 100%;"></image>
 		<view>
@@ -76,6 +113,8 @@
 	export default {
 		data() {
 			return {
+				userId:'',
+				firstLogin:false,
 				loadMoreStatus: 'loading',
 				cityPickerShow: false,
 				tagList: [{
@@ -128,6 +167,14 @@
 			}
 		},
 		methods: {
+			agree(){
+				this.firstLogin = false;
+			},
+			exit(){
+				uni.navigateTo({
+					
+				})
+			},
 			confirmCityPicker(item) {
 				this.city = item.value[0].value;
 				getApp().globalData.CITY = this.city
@@ -183,7 +230,9 @@
 		async onLoad() {
 			uni.showNavigationBarLoading()
 			await this.$onLaunched;
+			this.userId = getApp().globalData.USER_ID;
 			this.city = getApp().globalData.CITY;
+			this.firstLogin = getApp().globalData.FIRST_LOGIN;
 			this.cityName = changeCity(this.city);
 			productRandom({
 				city: this.city

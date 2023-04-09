@@ -8,6 +8,7 @@
 			USER_NAME: '',
 			AVATAR: '',
 			CITY:'0',
+			FIRST_LOGIN: false
 		},
 		methods: {},
 		onLaunch() {
@@ -24,6 +25,7 @@
 						if (success.data.city != null && success.data.city != '') {
 							_this.globalData.CITY = success.data.city;
 						}
+						_this.globalData.FIRST_LOGIN = success.data.firstLogin;
 						this.$isResolve()
 					})
 				}

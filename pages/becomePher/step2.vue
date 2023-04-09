@@ -289,13 +289,15 @@
 					_this.userInfo.sexText = "女"
 				}
 				_this.userInfo.cityText = changeCity(success.data.city);
-		
-				_this.userInfo.desc = success.data.desc;
-				let userDesc = JSON.parse(success.data.desc);
-				_this.userInfo.xiaohongshu = userDesc.xiaohongshu;
-				_this.userInfo.douyin = userDesc.douyin;
-				_this.userInfo.whatsup = userDesc.whatsup;
-				_this.userInfo.intro = userDesc.intro;
+				if (success.data.desc != null) {
+					_this.userInfo.desc = success.data.desc;
+					let userDesc = JSON.parse(success.data.desc);
+					_this.userInfo.wxid = userDesc.wxid;
+					_this.userInfo.xiaohongshu = userDesc.xiaohongshu;
+					_this.userInfo.douyin = userDesc.douyin;
+					_this.userInfo.whatsup = userDesc.whatsup;
+					_this.userInfo.intro = userDesc.intro;
+				}
 				
 				if (success.data.role == 0) {
 					_this.isAdmin = true;
