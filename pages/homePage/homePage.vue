@@ -181,21 +181,9 @@
 				}
 			},
 			editClick() {
-				uni.authorize({
-					scope: "scope.userInfo",
-					success() {
-						uni.navigateTo({
-							url: '/pages/homePage/editUserInfo'
-						})
-					},
-					fail() {
-						uni.showToast({
-							title:"请先授权",
-							icon: "error"
-						})
-					}
+				uni.navigateTo({
+					url: '/pages/homePage/editUserInfo'
 				})
-
 			},
 			toUserShow() {
 				uni.navigateTo({

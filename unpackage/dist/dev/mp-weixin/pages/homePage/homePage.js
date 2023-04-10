@@ -365,19 +365,8 @@ var _default = {
       }
     },
     editClick: function editClick() {
-      uni.authorize({
-        scope: "scope.userInfo",
-        success: function success() {
-          uni.navigateTo({
-            url: '/pages/homePage/editUserInfo'
-          });
-        },
-        fail: function fail() {
-          uni.showToast({
-            title: "请先授权",
-            icon: "error"
-          });
-        }
+      uni.navigateTo({
+        url: '/pages/homePage/editUserInfo'
       });
     },
     toUserShow: function toUserShow() {
