@@ -169,6 +169,7 @@
 		methods: {
 			agree(){
 				this.firstLogin = false;
+				getApp().globalData.FIRST_LOGIN = false;
 			},
 			exit(){
 				uni.navigateTo({
