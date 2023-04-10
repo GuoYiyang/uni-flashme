@@ -291,7 +291,7 @@
 				_this.userInfo.sex = success.data.gender;
 				_this.userInfo.avatar = success.data.avatar;
 				_this.avatar = success.data.avatar;
-				_this.userInfo.phone = success.data.phone;
+				_this.userInfo.phone = success.data.phone.replace(/(\d{3})\d{6}(\d{2})/,"$1****$2");
 				if (success.data.gender == 1) {
 					_this.userInfo.sexText = "男"
 				} else if (success.data.gender == 2) {
