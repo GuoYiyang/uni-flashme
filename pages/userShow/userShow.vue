@@ -316,7 +316,7 @@
 				this.setId = index.id
 				let _this = this;
 				getProductPage({
-					userId: getApp().globalData.USER_ID,
+					userId: this.userId,
 					status: "SUCCESS",
 					setId: index.id,
 					page: 1,
@@ -429,7 +429,9 @@
 					title: this.username + "的主页"
 				});
 			});
-			getSetList().then(res=>{
+			getSetList({
+				userId: this.userId
+			}).then(res=>{
 				let [error, success] = res;
 				this.setList = this.setList.concat(success.data)
 			})
