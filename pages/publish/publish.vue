@@ -208,7 +208,9 @@
 		},
 		onLoad() {
 			this.$refs.Form.setRules(this.rules)
-			getSetList().then(res => {
+			getSetList({
+				userId:getApp().globalData.USER_ID
+			}).then(res => {
 				let [error, success] = res;
 				this.setList[0] = success.data
 			})

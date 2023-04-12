@@ -1,5 +1,5 @@
 <template>
-	<view v-if = "this.cameramanAvatar != ''">
+	<view v-if = "this.imgUrlList.length != null">
 		<view>
 			<u-swiper :list="imgUrlList" indicator imgMode="aspectFit" height="550" :autoplay="false" circular
 				@click="previewImg" bgColor="#ffffff" indicatorStyle="right: 20px"

@@ -62,7 +62,9 @@
 				}).then(res => {
 					let [error, success] = res;
 					if (success.data == true) {
-						getSetList().then(res => {
+						getSetList({
+							userId: getApp().globalData.USER_ID
+						}).then(res => {
 							let [error, success] = res;
 							this.setList = success.data
 						})
@@ -92,7 +94,9 @@
 				}).then(res => {
 					let [error, success] = res;
 					if (success.data == true) {
-						getSetList().then(res => {
+						getSetList({
+							userId: getApp().globalData.USER_ID
+						}).then(res => {
 							let [error, success] = res;
 							this.setList = success.data
 						})
@@ -107,7 +111,9 @@
 		},
 		onLoad() {
 			let _this = this;
-			getSetList().then(res => {
+			getSetList({
+				userId: getApp().globalData.USER_ID
+			}).then(res => {
 				let [error, success] = res;
 				_this.setList = success.data
 			})

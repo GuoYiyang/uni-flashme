@@ -216,7 +216,9 @@
 		},
 		onLoad: function(param) {
 			uni.showNavigationBarLoading()
-			getSetList().then(res=>{
+			getSetList({
+				userId: getApp().globalData.USER_ID
+			}).then(res=>{
 				let [error, success] = res;
 				this.setList = this.setList.concat(success.data)
 			})
