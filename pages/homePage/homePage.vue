@@ -3,7 +3,7 @@
 		<view style="margin: 20px 36px 20px 36px;">
 			<u-row>
 				<u-col span="3">
-					<u-avatar :src="userInfo.avatar" size="60" @click="clickAvatar">
+					<u-avatar :src="userInfo.avatar" size="60" @click="clickAvatar" mode="aspectFill">
 					</u-avatar>
 				</u-col>
 				<u-col span="8">

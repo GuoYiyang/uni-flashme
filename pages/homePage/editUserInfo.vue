@@ -6,7 +6,7 @@
 					<view style="font-weight: 300;font-size: 14px;line-height: 16px;color: #808080;">头像</view>
 				</u-col>
 				<u-col span="2">
-					<u-avatar :src="avatar" @click="chooseAvatar" size="60px"></u-avatar>
+					<u-avatar :src="avatar" @click="chooseAvatar" size="60px" mode="aspectFill"></u-avatar>
 				</u-col>
 			</u-row>
 		</view>

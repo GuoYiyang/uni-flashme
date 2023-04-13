@@ -102,7 +102,7 @@
 						<u-icon name="plus" size="50px"></u-icon>
 						<view
 							style="font-weight: 400;font-size: 13px;line-height: 18px;text-align: center;color:#808080;">
-							开始创建您的第一个拍摄方案</view>
+							开始创建您的拍摄须知</view>
 					</view>
 				</view>
 				<view v-if="notice != null" @click="addNotice"

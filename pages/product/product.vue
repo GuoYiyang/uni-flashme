@@ -30,7 +30,7 @@
 			<view @click="clickCard" style="background: #FFFFFF;border-radius: 8px;padding: 20px 18px 20px 18px;">
 				<u-row>
 					<u-col span="2.5">
-						<u-avatar :src="cameramanAvatar" size='60'></u-avatar>
+						<u-avatar :src="cameramanAvatar" size='60' mode="aspectFill"></u-avatar>
 					</u-col>
 					<u-col span="8.5">
 						<u-row>
@@ -107,64 +107,63 @@
 
 								<view v-if="planList.length > 0" v-for="(item, index) in planList" :key="index"
 									style="margin: 5px;">
-									<view
-										style="padding: 20px 20px 20px 20px; margin: 5px;width: 240px;height: 360px;background: #F8F9FA;box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);border-radius: 12px;">
-
-										<view style="font-size: 14px;color: #191919;">
-											<u-row customStyle="padding-bottom:10px">
-												<u-col span="4">拍摄人数</u-col>
-												<u-col span="8">{{item.content.peopleNum}}</u-col>
+									<view 
+										style="padding: 28px 20px 28px 20px; margin: 8px;width: 212px;height: 336px;background: #F8F9FA;box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.20);border-radius: 10px;">
+										<view style="font-weight: 350;font-size: 14px;color: #4E4E4E;margin: 0px 8px 8px 8px;">
+											<u-row customStyle="padding-bottom:6px">
+												<u-col span="6">拍摄人数</u-col>
+												<u-col span="6">{{item.content.peopleNum}}</u-col>
 											</u-row>
-											<u-row customStyle="padding-bottom:10px">
-												<u-col span="4">拍摄张数</u-col>
-												<u-col span="8">{{item.content.photoCnt}}</u-col>
+											<u-row customStyle="padding-bottom:6px">
+												<u-col span="6">拍摄张数</u-col>
+												<u-col span="6">{{item.content.photoCnt}}</u-col>
 											</u-row>
-											<u-row customStyle="padding-bottom:10px">
-												<u-col span="4">精修张数</u-col>
-												<u-col span="8">{{item.content.jingxiuPhotoCnt}}</u-col>
+											<u-row customStyle="padding-bottom:6px">
+												<u-col span="6">精修张数</u-col>
+												<u-col span="6">{{item.content.jingxiuPhotoCnt}}</u-col>
 											</u-row>
-											<u-row customStyle="padding-bottom:10px">
-												<u-col span="4">底片赠送</u-col>
-												<u-col span="8">{{item.content.zengsongPhotoCnt}}</u-col>
+											<u-row customStyle="padding-bottom:6px">
+												<u-col span="6">底片赠送</u-col>
+												<u-col span="6">{{item.content.zengsongPhotoCnt}}</u-col>
 											</u-row>
-											<u-row customStyle="padding-bottom:10px">
-												<u-col span="4">拍摄场景</u-col>
-												<u-col span="8">{{item.content.scene}}</u-col>
+											<u-row customStyle="padding-bottom:6px">
+												<u-col span="6">拍摄场景</u-col>
+												<u-col span="6">{{item.content.scene}}</u-col>
 											</u-row>
-											<u-row customStyle="padding-bottom:10px">
-												<u-col span="4">场景数量</u-col>
-												<u-col span="8">{{item.content.sceneNum}}</u-col>
+											<u-row customStyle="padding-bottom:6px">
+												<u-col span="6">场景数量</u-col>
+												<u-col span="6">{{item.content.sceneNum}}</u-col>
 											</u-row>
-											<u-row customStyle="padding-bottom:10px">
-												<u-col span="4">设备型号</u-col>
-												<u-col span="8">{{item.content.equipment}}</u-col>
+											<u-row customStyle="padding-bottom:6px">
+												<u-col span="6">设备型号</u-col>
+												<u-col span="6">{{item.content.equipment}}</u-col>
 											</u-row>
-											<u-row customStyle="padding-bottom:10px">
-												<u-col span="4">提供化妆</u-col>
-												<u-col span="8">{{item.content.isMakeup}}</u-col>
+											<u-row customStyle="padding-bottom:6px">
+												<u-col span="6">提供化妆</u-col>
+												<u-col span="6">{{item.content.isMakeup}}</u-col>
 											</u-row>
-											<u-row customStyle="padding-bottom:10px">
-												<u-col span="4">提供服装</u-col>
-												<u-col span="8">{{item.content.isDress}}</u-col>
+											<u-row customStyle="padding-bottom:6px">
+												<u-col span="6">提供服装</u-col>
+												<u-col span="6">{{item.content.isDress}}</u-col>
 											</u-row>
-											<u-row customStyle="padding-bottom:10px">
-												<u-col span="4">其他说明</u-col>
-												<u-col span="8">{{item.content.other}}</u-col>
+											<u-row customStyle="padding-bottom:6px">
+												<u-col span="6">其他说明</u-col>
+												<u-col span="6">{{item.content.other}}</u-col>
 											</u-row>
 										</view>
-
+									
 										<u-line></u-line>
-
+									
 										<view
-											style="font-weight: 550;font-size: 24px;line-height: 24px;color: #191919;margin: 15px 0 10px 0;">
+											style="font-weight: 400;font-size: 16px;line-height: 20px;color: #191919;margin: 12px 8px 12px 8px;">
 											{{item.content.name}}
 										</view>
-
+									
 										<view
-											style="font-weight: 500;font-size: 20px;line-height: 24px;color: #191919;">
+											style="font-weight: 550;font-size: 22px;line-height: 20px;color: #191919;margin: 0 8px 0px 8px;">
 											￥{{item.content.price}}
 										</view>
-
+									
 									</view>
 								</view>
 							</u-scroll-list>
