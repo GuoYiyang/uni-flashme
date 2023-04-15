@@ -45,7 +45,7 @@
 					</u--input>
 				</u-form-item>
 				<u-form-item labelWidth="100px" label="个人简介" prop="intro">
-					<u--textarea cursorSpacing="20px" :showConfirmBar="false" height="150" v-model="userInfo.intro"
+					<u--textarea cursorSpacing="30px" :showConfirmBar="false" height="150" v-model="userInfo.intro"
 						count maxlength=200 border="bottom"></u--textarea>
 				</u-form-item>
 			</view>
@@ -267,11 +267,11 @@
 							}
 						});
 					}
-
-					uni.reLaunch({
+					uni.redirectTo({
 						url: '/pages/homePage/homePage'
 					})
 				}).catch(errors => {
+					console.log(errors)
 					uni.showToast({
 						icon: 'error',
 						title: "请检查所填内容是否正确"

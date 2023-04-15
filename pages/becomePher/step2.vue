@@ -52,7 +52,8 @@
 						</u--input>
 					</u-form-item>
 					<u-form-item labelWidth="100px" label="个人简介" prop="intro">
-						<u--textarea height="150" v-model="userInfo.intro" count maxlength=200 border="bottom"></u--textarea>
+						<u--textarea cursorSpacing="30px" :showConfirmBar="false" height="150" v-model="userInfo.intro"
+							count maxlength=200 border="bottom"></u--textarea>
 					</u-form-item>
 				</view>
 				<u-picker :show="showSex" :columns="sexList" @confirm="sexSelect" keyName="name" @cancel="showSex = false">
@@ -147,7 +148,7 @@
 							trigger: ['blur', 'change']
 						},
 						'phone': {
-							required: false,
+							required: true,
 							// 自定义验证函数
 							validator: (rule, value, callback) => {
 								// 返回true表示校验通过，返回false表示不通过
@@ -219,6 +220,13 @@
 				this.showCity = false;
 			},
 			submit() {
+				if (this.userInfo.phone == ''){
+					uni.showToast({
+						icon:'error',
+						title:'请补充手机号'
+					})
+					return;
+				}
 				this.$refs.Form.validate().then(res => {
 					this.userInfo.desc = JSON.stringify({
 						"xiaohongshu": this.userInfo.xiaohongshu,

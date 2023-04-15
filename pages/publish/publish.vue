@@ -162,7 +162,7 @@
 					tags: this.form.tag.toString(),
 					price: this.form.price,
 					imageJson: JSON.stringify(this.tempFiles),
-					set: this.form.set
+					setId: this.form.set
 				}).then((res) => {
 					let [error, success] = res;
 					setTimeout(function() {

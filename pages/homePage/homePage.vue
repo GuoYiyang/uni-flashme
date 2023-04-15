@@ -159,8 +159,12 @@
 			},
 			clickUserList(item) {
 				if (item == 0) {
-					uni.navigateTo({
-						url: '/pages/publish/publishSuccess'
+					// uni.navigateTo({
+					// 	url: '/pages/publish/publishSuccess'
+					// })
+					uni.showToast({
+						icon:'none',
+						title: '敬请期待'
 					})
 				}
 				if (item == 1) {
@@ -173,6 +177,12 @@
 							title: '您已经入驻'
 						})
 					}
+				}
+				if (item == 2){
+					uni.showToast({
+						icon:'none',
+						title: '敬请期待'
+					})
 				}
 				if (item == 3) {
 					uni.navigateTo({

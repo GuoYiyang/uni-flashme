@@ -4,7 +4,7 @@
 			<u--form labelPosition="top" :rules="rules" ref="Form" :model="plan"
 				:labelStyle="{'font-weight':300,'font-size':'14px','line-height':'16px','color':'#808080'}">
 				<u-form-item labelWidth="100px" label="方案名称" prop="name" borderBottom>
-					<u--input v-model="plan.name" border="none" showWordLimit maxlength=10></u--input>
+					<u--input v-model="plan.name" border="none" showWordLimit></u--input>
 				</u-form-item>
 				<u-form-item labelWidth="100px" label="价格" prop="price" borderBottom>
 					<u--input v-model="plan.price" border="none" showWordLimit type="number" maxlength=10></u--input>
@@ -50,10 +50,10 @@
 					</view>
 				</u-form-item>
 				<u-form-item labelWidth="100px" label="设备型号" prop="equipment" borderBottom>
-					<u--input v-model="plan.equipment" border="none" showWordLimit maxlength=10></u--input>
+					<u--input v-model="plan.equipment" border="none" showWordLimit></u--input>
 				</u-form-item>
 				<u-form-item labelWidth="100px" label="其他说明" prop="other" borderBottom>
-					<u--input v-model="plan.other" border="none" showWordLimit maxlength=10></u--input>
+					<u--input v-model="plan.other" border="none" showWordLimit></u--input>
 				</u-form-item>
 			</u--form>
 		</view>
@@ -106,6 +106,22 @@
 						min: 1,
 						max: 10,
 						message: '长度为1-10个字符',
+						trigger: ['blur', 'change']
+					},
+					'equipment': {
+						type: 'string',
+						required: true,
+						min: 2,
+						max: 10,
+						message: '长度为2-10个字符',
+						trigger: ['blur', 'change']
+					},
+					'other': {
+						type: 'string',
+						required: false,
+						min: 2,
+						max: 10,
+						message: '长度为2-10个字符',
 						trigger: ['blur', 'change']
 					},
 				},

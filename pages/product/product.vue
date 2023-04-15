@@ -12,7 +12,7 @@
 
 		<view style="background-color: #FFFFFF; border-radius:0px 0px 15px 15px;">
 			<view style="padding: 10px;">
-				<view style="font-size: 25px; font-weight: bold; padding: 5px;">{{title}}</view>
+				<view style="font-size: 20px; font-weight: bold; padding: 5px;">{{title}}</view>
 				<u-row>
 					<view v-for="(item,index) in tags" :key="index">
 						<view style="padding: 4px;">
@@ -400,17 +400,17 @@
 					this.cameramanPhone = success.data.phone;
 					this.cameramanCity = changeCity(success.data.city);
 					this.notice = success.data.notice;
-					if (this.cameramanDesc.wxid != null) {
+					if (this.cameramanDesc.wxid != null && this.cameramanDesc.wxid != '') {
 						this.popList.push({
 							name: '微信'
 						})
 					}
-					if (this.cameramanDesc.xiaohongshu != null) {
+					if (this.cameramanDesc.xiaohongshu != null && this.cameramanDesc.xiaohongshu != '') {
 						this.popList.push({
 							name: '小红书'
 						})
 					}
-					if (this.cameramanDesc.douyin != null) {
+					if (this.cameramanDesc.douyin != null && this.cameramanDesc.douyin != '') {
 						this.popList.push({
 							name: '抖音'
 						})

@@ -7,7 +7,7 @@
 				<u-steps-item title="发布作品"></u-steps-item>
 			</u-steps>
 		</view>
-		
+
 		<view>
 			<view style="background-color: #FFFFFF;border-radius: 10px">
 				<view style="padding: 18px 16px 18px 16px; color: #808080;">上传作品，最多选择9张照片</view>
@@ -87,26 +87,23 @@
 						text: '写真',
 						value: 0
 					}, {
-						text: '证件照',
+						text: '情侣',
 						value: 1
 					}, {
 						text: '婚纱',
 						value: 2
 					}, {
-						text: '情侣',
+						text: '职场',
 						value: 3
 					}, {
-						text: '亲子',
+						text: '孕妇',
 						value: 4
 					}, {
-						text: '宠物',
+						text: '宝宝',
 						value: 5
 					}, {
-						text: '旅拍',
+						text: '家庭',
 						value: 6
-					}, {
-						text: '其他',
-						value: 7
 					}]
 				],
 				rules: {
@@ -195,7 +192,7 @@
 					})
 				})
 			},
-			toStep5(){
+			toStep5() {
 				uni.navigateTo({
 					url: '/pages/becomePher/step5'
 				})

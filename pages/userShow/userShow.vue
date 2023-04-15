@@ -83,9 +83,13 @@
 				</view>
 
 				<view style="margin: 26px 24px 100px 24px;background: #F6F7F9;border-radius: 6px;display: flex;">
-					<view
+					<view v-if="desc.intro != ''"
 						style="font-weight: 300;font-size: 14px;line-height: 150%;text-align: center;color: #191919;margin: 36px 15px 36px 15px;">
 						<text>{{desc.intro}}</text>
+					</view>
+					<view v-if="desc.intro == ''"
+						style="font-weight: 300;font-size: 14px;line-height: 150%;text-align: center;color: #191919;margin: 36px 15px 36px 15px;">
+						<text>暂未补充简介</text>
 					</view>
 				</view>
 			</u-popup>
@@ -276,27 +280,6 @@
 				popContactList: [{
 					name: '电话'
 				}],
-				planCardList: [{
-						name: '12123',
-						price: 111
-					},
-					{
-						name: '657567',
-						price: 111
-					},
-					{
-						name: '907567',
-						price: 111
-					},
-					{
-						name: '907567',
-						price: 111
-					},
-					{
-						name: '907567',
-						price: 111
-					}
-				],
 				popDescShow: false,
 				notice: '',
 				planList: [],
@@ -409,17 +392,17 @@
 				this.desc = JSON.parse(success.data.desc);
 				this.phone = success.data.phone;
 				this.notice = success.data.notice;
-				if (this.desc.wxid != null) {
+				if (this.desc.wxid != null && this.desc.wxid != '') {
 					this.popContactList.push({
 						name: '微信'
 					})
 				}
-				if (this.desc.xiaohongshu != null) {
+				if (this.desc.xiaohongshu != null && this.desc.xiaohongshu != '') {
 					this.popContactList.push({
 						name: '小红书'
 					})
 				}
-				if (this.desc.douyin != null) {
+				if (this.desc.douyin != null && this.desc.douyin != '') {
 					this.popContactList.push({
 						name: '抖音'
 					})

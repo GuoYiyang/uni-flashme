@@ -35,7 +35,7 @@ export function deleteSet(req) {
 
 // 获取作品集列表
 export function getSetList(req) {
-	let userId = req.userId == null ? getApp().globalData.USER_ID : req.userId
+	let userId = req == null ? getApp().globalData.USER_ID : req.userId
 	return uni.request({
 		url: baseUrl + '/set/list',
 		method: "GET",
