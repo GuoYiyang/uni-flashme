@@ -52,7 +52,7 @@
 						</u--input>
 					</u-form-item>
 					<u-form-item labelWidth="100px" label="个人简介" prop="intro">
-						<u--textarea cursorSpacing="30px" :showConfirmBar="false" height="150" v-model="userInfo.intro"
+						<u--textarea cursor-spacing="40px" :show-confirm-bar="false" height="150" v-model="userInfo.intro"
 							count maxlength=200 border="bottom"></u--textarea>
 					</u-form-item>
 				</view>

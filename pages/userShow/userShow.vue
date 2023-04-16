@@ -3,10 +3,11 @@
 		<image :src="bgImg" style="margin-bottom: -40px; height: 130px; width: 100%;"></image>
 
 		<view class="topright">
-			
+
 			<u-button color="#FFFFFF" @click="follow"
 				customStyle="width: 45px;height: 30px;background: #FFFFFF;border: 1px solid #E6E6E6;border-radius: 30px;">
-				<uni-icons :type="isFollow ? 'auth': 'personadd'" size="25" :color="isFollow ? '#808080': '#191919'"></uni-icons>
+				<uni-icons :type="isFollow ? 'auth': 'personadd'" size="25"
+					:color="isFollow ? '#808080': '#191919'"></uni-icons>
 			</u-button>
 			<view style="margin: 0 5px 0 0;"></view>
 			<u-button color="#FFFFFF" openType="share"
@@ -51,15 +52,15 @@
 			<view style="margin: 0 10px 0 10px;">
 				<u-tabs :list="setList" lineWidth="40" lineHeight="0" lineColor="#191919"
 					:activeStyle="{color: '#191919',fontWeight: 'bold', transform: 'scale(1)'}"
-					:inactiveStyle="{color: '#808080',transform: 'scale(1)'}" :current="setCurrent"
-					:duration="100" @change="setChange">
+					:inactiveStyle="{color: '#808080',transform: 'scale(1)'}" :current="setCurrent" :duration="100"
+					@change="setChange">
 				</u-tabs>
 			</view>
 			<view style="padding: 0px 10px 0 10px;">
 				<custom-waterfalls-flow :value="product.list" :column="2" :columnSpace="1" @imageClick="imageClick"
 					@wapperClick="wapperClick" ref="waterfallsFlowRef">
 					<view style="padding: 5px;" v-for="(item,index) in product.list" :key="index" slot="slot{{index}}">
-						<view style="font-weight: 600;font-size: 15px;line-height: 20px;padding: 6px 6px 6px 6px">
+						<view style="font-weight: 600;font-size: 15px;line-height: 32px;padding: 2px 6px 10px 6px">
 							{{item.title}}
 						</view>
 					</view>
@@ -126,7 +127,8 @@
 									style="margin: 5px;">
 									<view
 										style="padding: 28px 20px 28px 20px; margin: 8px;width: 212px;height: 336px;background: #F8F9FA;box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.20);border-radius: 10px;">
-										<view style="font-weight: 350;font-size: 14px;color: #4E4E4E;margin: 0px 8px 8px 8px;">
+										<view
+											style="font-weight: 350;font-size: 14px;color: #4E4E4E;margin: 0px 8px 8px 8px;">
 											<u-row customStyle="padding-bottom:6px">
 												<u-col span="6">拍摄人数</u-col>
 												<u-col span="6">{{item.content.peopleNum}}</u-col>
@@ -168,19 +170,19 @@
 												<u-col span="6">{{item.content.other}}</u-col>
 											</u-row>
 										</view>
-									
+
 										<u-line></u-line>
-									
+
 										<view
 											style="font-weight: 400;font-size: 16px;line-height: 20px;color: #191919;margin: 12px 8px 12px 8px;">
 											{{item.content.name}}
 										</view>
-									
+
 										<view
 											style="font-weight: 550;font-size: 22px;line-height: 20px;color: #191919;margin: 0 8px 0px 8px;">
 											￥{{item.content.price}}
 										</view>
-									
+
 									</view>
 								</view>
 							</u-scroll-list>
@@ -283,16 +285,16 @@
 				popDescShow: false,
 				notice: '',
 				planList: [],
-				setCurrent:0,
-				setId:'',
-				setList:[{
-					id:"",
-					name:"全部"
+				setCurrent: 0,
+				setId: '',
+				setList: [{
+					id: "",
+					name: "全部"
 				}]
 			}
 		},
 		methods: {
-			setChange(index){
+			setChange(index) {
 				this.loadMoreStatus = 'loading';
 				this.setCurrent = index.index
 				this.setId = index.id
@@ -413,7 +415,7 @@
 			});
 			getSetList({
 				userId: this.userId
-			}).then(res=>{
+			}).then(res => {
 				let [error, success] = res;
 				this.setList = this.setList.concat(success.data)
 			})
@@ -479,8 +481,9 @@
 		},
 		onShareAppMessage(res) {
 			return {
-				title: this.username,
+				title: "分享了摄影师" + this.username,
 				path: "/pages/userShow/userShow?userId=" + this.userId,
+				imageUrl: this.avatar
 			};
 		}
 	}

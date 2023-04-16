@@ -13,12 +13,15 @@
 
 			<view style="font-weight: 600;font-size: 16px;line-height: 16px;color: #191919;">
 				拍摄方案
+				<view style=" float: right;" @click="addPlan">
+					<u-icon name="plus" size="20px" color="#191919"></u-icon>
+				</view>
 			</view>
-			
+
 			<view style="margin: 20px 0 20px 0;">
 				<u-scroll-list :indicator="false">
 					<view v-if="planList.length == 0" @click="addPlan"
-						style="margin: 5px; height: 360px;width:240px;background: #F8F9FA;box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);border-radius: 12px;">
+						style="padding: 28px 20px 28px 20px; margin: 8px;width: 212px;height: 340px;background: #F8F9FA;box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.20);border-radius: 10px;">
 						<view
 							style="height: 100%;flex: auto;display:flex;flex-direction:column;justify-content:center;align-items: center;">
 							<u-icon name="plus" size="50px"></u-icon>
@@ -27,70 +30,72 @@
 								开始创建您的第一个拍摄方案</view>
 						</view>
 					</view>
-			
-					<view v-if="planList.length > 0" v-for="(item, index) in planList" :key="index" style="margin: 5px;">
+
+					<view v-if="planList.length > 0" v-for="(item, index) in planList" :key="index"
+						style="margin: 0px;">
 						<view @click="clickPlan(item.planId)"
-							style="padding: 20px 20px 20px 20px; margin: 5px;width: 240px;height: 380px;background: #F8F9FA;box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);border-radius: 12px;">
-			
-							<view style="font-size: 14px;color: #191919;">
-								<u-row customStyle="padding-bottom:10px">
-									<u-col span="4">拍摄人数</u-col>
-									<u-col span="8">{{item.content.peopleNum}}</u-col>
+							style="padding: 28px 20px 28px 20px; margin: 8px;width: 212px;height: 336px;background: #F8F9FA;box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.20);border-radius: 10px;">
+
+							<view style="font-weight: 350;font-size: 14px;color: #4E4E4E;margin: 0px 8px 8px 8px;">
+								<u-row customStyle="padding-bottom:6px">
+									<u-col span="5">拍摄人数</u-col>
+									<u-col span="7">{{item.content.peopleNum}}</u-col>
 								</u-row>
-								<u-row customStyle="padding-bottom:10px">
-									<u-col span="4">拍摄张数</u-col>
-									<u-col span="8">{{item.content.photoCnt}}</u-col>
+								<u-row customStyle="padding-bottom:6px">
+									<u-col span="5">拍摄张数</u-col>
+									<u-col span="7">{{item.content.photoCnt}}</u-col>
 								</u-row>
-								<u-row customStyle="padding-bottom:10px">
-									<u-col span="4">精修张数</u-col>
-									<u-col span="8">{{item.content.jingxiuPhotoCnt}}</u-col>
+								<u-row customStyle="padding-bottom:6px">
+									<u-col span="5">精修张数</u-col>
+									<u-col span="7">{{item.content.jingxiuPhotoCnt}}</u-col>
 								</u-row>
-								<u-row customStyle="padding-bottom:10px">
-									<u-col span="4">底片赠送</u-col>
-									<u-col span="8">{{item.content.zengsongPhotoCnt}}</u-col>
+								<u-row customStyle="padding-bottom:6px">
+									<u-col span="5">底片赠送</u-col>
+									<u-col span="7">{{item.content.zengsongPhotoCnt}}</u-col>
 								</u-row>
-								<u-row customStyle="padding-bottom:10px">
-									<u-col span="4">拍摄场景</u-col>
-									<u-col span="8">{{item.content.scene}}</u-col>
+								<u-row customStyle="padding-bottom:6px">
+									<u-col span="5">拍摄场景</u-col>
+									<u-col span="7">{{item.content.scene}}</u-col>
 								</u-row>
-								<u-row customStyle="padding-bottom:10px">
-									<u-col span="4">场景数量</u-col>
-									<u-col span="8">{{item.content.sceneNum}}</u-col>
+								<u-row customStyle="padding-bottom:6px">
+									<u-col span="5">场景数量</u-col>
+									<u-col span="7">{{item.content.sceneNum}}</u-col>
 								</u-row>
-								<u-row customStyle="padding-bottom:10px">
-									<u-col span="4">设备型号</u-col>
-									<u-col span="8">{{item.content.equipment}}</u-col>
+								<u-row customStyle="padding-bottom:6px">
+									<u-col span="5">设备型号</u-col>
+									<u-col span="7">{{item.content.equipment}}</u-col>
 								</u-row>
-								<u-row customStyle="padding-bottom:10px">
-									<u-col span="4">提供化妆</u-col>
-									<u-col span="8">{{item.content.isMakeup}}</u-col>
+								<u-row customStyle="padding-bottom:6px">
+									<u-col span="5">提供化妆</u-col>
+									<u-col span="7">{{item.content.isMakeup}}</u-col>
 								</u-row>
-								<u-row customStyle="padding-bottom:10px">
-									<u-col span="4">提供服装</u-col>
-									<u-col span="8">{{item.content.isDress}}</u-col>
+								<u-row customStyle="padding-bottom:6px">
+									<u-col span="5">提供服装</u-col>
+									<u-col span="7">{{item.content.isDress}}</u-col>
 								</u-row>
-								<u-row customStyle="padding-bottom:10px">
-									<u-col span="4">其他说明</u-col>
-									<u-col span="8">{{item.content.other}}</u-col>
+								<u-row customStyle="padding-bottom:6px">
+									<u-col span="5">其他说明</u-col>
+									<u-col span="7">{{item.content.other}}</u-col>
 								</u-row>
 							</view>
-			
+
 							<u-line></u-line>
-			
+
 							<view
-								style="font-weight: 550;font-size: 24px;line-height: 24px;color: #191919;margin: 15px 0 10px 0;">
+								style="font-weight: 400;font-size: 16px;line-height: 20px;color: #191919;margin: 12px 8px 12px 8px;">
 								{{item.content.name}}
 							</view>
-			
-							<view style="font-weight: 500;font-size: 20px;line-height: 24px;color: #191919;">
+
+							<view
+								style="font-weight: 550;font-size: 22px;line-height: 20px;color: #191919;margin: 0 8px 0px 8px;">
 								￥{{item.content.price}}
 							</view>
-							
+
 						</view>
 					</view>
 				</u-scroll-list>
 			</view>
-			
+
 			<view style="font-weight: 600;font-size: 16px;line-height: 16px;color: #191919;">
 				拍摄须知
 			</view>
@@ -110,7 +115,7 @@
 					<text style="font-size: 14px;color: #4E4E4E;line-height: 150%;">{{notice}}</text>
 				</view>
 			</view>
-			
+
 			<view style="font-weight: 300;font-size: 14px;line-height: 16px;color: #808080">
 				*拍摄方案将展示在你的摄影师主页
 			</view>
@@ -146,17 +151,17 @@
 	export default {
 		data() {
 			return {
-				planList:[],
-				notice:'',
+				planList: [],
+				notice: '',
 			}
 		},
 		methods: {
-			addPlan(){
+			addPlan() {
 				uni.navigateTo({
 					url: '/pages/plan/addPlan'
 				})
 			},
-			addNotice(){
+			addNotice() {
 				uni.navigateTo({
 					url: '/pages/plan/editNotice'
 				})
@@ -184,7 +189,7 @@
 			})
 			getUserInfo({
 				userId: getApp().globalData.USER_ID
-			}).then(res=>{
+			}).then(res => {
 				let [error, success] = res;
 				this.notice = success.data.notice;
 			})

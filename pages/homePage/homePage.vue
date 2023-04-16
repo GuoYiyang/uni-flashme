@@ -227,35 +227,32 @@
 					_this.isPher = true;
 				}
 			})
-			if (getApp().globalData.USER_ID == '1628712434095104002') {
-				_this.isAdmin = true;
-			}
 		},
 		onReady() {
 			uni.hideNavigationBarLoading()
 		},
-		onShow() {
-			let _this = this;
-			getUserInfo({
-				userId: getApp().globalData.USER_ID
-			}).then((res) => {
-				let [error, success] = res;
-				_this.userInfo.username = success.data.nickname;
-				_this.userInfo.city = success.data.city;
-				_this.userInfo.avatar = success.data.avatar;
-				_this.userInfo.role = success.data.role;
-				if (success.data.role == 0) {
-					_this.isAdmin = true;
-					_this.isPher = true;
-					_this.isUser = true;
-				} else if (success.data.role == 1) {
-					_this.isUser = true;
-				} else if (success.data.role == 2) {
-					_this.isUser = true;
-					_this.isPher = true;
-				}
-			})
-		}
+		// onShow() {
+		// 	let _this = this;
+		// 	getUserInfo({
+		// 		userId: getApp().globalData.USER_ID
+		// 	}).then((res) => {
+		// 		let [error, success] = res;
+		// 		_this.userInfo.username = success.data.nickname;
+		// 		_this.userInfo.city = success.data.city;
+		// 		_this.userInfo.avatar = success.data.avatar;
+		// 		_this.userInfo.role = success.data.role;
+		// 		if (success.data.role == 0) {
+		// 			_this.isAdmin = true;
+		// 			_this.isPher = true;
+		// 			_this.isUser = true;
+		// 		} else if (success.data.role == 1) {
+		// 			_this.isUser = true;
+		// 		} else if (success.data.role == 2) {
+		// 			_this.isUser = true;
+		// 			_this.isPher = true;
+		// 		}
+		// 	})
+		// }
 	}
 </script>
 

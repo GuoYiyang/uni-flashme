@@ -1,5 +1,5 @@
 <template>
-	<view v-if = "this.imgUrlList.length != null">
+	<view v-if="this.imgUrlList.length != null">
 		<view>
 			<u-swiper :list="imgUrlList" indicator imgMode="aspectFit" height="550" :autoplay="false" circular
 				@click="previewImg" bgColor="#ffffff" indicatorStyle="right: 20px"
@@ -107,63 +107,64 @@
 
 								<view v-if="planList.length > 0" v-for="(item, index) in planList" :key="index"
 									style="margin: 5px;">
-									<view 
+									<view
 										style="padding: 28px 20px 28px 20px; margin: 8px;width: 212px;height: 336px;background: #F8F9FA;box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.20);border-radius: 10px;">
-										<view style="font-weight: 350;font-size: 14px;color: #4E4E4E;margin: 0px 8px 8px 8px;">
+										<view
+											style="font-weight: 350;font-size: 14px;color: #4E4E4E;margin: 0px 8px 8px 8px;">
 											<u-row customStyle="padding-bottom:6px">
-												<u-col span="6">拍摄人数</u-col>
-												<u-col span="6">{{item.content.peopleNum}}</u-col>
+												<u-col span="5">拍摄人数</u-col>
+												<u-col span="7">{{item.content.peopleNum}}</u-col>
 											</u-row>
 											<u-row customStyle="padding-bottom:6px">
-												<u-col span="6">拍摄张数</u-col>
-												<u-col span="6">{{item.content.photoCnt}}</u-col>
+												<u-col span="5">拍摄张数</u-col>
+												<u-col span="7">{{item.content.photoCnt}}</u-col>
 											</u-row>
 											<u-row customStyle="padding-bottom:6px">
-												<u-col span="6">精修张数</u-col>
-												<u-col span="6">{{item.content.jingxiuPhotoCnt}}</u-col>
+												<u-col span="5">精修张数</u-col>
+												<u-col span="7">{{item.content.jingxiuPhotoCnt}}</u-col>
 											</u-row>
 											<u-row customStyle="padding-bottom:6px">
-												<u-col span="6">底片赠送</u-col>
-												<u-col span="6">{{item.content.zengsongPhotoCnt}}</u-col>
+												<u-col span="5">底片赠送</u-col>
+												<u-col span="7">{{item.content.zengsongPhotoCnt}}</u-col>
 											</u-row>
 											<u-row customStyle="padding-bottom:6px">
-												<u-col span="6">拍摄场景</u-col>
-												<u-col span="6">{{item.content.scene}}</u-col>
+												<u-col span="5">拍摄场景</u-col>
+												<u-col span="7">{{item.content.scene}}</u-col>
 											</u-row>
 											<u-row customStyle="padding-bottom:6px">
-												<u-col span="6">场景数量</u-col>
-												<u-col span="6">{{item.content.sceneNum}}</u-col>
+												<u-col span="5">场景数量</u-col>
+												<u-col span="7">{{item.content.sceneNum}}</u-col>
 											</u-row>
 											<u-row customStyle="padding-bottom:6px">
-												<u-col span="6">设备型号</u-col>
-												<u-col span="6">{{item.content.equipment}}</u-col>
+												<u-col span="5">设备型号</u-col>
+												<u-col span="7">{{item.content.equipment}}</u-col>
 											</u-row>
 											<u-row customStyle="padding-bottom:6px">
-												<u-col span="6">提供化妆</u-col>
-												<u-col span="6">{{item.content.isMakeup}}</u-col>
+												<u-col span="5">提供化妆</u-col>
+												<u-col span="7">{{item.content.isMakeup}}</u-col>
 											</u-row>
 											<u-row customStyle="padding-bottom:6px">
-												<u-col span="6">提供服装</u-col>
-												<u-col span="6">{{item.content.isDress}}</u-col>
+												<u-col span="5">提供服装</u-col>
+												<u-col span="7">{{item.content.isDress}}</u-col>
 											</u-row>
 											<u-row customStyle="padding-bottom:6px">
-												<u-col span="6">其他说明</u-col>
-												<u-col span="6">{{item.content.other}}</u-col>
+												<u-col span="5">其他说明</u-col>
+												<u-col span="7">{{item.content.other}}</u-col>
 											</u-row>
 										</view>
-									
+
 										<u-line></u-line>
-									
+
 										<view
 											style="font-weight: 400;font-size: 16px;line-height: 20px;color: #191919;margin: 12px 8px 12px 8px;">
 											{{item.content.name}}
 										</view>
-									
+
 										<view
 											style="font-weight: 550;font-size: 22px;line-height: 20px;color: #191919;margin: 0 8px 0px 8px;">
 											￥{{item.content.price}}
 										</view>
-									
+
 									</view>
 								</view>
 							</u-scroll-list>
@@ -173,8 +174,7 @@
 							拍摄须知
 						</view>
 						<view style="margin: 20px 0 20px 0;">
-							<view v-if="notice==null || notice == ''"
-								style="height: 200px;background-color: #F8F9FA;">
+							<view v-if="notice==null || notice == ''" style="height: 200px;background-color: #F8F9FA;">
 								<view
 									style="height: 100%;flex: auto;display:flex;flex-direction:column;justify-content:center;align-items: center;">
 									<u-icon name="info-circle" size="50px"></u-icon>
@@ -405,7 +405,8 @@
 							name: '微信'
 						})
 					}
-					if (this.cameramanDesc.xiaohongshu != null && this.cameramanDesc.xiaohongshu != '') {
+					if (this.cameramanDesc.xiaohongshu != null && this.cameramanDesc.xiaohongshu !=
+						'') {
 						this.popList.push({
 							name: '小红书'
 						})
@@ -471,7 +472,8 @@
 		onShareAppMessage(res) {
 			return {
 				title: "我分享了一个作品,快来看看吧",
-				path: '/pages/product/product?id=' + this.productId
+				path: '/pages/product/product?id=' + this.productId,
+				imageUrl: this.imgUrlList[0]
 			};
 		}
 
