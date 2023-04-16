@@ -34,6 +34,12 @@
 					@cancel="showSet = false">
 				</u-picker>
 			</view>
+			
+			<view style="padding: 10px 24px 0 24px;font-weight: 300;font-size: 13px;line-height: 16px;color: #808080">
+				*发布成功后会在1-2个工作日内审核完毕
+			</view>
+			
+
 
 			<view style="padding:40px 36px 40px 36px">
 				<u-button @click="submit" color="#3D6EC2"
@@ -168,6 +174,7 @@
 					setTimeout(function() {
 						if (success.data == true) {
 							uni.showToast({
+								icon: 'success',
 								title: '发布成功'
 							})
 							uni.redirectTo({
@@ -180,7 +187,7 @@
 							})
 							this.overlayShow = false;
 						}
-					}, 2000);
+					}, 1000);
 				})
 			},
 			submit() {
