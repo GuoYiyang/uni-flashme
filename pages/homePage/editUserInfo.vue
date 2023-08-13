@@ -146,7 +146,7 @@
 						trigger: ['blur', 'change']
 					},
 					'phone': {
-						required: false,
+						required: true,
 						// 自定义验证函数
 						validator: (rule, value, callback) => {
 							// 返回true表示校验通过，返回false表示不通过
@@ -267,7 +267,7 @@
 							}
 						});
 					}
-					uni.redirectTo({
+					uni.reLaunch({
 						url: '/pages/homePage/homePage'
 					})
 				}).catch(errors => {

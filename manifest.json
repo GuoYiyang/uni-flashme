@@ -58,7 +58,7 @@
     "quickapp" : {},
     /* 快应用特有相关 */
     "mp-weixin" : {
-        "appid" : "wxc0821a0da706d8e0",
+        "appid" : "wxf45b62b996267ccb",
         "setting" : {
             "urlCheck" : false,
             "minified" : true,
@@ -70,7 +70,7 @@
                 "desc" : "你的位置信息将用于小程序位置接口的效果展示"
             }
         },
-		"lazyCodeLoading": "requiredComponents"
+        "lazyCodeLoading" : "requiredComponents"
     },
     "vueVersion" : "2",
     "uniStatistics" : {

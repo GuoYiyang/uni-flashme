@@ -29,24 +29,24 @@
 			</view>
 		</div>
 
-		<u-popup :show="popShow" @close="this.popShow=false" round="10">
+		<u-popup :show="popShow" @close="this.popShow=false" round="10" mode="center">
 			<view>
 				<view style="margin: 40px 40px 20px 40px;">
 					<u--input placeholder="请输入作品集名称" inputAlign="center" shape="circle" v-model="setText" maxlength=25
 						cursorSpacing="50px"></u--input>
 				</view>
-				<view style="font-size: 12px;line-height: 16px;text-align: center;color: #808080;">
+				<view style="margin-top: 5px; font-size: 12px;line-height: 16px;text-align: center;color: #808080;">
 					已发布的作品将按照作品集进行分类展示
 				</view>
-				<view style="margin: 20px 40px 40px 40px;">
-					<u-button @click="createSet" color="#3D6EC2" customStyle="border-radius:10px;">完成</u-button>
+				<view style="margin: 20px 40px 10px 40px;">
+					<u-button @click="createSet" color="#3D6EC2" customStyle="border-radius:10px;" :disabled="setText.length==0">完成</u-button>
 				</view>
 			</view>
 
 		</u-popup>
 
 		<uni-popup ref="alertDialog" type="dialog">
-			<uni-popup-dialog :type="msgType" cancelText="取消" confirmText="删除" title="确认删除" content="删除作品集后,不会该作品集下的作品"
+			<uni-popup-dialog :type="msgType" cancelText="取消" confirmText="删除" title="确认删除" content="删除作品集后,不会删除该作品集下的作品"
 				@confirm="confirmDelete"></uni-popup-dialog>
 		</uni-popup>
 

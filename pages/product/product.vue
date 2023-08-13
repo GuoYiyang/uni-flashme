@@ -13,13 +13,13 @@
 		<view style="background-color: #FFFFFF; border-radius:0px 0px 15px 15px;">
 			<view style="padding: 10px;">
 				<view style="font-size: 20px; font-weight: bold; padding: 5px;">{{title}}</view>
-				<u-row>
+<!-- 				<u-row>
 					<view v-for="(item,index) in tags" :key="index">
 						<view style="padding: 4px;">
 							<u-tag :text="item" bgColor="#F3F4F5" color="#191919" borderColor="#F3F4F5"></u-tag>
 						</view>
 					</view>
-				</u-row>
+				</u-row> -->
 			</view>
 			<view style="padding: 5px;"></view>
 		</view>
@@ -204,9 +204,9 @@
 		<u-tabbar :border="false"
 			customStyle="box-shadow: 0px -6px 20px rgba(0, 0, 0, 0.06); border-radius: 8px 8px 0px 0px;">
 			<u-col span="2">
-				<view style="padding: 15px;">
-					<u-icon :name="icon.collectIcon" @click="collectClick" :size="20" :label="collectCnt"
-						labelPos="bottom"></u-icon>
+				<view style="padding: 15px; margin-left: 10px;">
+					<u-icon :name="icon.collectIcon" @click="collectClick" :size="28" >
+					</u-icon>
 				</view>
 			</u-col>
 			<u-col span="5">

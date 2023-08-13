@@ -30,7 +30,8 @@
 
 <script>
 	import {
-		getProductPage
+		getProductPage,
+		productRandom
 	} from '@/api/product.js'
 	import {
 		changeTag

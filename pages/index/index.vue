@@ -63,13 +63,13 @@
 			@cancel="cityPickerShow = false"></u-picker>
 
 		<view style="padding: 28px 10px 10px 10px">
-			<u-scroll-list :indicator="false">
+<!-- 			<u-scroll-list :indicator="false">
 				<view v-for="(item, index) in tagList" :key="index" style="padding: 0 8px 0 0;">
 					<image :src="item.image" mode="aspectFill" style="width: 90px;height: 110px;border-radius: 10px;"
 						@click="clickFastEnter(index)">
 					</image>
 				</view>
-			</u-scroll-list>
+			</u-scroll-list> -->
 		</view>
 
 		<view style="padding: 0px 0px 0px 20px">

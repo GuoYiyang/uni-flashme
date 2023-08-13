@@ -166,6 +166,27 @@
 			});
 		},
 		onShow() {
+			// let _this = this;
+			// getProductCollect({
+			// 	userId: getApp().globalData.USER_ID
+			// }).then((res) => {
+			// 	let [error, success] = res;
+			// 	_this.product.list = success.data;
+			// 	this.$refs.waterfallsFlowRef.refresh();
+			// 	if (success.data.length === 0) {
+			// 		this.loadMoreStatus = 'nomore';
+			// 	}
+			// });
+			// getPherCollect({
+			// 	userId: getApp().globalData.USER_ID
+			// }).then((res) => {
+			// 	let [error, success] = res;
+			// 	_this.pher.list = success.data;
+			// 	_this.pher.list.forEach(item => {
+			// 		item.desc = JSON.parse(item.desc);
+			// 		item.city = changeCity(item.city)
+			// 	})
+			// });
 		},
 		onPullDownRefresh() {
 			let _this = this;

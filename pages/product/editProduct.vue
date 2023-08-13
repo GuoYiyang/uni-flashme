@@ -16,11 +16,11 @@
 					<u-form-item labelWidth="100px" label="作品名称" prop="title" borderBottom>
 						<u--input v-model="form.title" border="none"></u--input>
 					</u-form-item>
-					<u-form-item labelWidth="100px" label="作品类型" prop="tag" @click="showCate = true;">
+<!-- 					<u-form-item labelWidth="100px" label="作品类型" prop="tag" @click="showCate = true;">
 						<u--input readonly v-model="form.tagText" placeholder="请选择作品类型" border="none">
 						</u--input>
 						<u-icon slot="right" name="arrow-right"></u-icon>
-					</u-form-item>
+					</u-form-item> -->
 					<u-form-item labelWidth="100px" label="作品集" prop="set" @click="showSet = true;">
 						<u--input readonly v-model="form.setText" placeholder="请选择作品集" border="none">
 						</u--input>
@@ -33,6 +33,10 @@
 				<u-picker :show="showSet" :columns="setList" @confirm="setSelect" keyName="name"
 					@cancel="showSet = false">
 				</u-picker>
+			</view>
+			
+			<view style="padding: 10px 24px 0 24px;font-weight: 300;font-size: 13px;line-height: 16px;color: #808080">
+				*暂不支持修改图片，如需修改，请删除后重新发布
 			</view>
 
 			<view style="padding:40px 36px 40px 36px">

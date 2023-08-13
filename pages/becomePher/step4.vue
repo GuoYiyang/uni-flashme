@@ -24,11 +24,11 @@
 					<u-form-item labelWidth="100px" label="作品名称" prop="title" borderBottom>
 						<u--input v-model="form.title" border="none"></u--input>
 					</u-form-item>
-					<u-form-item labelWidth="100px" label="作品类型" prop="tag" @click="showCate = true;">
+<!-- 					<u-form-item labelWidth="100px" label="作品类型" prop="tag" @click="showCate = true;">
 						<u--input readonly v-model="form.tagText" placeholder="请选择作品类型" border="none">
 						</u--input>
 						<u-icon slot="right" name="arrow-right"></u-icon>
-					</u-form-item>
+					</u-form-item> -->
 				</u--form>
 				<u-picker :show="showCate" :columns="cateList" @confirm="cateSelect" keyName="text"
 					@cancel="showCate = false">

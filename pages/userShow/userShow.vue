@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<image :src="bgImg" style="margin-bottom: -40px; height: 130px; width: 100%;"></image>
+		<!-- <image :src="bgImg" style="margin-bottom: -40px; height: 130px; width: 100%;"></image> -->
 
 		<view class="topright">
 
@@ -18,7 +18,7 @@
 
 
 		<view style="background-color: #FFFFFF; padding-bottom: 10px; border-radius:15px">
-			<view class="center">
+			<view class="center" style="padding-top: 20px;">
 				<view @click="this.popDescShow = true">
 					<u-avatar :src="avatar" size="80" customStyle="border: 4px solid #FFFFFF;"></u-avatar>
 				</view>
@@ -30,8 +30,8 @@
 				</view>
 
 				<view style="padding-top: 10px; padding-bottom: 10px;flex-flow: row;">
-					<text style="font-size: 14px; color: #4E4E4E;padding-right: 20px;">作品数 {{productCnt}}</text>
-					<text style="font-size: 14px; color: #4E4E4E;">粉丝数 {{fansCnt}}</text>
+<!-- 					<text style="font-size: 14px; color: #4E4E4E;padding-right: 20px;">作品数 {{productCnt}}</text>
+					<text style="font-size: 14px; color: #4E4E4E;">粉丝数 {{fansCnt}}</text> -->
 				</view>
 			</view>
 
@@ -494,7 +494,7 @@
 		display: flex;
 		flex-direction: row;
 		position: absolute;
-		top: 145px;
+		top: 15px;
 		right: 20px;
 		font-size: 15px;
 	}
